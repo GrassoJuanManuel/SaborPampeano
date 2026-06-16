@@ -3,6 +3,9 @@
 <head>
 
 <script>
+    if (window.location.protocol === 'file:') {
+        sessionStorage.setItem('auth_ok', 'true');
+    }
     if (!sessionStorage.getItem('auth_ok')) {
         let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
         if (pwd === 'SaborPampeanoOperaciones') {
@@ -125,8 +128,8 @@ body {
     <ul class="checklist">
       <li class="chk-act"><i class="far fa-square"></i> <strong>Nuevo Horno Argental:</strong> Horno rotativo descartado por altura. Evaluar HORNO ROTATIVO FE III-315 (US$ 16,071.67) sujeto a gerencia.</li>
       <li class="chk-act"><i class="far fa-square"></i> <strong>Línea de Aire Comprimido:</strong> Aprobar a Mega Herrería para hacer la casilla y comprar compresor BTA 7.5HP (tarda 1 semana a Bahía Blanca). Esperar cotización Proing SA.</li>
-      <li class="chk-act"><i class="far fa-square"></i> <strong>Línea Cadec (Tapadora/Llenadora):</strong> Ingresar máquinas a la cocina para ver layout físico y estudiar manuales.</li>
-      <li class="chk-act"><i class="far fa-square"></i> <strong>Estabilizadores Eléctricos:</strong> Exigir a Gabriel el relevamiento eléctrico urgente y definir compra de equipos Solytec.</li>
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Equipos Menores (Autoclave, Tapadora, Llenadora):</strong> Ingresar máquinas a la cocina para ver layout físico y estudiar manuales.</li>
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Estabilizadores Eléctricos:</strong> Gustavo controlará sección de cables. Avanza cotización Gustavo Gonzalez ($4.66M). Consultar estanterías.</li>
     </ul>
   </div>
 
@@ -135,7 +138,7 @@ body {
     <div class="badge">Depende de Fase 0</div>
     <ul class="checklist">
       <li class="chk-pend"><i class="far fa-square"></i> <strong>Proteger la Roboqbo:</strong> Instalar los 3 estabilizadores Solytec (Cuello de botella principal).</li>
-      <li class="chk-pend"><i class="far fa-square"></i> <strong>Energizar Máquinas:</strong> Instalar red de cañerías de aire comprimido desde el compresor hacia la Tapadora, Llenadora y Rompedora.</li>
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Energizar Máquinas:</strong> Instalar red de cañerías de aire comprimido desde el compresor hacia el Autoclave, Tapadora, Llenadora y Rompedora.</li>
     </ul>
   </div>
 

@@ -4,12 +4,12 @@
 
 <script>
     if (window.location.protocol === 'file:') {
-        sessionStorage.setItem('auth_ok', 'true');
+        localStorage.setItem('SaborPampeano_Auth', 'true');
     }
-    if (!sessionStorage.getItem('auth_ok')) {
+    if (!localStorage.getItem('SaborPampeano_Auth')) {
         let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
         if (pwd === 'SaborPampeanoOperaciones') {
-            sessionStorage.setItem('auth_ok', 'true');
+            localStorage.setItem('SaborPampeano_Auth', 'true');
         } else {
             document.write('<div style="font-family:sans-serif;text-align:center;margin-top:100px;color:#333;"><h1>Acceso Denegado</h1><p>Contraseña incorrecta.</p></div>');
             window.stop();

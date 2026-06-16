@@ -1,504 +1,862 @@
-# Sabor Pampeano — Contexto Completo de Fábrica ("La Biblia")
-
-> **Última actualización:** 2026-06-09 (Nuevo presupuesto compresor BTA Tools + Reestructuración Workspace a Proyectos)
-> **Responsable:** Ing. Juan Manuel Grasso — Jefe de Operaciones
-> **Regla de oro 1:** NO asumir que lo discutido se ejecutó. Siempre preguntar estado real antes de actuar.
-> **Regla de oro 2:** NO asumir que una máquina ya existe en planta o que un dato es correcto. Si hay duda, PREGUNTAR a Juan Manuel antes de documentar. Cero suposiciones.
-
----
-
-## ÍNDICE DE ARCHIVOS DEL WORKSPACE (Estructura V3 — Orientada a Proyectos)
-
-Ruta base: `Sabor Pampeano Workspace\`
-
-### 00_Dashboard_Proyectos
-| Archivo | Contenido |
-|------------|-----------|
-| `Planificación y Proyectos.html` | Dashboard interactivo principal con estado de todos los proyectos |
-| `logo.png` | Logo para favicon del dashboard |
-
-### 01_Proyectos (Cada proyecto tiene sus subcarpetas: Pliegos, Presupuestos, Manuales, Planos)
-| Subcarpeta | Contenido |
-|------------|-----------|
-| `01_Linea_Aire_Comprimido\Presupuestos\` | Cotizaciones Casa Bernabé, Provín/Kaeser, Mega Herrería, **BTA Tools (NUEVA)**, comparativas Word, folleto SmartPipe |
-| `01_Linea_Aire_Comprimido\Pliegos\` | Pliego Línea Compresor (SP-OC-2026-002), **Pliego_Materiales_Aire_Comprimido.docx** (nuevo, solo cañerías) |
-| `02_Modulo_Exterior_Harinas\Pliegos\` | Pliego Ampliación TACC, Pliego Mampara (histórico) |
-| `02_Modulo_Exterior_Harinas\Planos\` | Bocetos y layouts |
-| `03_Sala_Rompedora_Huevos\Pliegos\` | Pliego V1, V2 |
-| `03_Sala_Rompedora_Huevos\Manuales\` | Manual chino rompedora (敲蛋机说明书) |
-| `04_Sistema_Digital_Produccion\` | Formulario Web App V3.2 y versiones anteriores |
-| `05_Plan_Maestro_Fabrica\` | Planes Maestros, Cronogramas, Propuesta Rol Operaciones |
-
-### 02_Operaciones_de_Fabrica
-| Subcarpeta | Contenido |
-|------------|-----------|
-| `Procedimientos_SOP\` | POES, Reporte_Gerencia.pdf, 01_Cascado_Huevos.md, 03_Camara_Frio... |
-| `Recetas_y_Formulas\` | Templates de recetas |
-| `Recursos_Humanos\` | Propuestas de rol (Jefe Operaciones) |
-| `Mantenimiento_y_Manuales_Generales\` | Manuales Roboqbo, Autoclave, Amasadoras, etc. + Gestión preventiva |
-
-### 03_Herramientas_Sistemas
-| Subcarpeta | Contenido |
-|------------|-----------|
-| `Herramientas_IA_y_Scripts\` | **ESTE ARCHIVO** (`contexto_completo.md`), scripts generadores |
-
----
-
-## EMPRESA
-- **Nombre:** Sabor Pampeano: Fábrica de alimentos en Bahía Blanca. Actualmente operando la Línea A (Mermeladas, Hummus, Salsas) con cuello de botella en escalado.
-- **Responsable Operativo:** Ing. Juan Manuel Grasso (Ingreso: 06-Abril-2026).
-- **Hitos Históricos (Abril-Mayo 2026):**
-  - **24-Abril-2026:** Llegada e ingreso de todas las máquinas chinas a la fábrica. JM coordinó la recepción.
-  - **Mayo 2026:** JM viajó al campo en dos oportunidades (08 y 12 de Mayo) para coordinar el montaje de la seleccionadora de huevos, requiriendo investigación y contacto nocturno con proveedores chinos por diferencia horaria.
-  - **Mayo 2026:** Despeje y acondicionamiento del cuarto para la rompedora de huevos (ex-depósito), reubicando elementos de limpieza y librería en otra habitación (3 días de trabajo manual de JM).
-  - **Mayo/Junio 2026:** Resolución de múltiples incidencias operativas (peladora de papas, balanzas, y falla intermitente en térmica de bomba elevadora de agua).
-  - **Mayo/Junio 2026:** Investigación, compra e instalación coordinada con plomeros de filtros de agua específicos para Roboqbo y horno Rational.
-  - **Mayo/Junio 2026:** Extensa investigación comercial sobre sobadoras, amasadoras, cortadoras de tapas y líneas de empanadas (múltiples presupuestos recabados).
-- **Web:** https://saborpampeano.com
-- **Responsable técnico:** Ing. Juan Manuel Grasso — Jefe de Operaciones
-- **Ingeniera en Alimentos:** Rol de QC, 5hs/día en planta
-- **Nota política:** Empleado de etiquetado es sobrino del dueño — tratar con tacto, enfocar en herramientas/estándares
-
-## PLANTA FÍSICA
-- **Cocina:** ~140 m² (10×14 m)
-- **Configuración:** Sándwich → Depósito MP (derecha) → Cocina → Depósito PT (izquierda)
-- **Entrada/salida cocina:** 1,5 m de ancho
-- **Sin pasillos definidos** (problema crítico)
-- **Canaletas de desagüe:** verificar que equipos no las obstruyan
-- **Cámara fría:** fuera de cocina, para tartas/tortillas
-
-## EQUIPAMIENTO ACTUAL
-| Equipo | Ubicación | Uso |
-|--------|-----------|-----|
-| Roboqbo QBO 25-4 | Inferior centro-derecha | Procesadora industrial 25L |
-| Rational (horno combi) | Pared superior | Tartas, tortillas. **Capacidad: 10 bandejas (32,5×52,5 cm)**. |
-| Horno pizzero | Pared superior | Tartas, tortillas |
-| Freidora | Pared superior | Papas para tortillas |
-| 4 Anafes | Pared superior | Cocción general |
-| 2 Sous vide (grande + chico 60×60) | Pared superior | Viandas (inactivo) |
-| **Amasadora Moretti Mixer 60:** Utilizada para la masa de las tartas. **ATENCIÓN: CUELLO DE BOTELLA.** Produce 60kg por bache. Capacidad máxima por turno de 8 horas: ~840kg. La demanda proyectada es de 800kg. No puede tener tiempos muertos. | Esquina inferior derecha | Masa de tartas |
-| **Sobadora:** Para el estirado manual de la masa. Se requiere reemplazar por una **Sobadora Pesada Blindada** (cotizar a Argental). | Sobre mesada 225×65 | Aplana masa de tartas |
-| **Línea de Armado:** Totalmente manual en mesas de acero inoxidable. Se incorporará **Cortadora de Discos MCD2 (Spiing)** y **Línea Continua Automática de Empanadas**. | Sobre mesada 225×65 | Corte manual tapas tarta |
-| **Peladora de Papas (por abrasión):** Capacidad 10 kg por carga, 3 minutos de pelado (5 min con carga/descarga). Sirve también para otras verduras (zanahoria, etc.). **ESTADO: OPERATIVA (Se cambió la correa).** | Cocina | Pelado de papas y verduras |
-| **Cortadora de Verdura:** Cortadora/fileteadora funcional. **En buen estado, no requiere reemplazo.** | Cocina | Corte de verduras |
-| Abatidor (viejo) | Junto al Rational | Enfriamiento tartas (Línea B). **Capacidad: 10 bandejas (32,5×52,5 cm)**. |
-| 2 Turbovar (sellado al vacío) | Zona superior | Sellado tartas/tortillas |
-| Selladora | Zona PT | Sellado final |
-| Etiquetadora | Depósito PT | Etiquetado (necesita reparación) |
-| Bacha(s) | Zona central-superior | Lavado utensilios |
-| Mesada 300×90 | Centro, enfrentada a Roboqbo | Uso general/frascos |
-| Mesada 225×65 | Pared derecha | Corte manual tapas tarta |
-| Mesada 180×90 | Centro | Elementos de línea A |
-| Estantería | Pared derecha | Almacenamiento |
-| 4 Freezers | Fuera de cocina (a reubicar a MP) | Viandas |
-
-## EQUIPAMIENTO NUEVO (Ya adquirido)
-| Equipo | Especificaciones | Estado |
-|--------|-----------------|--------|
-| LSL 100CNC Llenadora (Cadec) | ~120×95×120 cm, tolva 60L | Pendiente instalación |
-| RSL 1800P Tapadora (Cadec) | Similar dimensiones | Pendiente instalación |
-| Autoclave | A vapor, autónomo (sin caldera) | Pendiente instalación |
-| Liofilizadora ORZF-5 | 50kg/batch, 24 bandejas 61×58cm, 380V, ciclos 24-48hs | Pendiente instalación |
-| Abatidor chino (nuevo) | Centro-derecha | **LÓGICA TÉRMICA:** Recibirá la producción del horno Argental nuevo. **Capacidad real comprobada:** 14 bandejas (56-58 cm ancho × 60 cm largo). |
-| Compresor | 7.5HP/300L trif. 380V, exterior con estructura | **EN COTIZACIÓN** (pliego SP-OC-2026-002). Opciones: Casa Bernabé (7.5HP pistón) y **BTA Tools (7.5HP 3 cilindros, 895 L/min, mando indirecto)** — opción preferida. |
-| Bomba elevadora | Entre Roboqbo y LSL | Sin verificar viscosidad hummus |
-| Rompedora de Huevos | 1.75×1.15m, 300W, requiere 6 bar/10 L/min aire | Pendiente instalación sala dedicada |
-
-### Máquinas Chinas (Manuales disponibles, destino: ampliación trasera futura)
-| Manual | Equipo | Notas |
-|--------|--------|-------|
-| 敲蛋机说明书 | Rompedora de Huevos | Ya tenemos. Sala 2.8×2.3m definida |
-| Liofilizadora.docx | Liofilizadora | Ya tenemos ORZF-5. Posible 2da liofilizadora a futuro |
-| Autoclave.pdf | Autoclave | Ya tenemos. Pendiente instalación |
-| 均质机英文说明书 | Homogeneizador | Para línea de huevos futura |
-| 单罐杀菌机 | Pasteurizador tanque único | Para línea de huevos futura |
-| 英文无厂名卧式膏体灌装机 | Llenadora de pasta horizontal | Para línea de huevos futura |
-| 速冻柜英文文说明书 | Blast Freezer/Speed Freezer | Para línea de huevos futura |
-| 380V制冷罐说明书 | Tanque de refrigeración 380V | Para línea de huevos futura |
-| 10L spray dryer | Spray Dryer 10L | Para línea futura |
-
-## PERSONAL POR LÍNEA (Actualizado 2026-05-22)
-| Nombre | Líneas | Turno |
-|--------|--------|-------|
-| Dani + Karen | Línea Roboqbo (A) | Ambos turnos (mañana + tarde), trabajan juntas |
-| **Jefe de Cocina** | Líder de producción Línea B/G (Tartas, Tortillas, Empanadas, Escabeches) | Mañana y Tarde. Tiene operarios a cargo — NO asumir que hace las tareas directamente. |
-| Operarios de cocina | Tareas de envasado, armado, traslado | Asignados por Jefe de Cocina según necesidad |
-
-## LÍNEAS DE PRODUCCIÓN
-
-### Línea A — Roboqbo: Mermeladas/Hummus/Salsas/Patés (Mañana + Tarde)
-```
-ROBOQBO → Bomba → LSL Llenadora → RSL Tapadora → AUTOCLAVE → Control de Calidad → Liberado/Reproceso/Decomiso → PT
-```
-- **Encargadas:** Dani + Karen (ambos turnos)
-- Tolva LSL 60L = caben 2+ batches de Roboqbo
-- Requiere aire comprimido (compresor)
-- Línea más explayada gracias a la ampliación (más espacio de circulación)
-
-### Línea A-bis — Escabeches/Encurtidos/Aceitunas EN OLLA (Horario flexible)
-```
-Preparación en OLLA → Cocción → Llenado manual → Tapado → AUTOCLAVE (compartido) → Control de Calidad → Liberado/Reproceso/Decomiso → PT
-```
-- **Encargada:** Any (turnos flexibles o días alternados según necesidad)
-- **NO usa Roboqbo** — línea independiente, cocción artesanal en olla
-- Reprocesos frecuentes (falta líquido/aceite)
-- Aceitunas: envasado manual, no usan tapadora Cadec
-- Comparte Autoclave con Línea A
-
-### Línea B — Tartas y Tortillas (Turno Mañana)
-```
-Amasado (área nueva) → Sobadora → Mesada 3×0.9m (corte manual) → Armado → Horno (Rational/Pizzero) → Enfriadora Rápida → Turbovar (vacío) → Cámara fría (externa) → PT
-```
-- **Encargada:** Any (+ Ana según necesidad)
-- Amasado a mudarse a nueva área TACC-free (módulo exterior)
-- Freidora: papas para tortillas (en cocina)
-- Rompedora de huevos en habitación separada adyacente
-
-### Línea C — Liofilizados (Por definir)
-```
-Preparación → Blast Chiller (pre-enfriamiento) → Liofilizadora ORZF-5 (12-24-48hs) → Envasado → Control de Calidad → PT
-```
-- Blast Chiller compartido con Línea B (coordinar turnos)
-- Control de calidad obligatorio antes de liberación
-
-### Línea D — Aceitunas y Aceites
-- **Aceitunas:** Envasado manual en cocina, tapadora Cadec NO aplica
-- **Aceites:** Llegan ya envasados, solo se etiquetan. No pasan por cocina → directo a PT/etiquetado
-
-### Línea E — Viandas (Inactiva)
-```
-Preparación → Cocción (Sous vide / Wok) → Envasado → Control de Calidad → PT
-```
-- Sous vide, wok, crepes — Equipamiento existente, producción pausada
-
-### Línea F — Huevos
-- Distribución desde Buratovich, no producción local
-
-### Línea G — Empanadas Congeladas (NUEVA — en implementación)
-```
-Rellenos (preparados en cocina, turno mañana) → Transporte a área TACC → Sobadora → Línea Continua Automática (lamina, corta, dosifica, cierra) → Cámara de Congelados (congelamiento lento, NO abatidor) → Embolsado simple (termosellado, SIN vacío) → PT
-```
-- **Notas Operativas:**
-- Encargada: Any
-- Espacio físico: Módulo Exterior Harinas
-- Equipo necesario: Línea Continua Automática de Empanadas (cotizaciones en curso: Sel-Maq, Empamec/ESTMAR u otros). Capacidad estimada: 1.000-2.000 u/hora.
-- **Congelamiento:** Las empanadas se congelan en la cámara de congelados (NO en el abatidor). Se pueden embolsar al turno siguiente.
-- **Empaque:** Termosellado en bolsas plásticas simples (IQF). NO requieren vacío.
-- **Variedades iniciales (básicas):** Jamón y queso, carne a cuchillo, carne picada, cuatro quesos, roquefort y nuez, humita, verdura (espinaca).
-- **Variedades futuras (premium):** Carne desmechada, bondiola, panceta y cebolla, etc.
-- **Nueva Unidad de Negocios (Proyectada):** Venta de tapas de empanadas y pascualinas crudas al público (requerirá que el tren de laminado posea módulo interfoliador de nylon).
-
----
-
-## OBRAS Y PROYECTOS DE INFRAESTRUCTURA
-
-### Obra 1: Módulo Exterior Harinas / Área TACC-free (4×4m)
-- **Ref Pliego:** SP-OC-2026-004
-- **Estado real (28-May-2026):** ⚠️ EN COTIZACIÓN — Presupuestos de estructura ($20.18M ARS) y electricidad/plomería ($1.44M ARS M.O. + materiales) recibidos. Pendiente aprobación de dirección.
-- **Evolución:** Inicialmente se planificó como mampara de amasado 4×2m dentro de la cocina (SP-OC-2026-003). Se CANCELÓ la mampara y se decidió construir un módulo completo 4×4×2.8m (~16 m²) fuera de la cocina.
-- **Presupuesto recibido:** 
-  - Estructura: $20.187.536,52 ARS (paneles Arneg + PIR 50mm + piso OSB con chapa aluminio). Ojo: no incluye puerta física, solo la abertura.
-  - Electricidad y Plomería: $1.020.000 (M.O. electricidad) + $420.000 (M.O. agua).
-- **Notas técnicas acordadas:** 
-  1. **Logística:** Se evalúa construir por partes para evitar costos elevados de flete e hidrogrúa.
-  2. **Rampa y Desagües:** Rampa contemplada verbalmente. Desagües se unificarán en un presupuesto general de planta.
-  3. **Pendiente a futuro:** Faltará cotizar puerta, cortina de lamas de PVC y equipo de climatización (aire acondicionado).
-
-### Objetivos de la Empresa
-1. **Escalado de Tartas y Pastas:** Alcanzar la producción de 2.000 tartas diarias (4.000 discos) más la línea completa de pastas y salsas en envases Doypack.
-2. **Nueva Línea de Empanadas:** Incorporar producción masiva de empanadas semicongeladas.
-3. **Nueva Línea Retail (B2C):** Aprovechar la capacidad ociosa de la maquinaria de corte para envasar y vender "Tapas para Empanadas y Tartas" crudas directamente al público.
-4. **Optimización del Layout:** Separar la producción de masas en un módulo externo (4x4m) para evitar contaminación cruzada y cuellos de botella.
-
-- **Distribución interior planificada (13 m² útiles):**
-  - Layout en "U".
-  - Pared 1 (Ingreso): Estiba de Materia Prima (1.5×0.6m) y Amasadora (0.6×1.2m).
-  - Pared 2 (Larga): Tren de Laminado/Cortadora continua (2.5×0.7m).
-  - Pared 3 (Salida): Mesa Auxiliar/Empanadas (1.2×0.7m) y estacionamiento para 2 zorras bandejeras.
-  - Esquina limpia: Bacha de lavado (1.0×0.6m).
-### Obra 2: Instalación Compresor + Línea de Aire
-- **Ref Pliego:** SP-OC-2026-002
-- **Estado real (12-Jun-2026):** ⚠️ COMPRA POR SEPARADO. Belachur y Nitram descartados permanentemente. **NUEVA COTIZACIÓN RECIBIDA: BTA Tools** (7.5HP, 3 cilindros, 895 L/min, 300L, trif. 380V, mando indirecto). Ofrece pago contado con 5% dto. o e-cheq 0/30/60. Plazo entrega: 1 semana (Flete local en Bahía Blanca sin cargo). Se prefiere esta opción por caudal superior. Casilla cotizada por Mega Herrería. Cañerías SmartPipe por Provín S.A. **Se solicitó presupuesto de instalación a Proing SA (Duración estimada de obra: 1 semana).**
-- **Especificaciones compresor:** 7.5HP, 3 cilindros, mando indirecto, tanque 300L, trifásico 380V, caudal 895 L/min.
-- **Nota:** El compresor se dimensionó a 7.5 HP para alimentar la demanda simultánea total: Tapadora RLS (100 L/min) + Autoclave (50 L/min) + Rompedora (10 L/min) + Llenadora LSL (10 L/min) = **170 L/min**. Con un margen de seguridad del 30%, la demanda máxima es de **221 L/min a 6 bar**, muy por debajo de los ~895 L/min que genera el equipo BTA Tools.
-- **Requisito Técnico:** Es obligatorio instalar un **Regulador de Presión General** a la salida del compresor y FRLs en cada punto de uso para compensar las caídas de presión por filtros y cañerías.
-- **Pliego de Materiales:** Se generó un pliego exclusivo para cañerías y accesorios (sin compresor). Archivo: `01_Proyectos > 01_Linea_Aire_Comprimido > Pliegos > Pliego_Materiales_Aire_Comprimido.docx`
-
-### Obra 3: Adecuación Sala Rompedora de Huevos (2.8×2.3m)
-- **Ref Pliego:** SP-OC-2026-001 (Rev 1 = V2)
-- **Estado real (12-Jun-2026):** 💰 COTIZADO por Gabriel. Total M.O.: $4.330.000. Materiales (Albañilería+Terminaciones): $2.430.546. **TOTAL: $6.760.546** + 8% Honorarios. *Nota: La rompedora NO cabe en el depósito actual ni en la cocina, por lo que NO se puede hacer una prueba temporal. Hay que esperar a tener la sala terminada.*
-- **Máquina:** Rompedora automática (1.75×1.15m). Req: 6 bar aire, 10 L/min, 300W, conexión a tierra.
-- **Layout definido:** Máquina + bacha pedal inox + tacho cáscaras + mesa huevo líquido + rejilla desagüe + tomas IP65.
-- **Archivo layout:** Ver artefacto `layout_rompedora_huevos.md` en la carpeta de la conversación.
-
-### Obra 4: Ampliación Trasera de Fábrica (Futuro)
-- **Estado real (22-May-2026):** ❌ IDEA / CONCEPTO — No hay pliego ni cotización.
-- **Concepto:** Ampliación de la fábrica hacia atrás para albergar:
-  - Toda la línea de procesamiento de huevos (máquinas chinas: pasteurizador, homogeneizador, tanque refrigeración, llenadora de pasta, blast freezer).
-  - Posiblemente una 2da liofilizadora.
-  - Infraestructura asociada (electricidad 380V, aire comprimido, agua, desagües).
-- **Se verá a detalle más adelante.**
-
-### Obra 5: Readecuación Desagüe Cloacal
-- **Estado real (09-Jun-2026):** 💰 COTIZADO por Gabriel. M.O. de Zanjeo y Montaje: $8.450.000 + 8% Honorarios. Nueva conexión cloacal no incluida.
-- **Motivo:** Correr el trazado ~2m a la derecha (mirando a la calle). Actualmente las tapas de registro quedaron tapadas por el reefer, y la única tapa libre quedará justo debajo del futuro Módulo Exterior de Harinas.
-- **Concepto:** Se hace ahora planificando acceso fácil y teniendo en cuenta la futura Ampliación Trasera de Fábrica.
-
-### Obra 6: Relevamiento Eléctrico y Estabilizador
-- **Estado real (11-Jun-2026):** ⚠️ EN PROCESO. Se visitó la fábrica con Gustavo (electricista industrial nuevo). Plan: pedir a Gabriel el relevamiento existente; si no lo entrega, Gustavo lo hace desde cero. Posiblemente Gustavo haga la instalación de los estabilizadores.
-- **Concepto:** Relevamiento completo de la fábrica actual para conocer capacidad de carga máxima sin riesgo antes de conectar los equipos nuevos.
-- **Protección Roboqbo:** 💰 COTIZADO por Gabriel/Electroprima: 3 Estabilizadores SOLYTEC ST-11KVA BOOSTER ($10.718.331) + Montaje $1.300.000 + 8% Honorarios. **TAMBIÉN se pidió cotización DIRECTA a Solytec** (pendiente respuesta).
-
-### Proyecto 7: Reemplazo de Cajones Logísticos
-- **Carpeta:** `01_Proyectos\09_Reemplazo_Cajones_Logisticos`
-- **Estado real (10-Jun-2026):** 💡 EN EVALUACIÓN INICIAL.
-- **Concepto:** Reemplazar los 100 cajones de madera actuales por cajones plásticos (30×50×25cm). Se inicia con una primera tanda de 50 cajones para optimizar el ciclo de uso acelerando la dinámica en el área de etiquetado.
-
-### Proyecto 8: Integración Horno Argental y Abatidor Nuevo
-- **Carpeta:** `01_Proyectos\10_Integracion_Argental_Abatidor`
-- **Estado real (12-Jun-2026):** 💡 REEVALUANDO MODELO. Visita técnica realizada. Horno rotativo descartado. Evaluando hornos compactos de 8 bandejas.
-- **Bloqueante de Altura (Panier III descartado):**
-  - La visita técnica confirmó que el Horno Rotativo Panier III (4570) no entra de alto bajo la campana extractora de la cocina, ya que la campana deja un límite de altura máximo de 2 metros.
-  - **Decisión de Dirección:** "Se descarta la idea de sacar la campana. Eso no se toca."
-- **Nueva Estrategia (Novedad 12-Jun):**
-  - Se descarta el horno rotativo con carro.
-  - Se llamó al vendedor para evaluar modelos compactos de 8 bandejas que quepan sin necesidad de alterar la infraestructura de la campana extractora.
-
----
-
-## PLIEGOS TÉCNICOS — RESUMEN
-| Ref | Proyecto | Destinatario | Dimensiones | Estado Real |
-|-----|----------|-------------|-------------|-------------|
-| SP-OC-2026-001 | Adecuación Sala Rompedora Huevos | Arq. Gabriel | 2.8×2.3m | Pliego V2 enviado a Gabriel para cotizar |
-| SP-OC-2026-002 | Compresor + Línea de Aire | Compras por separado | 7.5HP | Belachur descartado. Consiguiendo precios individuales. |
-| SP-OC-2026-003 | ~~Mampara Área de Amasado~~ | ~~Metalúrgica Belachur~~ | ~~4×2×2.5m~~ | **CANCELADO** |
-| SP-OC-2026-004 | Módulo Exterior Harinas (TACC-free) | Arquitecto (Rosario) | 4×4×2.8m | EN COTIZACIÓN (presup. $20.18M recibido) |
-
----
-
-## CATÁLOGO DE PRODUCTOS (Actualizado con códigos de artículo)
-
-### Línea A — Conservas/Mermeladas/Hummus/Salsas
-| Código | Producto |
-|--------|----------|
-| 04010000 | Confitura de Arándano x 215g |
-| 04010001 | Mermelada de Ciruela x 430g |
-| 04010002 | Mermelada de Durazno x 430g |
-| 04010003 | Mermelada de Frutilla x 430g |
-| 04010004 | Mermelada de Higo x 430g |
-| 04010005 | Mermelada de Naranja x 430g |
-| 04010006 | Mermelada de Pera x 450g |
-| 04010007 | Mermelada de Tomate x 430g |
-| 04010008 | Mermelada Zapallo/Manzana x 450g |
-| 04030000 | Mermelada de Arándano BC x 215g |
-| 02030002 | Berenjena en Escabeche x 360g |
-| 02030004 | Lentejas en Escabeche x 330g |
-| 02030005 | Morrones en Escabeche x 450g |
-| 02030008 | Porotos Pallares en Escabeche x 330g |
-| 02030011 | Garbanzos en Escabeche x 330g |
-| 02020000 | Pepinillos en Vinagre x 450g |
-| 02020002 | Encurtidos Mixtos SP x 400g |
-| 02020005 | Ajíes en Vinagre x 350g |
-| 02020006 | Ajíes en Vinagre x 750g |
-| 03010000 | Hummus con Guacamole x 220g |
-| 03010001 | Hummus de Finas Hierbas x 220g |
-| 03010002 | Hummus de Ajo x 220g |
-| 03010003 | Hummus de Berenjena x 220g |
-| 03010004 | Hummus de Pimientos x 220g |
-| 03010005 | Hummus de Remolacha x 220g |
-| 03010006 | Hummus de Zanahoria x 220g |
-| 03010007 | Hummus Tradicional x 220g |
-| 03020000 | Babaganush Ber/Pi/Ag x 215g |
-| 03020001 | Babaganush de Berenjena x 215g |
-| 03020002 | Paté de Cebolla Morada x 215g |
-| 03020004 | Paté de Remolacha x 215g |
-| 03020005 | Paté de Tomate x 215g |
-| 03020006 | Paté de Zanahoria x 215g |
-| 02010000 | Tomate Cherry Confitado x 335g |
-| 02010001 | Tomates Confitados x 340g |
-| 02010002 | Cebolla Caramelizada x 160g |
-| 08010000 | Tomate Triturado x 940g |
-| 08010001 | Tomate Triturado x 500g |
-| 04020000 | Zapallo en Almíbar x 750g |
-| 04020001 | Higos en Almíbar x 840g |
-| 04020002 | Higos en Almíbar x 450g |
-
-### Línea B — Tartas y Tortillas
-| Código | Producto |
-|--------|----------|
-| 07010000 | Tortilla Papa y Cebolla x 600g |
-| 07010001 | Tortilla Papa x 600g |
-| 07020000 | Tarta Calabaza |
-| 07020001 | Tarta Acelga |
-| 07020002 | Tarta de Verduras Asadas |
-| 07020003 | Tarta Caprese |
-| 07020004 | Tarta Humita |
-| 07020005 | Tarta Jamón y Queso |
-| 07020006 | Tarta Cebolla Caramelizada |
-| 07020007 | Tarta Calabaza INTEGRAL |
-| 07020008 | Tarta Acelga INTEGRAL |
-| 07020009 | Tarta Verduras Asadas INTEGRAL |
-| 07020010 | Tarta Caprese INTEGRAL |
-| 07020011 | Tarta Humita INTEGRAL |
-| 07020012 | Tarta Cebolla Caramelizada INTEGRAL |
-
-### Línea D — Aceitunas y Aceites
-| Código | Producto |
-|--------|----------|
-| 05010001 | AC VE C/C N°0 x 370g |
-| 05010002 | AC VE C/C N°0 x 1.55kg |
-| 05010006 | AC VE S/C N°0 x 1.38kg |
-| 05010010 | AC VE RELL N°0 x 1.55kg |
-| 05010011 | AC VE C/C N°00 x 370g |
-| 05020002 | AC NEG C/C N°0 x 1.55kg |
-| 05020003 | AC NEG C/C N°0 x 8kg |
-
----
-
-## SISTEMA DIGITAL — FORMULARIO DE REPORTE DIARIO
-- **Tecnología:** Google Apps Script Web App + Google Sheets
-- **Versión actual:** V3.2 (evolución: V2.1 → V3.2)
-- **Hojas del Sheet:** Registros, Controles, Lista de Productos, Lotes, Opciones
-- **Columnas Lista de Productos:** Productos, Código de Artículo, Categoría, Desc. Adicional, Familia + columnas Si/No por sección
-- **Secciones del formulario:** Producción (con desglose por lote, °Brix, PH), Reproceso (con adición de múltiples insumos), Decomiso/Descarte, Mermas/Recuperos, En Proceso, Comentarios/Novedades
-- **Algoritmo Lotes Mágicos:** Se implementó una normalización (NFD) para cruzar automáticamente los insumos con sus lotes sin importar si tienen tildes o diferencias de mayúsculas (ej. PATÉ vs pate).
-- **Auto-detección Estado:** El código ahora re-lee los headers tras la inserción y busca explícitamente "Estado", arrastrando el data validation (desplegables) automáticamente a las nuevas filas.
-- **Lógica E/S:** Producción=E, Decomiso=S, Mermas=según tipo (Pérdida=S, Recupero=E)
-
-## GOOGLE SHEETS DE PRODUCCIÓN (4 hojas)
-
-### 1. Registros Web App
-- **ID:** `10ym38nAt6UfymKKZpemMyUmkSki4grXnesZznxNHhLg`
-- **Descripción:** Salida formulario Web App.
-- **Archivo local:** `sheet_registros_webapp.csv` — Última actualización: 2026-05-07
-
-### 2. Producción FÁBRICA (Histórico)
-- **ID:** `1QHWpmZLaRWAaWedIlWY1iroPnPe4IOnzAJRiyg5Gw0k`
-- **Descripción:** Registro histórico Nov 2024 — Jun 2025 (~800+ registros).
-- **Archivo local:** `sheet_produccion_fabrica.csv` — Última actualización: 2026-05-07
-
-### 3. Insumos Necesarios
-- **ID:** `1xRI331CIEk2-UnM8R6QwmOXSpm8xytsRbCy6fvgHzZ0`
-- **Descripción:** Planificación compras. Total necesario $322M ARS, a comprar $245M ARS.
-- **Archivo local:** `sheet_insumos_necesarios.csv` — Última actualización: 2026-05-07
-
-### 4. Fórmulas / Recetas (BOM)
-- **ID:** `19QO5Gnqut6j5zQ4eIE9jZeAWdUlx7xX31-D8dC_v0WI`
-- **Descripción:** Bill of Materials escabeches.
-- **Archivo local:** `sheet_formulas_recetas.csv` — Última actualización: 2026-05-07
-
----
-
-## BRANDING
-- **Color primario:** #4A5D23 (verde oliva)
-- **Color secundario:** #7A9B3A (verde claro)
-- **Acento:** #C5D6A0
-- **Fondo:** #f5f5ee
-- **Fuente:** Segoe UI / Calibri
-
----
-
-## REGISTRO HISTÓRICO DE DECISIONES
-
-| Fecha | Decisión | Motivo | Reemplaza | Documentos Asociados |
-|-------|----------|--------|-----------|---------------------|
-| Abr 2026 | Creación Plan Maestro V1 | Presentación a Dirección — readecuación completa de planta | — | `Plan_Maestro\01_Plan_Maestro.doc` |
-| Abr 2026 | Definición rol Jefe de Operaciones | Formalizar responsabilidades de Juan Manuel | — | `Propuesta_Rol_Operaciones.docx` |
-| Abr 2026 | Proyecto mampara amasado 4×2m | Separar zona amasado dentro de cocina | — | `Pliego Mampara Area Amasado.docx`, `Mampara_Amasado_2D.dxf` |
-| Abr-May 2026 | **CANCELACIÓN mampara → Ampliación TACC-free 4×4m** | Se decidió que la mampara era insuficiente; mejor construir un módulo completo fuera de cocina que libere espacio y permita TACC-free + empanadas | SP-OC-2026-003 | `Pliego Ampliacion Area TACC - Sabor Pampeano.docx` (SP-OC-2026-004) |
-| May 2026 | Pliego compresor a Belachur | Necesidad de aire comprimido para Cadec + Rompedora | — | `Pliego Línea compresor - Sabor Pampeano.docx` (SP-OC-2026-002) |
-| May 2026 | Pliego rompedora V1 | Adecuación básica sala 2.8×2.3m | — | `Pliego Rompedora Huevos - Sabor Pampeano.docx` (SP-OC-2026-001) |
-| 22-May-2026 | Pliego rompedora V2 | Se descubrió del manual que necesita aire comprimido (6 bar) y tomas IP65 | SP-OC-2026-001 V1 | `Pliego Rompedora Huevos - Sabor Pampeano_V2.docx` |
-| 22-May-2026 | Layout sala rompedora definido | Distribución: máquina + bacha + tacho + mesa + rejilla | — | Artefacto `layout_rompedora_huevos.md` |
-| 22-May-2026 | Análisis presupuesto módulo harinas | Presupuesto arquitecto recibido ($20.18M) — es solo el "cascarón". Falta electricidad, agua, climatización, flete. Riesgo piso OSB. | — | PDF en Descargas: `PRESUPUESTO MODULO EXTERIOR HARINAS.pdf` |
-| 28-May-2026 | Análisis anexo Luz/Agua Módulo | Se revisaron presupuestos de luz y plomería. Se acordó construir el módulo por partes para evitar hidrogrúa, y derivar los desagües a un proyecto general de planta. | — | Presupuestos Módulo Exterior |
-| 08-Jun-2026 | Creación de Dashboard Interactivo | Se creó Planificación y Proyectos.html (reemplazo de Estado_Proyectos.html). Dashboard avanzado estilo web con navegación lateral, gestión por prioridades (estrellas 1-5), enlaces directos a presupuestos/pliegos y auto-sincronización con esta Biblia. | Estado_Proyectos.html | `Planificación y Proyectos.html` |
-| 08-Jun-2026 | Modificación Obra Desagüe Cloacal | Necesidad de correr cloaca 2m a la derecha por interferencia con el reefer y futura sala de harinas. | — | — |
-| 08-Jun-2026 | Cambio estrategia Aire Comprimido | Presupuesto Belachur descartado 100%. Se decide comprar equipos e insumos por separado y escalar el compresor a 7.5HP. | — | — |
-| 08-Jun-2026 | Despliegue de Formulario V3.2 | Se arreglaron bugs críticos: la columna "Estado" no copiaba el desplegable (ahora se detecta dinámicamente) y el auto-completado de lotes fallaba por tildes/espacios (solucionado con normalización NFD). | Formulario V2.1 | `Code_v3.2.gs` |
-| 08-Jun-2026 | Reorganización completa del Workspace | Se pasó de estructura orgánica a 6 áreas numeradas. Se borraron archivos basura de CAD. Se crearon archivos Z_Archivo_Historico para ordenar. | — | Ver nuevo índice. |
-| 08-Jun-2026 | Prueba Piloto Moldes Microperforados | Se aprobó comprar 10-20 moldes microperforados de chapa oscura para probar mejorar el piso de las tartas. | — | `Reporte_Gerencia.pdf` |
-| 08-Jun-2026 | Evaluación Cotización Aire Nitram | Se revisó cotización Nitram ($1.07M) y solo cotizaron tubería de 1" y 4 válvulas de corte. Faltan compresor, FRLs, mangueras y acoples. | — | `Presupuesto_Nitram_AireComprimido.pdf` |
-| Jun 2026 | Cotizaciones Spiing MCD2 recibidas | Se recibieron cotizaciones formales de Spiing para la cortadora de discos. | — | `Resumen_Compras_Fase1.html` |
-| Jun 2026 | Decisión: Línea Continua Automática de Empanadas | Se descartó la armadora semiautomática (DGMAX/Dosarmec) y se optó por una línea continua 100% automática. En proceso de cotización. | DGMAX 4 PRO / Dosarmec | `Resumen_Compras_Fase1.html` |
-| Jun 2026 | Lógica térmica dividida | Se define separar el flujo: lo cocinado en horno Rational pasa al Abatidor Viejo. Lo cocinado en horno Argental pasará a un Abatidor Nuevo (a definir) mediante carro bandejero directo. | — | — |
-| Jun 2026 | Variedades iniciales de empanadas definidas | Básicas: J&Q, carne a cuchillo, carne picada, 4 quesos, roquefort y nuez, humita, verdura. Futuras: carne desmechada, bondiola, panceta y cebolla. | — | — |
-| Jun 2026 | Peladora de papas arreglada | Se cambió la correa de la peladora abrasiva. Ya funciona bien. | — | — |
-| Jun 2026 | Fumigación y Limpieza | Se realizó fumigación integral contra cucarachas seguida de limpieza profunda el día sábado. | — | — |
-| Jun 2026 | Horno Rotativo Panier III 4570 | Juan (el dueño) pidió que se cotice en Argental. Es compra nueva, NO está en planta. | — | — |
-| Jun 2026 | Resumen de Compras Fase 1 | Se generó documento ejecutivo para presentar al dueño con todas las máquinas elegidas y sus precios. | — | `Resumen_Compras_Fase1.html`, `Resumen_Compras_Fase1.pdf` |
-| 08-Jun-2026 | Backup Automático Inteligente | Se creó script en PowerShell (`backup_script.ps1`) y tarea programada (`SaborPampeano_WorkspaceBackup`). Se ejecuta **todos los días** y guarda en OneDrive\Desktop. Retención automática: 1er mes (todos los días), 2do mes (1 por semana), 3er mes en adelante (1 por mes). Se ejecuta solo y en segundo plano sin intervención. | — | `backup_script.ps1` |
-| 08-Jun-2026 | Reestructuración Workspace a Proyectos | Se abandonó la estructura departamental (01-06) y se migró a una arquitectura orientada a proyectos: `01_Proyectos` (con subcarpetas independientes por proyecto), `02_Operaciones_de_Fabrica`, `03_Herramientas_Sistemas`. Dashboard se movió a `00_Dashboard_Proyectos`. | Estructura V2 (departamental) | `AI_INSTRUCTIONS.md` actualizado |
-| 08-Jun-2026 | Pliego de Materiales Aire Comprimido | Se generó pliego exclusivo para cotizar cañerías y accesorios (sin compresor): caño aluminio SmartPipe 25mm, 12m de manguera PU 12mm, regulador de presión, filtro coalescente, derivaciones y acoples rápidos. | — | `Pliego_Materiales_Aire_Comprimido.docx` |
-| 09-Jun-2026 | Nueva cotización BTA Tools recibida | Se recibió presupuesto con 2 opciones de compresor trifásico 380V: **Opción 1: 7.5HP, 3 cilindros, 895 L/min, $ver PDF** / Opción 2: 5.5HP, 2 cilindros, 620 L/min. Se descartó la de 5.5HP (menor caudal, 2 cilindros = más calor, menos vida útil). Se prefiere la de 7.5HP. Pago: contado -5% o e-cheq 0/30/60. Entrega: 1 semana. | — | `Presupuesto_BTATools_Compresor_Alternativa.pdf` |
-
----
-
-## COTIZACIONES RECIBIDAS — MAQUINARIA
-
-| Proveedor | Equipo | Precio | Detalles | Estado |
-|-----------|--------|--------|----------|--------|
-| Spiing | MCD2 **Usada** (con garantía) | USD 9.500 | 350-500 doc/hora. 1 cabezal 130mm + mesa, 1 cabezal 140mm + mesa, 1 calibrador de masa. Obsequio: 1 cabezal o 1 tolva harinadora. | ✅ Cotización recibida |
-| Spiing | MCD2 **Nueva** | USD 13.500 | 350-500 doc/hora. 1 cabezal (diámetro a elección) + mesa, 1 cabezal (diámetro a elección) + mesa, 1 calibrador de masa. Obsequio: 1 cabezal o 1 tolva harinadora. | ✅ Cotización recibida |
-| Spiing | MCD5 | USD 17.500 | Mayor capacidad. | ✅ Cotización recibida (descartada por espacio) |
-| Argental | Sobadora Pesada Blindada | ~USD 8.000 (estimado) | Rodillos pesados, laminado exacto, incansable. | ⚠️ Pendiente cotización formal |
-| Argental | Horno Rotativo Panier III 4570 | **USD 11.672,66 c/IVA** | Opciones de bandejas soportadas: **45×70, 45×65, o 40×60 cm (cap. 15 bandejas).** Trabaja con carro bandejero directo. Acero inox exterior, doble vidrio, vaporización manual, panel programable, 50.000 Kcal/h, 1.75 kW/h accionamientos, 380V trifásico, gancho aéreo. | ⚠️ A Definir tamaño de bandeja |
-| Sel-Maq / Empamec | Línea Continua Automática Empanadas | A cotizar | 1.000-2.000 u/hora, 100% automática. Analizar opción VENTA vs ALQUILER. Medidas Empamec: 2.6m x 0.7m x 0.9m. | ⚠️ En evaluación |
-
-| — | Selladora Térmica de Pedal | ~USD 300-500 | Termosellado de bolsas para empanadas congeladas (IQF). | ⚠️ Pendiente compra |
-
-| 08-Jun-2026 | Nueva Estantería Cocina (1.5m) | Se inició armado de una estantería de 1.5m para optimizar espacio en la cocina en reemplazo de la original. Faltan pintar estantes con epoxi y reubicar. | — | Reporte verbal |
-
----
-
-## TEMAS PENDIENTES (CONFIRMAR ESTADO CON JUAN MANUEL)
-- [ ] Verificar capacidad bomba para viscosidad hummus
-- [ ] Armar esquema de tiempos coordinados Abatidor (Línea B vs C)
-- [ ] Contratar técnico electromecánico (mantenimiento preventivo/correctivo/predictivo)
-- [ ] Sistema de seguridad: cámaras, cerraduras, lector código de barras
-- [ ] Sistema de pedido interno para almacén de secos
-- [ ] Depósito PT: pendiente de verificar/reorganizar
-- [ ] **Cotizar ampliación 4×4m** — presupuesto recibido, pendiente decisión
-- [x] ~~Definir marca/modelo empanadora semiautomática~~ → Se cambió a Línea Continua Automática (Jun 2026)
-- [x] ~~Definir variedades de empanadas congeladas y sus rellenos~~ → Definidas (Jun 2026)
-- [ ] **Instalación Liofilizadora ORZF-5**
-- [ ] **Registrar Línea G (empanadas) en sistema Web App**
-- [ ] **Aprobar presupuesto Gabriel: Sala Rompedora de Huevos ($6.76M + mats elect/plom)**
-- [ ] **Aprobar presupuesto Gabriel: Reforma Desagüe Cloacal (M.O. $8.450.000)**
-- [ ] **Aprobar presupuesto Gabriel: Estabilizadores Roboqbo (Equipos $10.7M + M.O. $1.3M)**
-- [ ] **Recibir informe de relevamiento eléctrico de Gabriel (capacidad de carga máxima) - PENDIENTE**
-- [ ] **Confirmar método de construcción por partes para módulo prefabricado**
-- [ ] **Cotizar instalaciones faltantes del módulo (puerta, cortina PVC, aire acondicionado)**
-- [ ] **Contactar instalador para mano de obra de línea de aire comprimido (7.5HP)**
-- [ ] **Cotizar Equipamiento Modular (Plan B)** — buscar presupuesto para Sobadora Automática (Argental/Pauna), Cortadora de Discos (Spiing/Empatec) y Armadora Rotativa (Dosarmec).**
-- [ ] **Comprar 10-20 moldes microperforados para Prueba Piloto de Tartas**
-- [ ] **Aprobar cotización final del proyecto de aire comprimido: Compresor BTA Tools 7.5HP (preferida) o Casa Bernabé + Casilla Mega Herrería + Cañerías Provín S.A. (recotizar con pliego actualizado)**
-- [ ] **Recibir cotización formal Sobadora Pesada Argental**
-- [ ] **Definir compra de Horno Argental ($11.6k vs $19.2k) y coordinar desarme (puerta 1.5m)**
-- [ ] **Evaluar cotizaciones Línea Continua (Analizar opción ALQUILER vs VENTA en Empamec)**
-- [ ] **Revisar abatidor viejo (averiguar por qué no funciona)**
-- [ ] **Verificar si la cámara de frío de la cocina sale por la puerta armada o hay que desarmarla para la reubicación**
-- [ ] ~~Comprar Selladora Térmica de Pedal (~USD 300-500)~~ → PROYECTO PAUSADO. Se evaluará cuando haya cortadora de discos y layout B2C.
-- [ ] **Revisar y actualizar Plan Maestro V2 con cronograma real**
-- [x] ~~Terminar armado estantería para cámara de frío (identificación de lotes tartas/tortillas)~~ → HECHO (12-Jun). Se utilizarán papeles adhesivos temporales por bandeja indicando el lote hasta que se compren los contadores de 4 dígitos.
-- [ ] **Comprar 50 cajones plásticos (30×50×25cm)** para reemplazar gradualmente la madera. Estrategia: comprar tanda inicial y buscar optimizar el uso de los cajones mejorando la velocidad en el área de etiquetado, evitando comprar 100 de una vez.
-- [ ] **Decisión clave de compra:** El horno Argental ofrece 3 opciones (45x70, 45x65, 40x60). Como el Abatidor Chino Nuevo tiene 60cm de profundidad, **la única opción de bandejas para el Argental que entraría en el abatidor sin chocar con la puerta es la de 40x60 cm.** Confirmar si el abatidor es de tipo "Roll-in" (entra el carro entero) o de guías (hay que pasar las bandejas a mano).
-
----
-
-## CIRCUITO TÉRMICO — LÓGICA DE BANDEJAS (10-Jun-2026)
-
-### Circuito 1 (Existente — Ya compatible)
-- **Horno:** Rational → bandejas GN 1/1 = **32,5 × 52,5 cm**
-- **Abatidor:** Viejo → mismo tamaño **32,5 × 52,5 cm**
-- **Intercambio directo:** ✅ Sí. Las bandejas del Rational sirven en el abatidor viejo y viceversa sin modificaciones.
-
-### Circuito 2 (Nuevo — A implementar)
-- **Horno:** Argental Panier III → bandejas **40 × 60 cm** (única opción válida por restricción del abatidor chino)
-- **Abatidor:** Chino Nuevo → guías internas de 56-58 cm de ancho × 60 cm de profundidad
-
-**Hallazgo clave (10-Jun-2026):** Las bandejas de **40×60 cm** del carro Argental **SÍ caben en el abatidor chino girándolas 90°**: el lado de 60 cm apoya sobre las guías de 56-58 cm de ancho, y la bandeja entra 40 cm en profundidad (dejando ~20 cm libres al fondo). Esto permite **pasar el producto caliente del carro directamente al abatidor sin maniobrar cada bandeja individualmente**, ahorrando tiempo y manipulación.
-
-- **Las bandejas del abatidor chino NO sirven para el horno Argental** (son más anchas, 56×60 cm, no entran en el Argental).
-- **Pendiente confirmar:** Si el abatidor chino es de tipo "Roll-in" (entra el carro completo empujado con ruedas) o de guías (hay que transferir bandejas a mano). El Roll-in sería el escenario ideal.
+# BIBLIA - Sabor Pampeano
+
+## 1. RESUMEN EJECUTIVO
+
+if (window.location.protocol === 'file:') {
+        localStorage.setItem('SaborPampeano_Auth', 'true');
+    }
+    if (!localStorage.getItem('SaborPampeano_Auth')) {
+        let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
+        if (pwd === 'SaborPampeanoOperaciones') {
+            localStorage.setItem('SaborPampeano_Auth', 'true');
+        } else {
+            document.write('
+# Acceso DenegadoContraseña incorrecta.');
+            window.stop();
+        }
+    }
+
+Resumen Ejecutivo — Plan de Acción Sabor Pampeano
+
+:root {
+  --sp-green: #313B24;
+  --sp-green-mid: #7A8B6B;
+  --sp-green-light: #A4B495;
+  --sp-accent: #C98877;
+  --sp-bg: #F0F2EB;
+  --card-bg: #FFFFFF;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--sp-green);
+  margin: 0; padding: 40px 20px;
+  display: flex; justify-content: center;
+}
+.container {
+  max-width: 800px; width: 100%;
+}
+.header {
+  text-align: center; margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--sp-green);
+}
+.header p {
+  font-size: 14px; color: var(--sp-green-mid);
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(49, 59, 36, 0.05);
+  border-left: 6px solid var(--sp-green-mid);
+}
+.card.done { border-left-color: var(--sp-green-light); opacity: 0.9; }
+.card.now { border-left-color: var(--sp-accent); }
+.card h2 {
+  font-size: 18px; font-weight: 800; margin-top: 0; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.card h2 i { font-size: 20px; }
+.card.now h2 i { color: var(--sp-accent); }
+.checklist {
+  list-style: none; padding: 0; margin: 0;
+}
+.checklist li {
+  font-size: 14px; line-height: 1.5; margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 12px;
+  color: #4A553F;
+}
+.checklist li:last-child { margin-bottom: 0; }
+.checklist li i {
+  font-size: 16px; margin-top: 2px;
+}
+.chk-done i { color: var(--sp-green-light); }
+.chk-pend i { color: #D1D6C9; }
+.chk-act i { color: var(--sp-accent); }
+.badge {
+  display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  background: #F0F2EB; color: var(--sp-green-mid); margin-bottom: 12px;
+}
+.print-btn {
+  display: block; width: 100%; padding: 14px; text-align: center;
+  background: var(--sp-green-mid); color: white; text-decoration: none;
+  font-weight: 600; border-radius: 8px; margin-top: 30px; transition: 0.2s;
+  cursor: pointer; border: none; font-size: 15px; font-family: inherit;
+}
+.print-btn:hover { background: var(--sp-green); }
+
+@media print {
+  body { background: white; padding: 0; }
+  .card { box-shadow: none; border: 1px solid #eee; border-left: 6px solid var(--sp-green-mid); page-break-inside: avoid; }
+  .card.now { border-left-color: var(--sp-accent); }
+  .print-btn { display: none; }
+}
+
+# Resumen Ejecutivo — Plan de Acción
+    Estado de proyectos y prioridades de fábrica. Sabor Pampeano.
+
+##  Trabajo Realizado (Últimos 2 Meses)
+    Abril - Junio
+
+       Gestión de producción operativa ininterrumpida mientras se organizaba la llegada de equipos.
+       Recepción de máquinas importadas de China (24 de Abril).
+       Asistencia en montaje de seleccionadora de huevos en el campo (Fábrica de Buratovich - 8 y 12 de Mayo).
+       Despeje físico de depósito para transformarlo en futura Sala de Rompedora de Huevos.
+       Reparación de balanzas, resolución de falla térmica en bomba de agua, y coordinación de fumigación.
+       Cambio de correas y botones en múltiples máquinas (peladora, sobadora, cortadora en proceso).
+
+##  FASE 0: Acciones Inmediatas (Esta semana)
+    Prioridad Actual
+
+       Nuevo Horno Argental: Horno rotativo descartado por altura. Evaluar HORNO ROTATIVO FE III-315 (US$ 16,071.67) sujeto a gerencia.
+       Línea de Aire Comprimido: Aprobar a Mega Herrería para hacer la casilla y comprar compresor BTA 7.5HP (tarda 1 semana a Bahía Blanca). Esperar cotización Proing SA.
+       Equipos Menores (Autoclave, Tapadora, Llenadora): Ingresar máquinas a la cocina para ver layout físico y estudiar manuales.
+       Estabilizadores Eléctricos: Gustavo controlará sección de cables. Avanza cotización Gustavo Gonzalez ($4.66M). Consultar estanterías.
+
+##  FASE 1: Protecciones y Aire
+    Depende de Fase 0
+
+       Proteger la Roboqbo: Instalar los 3 estabilizadores Solytec (Cuello de botella principal).
+       Energizar Máquinas: Instalar red de cañerías de aire comprimido desde el compresor hacia el Autoclave, Tapadora, Llenadora y Rompedora.
+
+##  FASE 2: Obras y Montaje
+    Obras Civiles
+
+       Horno Compacto Argental: Instalación de modelo de 8 bandejas bajo la campana existente.
+       Desagüe Cloacal: Corrimiento de tubería para liberar tapas de registro antes de poner el módulo de harinas.
+       Módulo Harinas y Sala Rompedora: Ejecución de obras de infraestructura para áreas segregadas.
+
+   Guardar como PDF / Imprimir
+
+## 2. PLAN MAESTRO INTEGRAL
+
+if (window.location.protocol === 'file:') {
+        localStorage.setItem('SaborPampeano_Auth', 'true');
+    }
+    if (!localStorage.getItem('SaborPampeano_Auth')) {
+        let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
+        if (pwd === 'SaborPampeanoOperaciones') {
+            localStorage.setItem('SaborPampeano_Auth', 'true');
+        } else {
+            document.write('
+# Acceso DenegadoContraseña incorrecta.');
+            window.stop();
+        }
+    }
+
+Plan Maestro Integral V3 — Sabor Pampeano
+
+  @page { size: A4; margin: 15mm 18mm; }
+  @media print {
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    body { font-size: 10pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: #1a1a1a; line-height: 1.5; background: #fff; padding: 20px; max-width: 210mm; margin: 0 auto; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 4px solid #4A5D23; margin-bottom: 30px; }
+  .cover h1 { font-size: 28pt; color: #4A5D23; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .cover h2 { font-size: 16pt; color: #7A9B3A; font-weight: 400; margin-bottom: 25px; }
+  .cover .meta { font-size: 10pt; color: #666; }
+  .cover .meta strong { color: #333; }
+  .cover .version { display: inline-block; background: #4A5D23; color: white; padding: 4px 16px; border-radius: 20px; font-size: 9pt; margin-top: 15px; }
+
+  /* Sections */
+  h2 { font-size: 16pt; color: #4A5D23; border-bottom: 2px solid #C5D6A0; padding-bottom: 6px; margin: 30px 0 15px; }
+  h3 { font-size: 13pt; color: #2d3b14; margin: 20px 0 10px; }
+  h4 { font-size: 11pt; color: #4A5D23; margin: 12px 0 6px; }
+  p, li { font-size: 10pt; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 9pt; }
+  th { background: #4A5D23; color: white; padding: 7px 8px; text-align: left; font-weight: 600; }
+  td { padding: 6px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) { background: #f8f9f4; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 8pt; font-weight: 600; }
+  .b-crit { background: #fee2e2; color: #991b1b; }
+  .b-high { background: #fef3c7; color: #92400e; }
+  .b-med { background: #dbeafe; color: #1e40af; }
+  .b-low { background: #f0fdf4; color: #166534; }
+  .b-done { background: #dcfce7; color: #166534; }
+  .b-block { background: #fde68a; color: #78350f; border: 1px solid #f59e0b; }
+
+  /* Alerts */
+  .alert { padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 9.5pt; border-left: 4px solid; }
+  .alert-danger { background: #fef2f2; border-color: #ef4444; }
+  .alert-warn { background: #fffbeb; border-color: #f59e0b; }
+  .alert-info { background: #eff6ff; border-color: #3b82f6; }
+  .alert-ok { background: #f0fdf4; border-color: #22c55e; }
+  .alert strong { display: block; margin-bottom: 3px; }
+
+  /* Phase cards */
+  .phase { background: #f8f9f4; border: 1px solid #C5D6A0; border-radius: 8px; padding: 16px; margin: 14px 0; }
+  .phase-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .phase-title { font-size: 13pt; font-weight: 700; color: #2d3b14; }
+  .phase-dates { font-size: 9pt; color: #666; background: white; padding: 3px 10px; border-radius: 12px; border: 1px solid #ddd; }
+
+  /* Gantt-lite */
+  .gantt { margin: 15px 0; }
+  .gantt-row { display: flex; align-items: center; margin: 3px 0; }
+  .gantt-label { width: 200px; font-size: 8.5pt; text-align: right; padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gantt-bar-area { flex: 1; position: relative; height: 18px; }
+  .gantt-bar { position: absolute; height: 14px; border-radius: 3px; top: 2px; font-size: 7pt; line-height: 14px; padding: 0 4px; color: white; white-space: nowrap; overflow: hidden; }
+  .gb-crit { background: #dc2626; }
+  .gb-high { background: #f59e0b; }
+  .gb-med { background: #3b82f6; }
+  .gb-low { background: #22c55e; }
+  .gb-dep { background: #9333ea; }
+  .gantt-weeks { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 4px; }
+  .gantt-week { flex: 1; text-align: center; font-size: 7pt; color: #999; border-left: 1px dotted #eee; }
+
+  /* Checklist */
+  ul.checklist { list-style: none; padding: 0; }
+  ul.checklist li { padding: 4px 0 4px 22px; position: relative; font-size: 9.5pt; }
+  ul.checklist li::before { content: "☐"; position: absolute; left: 0; color: #4A5D23; font-size: 12pt; line-height: 1; }
+  ul.checklist li.done::before { content: "☑"; color: #22c55e; }
+
+  /* Dependency arrows (text-based) */
+  .dep { font-size: 8pt; color: #9333ea; font-weight: 600; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 8pt; color: #999; margin-top: 40px; padding-top: 10px; border-top: 1px solid #ddd; }
+
+  /* Summary box */
+  .summary-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
+  .sum-item { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; text-align: center; }
+  .sum-value { font-size: 18pt; font-weight: 700; color: #4A5D23; }
+  .sum-label { font-size: 8pt; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .ol-steps { counter-reset: step; list-style: none; padding: 0; }
+  .ol-steps li { counter-increment: step; padding: 6px 0 6px 32px; position: relative; font-size: 9.5pt; border-left: 2px solid #C5D6A0; margin-left: 12px; }
+  .ol-steps li::before { content: counter(step); position: absolute; left: -14px; top: 4px; background: #4A5D23; color: white; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 9pt; font-weight: 700; }
+  .ol-steps li:last-child { border-left: 2px solid transparent; }
+
+# PLAN MAESTRO INTEGRAL V3
+
+## Sabor Pampeano — Planta Bahía Blanca
+
+    Elaborado por: Ing. Juan Manuel Grasso — Jefe de Operaciones
+
+    Fecha: 11 de Junio de 2026
+
+    Dirigido a: Dirección General
+
+  DOCUMENTO CONFIDENCIAL — V3.0
+
+## 1. RESUMEN EJECUTIVO
+
+Este documento presenta la planificación integral, paso a paso, de todos los proyectos activos y pendientes de la fábrica Sabor Pampeano. Cada tarea está organizada por fases cronológicas, con dependencias explícitas, plazos estimados y responsables asignados.
+
+  8Proyectos activos
+  5Fases de ejecución
+  ~65Tareas identificadas
+  14-18Semanas estimadas
+
+  ⚡ PRIORIDAD MÁXIMA — ESTABILIZADORES ROBOQBO
+  La Roboqbo QBO 25-4 es el corazón de producción de Línea A (conservas, hummus, salsas). Una fluctuación de tensión puede quemar su placa electrónica, costando miles de dólares y paralizando la fábrica. ESTO SE EJECUTA PRIMERO.
+
+## 2. INVENTARIO COMPLETO DE PROYECTOS
+
+#ProyectoPrioridadEstado ActualInversión Est.
+
+ | P1 | Estabilizadores de Tensión (Roboqbo) | MÁXIMA | Cotizado — Esperando aprobación | ~$4.6M ARS
+
+ | P2 | Relevamiento Eléctrico + Instalación | MÁXIMA | Control de cables por Gustavo. Instalación por G. Gonzalez | Incl. en P1
+
+ | P3 | Compresor + Línea de Aire Comprimido | OPCIONAL | Cotizado: Manelli Hnos. $2.210.049,77 ARS (P.U. $2.442.105 + IVA 10,5%). Proing SA cotiza instalación. | ~$3-5M ARS
+
+ | P4 | Readecuación Desagüe Cloacal | BAJA | Cotizando Obra | A cotizar
+
+ | P5 | Módulo Exterior Harinas (4×4m TACC-free) | MEDIA | Presupuesto estructura recibido ($20.18M) | ~$25M ARS
+
+ | P6 | Sala Rompedora de Huevos (2.8×2.3m) | MEDIA | Cotizando Obra | A cotizar
+
+ | P7 | Horno Argental Panier III 4570 | BAJA | Descartado por falta de espacio físico. Se evalúa modelo compacto 8 bandejas. | —
+
+ | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | ALTA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
+
+ | P9 | Estanterías y Organización de Planta | ALTA | En ejecución parcial | 
+
+ | P10 | Puesta en Marcha de Máquinas Existentes | CRÍTICA | Pendiente (Llenadora, Tapadora, Autoclave, Rompedora) | $0 (ya compradas)
+
+ | P11 | Moldes Microperforados (Prueba Piloto Tartas) | CRÍTICA | Aprobado, pendiente compra | 
+
+ | P12 | Cajones Plásticos (reemplazo madera) | BAJA | En evaluación (tanda de 50 unidades) | ~$300k ARS
+
+ | P13 | Liofilizadora ORZF-5 (Instalación) | BAJA | Pendiente espacio y electricidad | $0 (ya comprada)
+
+## 3. MAPA DE DEPENDENCIAS CRÍTICAS
+
+Las flechas indican qué proyecto debe completarse antes de poder avanzar con el siguiente. Un error en el orden genera semanas de demora.
+
+  🔗 Cadena Crítica #1: Módulo de Harinas (la más larga)
+  Desagüe Cloacal (P4) → Módulo Harinas (P5) → Máquinas de Producción adentro (P8) → Línea G Empanadas operativa
+
+  🔗 Cadena Crítica #2: Línea A operativa al 100%
+  Relevamiento Eléctrico (P2) → Estabilizadores (P1) → Compresor + Aire (P3) → Puesta en marcha Autoclave/Llenadora/Tapadora (P10)
+
+ProyectoDepende de (BLOQUEANTE)Habilita a
+
+ | P1 — Estabilizadores | P2 (Relevamiento Eléctrico) | Seguridad eléctrica de toda la planta
+
+ | P2 — Relevamiento Eléctrico | Ninguno (se hace ya) | P1, P3, P5, P13
+
+ | P3 — Compresor + Aire | P2 (saber si hay capacidad eléctrica para 380V) | P10 (Llenadora, Tapadora, Autoclave, Rompedora)
+
+ | P4 — Desagüe Cloacal | Ninguno (obra civil independiente) | P5 (Módulo Harinas)
+
+ | P5 — Módulo Harinas | P4 (cloaca debe estar corrida) | P8 (Máquinas de producción dentro del módulo)
+
+ | P6 — Sala Rompedora | P3 (necesita aire comprimido 6 bar) | Producción de huevo líquido propia
+
+ | P7 — Horno Argental | Ninguno (va en cocina existente) | Triplicar capacidad de horneado
+
+ | P9 — Estanterías | Ninguno | Orden operativo, trazabilidad de lotes
+
+ | P10 — Puesta en marcha | P3 (aire comprimido) | Línea A automatizada, Autoclave operativo
+
+ | P11 — Moldes | Ninguno | Mejora calidad tartas
+
+ | P12 — Cajones | Ninguno | Eficiencia en etiquetado
+
+## 4. FASES DE EJECUCIÓN — PASO A PASO
+
+     TRABAJO REALIZADO (Últimos 2 Meses)
+    Abril - Junio
+
+  Registro de hitos y trabajos ejecutados previos al Master Plan V3.
+
+-  Gestión operativa ininterrumpida de producción mientras se organizaban nuevas áreas.
+
+-  Recepción logística de máquinas importadas de China (24 de Abril).
+
+-  Asistencia técnica y montaje de seleccionadora de huevos en el campo (Fábrica de Buratovich - 8 y 12 de Mayo).
+
+-  Despeje físico y limpieza profunda de depósito para transformarlo en futura Sala de Rompedora de Huevos.
+
+-  Reparación de balanzas, resolución de falla térmica intermitente (bomba elevadora de agua) y coordinación de fumigación.
+
+-  Cambio de correas y botones en múltiples máquinas (peladora, sobadora, cortadora en proceso).
+
+    FASE 0 — ACCIÓN INMEDIATA Y VICTORIAS TEMPRANAS (Esta semana)
+    AHORA Sem 1
+
+  Objetivo: Mostrar movimiento físico real en la fábrica HOY. No esperar a terceros para empezar a avanzar con lo que ya tenemos.
+
+#### 0.1 — Preparación de Equipos Nuevos (Línea Cadec)
+
+- Mover físicamente el Autoclave, la Llenadora y Tapadora hacia la cocina (hoy o la semana próxima) para definir su layout final. Nota: La Rompedora queda en espera porque no entra por dimensiones.
+
+- Leer los manuales técnicos y contactar a Cadec para solicitar explicación de funcionamiento y capacitación remota.
+
+- RESULTADO: Dejan de ser "cajas en el depósito". El equipo se familiariza con la maquinaria mientras se espera la instalación del aire comprimido.
+
+#### 0.2 — Compras y Obras Menores Independientes
+
+- Casilla del Compresor: Aprobar a Mega Herrería para hacer la base y la casilla exterior. Es el paso previo necesario para recibir el compresor BTA.
+
+- Compresor BTA Tools 7.5HP: Comprar para congelar precio (tarda 1 semana en llegar a Bahía Blanca). Se guardará bajo techo hasta que la casilla esté lista.
+
+- Moldes microperforados (10-20 uds): Ya se enviaron consultas comerciales hoy. Derivar a Compras para cerrar.
+
+#### 0.3 — Relevamiento y Estabilizadores (Cuello de Botella de Línea A)
+
+- Gustavo controlará el diámetro de cables personalmente previo a la instalación de los estabilizadores.
+
+- Si no lo entrega el lunes → Gustavo arranca de cero.
+
+- Solytec: Ya tenemos los presupuestos actualizados. Definir compra directa de los 3 equipos ST-11KVA para saltar el 8% de comisión y avanzar.
+
+#### 0.4 — Estanterías y Orden Físico
+
+- Terminar el armado de la estantería el martes. La vieja ya está en Etiquetado.
+
+- Hasta conseguir contadores de 4 dígitos, pegar un papel en cada bandeja indicando el lote (además de la etiqueta del estante que indica el producto).
+
+- RESULTADO: Orden inmediato y trazabilidad visual.
+
+#### 0.5 — Reevaluación Horno Argental (Modelos Compactos)
+
+- Bloqueante de Altura: El Panier III queda descartado por falta de espacio físico. No entra en la cocina.
+
+- Nuevo Plan: Llamar al vendedor y evaluar modelos compactos de 8 bandejas.
+
+- RESULTADO: Cambio de equipo. Se frena el pago del anticipo de USD 4.669 hasta tener la nueva cotización del modelo compacto.
+
+    FASE 1 — PROTECCIÓN ELÉCTRICA + AIRE COMPRIMIDO
+    Semanas 2-4 (16 Jun — 4 Jul)
+
+  Objetivo: Proteger la inversión existente (Roboqbo) y habilitar el aire comprimido que desbloquea 4 máquinas.
+
+#### 1.1 — Instalación de Estabilizadores PRIORIDAD MÁXIMA
+
+- Recibir estabilizadores Solytec (plazo proveedor: ~1 semana tras la compra).
+
+- Gustavo instala los 3 estabilizadores: Roboqbo + Líneas auxiliares. Duración estimada: 2-3 días.
+
+- Verificar funcionamiento con Roboqbo en carga. Medir tensión de entrada vs. salida.
+
+- RESULTADO: Roboqbo protegida. Planta eléctrica estabilizada.
+
+#### 1.2 — Instalación del Compresor y Línea de Aire
+
+- Recibir el compresor BTA Tools (tarda 1 semana en llegar a Bahía).
+
+- Recibir cotización de Proing SA para la instalación de la línea + verificación de materiales.
+
+- Comprar materiales de cañería según pliego actualizado: SmartPipe 25mm, manguera PU 12mm, regulador, filtro coalescente, FRLs, acoples.
+
+- Instalar compresor en exterior (estructura/casilla Mega Herrería). Tender línea de aire a los 4 puntos de uso. Duración estimada de obra: 1 semana.
+
+- Probar presión y caudal en cada punto.
+
+- RESULTADO: Aire comprimido operativo. Se desbloquean las máquinas.
+
+    📌 Nota: El compresor y los estabilizadores se pueden ejecutar en paralelo si se tienen los dos presupuestos aprobados. El compresor NO depende de los estabilizadores, solo del relevamiento eléctrico (para confirmar que hay capacidad de 380V disponible).
+
+    FASE 2 — PUESTA EN MARCHA DE EQUIPOS EXISTENTES
+    Semanas 4-6 (30 Jun — 18 Jul)
+
+  Objetivo: Poner operativas las máquinas que YA compramos y están juntando polvo. Máximo retorno sobre la inversión ya realizada.
+
+#### 2.1 — Línea Cadec: Llenadora LSL 100CNC + Tapadora RSL 1800P ALTA
+
+- Conectar llenadora a aire comprimido (ya instalado en Fase 1). Verificar alimentación eléctrica.
+
+- Realizar prueba en vacío: ciclos de dosificación sin producto, verificar movimiento de pistones y boquilla.
+
+- Realizar prueba con agua: calibrar volumen de dosificación para frascos de 215g, 330g, 430g y 450g.
+
+- Conectar tapadora. Verificar torque de cierre y alimentación de tapas.
+
+- Prueba integrada: Roboqbo → Bomba → Llenadora → Tapadora. Producto de prueba: mermelada o hummus.
+
+- Documentar: velocidad de llenado (frascos/min), ajustes de calibración, problemas detectados.
+
+#### 2.2 — Autoclave
+
+- Conectar a aire comprimido y a red de agua.
+
+- Verificar que funciona a vapor autónomo (no necesita caldera externa).
+
+- Realizar ciclo de prueba en vacío (sin producto). Verificar temperaturas, presiones, tiempos.
+
+- Realizar ciclo con producto de prueba. Documentar parámetros.
+
+- RESULTADO: Autoclave operativo → Se eliminan riesgos sanitarios en la producción de conservas.
+
+#### 2.3 — Rompedora de Huevos (prueba preliminar)
+
+- Aunque la sala dedicada (P6) aún no esté lista, realizar una prueba funcional controlada de la rompedora en un espacio temporal.
+
+- Conectar a aire comprimido (derivación temporal con manguera).
+
+- Verificar: alimentación de huevos, separación yema/clara, velocidad, cantidad de rotura.
+
+- Documentar resultado y ajustes necesarios antes de la instalación definitiva.
+
+- OBJETIVO: Saber que la máquina funciona correctamente ANTES de invertir $7M en construir la sala.
+
+#### 2.4 — Abatidor Viejo (Diagnóstico)
+
+- Gustavo (electricista) o técnico frigorista: diagnosticar por qué no funciona.
+
+- Cotizar reparación vs. costo de oportunidad.
+
+- RESULTADO: Decisión de reparar o descartar para liberar espacio crítico.
+
+#### 2.5 — Horno Argental (Panier III DESCARTADO — se evalúa modelo compacto 8 bandejas)
+
+- Si gerencia aprueba Horno FE III-315, avanzar con compra. No requeriría tocar la campana.
+
+- Realizar conexiones a servicios (Agua, Luz, Gas).
+
+- Prueba de encendido y calibración de panel programable.
+
+- RESULTADO: Ampliación de capacidad de horneado conservando la estructura original de la campana.
+
+    FASE 3 — OBRA CIVIL: CLOACAS + MÓDULO HARINAS
+    Semanas 4-12 (30 Jun — 22 Ago)
+
+  Objetivo: Ejecutar las obras civiles necesarias para habilitar el módulo exterior TACC-free, que es la clave para las líneas de empanadas y tartas a escala.
+
+    ⚠️ CUELLO DE BOTELLA IDENTIFICADO: ✓ Placas aislantes PAGADAS (~10/06/2026). Fabricación en curso. Entrega estimada ~30-40 días desde el pago.
+
+#### 3.1 — Obra Cloacal (Sem 4-6) BLOQUEANTE para P5
+
+- Aguardar o buscar albañil para Obra Cloacal.
+
+- Comprar materiales de plomería (caños PVC, bocas de registro, etc.).
+
+- Ejecutar obra: zanjeo, corrimiento de cloaca 2m a la derecha, instalación de nuevas tapas de registro, dejar derivaciones "ciegas" de PVC para la ampliación futura trasera.
+
+- Verificar conexión a red cloacal municipal (ABSA). Si requiere trámite, iniciarlo YA.
+
+- RESULTADO: Terreno libre para montar el módulo de harinas sin interferencias.
+
+#### 3.2 — Módulo Exterior Harinas 4×4m (Sem 6-12)
+
+- ✓ PAGADO (~10/06/2026): Placas aislantes (paneles Arneg + PIR 50mm). Fabricación en curso (~30-40 días).
+
+- Mientras se fabrican las placas: preparar base/platea de hormigón. Instalar desagüe y conexión eléctrica.
+
+- Construir estructura metálica y montar paneles (construcción por partes para evitar flete especial e hidrogrúa).
+
+- Instalar piso OSB con chapa de aluminio.
+
+- Electricidad interior: tablero, tomas trifásicas 380V, iluminación IP65, derivación de aire comprimido.
+
+- Plomería: conexión de agua + desagüe de piso.
+
+- Cotizar y comprar: puerta isotérmica, cortina de lamas PVC, aire acondicionado.
+
+- Pintar, señalizar, habilitar.
+
+- RESULTADO: Módulo TACC-free operativo. Listo para recibir amasadora, sobadora y línea de empanadas.
+
+#### 3.3 — Sala Rompedora de Huevos (Sem 8-12, paralelo al módulo)
+
+- Cotizar ejecución de Sala Rompedora.
+
+- Obra civil: levantar paredes 2.8×2.3m, revocar, pintar con pintura epoxi apta alimentaria.
+
+- Electricidad: tomas IP65, conexión a tierra, derivación de aire comprimido (6 bar).
+
+- Plomería: bacha pedal inoxidable, desagüe con rejilla.
+
+- Instalar rompedora de huevos en posición definitiva.
+
+- RESULTADO: Sala habilitada para producción de huevo líquido propio.
+
+    FASE 4 — EQUIPAMIENTO DEL MÓDULO + NUEVAS LÍNEAS
+    Semanas 12-16 (18 Ago — 12 Sep)
+
+  Objetivo: Instalar las máquinas nuevas dentro del módulo terminado y arrancar las líneas de empanadas y tartas a escala industrial.
+
+#### 4.1 — Mudanza de Amasadora al Módulo
+
+- Trasladar la Amasadora Moretti Mixer 60 desde la cocina al módulo exterior.
+
+- Conectar electricidad trifásica.
+
+- Verificar funcionamiento post-traslado.
+
+- RESULTADO: Polvo de harina FUERA de la cocina principal. Primer paso hacia certificación TACC-free.
+
+#### 4.2 — Compra e Instalación Sobadora Pesada Argental
+
+- Recibir cotización formal de Argental (~USD 8.000).
+
+- Aprobar compra. Coordinar flete.
+
+- Instalar en módulo, posición Pared 2 (tren de laminado).
+
+#### 4.3 — Línea de Empanadas (Empamec — Alquiler)
+
+- Formalizar contrato de alquiler con Empamec (M2000x7 PLUS, 2.6×0.7m).
+
+- Recibir e instalar en módulo, posición Pared 2 (a continuación de sobadora).
+
+- Conectar a electricidad (220V, 50Hz). NO requiere aire comprimido.
+
+- Capacitar operarios en uso y mantenimiento.
+
+- Prueba piloto con empanadas de J&Q y carne picada.
+
+- RESULTADO: Línea G operativa. Producción de empanadas semicongeladas iniciada.
+
+#### 4.4 — Cortadora de Discos Spiing MCD2
+
+- Definir si se compra nueva (USD 13.500) o usada (USD 9.500).
+
+- Instalar en módulo junto a la sobadora.
+
+- Probar con masa de tartas: verificar corte limpio en diámetros 130mm y 140mm.
+
+- RESULTADO: Corte de discos automatizado. Producción de tapas crudas habilitada (nueva unidad de negocio B2C).
+
+#### 4.5 — Selladora Térmica de Pedal (Pausado)
+
+- Proyecto en espera. Se evaluará recién cuando se adquiera la cortadora de discos y se decida el layout final para la línea retail B2C.
+
+    FASE 5 — OPTIMIZACIÓN Y CONSOLIDACIÓN
+    Semanas 16-18 (12 Sep — 26 Sep)
+
+  Objetivo: Afinar procesos, documentar todo, y dejar la fábrica funcionando a régimen.
+
+- Liofilizadora ORZF-5: Instalar en ubicación definitiva (requiere 380V). Tiene guías para bandejas (sin carro). Realizar ciclo de prueba de 24hs.
+
+- POEs actualizados: Crear/actualizar procedimientos operativos estándar para CADA línea con el nuevo equipamiento.
+
+- Web App V3.2: Registrar Línea G (empanadas) en el sistema digital de producción.
+
+- Cajones plásticos: Comprar primera tanda de 50 cajones (30×50×25cm). Implementar en etiquetado.
+
+- Plan Maestro V4: Actualizar este documento con los resultados reales, lecciones aprendidas, y planificar la Fase 2 de expansión (Ampliación Trasera).
+
+- Cámara de frío de cocina: ✓ Confirmado que sale por la puerta sacando el marco. Se retira cuando el abatidor esté conectado eléctricamente.
+
+- Contratar técnico electromecánico: Para mantenimiento preventivo de toda la planta expandida.
+
+- Sistema de seguridad: Cotizar cámaras, cerraduras, lector código de barras.
+
+## 5. CRONOGRAMA VISUAL (14 Semanas)
+
+Cada columna = 1 semana. Barras muestran duración estimada. Colores = prioridad.
+
+    SEMANA →
+
+        S1S2S3
+        S4S5S6
+        S7S8S9
+        S10S11S12
+        S13S14
+
+  Relev. EléctricoP2
+  Compra EstabilizadoresCompra
+  Instalación EstabilizadoresP1
+  Compra Compresor BTACompra+Flete
+  Instalación Línea AireP3
+  Estanterías (cámara)P9
+  Horno Argental (pedido→inst.)P7
+  Puesta marcha CadecP10
+  Puesta marcha AutoclaveP10
+  Prueba RompedoraP10
+  Diagnóstico Abatidor viejoP10
+  Obra CloacalP4
+  Pago placas módulo$$$
+  Fabricación placas (30d)Espera fabricación
+  Construcción MóduloP5
+  Sala RompedoraP6
+  Mudanza Amasadora→Módulo
+  Sobadora + CortadoraP8
+  Línea EmpanadasP8
+  Moldes microperforadosP11
+  LiofilizadoraP13
+
+## 6. RESUMEN PRESUPUESTARIO GLOBAL
+
+ConceptoMonto (ARS)Monto (USD)Estado
+
+ | Instalación eléctrica estabilizadores | $1.870.000 | — | Cotizado (G. Gonzalez)
+
+ | Compresor De Aire Trifásico 300L – 7.5HP – BTA | $2.210.049,77 | — | Cotizado
+
+ | Cañerías, FRLs, accesorios aire | ~$500.000 | — | Estimado
+
+ | Instalación línea de aire (Proing SA) | A cotizar | — | En proceso
+
+ | Módulo Harinas (Electricidad + Plomería M.O.) | $1.440.000 | — | Cotizado
+
+ | Módulo Harinas (Puerta, Cortina, A/C) | ~$2.000.000 | — | Estimado
+
+ | Sala Rompedora (Mat. Eléctricos + Plomería) | ~$500.000 | — | Estimado
+
+ | Horno Argental Panier III | — | USD 11.672 | Descartado
+
+ | Sobadora Pesada Blindada | — | ~USD 8.000 | Estimado
+
+ | Cortadora Spiing MCD2 (usada) | — | USD 9.500 | Cotizado
+
+ | Línea Empanadas Empamec (alquiler) | Mensual | A cotizar | En evaluación
+
+ | Selladora Térmica de Pedal | — | ~USD 400 | A comprar
+
+ | Moldes microperforados (10-20 uds.) | ~$150.000 | — | A comprar
+
+ | Cajones plásticos (50 uds.) | ~$300.000 | — | A comprar
+     | TOTAL ESTIMADO (sin alquiler empanadas) | ~$52.300.000 | + ~USD 29.600 | 
+
+## 7. RIESGOS Y MITIGACIONES
+
+RiesgoImpactoProbabilidadMitigación
+
+ | Placas del módulo demoran más de 30 días | ALTO | Media | ✓ Pagadas (~10/06/2026). Confirmar fecha de entrega exacta con proveedor.
+
+ | Roboqbo se quema por pico de tensión | ALTO | Alta (cada tormenta) | Instalar estabilizadores en Fase 1 SIN demoras.
+
+ | Capacidad de cables insuficiente para estabilizadores | MEDIO | Media | Gabriel controlará diámetro antes. Si falta, cotizar recableado.
+
+ | Abatidor viejo irreparable | MEDIO | Media | Circuito 1 (Rational) sigue usando el enfriador rápido. Abatidor actual tiene guías para bandejas. Ya comprado, no se cambia. Priorizar conexión eléctrica.
+
+ | Rompedora de huevos defectuosa | MEDIO | Baja | Probar ANTES de construir la sala (Fase 2.3).
+
+ | Capacidad eléctrica insuficiente para todo | ALTO | Baja | Relevamiento eléctrico (Fase 0) lo detectará. Solución: ampliación del tablero o nueva acometida.
+
+ | Flete especial necesario para módulo | BAJO | Media | Construir por partes (ya decidido). Evitar hidrogrúa.
+
+## 8. TEMAS ADICIONALES (no olvidar)
+
+#TemaAcciónCuándo
+
+ | 1 | Bomba elevadora (Roboqbo→LSL) | Verificar si soporta la viscosidad del hummus antes de usarla | Fase 2
+
+ | 2 | Cámara de frío de cocina | ✓ Confirmado: sale por la puerta sacando el marco. Se retira cuando el abatidor esté listo para reemplazarla. Abatidor listo pero no se puede enchufar hasta confirmar capacidad eléctrica. | Pendiente instalación eléctrica
+
+ | 3 | Etiquetadora | ✓ Reparada y operativa (semana del 09/06/2026). Pendiente: reposición de etiquetas (gestión de compras, fuera de mi alcance). | ✓ Resuelto
+
+ | 4 | Esquema de tiempos Abatidor | Coordinar uso compartido entre Línea B (tartas) y Línea C (liofilizados) | Fase 5
+
+ | 5 | Depósito PT | Reorganizar depósito de producto terminado | Fase 5
+
+ | 6 | Sistema de pedido almacén secos | Implementar sistema interno para requisición de insumos | Fase 5
+
+ | 7 | Sobadora Pesada — cotización formal | Pedir presupuesto oficial a Argental (ya tiene precio estimado ~USD 8k) | Fase 0
+
+ | 8 | Abatidor nuevo tipo Roll-in | ✓ Abatidor ya comprado. Tiene guías para bandejas 40×60cm. No se cambia. | ✓ Resuelto
+
+ | 9 | Conexión ABSA (cloacas) | Verificar si se necesita trámite municipal para la nueva conexión | Fase 3
+
+ | 11 | Confirmar tipo abatidor chino | Confirmado: tiene guías para bandejas (sin carro). Ya comprado, no se cambia. | Fase 2
+
+ | 12 | Formulario Web App | Agregar Línea G (empanadas) al sistema digital V3.2 | Fase 5
+
+## 9. CHECKLIST DE SEGUIMIENTO SEMANAL
+
+Usar este checklist cada lunes para verificar avance y tomar acciones correctivas.
+
+#### Semana 1 (AHORA) — FASE 0: ACCIONES RÁPIDAS
+
+- Mover Autoclave, Llenadora y Tapadora a la cocina (contactar a Cadec para capacitación)
+
+- Aprobar casilla exterior a Mega Herrería (base para el compresor)
+
+- Comprar Compresor BTA Tools 7.5HP
+
+- Derivar a compras los presupuestos de moldes microperforados
+
+- Esperar presupuesto de armado Argental (evaluar fines de semana o post 14hs)
+
+- Aguardar negociación gerencia por Horno FE III-315
+
+- Gustavo visita la planta para controlar diámetro de cables
+
+- Aprobar compra directa de estabilizadores Solytec
+
+- Terminar estantería el martes (mudada a etiquetado)
+
+#### Semana 2-3 (16-27 Jun) — FASE 1a
+
+- Consultar tamaño de estantería necesaria para tableros
+
+- Recibir estabilizadores Solytec
+
+- Instalar estabilizadores (Gustavo, 2-3 días)
+
+- Verificar Roboqbo con estabilizador conectado
+
+- Recibir compresor BTA Tools
+
+- Diagnóstico abatidor viejo (Gustavo o frigorista)
+
+- Aguardar decisión de gerencia sobre Horno
+
+#### Semana 3-4 (23 Jun — 4 Jul) — FASE 1b
+
+- Comprar materiales de línea de aire (SmartPipe, mangueras, FRLs)
+
+- Proing SA instala compresor + tiende línea de aire
+
+- Probar aire en los 4 puntos de uso
+
+- ✓ PLACAS PAGADAS (~10/06/2026). Fabricación en curso.
+
+- Aprobar obra cloacal (A definir)
+
+#### Semana 4-6 (30 Jun — 18 Jul) — FASE 2
+
+- Puesta en marcha Llenadora LSL 100CNC
+
+- Puesta en marcha Tapadora RSL 1800P
+
+- Puesta en marcha Autoclave
+
+- Prueba funcional rompedora de huevos (temporal)
+
+- Inicio obra cloacal
+
+- Recibir horno Argental. Coordinar desarme + ingreso
+
+#### Semana 6-12 (14 Jul — 22 Ago) — FASE 3
+
+- Obra cloacal terminada
+
+- Recibir placas aislantes del módulo
+
+- Construir módulo por partes
+
+- Electricidad + plomería interior del módulo
+
+- Inicio obra Sala Rompedora
+
+- Recibir cotización formal sobadora Argental
+
+#### Semana 12-16 (18 Ago — 12 Sep) — FASE 4
+
+- Módulo terminado y habilitado
+
+- Mudar amasadora al módulo
+
+- Instalar sobadora + cortadora en módulo
+
+- Recibir e instalar línea empanadas (Empamec)
+
+- Sala Rompedora terminada. Instalar máquina.
+
+- Prueba piloto empanadas
+
+- Comprar selladora térmica de pedal
+
+## 10. INDICADORES DE AVANCE PARA DIRECCIÓN
+
+Estos indicadores permiten a la Dirección verificar el avance real en cada reunión semanal.
+
+IndicadorMetaMedición
+
+ | Estabilizadores instalados | Semana 3 | ✅ Roboqbo protegida, tensión estabilizada
+
+ | Aire comprimido operativo | Semana 4 | ✅ Presión de 6 bar en los 4 puntos de uso
+
+ | Máquinas Cadec + Autoclave operativos | Semana 6 | ✅ Primer batch de producción completado
+
+ | Obra cloacal terminada | Semana 8 | ✅ Tapas de registro accesibles, cloaca corrida
+
+ | Módulo Harinas con techo y paredes | Semana 12 | ✅ Estructura cerrada, piso instalado
+
+ | Módulo Harinas habilitado | Semana 14 | ✅ Electricidad, agua, puerta, pintura, señalización
+
+ | Primera empanada producida | Semana 16 | ✅ Prueba piloto completada con calidad OK
+
+ | Horno Argental operativo | Semana 6 | ✅ Primer horneado de 15 bandejas completado
+
+ | Estantería cámara fría con lotes identificados | Semana 1 | ✅ Cada estante etiquetado por lote
+
+    Ing. Juan Manuel Grasso
+
+    Jefe de Operaciones
+
+    Juan (Dirección General)
+
+    Dirección General — Sabor Pampeano
+
+  Plan Maestro Integral V3 — Sabor Pampeano — Bahía Blanca, Argentina — Junio 2026
+
+  Generado el 11/06/2026. Documento confidencial. Próxima revisión: Semana 4.
+
+    📄 IMPRIMIR / GUARDAR COMO PDF
+
+  Usa Ctrl+P → "Guardar como PDF" para generar el archivo.
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if(window.location.hash === '#print'){
+      setTimeout(() => { window.print(); }, 500);
+    }
+  });
 

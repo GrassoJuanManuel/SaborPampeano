@@ -555,17 +555,25 @@ async function changePriority(projKey) {
     }
     
     try {
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            const res = await fetch('/api/update-priority', {
+        try {
+        let savedLocally = false;
+        try {
+            const res = await fetch('http://localhost:8080/api/update-priority', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ projKey: projKey, newPri: newPri })
             });
-            if (!res.ok) throw new Error("Error del Servidor Local");
-            
-            alert("¡Criticidad actualizada por el Servidor Local! Sincronizando con el Plan Maestro...");
-            location.reload();
-        } else {
+            if (res.ok) {
+                savedLocally = true;
+                alert("¡Criticidad actualizada automáticamente en segundo plano! Sincronizando con el Plan Maestro...");
+                location.reload();
+            }
+        } catch(err) {
+            // Server not running or fetch failed, fallback below
+        }
+        
+        if (!savedLocally) {
+            // Fallback: Si el servidor invisible de python no está corriendo, pedimos permiso manual
             const [handle] = await window.showOpenFilePicker({
                 types: [{description: 'Archivo HTML del Dashboard', accept: {'text/html': ['.html']}}],
                 multiple: false
@@ -585,7 +593,7 @@ async function changePriority(projKey) {
             await writable.write(newContent);
             await writable.close();
             
-            alert("¡Criticidad actualizada! Sincronizando con el Plan Maestro y subiendo a la web...");
+            alert("¡Criticidad actualizada manualmente! Sincronizando con el Plan Maestro...");
             location.reload();
         }
     } catch (e) {

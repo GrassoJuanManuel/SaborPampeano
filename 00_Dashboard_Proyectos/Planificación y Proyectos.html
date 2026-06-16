@@ -15,6 +15,30 @@
             window.stop();
         }
     }
+
+async function openFolder(folderPath) {
+    if (window.location.protocol === 'https:' || window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        alert("❌ Las carpetas y archivos locales de Windows no se pueden abrir desde el celular o desde internet. Abrí el Dashboard en la PC de Sabor Pampeano.");
+        return;
+    }
+    
+    // Si estamos en localhost, le pedimos al servidor Python que abra la carpeta
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        try {
+            await fetch('http://localhost:8080/api/open-folder', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: folderPath })
+            });
+        } catch(e) {
+            console.log("No se pudo contactar al servidor para abrir la carpeta.");
+            window.open(folderPath, '_blank');
+        }
+    } else {
+        // Estamos en file:///
+        window.open(folderPath, '_blank');
+    }
+}
 </script>
 
 <meta charset="UTF-8">
@@ -457,10 +481,10 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
   <div class="page-header"><div class="breadcrumb"><i class="fas fa-home"></i> Dashboard <i class="fas fa-chevron-right"></i> Cotizaciones</div><h2>Todas las Cotizaciones</h2><p>Click en cualquier archivo para abrirlo directamente.</p></div>
   
   <div class="info-box"><h4><i class="fas fa-wind"></i> Aire Comprimido</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th><th>Archivo</th></tr></thead><tbody>
-    <tr><td><strong>Manelli Hnos.</strong></td><td>Compresor BTA 300L 7.5HP</td><td>$2.210.049,77 ARS</td><td><span class="badge b-done">✅ Aprobado</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Manelli Hnos.</strong></td><td>Compresor BTA 300L 7.5HP</td><td>$2.210.049,77 ARS</td><td><span class="badge b-done">✅ Aprobado</span></td><td><button class="open-folder" onclick="openFolder(\'01_Proyectos/01_Linea_Aire_Comprimido/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
     <tr><td><strong>Juan Carlos (Albañil)</strong></td><td>Platea hormigón c/fibra 2.5x1x0.2m</td><td>$556.000 ARS</td><td><span class="badge b-done">✅ Recibida</span></td><td><span style="color:#aaa">-</span></td></tr>
-    <tr><td><strong>Mega Herrería</strong></td><td>Casilla/Estructura compresor</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
-    <tr><td><strong>Provín S.A. (Kaeser)</strong></td><td>Cañerías y elementos de línea</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Mega Herrería</strong></td><td>Casilla/Estructura compresor</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder(\'01_Proyectos/01_Linea_Aire_Comprimido/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
+    <tr><td><strong>Provín S.A. (Kaeser)</strong></td><td>Cañerías y elementos de línea</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder(\'01_Proyectos/01_Linea_Aire_Comprimido/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
   </tbody></table></div>
 
   <div class="info-box"><h4><i class="fas fa-bolt"></i> Estabilizadores (Roboqbo)</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th><th>Archivo</th></tr></thead><tbody>
@@ -508,13 +532,24 @@ const B='../';
 const P={
 roboqbo:{title:'Estabilizador de Tensión Roboqbo',ref:'Infraestructura Crítica — Prioridad Máxima',badge:'<span class="badge b-prog" style="background:#7f1d1d;color:#fca5a5"><i class="fas fa-bolt"></i> MAXIMA PRIORIDAD</span>',priority:6,budget: [
     {
-      name: 'Opción 1: Estabilizador Modelo A',
+      name: 'Opción 1: Estabilizadores 12kVA (Elev 140V)',
       items: [
-        { desc: '3 Estabilizadores (Gustavo G.): A definir modelo', miss: false },
+        { desc: '3 Estabilizadores (Gustavo G.): $2.792.400', miss: false },
         { desc: 'Mano de obra + Térmica 32A: $1.870.000', miss: false },
-        { desc: 'Estanterías para tablero', miss: true }
+        { desc: 'Estanterías para tablero (valor ínfimo)', miss: true }
       ],
-      total: 'A definir + Faltantes'
+      total: '$4.662.400 + IVA + Estanterías'
+    },
+    {
+      name: 'Opción 2: Estabilizadores (Modelo a definir)',
+      items: [
+        { desc: '3 Estabilizadores (Gustavo G.): [Falta Valor]', miss: true },
+        { desc: 'Mano de obra + Térmica 32A: $1.870.000', miss: false },
+        { desc: 'Estanterías para tablero (valor ínfimo)', miss: true }
+      ],
+      total: '$1.870.000 + IVA + Equipos + Estanterías'
+    }
+  ],total: 'A definir + Faltantes'
     },
     {
       name: 'Opción 2: Estabilizador Modelo B',
@@ -553,7 +588,7 @@ aire:{title:'Línea de Aire Comprimido (7.5HP)',ref:'SP-OC-2026-002',badge:'<spa
 <div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li><strong>Conseguir presupuesto de mano de obra para la instalación física.</strong></li><li>Completar presupuesto: faltan FRLs, mangueras y acoples rápidos.</li><li>Exigir al instalador certificación de presión y caudal en el punto de uso de cada máquina.</li></ul>
     
   </div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos del Proyecto</h4><p>Todos los presupuestos y pliegos están en la carpeta del proyecto.</p><a class="open-folder" href="${B}01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank" style="margin-top:12px"><i class="fas fa-folder-open"></i> Abrir Carpeta Aire Comprimido</a></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos del Proyecto</h4><p>Todos los presupuestos y pliegos están en la carpeta del proyecto.</p><button class="open-folder" onclick="openFolder(\'01_Proyectos/01_Linea_Aire_Comprimido/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Aire Comprimido</button></div>`,
 'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">Mayo 2026</div><div class="tl-text">Pliego SP-OC-2026-002 enviado a Metalúrgica Belachur.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotización Nitram ($1.07M) evaluada — incompleta.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotizaciones individuales recibidas: Manelli Hnos., Mega Herrería, Provín/Kaeser.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Belachur descartado 100%.</strong> Estrategia: compra por separado. Compresor escalado a 7.5HP. Regulador de presión obligatorio.</div></div></div></div>`}},
 
 estandarizacion:{title:'Estandarización de Procesos',ref:'Gestión Transversal — Operación Actual',badge:'<span class="badge b-trans"><i class="fas fa-layer-group"></i> Transversal</span>',priority:4,tabs:{
@@ -566,7 +601,7 @@ estandarizacion:{title:'Estandarización de Procesos',ref:'Gestión Transversal 
   </div>`,
 'Mini Proyectos':`<div class="info-box"><h4><i class="fas fa-project-diagram"></i> Sub-proyectos Independientes</h4><p style="margin-bottom:12px;">Estos temas se trabajan como proyectos separados pero se agrupan aquí bajo la estandarización operativa. <a href="${B}01_Proyectos/Estandarizacion_Operativa_Master.html" target="_blank" style="color:var(--sp-green);font-weight:600;"><i class="fas fa-file-alt"></i> Ver Documento Maestro</a></p><table class="ctable"><thead><tr><th>Mini Proyecto</th><th>Estado / Etapa</th></tr></thead><tbody><tr><td><strong>1. Reemplazo Cajones</strong> (Madera a Plástico)</td><td><span class="badge b-concept">💡 Evaluación</span></td></tr><tr><td><strong>2. Lógica Térmica</strong> (Horno Argental + Abatidor Nuevo)</td><td><span class="badge b-plan">📋 Planificación</span></td></tr><tr><td><strong>3. SOP: Rotura de Huevos</strong></td><td><span class="badge b-prog">⚙️ En Proceso</span></td></tr><tr><td><strong>4. SOP: Envasado de Aceitunas</strong></td><td><span class="badge b-prog"><i class="fas fa-spinner"></i> Receta lista, falta tiempos</span></td></tr><tr><td><strong>5. POE: Tartas y Tortillas</strong> (procesos, tiempos, mejoras)</td><td><span class="badge b-done" style="background:#dcfce7;color:#15803d">&#10003; Documentado 12/06/2026</span></td></tr>
 <tr><td><strong>6. Piloto: Bandejas Microperforadas (Tartas)</strong></td><td><span class="badge b-buy"><i class="fas fa-comment-dots"></i> Consultas sin enviar</span></td></tr></tbody></table></div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><a class="open-folder" href="${B}02_Operaciones_de_Fabrica/" target="_blank" style="margin-top:12px"><i class="fas fa-folder-open"></i> Abrir Carpeta Operaciones</a></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><button class="open-folder" onclick="openFolder(\'02_Operaciones_de_Fabrica/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Operaciones</button></div>`,
 'Historial':`<div class="info-box"><div class="timeline"><div class="tl-item"><div class="tl-date">Abr 2026</div><div class="tl-text">Plan Maestro V1 y templates POEs creados.</div></div><div class="tl-item"><div class="tl-date">May 2026</div><div class="tl-text">Sistema Digital evoluciona: V15→V2.1.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Formulario V3.2 desplegado.</strong> Workspace reorganizado en 6 áreas. Moldes microperforados aprobados.</div></div></div></div>`}},
 
 desague:{title:'Readecuación Desagüe Cloacal',ref:'Obra 5 — A Cotizar',badge:'<span class="badge b-rev"><i class="fas fa-hard-hat"></i> Presupuesto</span>',priority:4,budget: [
@@ -613,7 +648,7 @@ rompedora:{title:'Adecuación Sala Rompedora de Huevos',ref:'SP-OC-2026-001 — 
 'Documentos':`<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes Rompedora</h4><ul><li>Conseguir precio: embudo inox, manguera, bowl y sistema de sujeción a mesa.</li><li>Diseñar proceso de cascado de huevos, estableciendo estándares de tiempo y detalles.</li></ul>
     
   </div>
-  <div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><a class="open-folder" href="${B}01_Proyectos/03_Sala_Rompedora_Huevos/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></div>`}},
+  <div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><button class="open-folder" onclick="openFolder(\'01_Proyectos/03_Sala_Rompedora_Huevos/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></div>`}},
 
 harinas:{title:'Módulo Exterior Harinas / TACC-free',ref:'SP-OC-2026-004',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span>',priority:3,tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Módulo 4×4×2.8m exterior para zona TACC-free. Amasado + línea empanadas + cortadora.</p></div>
@@ -623,7 +658,7 @@ harinas:{title:'Módulo Exterior Harinas / TACC-free',ref:'SP-OC-2026-004',badge
 <div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li>Confirmar con Bruno/Juan el pago de placas aislantes.</li><li>Cotizar puerta, cortina PVC y aire acondicionado.</li><li>Confirmar método de construcción por partes.</li></ul>
     
   </div>`,
-'Documentos':`<div class="info-box"><a class="open-folder" href="${B}01_Proyectos/02_Modulo_Exterior_Harinas/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta Módulo Harinas</a></div>`}},
+'Documentos':`<div class="info-box"><button class="open-folder" onclick="openFolder(\'01_Proyectos/02_Modulo_Exterior_Harinas/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Módulo Harinas</button></div>`}},
 
 maqnuevas:{title:'Máquinas Nuevas de Producción',ref:'Cotizaciones en curso',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span>',priority:2,tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-cart-plus"></i> Equipos en evaluación</h4><table class="kv"><tr><td>Cortadora Spiing MCD2</td><td>Usada USD 9.500 / Nueva USD 13.500</td></tr><tr><td>Sobadora Pesada Argental</td><td>~USD 8.000 (estimado, pendiente formal)</td></tr><tr><td><s>Horno Rotativo Panier III 4570</s></td><td><span class="badge b-rev">Descartado — sin espacio f&iacute;sico</span></td></tr></table></div>`}},
@@ -640,7 +675,7 @@ maquinas:{title:'Instalación Máquinas Existentes',ref:'Bloqueado por aire comp
 ampliacion:{title:'Ampliación de Fábrica',ref:'Obra 4 — Concepto',badge:'<span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span>',priority:1,tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-building"></i> Concepto</h4><p>Ampliación trasera de la fábrica para albergar línea completa de huevos (pasteurizador, homogeneizador, tanque refrigeración, llenadora, blast freezer), posiblemente 2da liofilizadora. Infraestructura 380V, aire comprimido, agua, desagües.</p></div>
 <div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><p>❌ <strong>CONCEPTO.</strong> No hay pliego ni cotización. Manuales archivados y traducidos.</p></div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Manuales Chinos</h4><p style="font-size:12px;color:#6b7a52;margin-bottom:10px;">Todos los manuales traducidos están archivados.</p><a class="open-folder" href="${B}02_Operaciones_de_Fabrica/Mantenimiento_y_Manuales_Generales/Manuales/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta Manuales</a></div>`}}
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Manuales Chinos</h4><p style="font-size:12px;color:#6b7a52;margin-bottom:10px;">Todos los manuales traducidos están archivados.</p><button class="open-folder" onclick="openFolder(\'02_Operaciones_de_Fabrica/Mantenimiento_y_Manuales_Generales/Manuales/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Manuales</button></div>`}}
 };
 
 function go(page, btn){

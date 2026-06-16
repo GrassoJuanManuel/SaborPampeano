@@ -3,7 +3,7 @@
 <head>
 
 <script>
-    if (window.location.protocol === 'file:') {
+    if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         localStorage.setItem('SaborPampeano_Auth', 'true');
     }
     if (!localStorage.getItem('SaborPampeano_Auth')) {
@@ -555,27 +555,39 @@ async function changePriority(projKey) {
     }
     
     try {
-        const [handle] = await window.showOpenFilePicker({
-            types: [{description: 'Archivo HTML del Dashboard', accept: {'text/html': ['.html']}}],
-            multiple: false
-        });
-        const file = await handle.getFile();
-        let content = await file.text();
-        
-        let regex = new RegExp(`(${projKey}:\{.*?(?:badge:.*?|ref:.*?))priority:\s*\d+(,\s*tabs:)`, 'g');
-        let newContent = content.replace(regex, `$1priority:${newPri}$2`);
-        
-        if (content === newContent) {
-            alert("No se detectaron cambios (o ya tenía esa criticidad).");
-            return;
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            const res = await fetch('/api/update-priority', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ projKey: projKey, newPri: newPri })
+            });
+            if (!res.ok) throw new Error("Error del Servidor Local");
+            
+            alert("¡Criticidad actualizada por el Servidor Local! Sincronizando con el Plan Maestro...");
+            location.reload();
+        } else {
+            const [handle] = await window.showOpenFilePicker({
+                types: [{description: 'Archivo HTML del Dashboard', accept: {'text/html': ['.html']}}],
+                multiple: false
+            });
+            const file = await handle.getFile();
+            let content = await file.text();
+            
+            let regex = new RegExp(`(${projKey}:\\{.*?(?:badge:.*?|ref:.*?))priority:\\s*\\d+(,\\s*tabs:)`, 'g');
+            let newContent = content.replace(regex, `$1priority:${newPri}$2`);
+            
+            if (content === newContent) {
+                alert("No se detectaron cambios (o ya tenía esa criticidad).");
+                return;
+            }
+            
+            const writable = await handle.createWritable();
+            await writable.write(newContent);
+            await writable.close();
+            
+            alert("¡Criticidad actualizada! Sincronizando con el Plan Maestro y subiendo a la web...");
+            location.reload();
         }
-        
-        const writable = await handle.createWritable();
-        await writable.write(newContent);
-        await writable.close();
-        
-        alert("¡Criticidad actualizada! Sincronizando con el Plan Maestro y subiendo a la web...");
-        location.reload();
     } catch (e) {
         if(e.name !== 'AbortError') alert("Error al guardar: " + e.message);
     }
@@ -587,7 +599,7 @@ function detail(id, btn){
   document.getElementById('dt-badge').innerHTML=d.badge;
   const stars = d.priority >= 6 ? '<i class="fas fa-star" style="color:#ef4444; animation: pulse 2s infinite;"></i> <b style="color:#ef4444">MÁXIMA</b>' : '★'.repeat(d.priority)+'☆'.repeat(Math.max(0, 5-d.priority));
   let editBtn = '';
-    if (window.location.protocol === 'file:') {
+    if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         editBtn = `<i class="fas fa-ellipsis-v" onclick="changePriority('${id}')" style="margin-left:12px; cursor:pointer; font-size:14px; color:#8da074; transition:0.2s;" onmouseover="this.style.color='#404d31'" onmouseout="this.style.color='#8da074'" title="Editar Criticidad"></i>`;
     }
     document.getElementById('dt-priority').innerHTML='<span style="color:var(--star-on)">'+stars+'</span>' + editBtn + ' <span style="margin-left:10px;color:#ccc;">|</span> Ref: '+d.ref;

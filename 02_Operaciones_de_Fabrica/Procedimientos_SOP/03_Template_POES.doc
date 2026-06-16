@@ -1,0 +1,247 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; color: #2c2c2c; margin: 0; padding: 0; }
+  h1 { font-size: 18pt; color: #4A5D23; border-bottom: 3px solid #4A5D23; padding-bottom: 6px; margin-top: 20px; page-break-after: avoid; }
+  h2 { font-size: 14pt; color: #5B7A2E; margin-top: 22px; border-bottom: 2px solid #C5D6A0; padding-bottom: 4px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #7A6530; margin-top: 16px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #4A5D23; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #4A5D23; color: #ffffff; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 9pt; }
+  td { padding: 5px 8px; border: 1px solid #c8c8c8; color: #333333; }
+  tr:nth-child(even) { background-color: #f4f7ee; }
+  tr:nth-child(odd) { background-color: #ffffff; }
+  pre { background-color: #f5f5ee; color: #333333; padding: 10px 14px; border-radius: 4px; font-size: 9pt; border: 1px solid #d4d4c8; page-break-inside: avoid; font-family: Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; }
+  code { background-color: #eef2e6; padding: 1px 4px; border-radius: 2px; font-size: 9.5pt; font-family: Consolas, monospace; color: #333333; }
+  pre code { background: none; padding: 0; }
+  blockquote { border-left: 4px solid #7A9B3A; margin: 10px 0; padding: 8px 14px; background-color: #f0f4e8; font-size: 9.5pt; page-break-inside: avoid; }
+  blockquote.warn { border-left-color: #C4841D; background-color: #fef8ee; }
+  blockquote.tip { border-left-color: #2E7D6B; background-color: #eef7f4; }
+  blockquote.important { border-left-color: #8B2E2E; background-color: #fdf0f0; }
+  hr { border: none; border-top: 1px solid #C5D6A0; margin: 18px 0; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin: 2px 0; }
+  .doc-header { background-color: #4A5D23; color: #ffffff; padding: 18px 22px; margin-bottom: 18px; border-radius: 4px; }
+  .doc-header h1 { color: #ffffff; border: none; margin: 0; font-size: 18pt; padding: 0; }
+  .doc-header .subtitle { color: #C5D6A0; font-size: 10pt; margin-top: 4px; }
+  .doc-footer { text-align: center; color: #999999; font-size: 8pt; margin-top: 30px; border-top: 1px solid #dddddd; padding-top: 8px; }
+  .gantt-img { width: 100%; max-width: 680px; display: block; margin: 15px auto; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head>
+<body>
+<div class='doc-header'><h1>POES — Procedimientos Operativos Estandarizados de Saneamiento</h1><div class='subtitle'>Sabor Pampeano | Planta Bahía Blanca</div></div>
+<h1>POES — Procedimientos Operativos Estandarizados de Saneamiento</h1>
+<h2>Sabor Pampeano | Planta Bahía Blanca</h2>
+<h3>Conforme a Resolución SENASA 233/98</h3>
+
+<hr>
+<h2>POES-001: Pre-Operacional (antes de iniciar producción)</h2>
+
+<strong>Frecuencia:</strong> Inicio de cada turno (mañana y tarde)
+<strong>Responsable de ejecución:</strong> Jefe de cocina del turno
+<strong>Verificación:</strong> Ingeniera en Alimentos (muestreo)
+
+<h3>Checklist</h3>
+
+<table>
+<tr><th>#</th><th>Ítem</th><th>✅/❌</th><th>Observaciones</th></tr>
+<tr><td>1</td><td>Pisos limpios y secos (sin charcos, restos, grasa)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Mesadas limpias y desinfectadas</td><td></td><td></td></tr>
+<tr><td>3</td><td>Equipos limpios (Roboqbo, hornos, Turbovar, llenadora, tapadora)</td><td></td><td></td></tr>
+<tr><td>4</td><td>Bachas limpias y con desagüe libre</td><td></td><td></td></tr>
+<tr><td>5</td><td>Utensilios lavados y en su lugar</td><td></td><td></td></tr>
+<tr><td>6</td><td>Basureros vacíos y con bolsa nueva</td><td></td><td></td></tr>
+<tr><td>7</td><td>No hay presencia de plagas o indicios</td><td></td><td></td></tr>
+<tr><td>8</td><td>Productos de limpieza guardados fuera de zona de producción</td><td></td><td></td></tr>
+<tr><td>9</td><td>Personal con indumentaria completa (cofia, delantal, calzado cerrado)</td><td></td><td></td></tr>
+<tr><td>10</td><td>Lavado de manos realizado por todo el personal</td><td></td><td></td></tr>
+</table>
+
+<strong>Firma jefe de cocina:</strong> _______________ <strong>Fecha:</strong> ___/___/___ <strong>Turno:</strong> M / T
+
+<strong>Si algún ítem es ❌ → Acción correctiva:</strong>
+
+<table>
+<tr><th>Ítem</th><th>Acción tomada</th><th>Hora</th><th>Firma</th></tr>
+</table>
+
+<hr>
+<h2>POES-002: Operacional (durante la producción)</h2>
+
+<strong>Frecuencia:</strong> Continuo durante el turno
+<strong>Responsable de ejecución:</strong> Todo el personal de cocina
+<strong>Verificación:</strong> Jefe de cocina + Ing. Alimentos
+
+<h3>Procedimientos obligatorios durante producción</h3>
+
+<table>
+<tr><th>#</th><th>Procedimiento</th><th>Frecuencia</th></tr>
+<tr><td>1</td><td>Lavado de manos: al ingresar, después de ir al baño, al cambiar de tarea, después de tocar residuos</td><td>Cada vez</td></tr>
+<tr><td>2</td><td>Limpieza de derrames en pisos y mesadas</td><td>Inmediato</td></tr>
+<tr><td>3</td><td>Separación de residuos: orgánicos vs. inorgánicos vs. vidrio roto</td><td>Continuo</td></tr>
+<tr><td>4</td><td>Cambio de utensilios entre productos crudos y cocidos</td><td>Cada cambio</td></tr>
+<tr><td>5</td><td>MP pelada transportada en recipientes tapados</td><td>Cada ingreso a cocina</td></tr>
+<tr><td>6</td><td>Producto en proceso no se deja a temperatura ambiente más de 2 horas</td><td>Continuo</td></tr>
+<tr><td>7</td><td>Superficies de contacto: limpiar entre cambios de producto</td><td>Cada cambio</td></tr>
+<tr><td>8</td><td>Verificar temperatura de equipos de frío (heladera, cámara, blast chiller)</td><td>Cada 2 horas</td></tr>
+<tr><td>9</td><td>No comer, beber ni fumar en zona de producción</td><td>Continuo</td></tr>
+<tr><td>10</td><td>Producto caído al piso = descartar o reprocesar según criterio QC</td><td>Cada vez</td></tr>
+</table>
+
+<h3>Registro de temperaturas durante turno</h3>
+
+<table>
+<tr><th>Hora</th><th>Equipo</th><th>Temp. °C</th><th>Firma</th><th>Observaciones</th></tr>
+<tr><td></td><td>Heladera</td><td></td><td></td><td></td></tr>
+<tr><td></td><td>Blast Chiller</td><td></td><td></td><td></td></tr>
+<tr><td></td><td>Cámara fría</td><td></td><td></td><td></td></tr>
+<tr><td></td><td>Horno Rational (si corresponde)</td><td></td><td></td><td></td></tr>
+</table>
+
+<hr>
+<h2>POES-003: Post-Operacional (al finalizar el turno)</h2>
+
+<strong>Frecuencia:</strong> Final de cada turno
+<strong>Responsable de ejecución:</strong> Personal de limpieza + Jefe de cocina (supervisión)
+<strong>Verificación:</strong> Jefe del turno siguiente (en pre-operacional)
+
+<h3>Procedimiento de limpieza paso a paso</h3>
+
+<table>
+<tr><th>Paso</th><th>Actividad</th><th>Producto</th><th>Concentración</th></tr>
+<tr><td>1</td><td>Retirar restos sólidos de todas las superficies y equipos</td><td>—</td><td>—</td></tr>
+<tr><td>2</td><td>Enjuague con agua caliente (>40°C)</td><td>Agua</td><td>—</td></tr>
+<tr><td>3</td><td>Aplicar detergente alcalino en superficies, equipos y pisos</td><td>_________</td><td>_____ ml/L</td></tr>
+<tr><td>4</td><td>Fregar con cepillo/esponja todas las superficies</td><td>—</td><td>—</td></tr>
+<tr><td>5</td><td>Enjuague con agua potable abundante</td><td>Agua</td><td>—</td></tr>
+<tr><td>6</td><td>Aplicar desinfectante (dejar actuar 10 min)</td><td>_________</td><td>_____ ml/L</td></tr>
+<tr><td>7</td><td>Enjuague final con agua potable</td><td>Agua</td><td>—</td></tr>
+<tr><td>8</td><td>Secar superficies (no dejar charcos)</td><td>—</td><td>—</td></tr>
+<tr><td>9</td><td>Vaciar basureros, reponer bolsas</td><td>—</td><td>—</td></tr>
+<tr><td>10</td><td>Guardar productos de limpieza fuera de zona producción</td><td>—</td><td>—</td></tr>
+</table>
+
+<blockquote><strong>NOTA:</strong>
+<strong>Completar con la Ing. en Alimentos:</strong> Nombre comercial de los productos de limpieza, concentraciones autorizadas, y tiempos de contacto según ficha técnica del proveedor.<br>
+
+<strong>Firma responsable limpieza:</strong> _______________ <strong>Hora:</strong> _____
+<strong>Firma jefe de cocina (supervisión):</strong> _______________ <strong>Hora:</strong> _____
+
+<hr>
+<h2>POES-004: Limpieza Específica — Roboqbo QBO 25-4</h2>
+
+<strong>Frecuencia:</strong> Después de cada cambio de producto o al finalizar uso diario
+<strong>Responsable:</strong> Operador de Roboqbo
+<strong>Tiempo estimado:</strong> 15-20 min (CIP) o 30 min (manual)
+
+<h3>Opción A: Limpieza CIP (si disponible)</h3>
+
+<table>
+<tr><th>Paso</th><th>Actividad</th></tr>
+<tr><td>1</td><td>Vaciar cuba completamente</td></tr>
+<tr><td>2</td><td>Cargar 10-15L de agua caliente (60°C)</td></tr>
+<tr><td>3</td><td>Agregar detergente alcalino según dosificación</td></tr>
+<tr><td>4</td><td>Ejecutar programa CIP de la Roboqbo (ver pantalla: Menú → Limpieza)</td></tr>
+<tr><td>5</td><td>Vaciar, enjuagar con agua limpia</td></tr>
+<tr><td>6</td><td>Verificar visual: sin residuos en cuchillas, sellos y tapa</td></tr>
+</table>
+
+<h3>Opción B: Limpieza Manual</h3>
+
+<table>
+<tr><th>Paso</th><th>Actividad</th></tr>
+<tr><td>1</td><td>Vaciar cuba, desmontar cuchillas (con guantes anti-corte)</td></tr>
+<tr><td>2</td><td>Remojar en solución detergente 10 min</td></tr>
+<tr><td>3</td><td>Fregar cuba interior con esponja no abrasiva</td></tr>
+<tr><td>4</td><td>Limpiar sellos de la tapa con cepillo suave</td></tr>
+<tr><td>5</td><td>Enjuagar abundantemente</td></tr>
+<tr><td>6</td><td>Desinfectar con solución autorizada, dejar actuar 5 min</td></tr>
+<tr><td>7</td><td>Enjuague final, secar, rearmar</td></tr>
+</table>
+
+<hr>
+<h2>POES-005: Limpieza y Uso de Cámaras de Refrigeración</h2>
+
+<strong>Aplica a:</strong> Cámara fría (tartas/tortillas), enfriadora rápida, heladeras, freezers
+<strong>Frecuencia limpieza profunda:</strong> Semanal (o al detectar derrames/olores)
+<strong>Responsable:</strong> Personal de limpieza + Jefe de cocina (supervisión)
+<strong>Verificación:</strong> Ingeniera en Alimentos
+
+<h3>5.1 Normas de uso diario</h3>
+
+<table>
+<tr><th>#</th><th>Norma</th><th>Detalle</th></tr>
+<tr><td>1</td><td>Producto siempre en recipientes cerrados o film</td><td>Evitar contaminación cruzada y pérdida de humedad</td></tr>
+<tr><td>2</td><td>Separación por tipo de producto</td><td>Crudos abajo, cocidos/terminados arriba. Nunca mezclar</td></tr>
+<tr><td>3</td><td>Identificación obligatoria</td><td>Cada recipiente con etiqueta: producto, fecha, lote</td></tr>
+<tr><td>4</td><td>No sobrecargar</td><td>Dejar espacio entre productos para circulación de aire frío</td></tr>
+<tr><td>5</td><td>Puerta cerrada</td><td>Minimizar tiempo de apertura. Verificar cierre hermético</td></tr>
+<tr><td>6</td><td>Registro de temperatura</td><td>Mínimo 2 veces por turno (ver planilla POES-002)</td></tr>
+<tr><td>7</td><td>FIFO (First In, First Out)</td><td>Lo primero que entra es lo primero que sale</td></tr>
+</table>
+
+<h3>5.2 Limpieza semanal — paso a paso</h3>
+
+<table>
+<tr><th>Paso</th><th>Actividad</th><th>Notas</th></tr>
+<tr><td>1</td><td>Retirar todos los productos a otra unidad de frío temporalmente</td><td>Mover rápido para no romper cadena de frío</td></tr>
+<tr><td>2</td><td>Apagar el equipo (si corresponde)</td><td>Cámaras grandes: apagar. Freezers: solo si es limpieza profunda</td></tr>
+<tr><td>3</td><td>Retirar estantes/bandejas removibles</td><td>Lavar aparte en bacha</td></tr>
+<tr><td>4</td><td>Eliminar residuos sólidos, hielo acumulado, derrames</td><td>Rasqueta plástica (no metálica para no dañar superficies)</td></tr>
+<tr><td>5</td><td>Aplicar detergente neutro con agua tibia</td><td>No usar agua caliente en equipos fríos (choque térmico)</td></tr>
+<tr><td>6</td><td>Fregar paredes, piso, techo y juntas de puerta</td><td>Especial atención a esquinas y juntas de goma</td></tr>
+<tr><td>7</td><td>Enjuagar con agua potable</td><td>Retirar todo el detergente</td></tr>
+<tr><td>8</td><td>Aplicar desinfectante autorizado, dejar actuar 10 min</td><td>_________ a _____ ml/L</td></tr>
+<tr><td>9</td><td>Enjuague final, secar con paño limpio</td><td>No dejar humedad residual</td></tr>
+<tr><td>10</td><td>Encender equipo, esperar a que alcance temperatura objetivo</td><td>Verificar con termómetro antes de reingresar producto</td></tr>
+<tr><td>11</td><td>Reingresar productos ordenados según FIFO</td><td>Verificar fechas, descartar vencidos</td></tr>
+</table>
+
+<h3>5.3 Temperaturas objetivo</h3>
+
+<table>
+<tr><th>Equipo</th><th>Rango objetivo</th><th>Alarma si supera</th></tr>
+<tr><td>Cámara fría (tartas/tortillas)</td><td>0°C a 5°C</td><td>> 7°C</td></tr>
+<tr><td>Enfriadora rápida</td><td>-2°C a 4°C</td><td>> 5°C</td></tr>
+<tr><td>Heladeras</td><td>2°C a 6°C</td><td>> 8°C</td></tr>
+<tr><td>Freezers</td><td>-18°C a -15°C</td><td>> -12°C</td></tr>
+<tr><td>Blast Chiller (en uso)</td><td>-40°C a -30°C</td><td>> -25°C</td></tr>
+</table>
+
+<blockquote class="warn"><strong>ATENCI&Oacute;N:</strong>
+Si la temperatura supera el límite de alarma: verificar causa (puerta abierta, falla eléctrica, sobrecarga). Si el producto estuvo >2 horas fuera de rango → evaluar decomiso con Ing. en Alimentos.<br>
+
+<strong>Firma responsable limpieza:</strong> _______________ <strong>Fecha:</strong> ___/___/___
+<strong>Firma supervisión:</strong> _______________
+
+<hr>
+<h2>Registro Mensual de Verificación POES</h2>
+
+<table>
+<tr><th>Fecha</th><th>Turno</th><th>Pre-Op OK</th><th>Operacional OK</th><th>Post-Op OK</th><th>Verificó</th><th>Observaciones</th></tr>
+<tr><td></td><td>M / T</td><td>✅/❌</td><td>✅/❌</td><td>✅/❌</td><td></td><td></td></tr>
+<tr><td></td><td>M / T</td><td>✅/❌</td><td>✅/❌</td><td>✅/❌</td><td></td><td></td></tr>
+<tr><td></td><td>M / T</td><td>✅/❌</td><td>✅/❌</td><td>✅/❌</td><td></td><td></td></tr>
+<tr><td></td><td>M / T</td><td>✅/❌</td><td>✅/❌</td><td>✅/❌</td><td></td><td></td></tr>
+<tr><td></td><td>M / T</td><td>✅/❌</td><td>✅/❌</td><td>✅/❌</td><td></td><td></td></tr>
+</table>
+
+<hr>
+<h2>Acciones Correctivas</h2>
+
+Cuando un POES no se cumple:
+
+<table>
+<tr><th>Nivel</th><th>Situación</th><th>Acción</th><th>Responsable</th></tr>
+<tr><td>1</td><td>Ítem menor no cumplido (ej: basura no vacía)</td><td>Corregir inmediatamente, registrar</td><td>Jefe de cocina</td></tr>
+<tr><td>2</td><td>Equipo sucio al inicio de turno</td><td>No iniciar producción hasta limpiar, registrar</td><td>Jefe de cocina</td></tr>
+<tr><td>3</td><td>Producto contaminado por falla de higiene</td><td>Separar lote, evaluar reproceso/decomiso</td><td>Ing. Alimentos</td></tr>
+<tr><td>4</td><td>Reincidencia sistemática</td><td>Capacitación + apercibimiento</td><td>Jefe de Operaciones</td></tr>
+</table>
+
+<div class="doc-footer">Sabor Pampeano &mdash; Plan Maestro de Readecuaci&oacute;n &mdash; Abril 2026</div>
+</body>
+</html>

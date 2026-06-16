@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POE: Envasado de Aceitunas — Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+/* Se aplican los mismos estilos base que el POE 01 */
+:root {
+  --sp-green: #4A5D23;
+  --sp-green-light: #7A9B3A;
+  --sp-accent: #C5D6A0;
+  --sp-bg: #f4f3ec;
+  --text-dark: #1a2410;
+  --text-muted: #6b7a52;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  border: 1px solid rgba(74, 93, 35, 0.1);
+}
+.header {
+  border-bottom: 2px solid var(--sp-accent);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--sp-green);
+  margin-bottom: 8px;
+}
+.header-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 15px;
+}
+.header-meta span { display: flex; align-items: center; gap: 5px; }
+.print-btn {
+  background: var(--sp-green);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: all 0.2s;
+}
+.print-btn:hover { background: var(--sp-green-light); }
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--sp-green);
+  margin: 30px 0 15px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+h2 i { color: var(--sp-green-light); font-size: 18px; }
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 20px 0 10px 0;
+}
+
+.alert-box {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+}
+.alert-box h4 {
+  color: #b45309;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: flex; align-items: center; gap: 6px;
+}
+.alert-box p { color: #92400e; font-size: 14px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13.5px;
+}
+th {
+  text-align: left;
+  background: #f9faf4;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 10px 15px;
+  border-bottom: 2px solid var(--sp-accent);
+}
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f2e8;
+  color: var(--text-dark);
+}
+
+.step-list { list-style: none; margin-left: 0; }
+.step-list li {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.step-list li::before {
+  content: '\f058'; /* fa-check-circle */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0; top: 2px;
+  color: var(--sp-green-light);
+  font-size: 18px;
+}
+.step-list li strong { color: var(--sp-green); }
+
+@media print {
+  body { background: white; padding: 0; }
+  .container { box-shadow: none; border: none; padding: 0; }
+  .print-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>POE: Envasado de Aceitunas (Línea D)</h1>
+      <div class="header-meta">
+        <span><i class="fas fa-barcode"></i> POE-004</span>
+        <span><i class="fas fa-calendar-alt"></i> Junio 2026</span>
+        <span><i class="fas fa-map-marker-alt"></i> Cocina Central</span>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+  </div>
+
+  <h2><i class="fas fa-bullseye"></i> 1. Objetivo</h2>
+  <p style="font-size:14px; margin-bottom:20px;">Estandarizar el proceso de envasado manual de aceitunas en salmuera para garantizar uniformidad de peso, higiene y trazabilidad del producto terminado. Tiempo estimado total: ~30 min preparación + 1 min por frasco envasado.</p>
+
+  <h2><i class="fas fa-list-ol"></i> 2. Productos Alcanzados</h2>
+  <table>
+    <thead>
+      <tr><th>Código</th><th>Producto</th><th>Variedad</th><th>Calibre</th><th>Peso Neto</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>05010001</td><td>Aceituna Verde C/C</td><td>Verde, Con Carozo</td><td>N°0</td><td>370 g</td></tr>
+      <tr><td>05010002</td><td>Aceituna Verde C/C</td><td>Verde, Con Carozo</td><td>N°0</td><td>1.550 g</td></tr>
+      <tr><td>05010006</td><td>Aceituna Verde S/C</td><td>Verde, Sin Carozo</td><td>N°0</td><td>1.380 g</td></tr>
+      <tr><td>05010010</td><td>Aceituna Verde Rellena</td><td>Verde, Con Relleno</td><td>N°0</td><td>1.550 g</td></tr>
+      <tr><td>05010011</td><td>Aceituna Verde C/C</td><td>Verde, Con Carozo</td><td>N°00</td><td>370 g</td></tr>
+      <tr><td>05020002</td><td>Aceituna Negra C/C</td><td>Negra, Con Carozo</td><td>N°0</td><td>1.550 g</td></tr>
+      <tr><td>05020003</td><td>Aceituna Negra C/C</td><td>Negra, Con Carozo</td><td>N°0</td><td>8.000 g</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box">
+    <h4><i class="fas fa-exclamation-triangle"></i> Control Crítico</h4>
+    <p><strong>Aceitunas Negras:</strong> Son difíciles de inspeccionar visualmente. El operario debe ser más cuidadoso durante el lavado para detectar unidades deterioradas.<br>
+    <strong>Calibres:</strong> Distinguir correctamente N°0 de N°00 antes de envasar leyendo la etiqueta del barril origen.</p>
+  </div>
+
+  <h2><i class="fas fa-blender"></i> 3. Composición de la Salmuera</h2>
+  <table>
+    <thead>
+      <tr><th>Ingrediente</th><th>Función</th><th>Cantidad Estandarizada</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Agua</td><td>Base</td><td>[A DEFINIR POR ING. ALIMENTOS]</td></tr>
+      <tr><td>Sal</td><td>Conservante / sabor</td><td>[A DEFINIR POR ING. ALIMENTOS]</td></tr>
+      <tr><td>Ácido cítrico</td><td>Acidulante / conservante</td><td>[A DEFINIR POR ING. ALIMENTOS]</td></tr>
+      <tr><td>Sorbato de potasio</td><td>Conservante antimicrobiano</td><td>[A DEFINIR POR ING. ALIMENTOS]</td></tr>
+    </tbody>
+  </table>
+
+  <h2><i class="fas fa-clipboard-check"></i> 4. Procedimiento Operativo</h2>
+  
+  <h3>ETAPA 1 — Preparación previa (≈ 15 min)</h3>
+  <ul class="step-list">
+    <li>Verificar el tipo y cantidad de aceitunas a envasar según la orden del día.</li>
+    <li>Sacar la cantidad necesaria del barril de almacenamiento.</li>
+    <li><strong>Lavar las aceitunas con abundante agua potable.</strong> Eliminar cualquier aceituna deteriorada, rota o con cuerpos extraños.</li>
+    <li>Dejar escurrir en colador hasta que no chorreen agua.</li>
+  </ul>
+
+  <h3>ETAPA 2 — Preparación de frascos (≈ 15 min)</h3>
+  <ul class="step-list">
+    <li>Trasladar los frascos y tapas al área de trabajo. Confirmar que estén limpios, secos y sin astillas.</li>
+    <li>Preparar la salmuera si no está lista.</li>
+    <li>Encender la balanza y tarar con el frasco vacío.</li>
+  </ul>
+
+  <h3>ETAPA 3 — Envasado (≈ 1 min por frasco)</h3>
+  <ul class="step-list">
+    <li>Colocar aceitunas en el frasco hasta aproximarse al peso neto objetivo.</li>
+    <li>Completar con salmuera hasta cubrir las aceitunas y alcanzar el peso neto.</li>
+    <li><strong>Pesar el frasco:</strong> Si no está dentro del rango ± 10 g, agregar/retirar aceitunas o salmuera.</li>
+    <li>Colocar la tapa y ajustar manualmente. <em>(Piloto Cadec: Pendiente evaluar si la tapadora automática RSL 1800P mejora el tiempo total).</em></li>
+  </ul>
+
+  <h3>ETAPA 4 — Cierre y traslado (≈ 5 min)</h3>
+  <ul class="step-list">
+    <li>Agrupar los frascos terminados en bandejas o cajas plásticas de logística.</li>
+    <li>Registrar el lote y la cantidad producida. Trasladar al Depósito de Producto Terminado.</li>
+    <li>Limpiar y desinfectar el área de trabajo al finalizar.</li>
+  </ul>
+
+  <h2><i class="fas fa-search"></i> 5. Control de Calidad</h2>
+  <table>
+    <thead>
+      <tr><th>Control</th><th>Criterio de Aceptación</th><th>Acción si no cumple</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Peso por frasco</td><td>Peso neto ± 10 g</td><td>Corregir en el momento antes de tapar</td></tr>
+      <tr><td>Aspecto aceitunas</td><td>Sin magulladuras, sin cuerpos extraños</td><td>Descartar unidad</td></tr>
+      <tr><td>Salmuera</td><td>Cubre las aceitunas, sin turbidez excesiva</td><td>Verificar concentración</td></tr>
+      <tr><td>Tapa</td><td>Ajuste hermético, sin deformaciones</td><td>Cambiar tapa</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

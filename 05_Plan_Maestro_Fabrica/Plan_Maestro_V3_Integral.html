@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<script>
+    if (!sessionStorage.getItem('auth_ok')) {
+        let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
+        if (pwd === 'SaborPampeanoOperaciones') {
+            sessionStorage.setItem('auth_ok', 'true');
+        } else {
+            document.write('<div style="font-family:sans-serif;text-align:center;margin-top:100px;color:#333;"><h1>Acceso Denegado</h1><p>Contraseña incorrecta.</p></div>');
+            window.stop();
+        }
+    }
+</script>
+
+<meta charset="UTF-8">
+<title>Plan Maestro Integral V3 — Sabor Pampeano</title>
+<style>
+  @page { size: A4; margin: 15mm 18mm; }
+  @media print {
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    body { font-size: 10pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: #1a1a1a; line-height: 1.5; background: #fff; padding: 20px; max-width: 210mm; margin: 0 auto; }
+  
+  /* Cover */
+  .cover { text-align: center; padding: 60px 20px 40px; border-bottom: 4px solid #4A5D23; margin-bottom: 30px; }
+  .cover h1 { font-size: 28pt; color: #4A5D23; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .cover h2 { font-size: 16pt; color: #7A9B3A; font-weight: 400; margin-bottom: 25px; }
+  .cover .meta { font-size: 10pt; color: #666; }
+  .cover .meta strong { color: #333; }
+  .cover .version { display: inline-block; background: #4A5D23; color: white; padding: 4px 16px; border-radius: 20px; font-size: 9pt; margin-top: 15px; }
+  
+  /* Sections */
+  h2 { font-size: 16pt; color: #4A5D23; border-bottom: 2px solid #C5D6A0; padding-bottom: 6px; margin: 30px 0 15px; }
+  h3 { font-size: 13pt; color: #2d3b14; margin: 20px 0 10px; }
+  h4 { font-size: 11pt; color: #4A5D23; margin: 12px 0 6px; }
+  p, li { font-size: 10pt; }
+  
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 9pt; }
+  th { background: #4A5D23; color: white; padding: 7px 8px; text-align: left; font-weight: 600; }
+  td { padding: 6px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) { background: #f8f9f4; }
+  
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 8pt; font-weight: 600; }
+  .b-crit { background: #fee2e2; color: #991b1b; }
+  .b-high { background: #fef3c7; color: #92400e; }
+  .b-med { background: #dbeafe; color: #1e40af; }
+  .b-low { background: #f0fdf4; color: #166534; }
+  .b-done { background: #dcfce7; color: #166534; }
+  .b-block { background: #fde68a; color: #78350f; border: 1px solid #f59e0b; }
+  
+  /* Alerts */
+  .alert { padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 9.5pt; border-left: 4px solid; }
+  .alert-danger { background: #fef2f2; border-color: #ef4444; }
+  .alert-warn { background: #fffbeb; border-color: #f59e0b; }
+  .alert-info { background: #eff6ff; border-color: #3b82f6; }
+  .alert-ok { background: #f0fdf4; border-color: #22c55e; }
+  .alert strong { display: block; margin-bottom: 3px; }
+  
+  /* Phase cards */
+  .phase { background: #f8f9f4; border: 1px solid #C5D6A0; border-radius: 8px; padding: 16px; margin: 14px 0; }
+  .phase-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .phase-title { font-size: 13pt; font-weight: 700; color: #2d3b14; }
+  .phase-dates { font-size: 9pt; color: #666; background: white; padding: 3px 10px; border-radius: 12px; border: 1px solid #ddd; }
+  
+  /* Gantt-lite */
+  .gantt { margin: 15px 0; }
+  .gantt-row { display: flex; align-items: center; margin: 3px 0; }
+  .gantt-label { width: 200px; font-size: 8.5pt; text-align: right; padding-right: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gantt-bar-area { flex: 1; position: relative; height: 18px; }
+  .gantt-bar { position: absolute; height: 14px; border-radius: 3px; top: 2px; font-size: 7pt; line-height: 14px; padding: 0 4px; color: white; white-space: nowrap; overflow: hidden; }
+  .gb-crit { background: #dc2626; }
+  .gb-high { background: #f59e0b; }
+  .gb-med { background: #3b82f6; }
+  .gb-low { background: #22c55e; }
+  .gb-dep { background: #9333ea; }
+  .gantt-weeks { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 4px; }
+  .gantt-week { flex: 1; text-align: center; font-size: 7pt; color: #999; border-left: 1px dotted #eee; }
+  
+  /* Checklist */
+  ul.checklist { list-style: none; padding: 0; }
+  ul.checklist li { padding: 4px 0 4px 22px; position: relative; font-size: 9.5pt; }
+  ul.checklist li::before { content: "☐"; position: absolute; left: 0; color: #4A5D23; font-size: 12pt; line-height: 1; }
+  ul.checklist li.done::before { content: "☑"; color: #22c55e; }
+  
+  /* Dependency arrows (text-based) */
+  .dep { font-size: 8pt; color: #9333ea; font-weight: 600; }
+  
+  /* Footer */
+  .footer { text-align: center; font-size: 8pt; color: #999; margin-top: 40px; padding-top: 10px; border-top: 1px solid #ddd; }
+  
+  /* Summary box */
+  .summary-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
+  .sum-item { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; text-align: center; }
+  .sum-value { font-size: 18pt; font-weight: 700; color: #4A5D23; }
+  .sum-label { font-size: 8pt; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  
+  .ol-steps { counter-reset: step; list-style: none; padding: 0; }
+  .ol-steps li { counter-increment: step; padding: 6px 0 6px 32px; position: relative; font-size: 9.5pt; border-left: 2px solid #C5D6A0; margin-left: 12px; }
+  .ol-steps li::before { content: counter(step); position: absolute; left: -14px; top: 4px; background: #4A5D23; color: white; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 9pt; font-weight: 700; }
+  .ol-steps li:last-child { border-left: 2px solid transparent; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<div class="cover">
+  <h1>PLAN MAESTRO INTEGRAL V3</h1>
+  <h2>Sabor Pampeano — Planta Bahía Blanca</h2>
+  <p class="meta">
+    <strong>Elaborado por:</strong> Ing. Juan Manuel Grasso — Jefe de Operaciones<br>
+    <strong>Fecha:</strong> 11 de Junio de 2026<br>
+    <strong>Dirigido a:</strong> Dirección General
+  </p>
+  <span class="version">DOCUMENTO CONFIDENCIAL — V3.0</span>
+</div>
+
+<!-- ==================== RESUMEN EJECUTIVO ==================== -->
+<h2>1. RESUMEN EJECUTIVO</h2>
+
+<p>Este documento presenta la planificación integral, paso a paso, de <strong>todos los proyectos activos y pendientes</strong> de la fábrica Sabor Pampeano. Cada tarea está organizada por fases cronológicas, con dependencias explícitas, plazos estimados y responsables asignados.</p>
+
+<div class="summary-box">
+  <div class="sum-item"><div class="sum-value">8</div><div class="sum-label">Proyectos activos</div></div>
+  <div class="sum-item"><div class="sum-value">5</div><div class="sum-label">Fases de ejecución</div></div>
+  <div class="sum-item"><div class="sum-value">~65</div><div class="sum-label">Tareas identificadas</div></div>
+  <div class="sum-item"><div class="sum-value">14-18</div><div class="sum-label">Semanas estimadas</div></div>
+</div>
+
+<div class="alert alert-danger">
+  <strong>⚡ PRIORIDAD MÁXIMA — ESTABILIZADORES ROBOQBO</strong>
+  La Roboqbo QBO 25-4 es el corazón de producción de Línea A (conservas, hummus, salsas). Una fluctuación de tensión puede quemar su placa electrónica, costando miles de dólares y paralizando la fábrica. <strong>ESTO SE EJECUTA PRIMERO.</strong>
+</div>
+
+<!-- ==================== INVENTARIO DE PROYECTOS ==================== -->
+<h2>2. INVENTARIO COMPLETO DE PROYECTOS</h2>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Proyecto</th><th>Prioridad</th><th>Estado Actual</th><th>Inversión Est.</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>P1</td><td>Estabilizadores de Tensión (Roboqbo)</td><td><span class="badge b-crit">CRÍTICA</span></td><td>Cotizado — Esperando aprobación</td><td>~$12M ARS</td></tr>
+    <tr><td>P2</td><td>Relevamiento Eléctrico + Instalación</td><td><span class="badge b-crit">CRÍTICA</span></td><td>Relevamiento en proceso (Gabriel → Gustavo)</td><td>Incl. en P1</td></tr>
+    <tr><td>P3</td><td>Compresor + Línea de Aire Comprimido</td><td><span class="badge b-high">ALTA</span></td><td>Cotizado: <strong>Manelli Hnos. $2.210.049,77 ARS</strong> (P.U. $2.442.105 + IVA 10,5%). Proing SA cotiza instalación.</td><td>~$3-5M ARS</td></tr>
+    <tr><td>P4</td><td>Readecuación Desagüe Cloacal</td><td><span class="badge b-high">ALTA</span></td><td>Cotizado por Gabriel ($8.45M M.O.)</td><td>~$9.2M ARS</td></tr>
+    <tr><td>P5</td><td>Módulo Exterior Harinas (4×4m TACC-free)</td><td><span class="badge b-high">ALTA</span></td><td>Presupuesto estructura recibido ($20.18M)</td><td>~$25M ARS</td></tr>
+    <tr><td>P6</td><td>Sala Rompedora de Huevos (2.8×2.3m)</td><td><span class="badge b-med">MEDIA</span></td><td>Cotizado por Gabriel ($6.76M + elect/plom)</td><td>~$8M ARS</td></tr>
+    <tr><td>P7</td><td><s>Horno Argental Panier III 4570</s></td><td><span class="badge b-low">DESCARTADO</span></td><td>Descartado por falta de espacio físico. Se evalúa modelo compacto 8 bandejas.</td><td>—</td></tr>
+    <tr><td>P8</td><td>Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas)</td><td><span class="badge b-med">MEDIA</span></td><td>Cortadora cotizada. Sobadora y empanadas en evaluación.</td><td>~USD 20-30k</td></tr>
+    <tr><td>P9</td><td>Estanterías y Organización de Planta</td><td><span class="badge b-high">ALTA</span></td><td>En ejecución parcial</td><td>< $500k ARS</td></tr>
+    <tr><td>P10</td><td>Puesta en Marcha de Máquinas Existentes</td><td><span class="badge b-high">ALTA</span></td><td>Pendiente (Llenadora, Tapadora, Autoclave, Rompedora)</td><td>$0 (ya compradas)</td></tr>
+    <tr><td>P11</td><td>Moldes Microperforados (Prueba Piloto Tartas)</td><td><span class="badge b-low">BAJA</span></td><td>Aprobado, pendiente compra</td><td>< $200k ARS</td></tr>
+    <tr><td>P12</td><td>Cajones Plásticos (reemplazo madera)</td><td><span class="badge b-low">BAJA</span></td><td>En evaluación (tanda de 50 unidades)</td><td>~$300k ARS</td></tr>
+    <tr><td>P13</td><td>Liofilizadora ORZF-5 (Instalación)</td><td><span class="badge b-low">BAJA</span></td><td>Pendiente espacio y electricidad</td><td>$0 (ya comprada)</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== MAPA DE DEPENDENCIAS ==================== -->
+<div class="page-break"></div>
+<h2>3. MAPA DE DEPENDENCIAS CRÍTICAS</h2>
+
+<p>Las flechas indican qué proyecto debe completarse <strong>antes</strong> de poder avanzar con el siguiente. Un error en el orden genera semanas de demora.</p>
+
+<div class="alert alert-warn">
+  <strong>🔗 Cadena Crítica #1: Módulo de Harinas (la más larga)</strong>
+  Desagüe Cloacal (P4) → Módulo Harinas (P5) → Máquinas de Producción adentro (P8) → Línea G Empanadas operativa
+</div>
+
+<div class="alert alert-info">
+  <strong>🔗 Cadena Crítica #2: Línea A operativa al 100%</strong>
+  Relevamiento Eléctrico (P2) → Estabilizadores (P1) → Compresor + Aire (P3) → Puesta en marcha Llenadora/Tapadora/Autoclave (P10)
+</div>
+
+<table>
+  <thead>
+    <tr><th>Proyecto</th><th>Depende de (BLOQUEANTE)</th><th>Habilita a</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>P1 — Estabilizadores</td><td>P2 (Relevamiento Eléctrico)</td><td>Seguridad eléctrica de toda la planta</td></tr>
+    <tr><td>P2 — Relevamiento Eléctrico</td><td>Ninguno (se hace ya)</td><td>P1, P3, P5, P13</td></tr>
+    <tr><td>P3 — Compresor + Aire</td><td>P2 (saber si hay capacidad eléctrica para 380V)</td><td>P10 (Llenadora, Tapadora, Autoclave, Rompedora)</td></tr>
+    <tr><td>P4 — Desagüe Cloacal</td><td>Ninguno (obra civil independiente)</td><td>P5 (Módulo Harinas)</td></tr>
+    <tr><td>P5 — Módulo Harinas</td><td>P4 (cloaca debe estar corrida)</td><td>P8 (Máquinas de producción dentro del módulo)</td></tr>
+    <tr><td>P6 — Sala Rompedora</td><td>P3 (necesita aire comprimido 6 bar)</td><td>Producción de huevo líquido propia</td></tr>
+    <tr><td>P7 — Horno Argental</td><td>Ninguno (va en cocina existente)</td><td>Triplicar capacidad de horneado</td></tr>
+    <tr><td>P9 — Estanterías</td><td>Ninguno</td><td>Orden operativo, trazabilidad de lotes</td></tr>
+    <tr><td>P10 — Puesta en marcha</td><td>P3 (aire comprimido)</td><td>Línea A automatizada, Autoclave operativo</td></tr>
+    <tr><td>P11 — Moldes</td><td>Ninguno</td><td>Mejora calidad tartas</td></tr>
+    <tr><td>P12 — Cajones</td><td>Ninguno</td><td>Eficiencia en etiquetado</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== FASES DE EJECUCIÓN ==================== -->
+<div class="page-break"></div>
+<h2>4. FASES DE EJECUCIÓN — PASO A PASO</h2>
+
+<!-- ===== FASE HISTÓRICA ===== -->
+<div class="phase" style="opacity:0.85; border-left-color: #6b7a52; background: #fdfefb;">
+  <div class="phase-head">
+    <span class="phase-title" style="color: #6b7a52;"><i class="fas fa-check-circle"></i> TRABAJO REALIZADO (Últimos 2 Meses)</span>
+    <span class="phase-dates">Abril - Junio</span>
+  </div>
+  <p><em>Registro de hitos y trabajos ejecutados previos al Master Plan V3.</em></p>
+  
+  <ul class="ol-steps" style="list-style-type:none; padding-left:10px;">
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Gestión operativa ininterrumpida de producción mientras se organizaban nuevas áreas.</li>
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Recepción logística de máquinas importadas de China (24 de Abril).</li>
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Asistencia técnica y montaje de seleccionadora de huevos en el campo (Fábrica de Buratovich - 8 y 12 de Mayo).</li>
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Despeje físico y limpieza profunda de depósito para transformarlo en futura Sala de Rompedora de Huevos.</li>
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Reparación de balanzas, resolución de falla térmica intermitente (bomba elevadora de agua) y coordinación de fumigación.</li>
+    <li><i class="fas fa-check-square" style="color:#7A9B3A;"></i> Cambio de correas y botones en múltiples máquinas (peladora, sobadora, cortadora en proceso).</li>
+  </ul>
+</div>
+
+<!-- ===== FASE 0 ===== -->
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 0 — ACCIÓN INMEDIATA Y VICTORIAS TEMPRANAS (Esta semana)</span>
+    <span class="phase-dates"><span class="badge b-crit">AHORA</span> Sem 1</span>
+  </div>
+  <p><em>Objetivo: Mostrar movimiento físico real en la fábrica HOY. No esperar a terceros para empezar a avanzar con lo que ya tenemos.</em></p>
+  
+  <h4>0.1 — Preparación de Equipos Nuevos (Línea Cadec)</h4>
+  <ol class="ol-steps">
+    <li><strong>Mover físicamente</strong> la Llenadora y Tapadora hacia la cocina (hoy o la semana próxima) para definir su layout final. <em>Nota: La Rompedora queda en espera porque no entra por dimensiones.</em></li>
+    <li>Leer los manuales técnicos y contactar a Cadec para solicitar explicación de funcionamiento y capacitación remota.</li>
+    <li><strong>RESULTADO:</strong> Dejan de ser "cajas en el depósito". El equipo se familiariza con la maquinaria mientras se espera la instalación del aire comprimido.</li>
+  </ol>
+
+  <h4>0.2 — Compras y Obras Menores Independientes</h4>
+  <ol class="ol-steps">
+    <li><strong>Casilla del Compresor:</strong> Aprobar a Mega Herrería para hacer la base y la casilla exterior. Es el paso previo necesario para recibir el compresor BTA.</li>
+    <li><strong>Compresor BTA Tools 7.5HP:</strong> Comprar para congelar precio (tarda 1 semana en llegar a Bahía Blanca). Se guardará bajo techo hasta que la casilla esté lista.</li>
+    <li><strong>Moldes microperforados (10-20 uds):</strong> Ya se enviaron consultas comerciales hoy. Derivar a Compras para cerrar.</li>
+  </ol>
+  
+  <h4>0.3 — Relevamiento y Estabilizadores (Cuello de Botella de Línea A)</h4>
+  <ol class="ol-steps">
+    <li>Gabriel controlará el diámetro de cables personalmente previo a la instalación de los estabilizadores.</li>
+    <li>Si no lo entrega el lunes → Gustavo arranca de cero.</li>
+    <li><strong>Solytec:</strong> Ya tenemos los presupuestos actualizados. Definir compra directa de los 3 equipos ST-11KVA para saltar el 8% de comisión y avanzar.</li>
+  </ol>
+
+  <h4>0.4 — Estanterías y Orden Físico</h4>
+  <ol class="ol-steps">
+    <li>Terminar el armado de la estantería el martes. La vieja ya está en Etiquetado.</li>
+    <li>Hasta conseguir contadores de 4 dígitos, pegar un papel en cada bandeja indicando el lote (además de la etiqueta del estante que indica el producto).</li>
+    <li><strong>RESULTADO:</strong> Orden inmediato y trazabilidad visual.</li>
+  </ol>
+
+  <h4>0.5 — Reevaluación Horno Argental (Modelos Compactos)</h4>
+  <ol class="ol-steps">
+    <li><strong>Bloqueante de Altura:</strong> El Panier III queda <strong>descartado por falta de espacio físico</strong>. No entra en la cocina.</li>
+    <li><strong>Nuevo Plan:</strong> Llamar al vendedor y evaluar modelos compactos de 8 bandejas.</li>
+    <li><strong>RESULTADO:</strong> Cambio de equipo. Se frena el pago del anticipo de USD 4.669 hasta tener la nueva cotización del modelo compacto.</li>
+  </ol>
+</div>
+
+<!-- ===== FASE 1 ===== -->
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 1 — PROTECCIÓN ELÉCTRICA + AIRE COMPRIMIDO</span>
+    <span class="phase-dates">Semanas 2-4 (16 Jun — 4 Jul)</span>
+  </div>
+  <p><em>Objetivo: Proteger la inversión existente (Roboqbo) y habilitar el aire comprimido que desbloquea 4 máquinas.</em></p>
+  
+  <h4>1.1 — Instalación de Estabilizadores <span class="badge b-crit">PRIORIDAD MÁXIMA</span></h4>
+  <ol class="ol-steps">
+    <li>Recibir estabilizadores Solytec (plazo proveedor: ~1 semana tras la compra).</li>
+    <li>Gustavo instala los 3 estabilizadores: Roboqbo + Líneas auxiliares. <strong>Duración estimada: 2-3 días.</strong></li>
+    <li>Verificar funcionamiento con Roboqbo en carga. Medir tensión de entrada vs. salida.</li>
+    <li><strong>RESULTADO:</strong> Roboqbo protegida. Planta eléctrica estabilizada.</li>
+  </ol>
+  
+  <h4>1.2 — Instalación del Compresor y Línea de Aire</h4>
+  <ol class="ol-steps">
+    <li>Recibir el compresor BTA Tools (tarda 1 semana en llegar a Bahía).</li>
+    <li>Recibir cotización de Proing SA para la instalación de la línea + verificación de materiales.</li>
+    <li>Comprar materiales de cañería según pliego actualizado: SmartPipe 25mm, manguera PU 12mm, regulador, filtro coalescente, FRLs, acoples.</li>
+    <li>Instalar compresor en exterior (estructura/casilla Mega Herrería). Tender línea de aire a los 4 puntos de uso. <strong>Duración estimada de obra: 1 semana.</strong></li>
+    <li>Probar presión y caudal en cada punto.</li>
+    <li><strong>RESULTADO:</strong> Aire comprimido operativo. Se desbloquean las máquinas.</li>
+  </ol>
+  
+  <div class="alert alert-info">
+    <strong>📌 Nota:</strong> El compresor y los estabilizadores se pueden ejecutar en paralelo si se tienen los dos presupuestos aprobados. El compresor NO depende de los estabilizadores, solo del relevamiento eléctrico (para confirmar que hay capacidad de 380V disponible).
+  </div>
+</div>
+
+<!-- ===== FASE 2 ===== -->
+<div class="page-break"></div>
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 2 — PUESTA EN MARCHA DE EQUIPOS EXISTENTES</span>
+    <span class="phase-dates">Semanas 4-6 (30 Jun — 18 Jul)</span>
+  </div>
+  <p><em>Objetivo: Poner operativas las máquinas que YA compramos y están juntando polvo. Máximo retorno sobre la inversión ya realizada.</em></p>
+  
+  <h4>2.1 — Línea Cadec: Llenadora LSL 100CNC + Tapadora RSL 1800P <span class="badge b-high">ALTA</span></h4>
+  <ol class="ol-steps">
+    <li>Conectar llenadora a aire comprimido (ya instalado en Fase 1). Verificar alimentación eléctrica.</li>
+    <li>Realizar prueba en vacío: ciclos de dosificación sin producto, verificar movimiento de pistones y boquilla.</li>
+    <li>Realizar prueba con agua: calibrar volumen de dosificación para frascos de 215g, 330g, 430g y 450g.</li>
+    <li>Conectar tapadora. Verificar torque de cierre y alimentación de tapas.</li>
+    <li>Prueba integrada: Roboqbo → Bomba → Llenadora → Tapadora. Producto de prueba: mermelada o hummus.</li>
+    <li>Documentar: velocidad de llenado (frascos/min), ajustes de calibración, problemas detectados.</li>
+  </ol>
+  
+  <h4>2.2 — Autoclave</h4>
+  <ol class="ol-steps">
+    <li>Conectar a aire comprimido y a red de agua.</li>
+    <li>Verificar que funciona a vapor autónomo (no necesita caldera externa).</li>
+    <li>Realizar ciclo de prueba en vacío (sin producto). Verificar temperaturas, presiones, tiempos.</li>
+    <li>Realizar ciclo con producto de prueba. Documentar parámetros.</li>
+    <li><strong>RESULTADO:</strong> Autoclave operativo → Se eliminan riesgos sanitarios en la producción de conservas.</li>
+  </ol>
+
+  <h4>2.3 — Rompedora de Huevos (prueba preliminar)</h4>
+  <ol class="ol-steps">
+    <li>Aunque la sala dedicada (P6) aún no esté lista, realizar una <strong>prueba funcional controlada</strong> de la rompedora en un espacio temporal.</li>
+    <li>Conectar a aire comprimido (derivación temporal con manguera).</li>
+    <li>Verificar: alimentación de huevos, separación yema/clara, velocidad, cantidad de rotura.</li>
+    <li>Documentar resultado y ajustes necesarios antes de la instalación definitiva.</li>
+    <li><strong>OBJETIVO:</strong> Saber que la máquina funciona correctamente ANTES de invertir $7M en construir la sala.</li>
+  </ol>
+
+  <h4>2.4 — Abatidor Viejo (Diagnóstico)</h4>
+  <ol class="ol-steps">
+    <li>Gustavo (electricista) o técnico frigorista: diagnosticar por qué no funciona.</li>
+    <li>Cotizar reparación vs. costo de oportunidad.</li>
+    <li><strong>RESULTADO:</strong> Decisión de reparar o descartar para liberar espacio crítico.</li>
+  </ol>
+
+  <h4>2.5 — Horno Argental (Panier III DESCARTADO — se evalúa modelo compacto 8 bandejas)</h4>
+  <ol class="ol-steps">
+    <li>Si gerencia aprueba Horno FE III-315, avanzar con compra. No requeriría tocar la campana.</li>
+    <li>Realizar conexiones a servicios (Agua, Luz, Gas).</li>
+    <li>Prueba de encendido y calibración de panel programable.</li>
+    <li><strong>RESULTADO:</strong> Ampliación de capacidad de horneado conservando la estructura original de la campana.</li>
+  </ol>
+</div>
+
+<!-- ===== FASE 3 ===== -->
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 3 — OBRA CIVIL: CLOACAS + MÓDULO HARINAS</span>
+    <span class="phase-dates">Semanas 4-12 (30 Jun — 22 Ago)</span>
+  </div>
+  <p><em>Objetivo: Ejecutar las obras civiles necesarias para habilitar el módulo exterior TACC-free, que es la clave para las líneas de empanadas y tartas a escala.</em></p>
+  
+  <div class="alert alert-warn">
+    <strong>⚠️ CUELLO DE BOTELLA IDENTIFICADO:</strong> <strong style="color:#15803d">✓ Placas aislantes PAGADAS (~10/06/2026).</strong> Fabricación en curso. Entrega estimada ~30-40 días desde el pago.
+  </div>
+  
+  <h4>3.1 — Obra Cloacal (Sem 4-6) <span class="badge b-block">BLOQUEANTE para P5</span></h4>
+  <ol class="ol-steps">
+    <li>Aprobar presupuesto Gabriel ($8.45M + 8%) O buscar albañil alternativo. Negociar: el 8% debería aplicar solo sobre M.O., no sobre materiales comprados por la fábrica.</li>
+    <li>Comprar materiales de plomería (caños PVC, bocas de registro, etc.).</li>
+    <li>Ejecutar obra: zanjeo, corrimiento de cloaca 2m a la derecha, instalación de nuevas tapas de registro, dejar derivaciones "ciegas" de PVC para la ampliación futura trasera.</li>
+    <li>Verificar conexión a red cloacal municipal (ABSA). Si requiere trámite, iniciarlo YA.</li>
+    <li><strong>RESULTADO:</strong> Terreno libre para montar el módulo de harinas sin interferencias.</li>
+  </ol>
+
+  <h4>3.2 — Módulo Exterior Harinas 4×4m (Sem 6-12)</h4>
+  <ol class="ol-steps">
+    <li><strong style="color:#15803d">✓ PAGADO (~10/06/2026):</strong> Placas aislantes (paneles Arneg + PIR 50mm). Fabricación en curso (~30-40 días).</li>
+    <li>Mientras se fabrican las placas: preparar base/platea de hormigón. Instalar desagüe y conexión eléctrica.</li>
+    <li>Construir estructura metálica y montar paneles (construcción por partes para evitar flete especial e hidrogrúa).</li>
+    <li>Instalar piso OSB con chapa de aluminio.</li>
+    <li>Electricidad interior: tablero, tomas trifásicas 380V, iluminación IP65, derivación de aire comprimido.</li>
+    <li>Plomería: conexión de agua + desagüe de piso.</li>
+    <li>Cotizar y comprar: puerta isotérmica, cortina de lamas PVC, aire acondicionado.</li>
+    <li>Pintar, señalizar, habilitar.</li>
+    <li><strong>RESULTADO:</strong> Módulo TACC-free operativo. Listo para recibir amasadora, sobadora y línea de empanadas.</li>
+  </ol>
+
+  <h4>3.3 — Sala Rompedora de Huevos (Sem 8-12, paralelo al módulo)</h4>
+  <ol class="ol-steps">
+    <li>Aprobar presupuesto Gabriel ($6.76M + materiales eléctricos/plomería) O ejecutar con Gustavo + albañil independiente.</li>
+    <li>Obra civil: levantar paredes 2.8×2.3m, revocar, pintar con pintura epoxi apta alimentaria.</li>
+    <li>Electricidad: tomas IP65, conexión a tierra, derivación de aire comprimido (6 bar).</li>
+    <li>Plomería: bacha pedal inoxidable, desagüe con rejilla.</li>
+    <li>Instalar rompedora de huevos en posición definitiva.</li>
+    <li><strong>RESULTADO:</strong> Sala habilitada para producción de huevo líquido propio.</li>
+  </ol>
+</div>
+
+<!-- ===== FASE 4 ===== -->
+<div class="page-break"></div>
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 4 — EQUIPAMIENTO DEL MÓDULO + NUEVAS LÍNEAS</span>
+    <span class="phase-dates">Semanas 12-16 (18 Ago — 12 Sep)</span>
+  </div>
+  <p><em>Objetivo: Instalar las máquinas nuevas dentro del módulo terminado y arrancar las líneas de empanadas y tartas a escala industrial.</em></p>
+  
+  <h4>4.1 — Mudanza de Amasadora al Módulo</h4>
+  <ol class="ol-steps">
+    <li>Trasladar la Amasadora Moretti Mixer 60 desde la cocina al módulo exterior.</li>
+    <li>Conectar electricidad trifásica.</li>
+    <li>Verificar funcionamiento post-traslado.</li>
+    <li><strong>RESULTADO:</strong> Polvo de harina FUERA de la cocina principal. Primer paso hacia certificación TACC-free.</li>
+  </ol>
+
+  <h4>4.2 — Compra e Instalación Sobadora Pesada Argental</h4>
+  <ol class="ol-steps">
+    <li>Recibir cotización formal de Argental (~USD 8.000).</li>
+    <li>Aprobar compra. Coordinar flete.</li>
+    <li>Instalar en módulo, posición Pared 2 (tren de laminado).</li>
+  </ol>
+
+  <h4>4.3 — Línea de Empanadas (Empamec — Alquiler)</h4>
+  <ol class="ol-steps">
+    <li>Formalizar contrato de alquiler con Empamec (M2000x7 PLUS, 2.6×0.7m).</li>
+    <li>Recibir e instalar en módulo, posición Pared 2 (a continuación de sobadora).</li>
+    <li>Conectar a electricidad (220V, 50Hz). NO requiere aire comprimido.</li>
+    <li>Capacitar operarios en uso y mantenimiento.</li>
+    <li>Prueba piloto con empanadas de J&Q y carne picada.</li>
+    <li><strong>RESULTADO:</strong> Línea G operativa. Producción de empanadas semicongeladas iniciada.</li>
+  </ol>
+
+  <h4>4.4 — Cortadora de Discos Spiing MCD2</h4>
+  <ol class="ol-steps">
+    <li>Definir si se compra nueva (USD 13.500) o usada (USD 9.500).</li>
+    <li>Instalar en módulo junto a la sobadora.</li>
+    <li>Probar con masa de tartas: verificar corte limpio en diámetros 130mm y 140mm.</li>
+    <li><strong>RESULTADO:</strong> Corte de discos automatizado. Producción de tapas crudas habilitada (nueva unidad de negocio B2C).</li>
+  </ol>
+
+  <h4>4.5 — Selladora Térmica de Pedal (Pausado)</h4>
+  <ol class="ol-steps">
+    <li>Proyecto en espera. Se evaluará recién cuando se adquiera la cortadora de discos y se decida el layout final para la línea retail B2C.</li>
+  </ol>
+</div>
+
+<!-- ===== FASE 5 ===== -->
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-title">FASE 5 — OPTIMIZACIÓN Y CONSOLIDACIÓN</span>
+    <span class="phase-dates">Semanas 16-18 (12 Sep — 26 Sep)</span>
+  </div>
+  <p><em>Objetivo: Afinar procesos, documentar todo, y dejar la fábrica funcionando a régimen.</em></p>
+  
+  <ol class="ol-steps">
+    <li><strong>Liofilizadora ORZF-5:</strong> Instalar en ubicación definitiva (requiere 380V). Tiene guías para bandejas (sin carro). Realizar ciclo de prueba de 24hs.</li>
+    <li><strong>POEs actualizados:</strong> Crear/actualizar procedimientos operativos estándar para CADA línea con el nuevo equipamiento.</li>
+    <li><strong>Web App V3.2:</strong> Registrar Línea G (empanadas) en el sistema digital de producción.</li>
+    <li><strong>Cajones plásticos:</strong> Comprar primera tanda de 50 cajones (30×50×25cm). Implementar en etiquetado.</li>
+    <li><strong>Plan Maestro V4:</strong> Actualizar este documento con los resultados reales, lecciones aprendidas, y planificar la Fase 2 de expansión (Ampliación Trasera).</li>
+    <li><strong>Cámara de frío de cocina:</strong> ✓ Confirmado que sale por la puerta sacando el marco. Se retira cuando el abatidor esté conectado eléctricamente.</li>
+    <li><strong>Contratar técnico electromecánico:</strong> Para mantenimiento preventivo de toda la planta expandida.</li>
+    <li><strong>Sistema de seguridad:</strong> Cotizar cámaras, cerraduras, lector código de barras.</li>
+  </ol>
+</div>
+
+<!-- ==================== CRONOGRAMA VISUAL ==================== -->
+<div class="page-break"></div>
+<h2>5. CRONOGRAMA VISUAL (14 Semanas)</h2>
+
+<p style="font-size:9pt; color:#666; margin-bottom:10px;">Cada columna = 1 semana. Barras muestran duración estimada. Colores = prioridad.</p>
+
+<div class="gantt">
+  <div class="gantt-row">
+    <div class="gantt-label" style="font-weight:700;">SEMANA →</div>
+    <div class="gantt-bar-area">
+      <div class="gantt-weeks">
+        <div class="gantt-week">S1</div><div class="gantt-week">S2</div><div class="gantt-week">S3</div>
+        <div class="gantt-week">S4</div><div class="gantt-week">S5</div><div class="gantt-week">S6</div>
+        <div class="gantt-week">S7</div><div class="gantt-week">S8</div><div class="gantt-week">S9</div>
+        <div class="gantt-week">S10</div><div class="gantt-week">S11</div><div class="gantt-week">S12</div>
+        <div class="gantt-week">S13</div><div class="gantt-week">S14</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gantt-row"><div class="gantt-label">Relev. Eléctrico</div><div class="gantt-bar-area"><div class="gantt-bar gb-crit" style="left:0%;width:10%;">P2</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Compra Estabilizadores</div><div class="gantt-bar-area"><div class="gantt-bar gb-crit" style="left:3%;width:10%;">Compra</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Instalación Estabilizadores</div><div class="gantt-bar-area"><div class="gantt-bar gb-crit" style="left:10%;width:8%;">P1</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Compra Compresor BTA</div><div class="gantt-bar-area"><div class="gantt-bar gb-high" style="left:7%;width:10%;">Compra+Flete</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Instalación Línea Aire</div><div class="gantt-bar-area"><div class="gantt-bar gb-high" style="left:14%;width:14%;">P3</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Estanterías (cámara)</div><div class="gantt-bar-area"><div class="gantt-bar gb-high" style="left:0%;width:7%;">P9</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Horno Argental (pedido→inst.)</div><div class="gantt-bar-area"><div class="gantt-bar gb-med" style="left:7%;width:28%;">P7</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Puesta marcha Cadec</div><div class="gantt-bar-area"><div class="gantt-bar gb-high" style="left:25%;width:10%;">P10</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Puesta marcha Autoclave</div><div class="gantt-bar-area"><div class="gantt-bar gb-high" style="left:28%;width:7%;">P10</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Prueba Rompedora</div><div class="gantt-bar-area"><div class="gantt-bar gb-med" style="left:28%;width:5%;">P10</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Diagnóstico Abatidor viejo</div><div class="gantt-bar-area"><div class="gantt-bar gb-med" style="left:7%;width:7%;">P10</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Obra Cloacal</div><div class="gantt-bar-area"><div class="gantt-bar gb-dep" style="left:25%;width:18%;">P4</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Pago placas módulo</div><div class="gantt-bar-area"><div class="gantt-bar gb-dep" style="left:10%;width:3%;">$$$</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Fabricación placas (30d)</div><div class="gantt-bar-area"><div class="gantt-bar gb-dep" style="left:12%;width:30%;">Espera fabricación</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Construcción Módulo</div><div class="gantt-bar-area"><div class="gantt-bar gb-dep" style="left:42%;width:25%;">P5</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Sala Rompedora</div><div class="gantt-bar-area"><div class="gantt-bar gb-med" style="left:55%;width:20%;">P6</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Mudanza Amasadora</div><div class="gantt-bar-area"><div class="gantt-bar gb-low" style="left:67%;width:5%;">→Módulo</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Sobadora + Cortadora</div><div class="gantt-bar-area"><div class="gantt-bar gb-low" style="left:72%;width:10%;">P8</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Línea Empanadas</div><div class="gantt-bar-area"><div class="gantt-bar gb-low" style="left:78%;width:15%;">P8</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Moldes microperforados</div><div class="gantt-bar-area"><div class="gantt-bar gb-low" style="left:0%;width:7%;">P11</div></div></div>
+  <div class="gantt-row"><div class="gantt-label">Liofilizadora</div><div class="gantt-bar-area"><div class="gantt-bar gb-low" style="left:85%;width:10%;">P13</div></div></div>
+</div>
+
+<!-- ==================== PRESUPUESTO GLOBAL ==================== -->
+<div class="page-break"></div>
+<h2>6. RESUMEN PRESUPUESTARIO GLOBAL</h2>
+
+<table>
+  <thead>
+    <tr><th>Concepto</th><th>Monto (ARS)</th><th>Monto (USD)</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Estabilizadores Solytec (3× 11KVA)</strong></td><td>$10.718.331</td><td>—</td><td>Cotizado</td></tr>
+    <tr><td>Instalación eléctrica estabilizadores</td><td>$1.870.000</td><td>—</td><td>Cotizado (G. Gonzalez)</td></tr>
+    <tr><td><strong>Compresor De Aire Trifásico 300L – 7.5HP – BTA</strong></td><td>$2.210.049,77</td><td>—</td><td>Cotizado</td></tr>
+    <tr><td>Cañerías, FRLs, accesorios aire</td><td>~$500.000</td><td>—</td><td>Estimado</td></tr>
+    <tr><td>Instalación línea de aire (Proing SA)</td><td>A cotizar</td><td>—</td><td>En proceso</td></tr>
+    <tr style="background:#fef3c7;"><td><strong>Obra Cloacal (M.O.)</strong></td><td>$8.450.000</td><td>—</td><td>Cotizado Gabriel</td></tr>
+    <tr style="background:#fef3c7;"><td><strong>Módulo Harinas (Estructura)</strong></td><td>$20.187.536</td><td>—</td><td>Cotizado Gabriel</td></tr>
+    <tr><td>Módulo Harinas (Electricidad + Plomería M.O.)</td><td>$1.440.000</td><td>—</td><td>Cotizado</td></tr>
+    <tr><td>Módulo Harinas (Puerta, Cortina, A/C)</td><td>~$2.000.000</td><td>—</td><td>Estimado</td></tr>
+    <tr style="background:#dbeafe;"><td><strong>Sala Rompedora (M.O. + Mat. Albañ.)</strong></td><td>$6.760.546</td><td>—</td><td>Cotizado Gabriel</td></tr>
+    <tr><td>Sala Rompedora (Mat. Eléctricos + Plomería)</td><td>~$500.000</td><td>—</td><td>Estimado</td></tr>
+    <tr><td><s>Horno Argental Panier III</s></td><td>—</td><td><s>USD 11.672</s></td><td><span class="badge b-low">Descartado</span></td></tr>
+    <tr><td>Sobadora Pesada Blindada</td><td>—</td><td>~USD 8.000</td><td>Estimado</td></tr>
+    <tr><td>Cortadora Spiing MCD2 (usada)</td><td>—</td><td>USD 9.500</td><td>Cotizado</td></tr>
+    <tr><td>Línea Empanadas Empamec (alquiler)</td><td>Mensual</td><td>A cotizar</td><td>En evaluación</td></tr>
+    <tr><td>Selladora Térmica de Pedal</td><td>—</td><td>~USD 400</td><td>A comprar</td></tr>
+    <tr><td>Moldes microperforados (10-20 uds.)</td><td>~$150.000</td><td>—</td><td>A comprar</td></tr>
+    <tr><td>Cajones plásticos (50 uds.)</td><td>~$300.000</td><td>—</td><td>A comprar</td></tr>
+    <tr style="background:#dcfce7; font-weight:700;"><td><strong>TOTAL ESTIMADO (sin alquiler empanadas)</strong></td><td><strong>~$52.300.000</strong></td><td><strong>+ ~USD 29.600</strong></td><td></td></tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info">
+  <strong>💡 Oportunidad de ahorro:</strong> Si se compran los estabilizadores directo a Solytec y Gustavo instala, se ahorran ~$857.000 del 8% de Gabriel sobre los equipos. Lo mismo aplica para materiales de obra que la fábrica compre directamente.
+</div>
+
+<!-- ==================== RIESGOS ==================== -->
+<h2>7. RIESGOS Y MITIGACIONES</h2>
+
+<table>
+  <thead>
+    <tr><th>Riesgo</th><th>Impacto</th><th>Probabilidad</th><th>Mitigación</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Placas del módulo demoran más de 30 días</td><td><span class="badge b-crit">ALTO</span></td><td>Media</td><td>✓ Pagadas (~10/06/2026). Confirmar fecha de entrega exacta con proveedor.</td></tr>
+    <tr><td>Roboqbo se quema por pico de tensión</td><td><span class="badge b-crit">ALTO</span></td><td>Alta (cada tormenta)</td><td>Instalar estabilizadores en Fase 1 SIN demoras.</td></tr>
+    <tr><td>Capacidad de cables insuficiente para estabilizadores</td><td><span class="badge b-high">MEDIO</span></td><td>Media</td><td>Gabriel controlará diámetro antes. Si falta, cotizar recableado.</td></tr>
+    <tr><td>Abatidor viejo irreparable</td><td><span class="badge b-high">MEDIO</span></td><td>Media</td><td>Circuito 1 (Rational) sigue usando el enfriador rápido. Abatidor actual tiene guías para bandejas. Ya comprado, no se cambia. Priorizar conexión eléctrica.</td></tr>
+    <tr><td>Rompedora de huevos defectuosa</td><td><span class="badge b-med">MEDIO</span></td><td>Baja</td><td>Probar ANTES de construir la sala (Fase 2.3).</td></tr>
+    <tr><td>Capacidad eléctrica insuficiente para todo</td><td><span class="badge b-crit">ALTO</span></td><td>Baja</td><td>Relevamiento eléctrico (Fase 0) lo detectará. Solución: ampliación del tablero o nueva acometida.</td></tr>
+    <tr><td>Flete especial necesario para módulo</td><td><span class="badge b-med">BAJO</span></td><td>Media</td><td>Construir por partes (ya decidido). Evitar hidrogrúa.</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== COSAS QUE NO OLVIDAR ==================== -->
+<h2>8. TEMAS ADICIONALES (no olvidar)</h2>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Tema</th><th>Acción</th><th>Cuándo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Bomba elevadora (Roboqbo→LSL)</td><td>Verificar si soporta la viscosidad del hummus antes de usarla</td><td>Fase 2</td></tr>
+    <tr><td>2</td><td>Cámara de frío de cocina</td><td><strong>✓ Confirmado: sale por la puerta sacando el marco.</strong> Se retira cuando el abatidor esté listo para reemplazarla. Abatidor listo pero no se puede enchufar hasta confirmar capacidad eléctrica.</td><td>Pendiente instalación eléctrica</td></tr>
+    <tr><td>3</td><td>Etiquetadora</td><td><strong style="color:#15803d">✓ Reparada y operativa</strong> (semana del 09/06/2026). Pendiente: reposición de etiquetas (gestión de compras, fuera de mi alcance).</td><td>✓ Resuelto</td></tr>
+    <tr><td>4</td><td>Esquema de tiempos Abatidor</td><td>Coordinar uso compartido entre Línea B (tartas) y Línea C (liofilizados)</td><td>Fase 5</td></tr>
+    <tr><td>5</td><td>Depósito PT</td><td>Reorganizar depósito de producto terminado</td><td>Fase 5</td></tr>
+    <tr><td>6</td><td>Sistema de pedido almacén secos</td><td>Implementar sistema interno para requisición de insumos</td><td>Fase 5</td></tr>
+    <tr><td>7</td><td>Sobadora Pesada — cotización formal</td><td>Pedir presupuesto oficial a Argental (ya tiene precio estimado ~USD 8k)</td><td>Fase 0</td></tr>
+    <tr><td>8</td><td><s>Abatidor nuevo tipo Roll-in</s></td><td><strong style="color:#15803d">✓ Abatidor ya comprado.</strong> Tiene guías para bandejas 40×60cm. No se cambia.</td><td>✓ Resuelto</td></tr>
+    <tr><td>9</td><td>Conexión ABSA (cloacas)</td><td>Verificar si se necesita trámite municipal para la nueva conexión</td><td>Fase 3</td></tr>
+    <tr><td>10</td><td>Revisión Obras Gabriel</td><td>Pedir que el 8% aplique SOLO sobre M.O., no sobre materiales y equipos que compra la fábrica</td><td>Fase 0</td></tr>
+    <tr><td>11</td><td>Confirmar tipo abatidor chino</td><td><strong>Confirmado: tiene guías para bandejas</strong> (sin carro). Ya comprado, no se cambia.</td><td>Fase 2</td></tr>
+    <tr><td>12</td><td>Formulario Web App</td><td>Agregar Línea G (empanadas) al sistema digital V3.2</td><td>Fase 5</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== CHECKLIST SEMANAL ==================== -->
+<div class="page-break"></div>
+<h2>9. CHECKLIST DE SEGUIMIENTO SEMANAL</h2>
+
+<p style="font-size:9pt;color:#666;">Usar este checklist cada lunes para verificar avance y tomar acciones correctivas.</p>
+
+<h4>Semana 1 (AHORA) — FASE 0: ACCIONES RÁPIDAS</h4>
+<ul class="checklist">
+  <li>Mover Llenadora y Tapadora a la cocina (contactar a Cadec para capacitación)</li>
+  <li>Aprobar casilla exterior a Mega Herrería (base para el compresor)</li>
+  <li>Comprar Compresor BTA Tools 7.5HP</li>
+  <li>Derivar a compras los presupuestos de moldes microperforados</li>
+  <li>Esperar presupuesto de armado Argental (evaluar fines de semana o post 14hs)</li>
+  <li>Aguardar negociación gerencia por Horno FE III-315</li>
+  <li>Gabriel visita la planta para controlar diámetro de cables</li>
+  <li>Aprobar compra directa de estabilizadores Solytec</li>
+  <li>Terminar estantería el martes (mudada a etiquetado)</li>
+</ul>
+
+<h4>Semana 2-3 (16-27 Jun) — FASE 1a</h4>
+<ul class="checklist">
+  <li>Consultar tamaño de estantería necesaria para tableros</li>
+  <li>Recibir estabilizadores Solytec</li>
+  <li>Instalar estabilizadores (Gustavo, 2-3 días)</li>
+  <li>Verificar Roboqbo con estabilizador conectado</li>
+  <li>Recibir compresor BTA Tools</li>
+  <li>Diagnóstico abatidor viejo (Gustavo o frigorista)</li>
+  <li>Aguardar decisión de gerencia sobre Horno</li>
+</ul>
+
+<h4>Semana 3-4 (23 Jun — 4 Jul) — FASE 1b</h4>
+<ul class="checklist">
+  <li>Comprar materiales de línea de aire (SmartPipe, mangueras, FRLs)</li>
+  <li>Proing SA instala compresor + tiende línea de aire</li>
+  <li>Probar aire en los 4 puntos de uso</li>
+  <li>✓ PLACAS PAGADAS (~10/06/2026). Fabricación en curso.</li>
+  <li>Aprobar obra cloacal (Gabriel o alternativa)</li>
+</ul>
+
+<h4>Semana 4-6 (30 Jun — 18 Jul) — FASE 2</h4>
+<ul class="checklist">
+  <li>Puesta en marcha Llenadora LSL 100CNC</li>
+  <li>Puesta en marcha Tapadora RSL 1800P</li>
+  <li>Puesta en marcha Autoclave</li>
+  <li>Prueba funcional rompedora de huevos (temporal)</li>
+  <li>Inicio obra cloacal</li>
+  <li>Recibir horno Argental. Coordinar desarme + ingreso</li>
+</ul>
+
+<h4>Semana 6-12 (14 Jul — 22 Ago) — FASE 3</h4>
+<ul class="checklist">
+  <li>Obra cloacal terminada</li>
+  <li>Recibir placas aislantes del módulo</li>
+  <li>Construir módulo por partes</li>
+  <li>Electricidad + plomería interior del módulo</li>
+  <li>Inicio obra Sala Rompedora</li>
+  <li>Recibir cotización formal sobadora Argental</li>
+</ul>
+
+<h4>Semana 12-16 (18 Ago — 12 Sep) — FASE 4</h4>
+<ul class="checklist">
+  <li>Módulo terminado y habilitado</li>
+  <li>Mudar amasadora al módulo</li>
+  <li>Instalar sobadora + cortadora en módulo</li>
+  <li>Recibir e instalar línea empanadas (Empamec)</li>
+  <li>Sala Rompedora terminada. Instalar máquina.</li>
+  <li>Prueba piloto empanadas</li>
+  <li>Comprar selladora térmica de pedal</li>
+</ul>
+
+<!-- ==================== INDICADORES ==================== -->
+<h2>10. INDICADORES DE AVANCE PARA DIRECCIÓN</h2>
+
+<p style="font-size:9pt;">Estos indicadores permiten a la Dirección verificar el avance real en cada reunión semanal.</p>
+
+<table>
+  <thead>
+    <tr><th>Indicador</th><th>Meta</th><th>Medición</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Estabilizadores instalados</td><td>Semana 3</td><td>✅ Roboqbo protegida, tensión estabilizada</td></tr>
+    <tr><td>Aire comprimido operativo</td><td>Semana 4</td><td>✅ Presión de 6 bar en los 4 puntos de uso</td></tr>
+    <tr><td>Máquinas Cadec + Autoclave operativos</td><td>Semana 6</td><td>✅ Primer batch de producción completado</td></tr>
+    <tr><td>Obra cloacal terminada</td><td>Semana 8</td><td>✅ Tapas de registro accesibles, cloaca corrida</td></tr>
+    <tr><td>Módulo Harinas con techo y paredes</td><td>Semana 12</td><td>✅ Estructura cerrada, piso instalado</td></tr>
+    <tr><td>Módulo Harinas habilitado</td><td>Semana 14</td><td>✅ Electricidad, agua, puerta, pintura, señalización</td></tr>
+    <tr><td>Primera empanada producida</td><td>Semana 16</td><td>✅ Prueba piloto completada con calidad OK</td></tr>
+    <tr><td>Horno Argental operativo</td><td>Semana 6</td><td>✅ Primer horneado de 15 bandejas completado</td></tr>
+    <tr><td>Estantería cámara fría con lotes identificados</td><td>Semana 1</td><td>✅ Cada estante etiquetado por lote</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== FIRMA ==================== -->
+<div style="margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+  <div style="text-align: center; border-top: 1px solid #333; padding-top: 8px;">
+    <strong>Ing. Juan Manuel Grasso</strong><br>
+    <span style="font-size: 9pt; color: #666;">Jefe de Operaciones</span>
+  </div>
+  <div style="text-align: center; border-top: 1px solid #333; padding-top: 8px;">
+    <strong>Juan (Dirección General)</strong><br>
+    <span style="font-size: 9pt; color: #666;">Dirección General — Sabor Pampeano</span>
+  </div>
+</div>
+
+<div class="footer">
+  Plan Maestro Integral V3 — Sabor Pampeano — Bahía Blanca, Argentina — Junio 2026<br>
+  Generado el 11/06/2026. Documento confidencial. Próxima revisión: Semana 4.
+</div>
+
+<!-- Print button -->
+<div class="no-print" style="text-align:center; margin: 30px 0;">
+  <button onclick="window.print()" style="background:#4A5D23; color:white; border:none; padding:14px 40px; font-size:14pt; border-radius:8px; cursor:pointer; font-weight:700;">
+    📄 IMPRIMIR / GUARDAR COMO PDF
+  </button>
+  <p style="font-size:9pt; color:#999; margin-top:8px;">Usa Ctrl+P → "Guardar como PDF" para generar el archivo.</p>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if(window.location.hash === '#print'){
+      setTimeout(() => { window.print(); }, 500);
+    }
+  });
+</script>
+</body>
+</html>

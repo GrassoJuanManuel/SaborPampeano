@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<script>
+    if (!sessionStorage.getItem('auth_ok')) {
+        let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
+        if (pwd === 'SaborPampeanoOperaciones') {
+            sessionStorage.setItem('auth_ok', 'true');
+        } else {
+            document.write('<div style="font-family:sans-serif;text-align:center;margin-top:100px;color:#333;"><h1>Acceso Denegado</h1><p>Contraseña incorrecta.</p></div>');
+            window.stop();
+        }
+    }
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificación y Proyectos — Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="icon" href="logo.png" type="image/png">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- data-biblia-sync="2026-06-08" -->
+<style>
+:root{
+  /* Sabor Pampeano - Pastel Brand Palette */
+  --sp-green: #313B24; /* Very Dark Pastel Olive for text */
+  --sp-green-mid: #7A8B6B; /* Pastel Olive Main */
+  --sp-green-light: #A4B495; /* Light Pastel Olive */
+  --sp-accent: #C98877; /* Pastel Terracotta */
+  --sp-gold: #C98877; /* Pastel Terracotta (replacing gold) */
+  --sp-gold-light: #E8B9AA; 
+  --sp-bg: #F0F2EB; /* Pastel Grayish-Green Off-white */ /* Pastel Grayish-Green Off-white */
+  --sidebar-w: 280px;
+  --sidebar-bg: #404D31; /* Dark Pastel Olive Sidebar */ /* Dark Pastel Olive Sidebar */
+  --card-r: 16px; 
+  --tr: .35s cubic-bezier(.4,0,.2,1);
+  --star-on: #C98877; /* Terracotta stars */
+  --star-off: #D1D6C9;
+  --shadow-sm: 0 4px 12px rgba(49,59,36,.05);
+  --shadow-md: 0 10px 30px rgba(49,59,36,.08);
+  --shadow-lg: 0 20px 40px rgba(49,59,36,.12);
+}
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Inter',system-ui,sans-serif; background:var(--sp-bg); color:var(--sp-green); overflow-x:hidden;}
+a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#b8c4a0;border-radius:3px;}
+
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);background:var(--sidebar-bg);color:#E3E7DD;z-index:100;display:flex;flex-direction:column;transition:transform var(--tr);box-shadow:4px 0 20px rgba(0,0,0,.15);}
+.sidebar-header{padding:24px 18px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,rgba(62,139,125,.3) 0%,rgba(164,180,149,.08) 100%);}
+.sidebar-header h1{font-size:14px;font-weight:800;color:#F0F2EB;letter-spacing:.5px;line-height:1.3;display:flex;align-items:center;}
+.sidebar-header h1 img{height:20px;margin-right:8px;border-radius:3px;}
+.sidebar-header p{font-size:10px;color:rgba(255,255,255,.5);margin-top:5px;letter-spacing:.3px;}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px 0;}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 18px;border:none;background:transparent;color:#C1C9B6;font-size:12.5px;font-family:inherit;cursor:pointer;text-align:left;transition:all .2s;border-left:3px solid transparent;letter-spacing:.1px;}
+.nav-btn:hover{background:rgba(255,255,255,.05);color:#F0F2EB;border-left-color:rgba(164,180,149,.4);}
+.nav-btn.active{background:rgba(62,139,125,.22);color:#6DBFB2;border-left-color:#6DBFB2;font-weight:600;}
+.nav-btn i{width:16px;text-align:center;font-size:13px;color:inherit;}
+.nav-btn .nav-stars{margin-left:auto;font-size:9px;color:var(--star-on);letter-spacing:1px;}
+.nav-section{padding:16px 18px 6px;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.2);font-weight:700;}
+.sidebar-footer{padding:14px 18px;border-top:1px solid rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.25);}
+.sidebar-footer span{color:#c4daa0;font-weight:600;}
+.sidebar-toggle{position:fixed;top:14px;left:14px;z-index:200;width:38px;height:38px;border-radius:10px;border:none;background:var(--sp-green-mid);color:#fff;cursor:pointer;font-size:15px;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);padding:32px 40px;min-height:100vh;transition:margin var(--tr);}
+.page{display:none;animation:fadeSlide .4s ease;}.page.active{display:block;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+
+.page-header{margin-bottom:28px;animation:slideIn .45s ease;}
+.page-header h2{font-size:28px;font-weight:800;color:#1a2410;letter-spacing:-.4px;}
+.page-header p{font-size:13px;color:#7a8a5e;margin-top:4px;}
+.breadcrumb{font-size:11px;color:#8a9a6e;margin-bottom:8px;display:flex;align-items:center;gap:5px;}.breadcrumb i{font-size:9px;}
+
+/* TOP ROW: stats + chart */
+.dash-top{display:grid;grid-template-columns:1fr 380px;gap:20px;margin-bottom:28px;align-items:start;}
+.stats-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.stat-card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px 22px;
+  border:1px solid rgba(74,93,35,.06);
+  box-shadow:var(--shadow-sm);
+  position:relative;
+  overflow:hidden;
+  animation:popIn .5s ease backwards;
+  transition:all var(--tr);
+}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.stat-card.c1::before{background:linear-gradient(90deg,#3E8B7D,#6DBFB2);}
+.stat-card.c2::before{background:linear-gradient(90deg,#C17B3C,#E8A96A);}
+.stat-card.c3::before{background:linear-gradient(90deg,#7A559E,#B28FCA);}
+.stat-card.c4::before{background:linear-gradient(90deg,#B84A3C,#E58A7A);}
+.stat-card:nth-child(1){animation-delay:.05s;}
+.stat-card:nth-child(2){animation-delay:.1s;}
+.stat-card:nth-child(3){animation-delay:.15s;}
+.stat-card:nth-child(4){animation-delay:.2s;}
+.stat-icon{font-size:22px;margin-bottom:10px;opacity:.6;}
+.stat-num{font-size:32px;font-weight:900;color:#3E7B6D;line-height:1;}
+.stat-lbl{font-size:11px;color:#7a8a5e;margin-top:4px;font-weight:500;letter-spacing:.2px;}
+
+/* CHART CARD */
+.chart-card{
+  background:#fff;
+  border-radius:16px;
+  padding:22px 24px;
+  border:1px solid rgba(74,93,35,.06);
+  box-shadow:var(--shadow-sm);
+  animation:popIn .5s .25s ease backwards;
+}
+.chart-card h4{font-size:13px;font-weight:700;color:#1a2410;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+.chart-card h4 i{color:var(--sp-green-light);}
+.chart-wrap{position:relative;height:240px;}
+
+/* TOOLBAR */
+.stars{display:inline-flex;gap:2px;}.stars i{color:var(--star-off);font-size:11px;}.stars i.on{color:var(--star-on);}
+.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #d8e2c4;border-radius:12px;padding:10px 14px;flex:1;min-width:200px;max-width:380px;box-shadow:var(--shadow-sm);}
+.search-box i{color:#8a9a6e;font-size:13px;}
+.search-box input{border:none;outline:none;font-size:13px;font-family:inherit;flex:1;background:none;color:#1a2410;}
+.search-box input::placeholder{color:#b0baa0;}
+.sort-btn{padding:9px 16px;border:1px solid #d8e2c4;border-radius:12px;background:#fff;font-size:12px;font-family:inherit;cursor:pointer;color:#6b7a52;transition:all .2s;box-shadow:var(--shadow-sm);font-weight:500;}
+.sort-btn:hover,.sort-btn.active{background:var(--sp-green-mid);color:#fff;border-color:var(--sp-green-mid);}
+
+/* PROJECT CARDS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+.pcard{
+  background:#fff;
+  border-radius:var(--card-r);
+  padding:24px;
+  border:1px solid rgba(74,93,35,.06);
+  cursor:pointer;
+  transition:all var(--tr);
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  animation:popIn .5s ease backwards;
+}
+.pcard:nth-child(1){animation-delay:.05s;}
+.pcard:nth-child(2){animation-delay:.1s;}
+.pcard:nth-child(3){animation-delay:.15s;}
+.pcard:nth-child(4){animation-delay:.2s;}
+.pcard:nth-child(5){animation-delay:.25s;}
+.pcard:nth-child(6){animation-delay:.3s;}
+.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--sp-accent);}
+.pcard::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,155,58,.03) 0%,transparent 60%);pointer-events:none;opacity:0;transition:opacity var(--tr);}
+.pcard:hover::after{opacity:1;}
+.pcard .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;}
+.pcard h3{font-size:15px;font-weight:700;color:#1a2410;line-height:1.35;flex:1;}
+.pcard .card-desc{font-size:12px;color:#6b7a52;line-height:1.6;margin-bottom:14px;}
+.pcard .card-footer{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#8a9a6e;}
+.progress{height:5px;background:#e8edd8;border-radius:3px;margin-top:14px;overflow:hidden;}
+.progress .fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#4A8B7D,#7DBFB2);transition:width 1s cubic-bezier(.22,1,.36,1);}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap;flex-shrink:0;letter-spacing:.2px;}
+.b-prog{background:#fef9c3;color:#854d0e;}
+.b-plan{background:#dbeafe;color:#1e40af;}
+.b-rev{background:#fce7f3;color:#9d174d;}
+.b-done{background:#dcfce7;color:#15803d;}
+.b-concept{background:#f3e8ff;color:#7e22ce;}
+.b-trans{background:rgba(74,93,35,.08);color:var(--sp-green-mid);}
+.b-buy{background:#fff3e0;color:#9a3412;}
+
+/* DETAIL */
+.detail-back{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#6b7a52;cursor:pointer;padding:6px 0;margin-bottom:16px;border:none;background:none;font-family:inherit;transition:color .2s;font-weight:500;}
+.detail-back:hover{color:var(--sp-green-mid);}
+.detail-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.detail-header h2{font-size:24px;font-weight:800;letter-spacing:-.3px;}
+.detail-priority{display:flex;align-items:center;gap:8px;margin-bottom:22px;font-size:12px;color:#6b7a52;}
+.tabs{display:flex;gap:3px;border-bottom:2px solid #e0e8cc;margin-bottom:24px;overflow-x:auto;}
+.tab-btn{padding:10px 18px;border:none;background:none;font-family:inherit;font-size:12px;font-weight:500;color:#8a9a6e;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--sp-green-mid);}
+.tab-btn.active{color:var(--sp-green-mid);border-bottom-color:var(--sp-green-mid);font-weight:700;}
+.tab-content{display:none;animation:fadeSlide .25s ease;}.tab-content.active{display:block;}
+.info-box{background:#fff;border-radius:14px;padding:24px;border:1px solid rgba(74,93,35,.07);margin-bottom:16px;box-shadow:var(--shadow-sm);}
+.info-box h4{font-size:13px;font-weight:700;color:#1a2410;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.info-box h4 i{color:var(--sp-green-light);font-size:15px;}
+.info-box p,.info-box li{font-size:12.5px;color:#4a5a36;line-height:1.75;}
+.info-box ul{padding-left:18px;}.info-box ul li{margin-bottom:4px;}
+.kv td{padding:8px 10px;font-size:12.5px;border-bottom:1px solid #f0f2e8;}.kv td:first-child{font-weight:600;color:#1a2410;width:190px;}.kv td:last-child{color:#4a5a36;}.kv{width:100%;border-collapse:collapse;}
+.dtable{width:100%;border-collapse:collapse;}
+.dtable th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#8a9a6e;padding:8px 10px;border-bottom:2px solid #e0e8cc;}
+.dtable td{padding:10px 10px;font-size:12.5px;border-bottom:1px solid #f0f2e8;}.dtable tr:hover{background:#f6f8f0;}
+.doc-link{display:inline-flex;align-items:center;gap:5px;color:var(--sp-green-mid);font-weight:500;cursor:pointer;}.doc-link i{font-size:11px;}
+.doc-link:hover{color:var(--sp-green-light);}
+.open-folder{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:10px;background:var(--sp-green-mid);color:#fff;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s;text-decoration:none!important;margin-top:12px;letter-spacing:.2px;}
+.open-folder:hover{background:var(--sp-green-light);transform:translateY(-1px);}
+.ctable{width:100%;border-collapse:collapse;margin-top:10px;}
+.ctable th{text-align:left;padding:10px 12px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#8a9a6e;background:#f6f8f0;border-bottom:2px solid #e0e8cc;font-weight:700;}
+.ctable td{padding:10px 12px;font-size:12.5px;border-bottom:1px solid #f0f2e8;}.ctable tr:hover{background:#f6f8f0;}
+.timeline{position:relative;padding-left:22px;}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--sp-green-light),var(--sp-accent));}
+.tl-item{position:relative;margin-bottom:16px;}
+.tl-item::before{content:'';position:absolute;left:-18px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--sp-green-light);border:2px solid #fff;box-shadow:0 0 0 3px rgba(122,155,58,.2);}
+.tl-date{font-size:10px;font-weight:700;color:#7a8a5e;letter-spacing:.3px;}
+.tl-text{font-size:12.5px;color:#4a5a36;margin-top:2px;line-height:1.55;}
+.chk{list-style:none;padding:0;}.chk li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f2e8;font-size:12.5px;}.chk li:last-child{border:none;}
+.chk li i.fa-circle-check{color:var(--sp-green-light);margin-top:2px;font-size:15px;}
+.chk li i.fa-circle{color:#d4d9c4;margin-top:2px;font-size:15px;}
+.mm-canvas{background:#fff;border-radius:16px;border:1px solid rgba(74,93,35,.07);padding:40px 24px;overflow:auto;box-shadow:var(--shadow-sm);}
+.mm-center{text-align:center;margin-bottom:36px;}
+.mm-center .mm-hub{display:inline-block;background:linear-gradient(135deg,var(--sp-green),var(--sp-green-light));color:#fff;padding:16px 32px;border-radius:24px;font-size:17px;font-weight:800;box-shadow:0 6px 20px rgba(74,93,35,.3);letter-spacing:-.2px;}
+.mm-branches{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.mm-branch{background:#f6f8f0;border-radius:14px;padding:20px;border:1px solid #dde8c4;transition:all .3s;}
+.mm-branch:hover{border-color:var(--sp-accent);box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.mm-branch h5{font-size:13px;font-weight:700;color:var(--sp-green-mid);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.mm-branch h5 i{font-size:14px;}
+.mm-leaf{display:flex;align-items:center;gap:8px;padding:7px 10px;margin:4px 0;border-radius:9px;font-size:12px;color:#4a5a36;cursor:pointer;transition:all .2s;border-left:3px solid transparent;}
+.mm-leaf:hover{background:#fff;border-left-color:var(--sp-green-light);color:var(--sp-green-mid);}
+.mm-leaf .leaf-stars{margin-left:auto;}
+.ai-btn{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:28px;background:linear-gradient(135deg,var(--sp-green-mid),var(--sp-green-light));color:#fff;border:none;box-shadow:0 6px 20px rgba(74,93,35,.35);cursor:pointer;font-size:22px;z-index:9999;transition:all .3s ease;}
+.ai-btn:hover{transform:scale(1.12) rotate(-5deg);box-shadow:0 10px 28px rgba(74,93,35,.5);}
+.ai-chat{position:fixed;bottom:90px;right:24px;width:360px;height:490px;background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);border:1px solid #dde8c4;display:flex;flex-direction:column;z-index:9998;transform:translateY(20px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.4,0,.2,1);}
+.ai-chat.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+.ai-chat-header{padding:16px 20px;background:linear-gradient(135deg,var(--sp-green),var(--sp-green-light));color:#fff;border-radius:17px 17px 0 0;display:flex;justify-content:space-between;align-items:center;}
+.ai-chat-header h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.ai-chat-header button{background:none;border:none;color:#fff;cursor:pointer;opacity:.75;transition:opacity .2s;font-size:14px;}
+.ai-chat-header button:hover{opacity:1;}
+.ai-chat-body{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;background:#f6f8f0;}
+.msg{max-width:85%;padding:12px 16px;border-radius:16px;font-size:13px;line-height:1.55;animation:fadeSlide .2s ease;}
+.msg.ai{align-self:flex-start;background:#fff;border:1px solid #dde8c4;color:#1a2410;border-bottom-left-radius:4px;}
+.msg.user{align-self:flex-end;background:var(--sp-green-light);color:#fff;border-bottom-right-radius:4px;}
+.ai-chat-input{padding:14px;border-top:1px solid #dde8c4;display:flex;gap:8px;background:#fff;border-radius:0 0 17px 17px;}
+.ai-chat-input input{flex:1;border:1px solid #d8e2c4;border-radius:22px;padding:10px 16px;font-size:13px;outline:none;transition:border-color .2s;font-family:inherit;}
+.ai-chat-input input:focus{border-color:var(--sp-green-light);}
+.ai-chat-input button{width:38px;height:38px;border-radius:19px;border:none;background:var(--sp-green-mid);color:#fff;cursor:pointer;transition:transform .2s;}
+.ai-chat-input button:hover{transform:scale(1.08);}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.sidebar-toggle{display:flex;}.main{margin-left:0;padding:20px 16px;}.projects-grid{grid-template-columns:1fr;}.dash-top{grid-template-columns:1fr;}.stats-col{grid-template-columns:repeat(2,1fr);}.mm-branches{grid-template-columns:1fr;}.ai-chat{right:10px;left:10px;width:auto;bottom:90px;height:60vh;}}
+@media print{.sidebar,.sidebar-toggle,.ai-btn,.ai-chat{display:none!important;}.main{margin-left:0;}.pcard:hover{transform:none;box-shadow:none;}}
+</style>
+</head>
+<body>
+
+<button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1><img src="logo.png" alt="Logo">SABOR PAMPEANO</h1>
+    <p>Planificación y Proyectos</p>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Plan Maestro Integral</div>
+    <div style="display:flex; gap:6px; padding: 0 16px; margin-bottom: 6px; margin-top: 6px;">
+      <a href="../05_Plan_Maestro_Fabrica/Plan_Maestro_V3_Integral.html" target="_blank" style="background: rgba(164, 180, 149, 0.15); color:var(--sp-green-light); padding: 10px; border-radius: 10px; flex:1; text-align:center; font-weight:700; font-size:12px; transition:all .2s; border:1px solid rgba(164,180,149,0.2);" onmouseover="this.style.background='rgba(164,180,149,0.25)'" onmouseout="this.style.background='rgba(164,180,149,0.15)'"><i class="fas fa-eye"></i> Ver Plan</a>
+      <a href="../05_Plan_Maestro_Fabrica/Plan_Maestro_V3_Integral.html#print" target="_blank" style="background: rgba(255, 255, 255, 0.05); color:#E3E7DD; padding: 10px; border-radius: 10px; flex:1; text-align:center; font-weight:600; font-size:11px; transition:all .2s; border:1px solid rgba(255,255,255,0.05);" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'" title="Abrir y guardar como PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+    </div>
+    <div style="display:flex; gap:6px; padding: 0 16px; margin-bottom: 12px;">
+      <a href="../05_Plan_Maestro_Fabrica/Resumen_Ejecutivo_Plan_Maestro.html" target="_blank" style="background: rgba(201, 136, 119, 0.15); color:var(--sp-accent); padding: 8px; border-radius: 10px; flex:1; text-align:center; font-weight:700; font-size:11px; transition:all .2s; border:1px solid rgba(201,136,119,0.2);" onmouseover="this.style.background='rgba(201,136,119,0.25)'" onmouseout="this.style.background='rgba(201,136,119,0.15)'"><i class="fas fa-list-check"></i> Resumen Plan</a>
+    </div>
+    
+    <div class="nav-section">General</div>
+    <button class="nav-btn active" onclick="go('dashboard',this)"><i class="fas fa-th-large" style="color:#6DBFB2"></i> Dashboard</button>
+    <button class="nav-btn" onclick="go('mindmap',this)"><i class="fas fa-project-diagram" style="color:#B28FCA"></i> Mapa Mental</button>
+    <button class="nav-btn" onclick="go('pendientes',this)"><i class="fas fa-clipboard-list" style="color:#E8A96A"></i> Pendientes</button>
+    <button class="nav-btn" onclick="go('cotizaciones',this)"><i class="fas fa-file-invoice-dollar" style="color:#E58A7A"></i> Cotizaciones</button>
+    <div class="nav-section">Proyectos (por prioridad)</div>
+    <button class="nav-btn" onclick="detail('roboqbo', this)"><i class="fas fa-bolt" style="color:#ef4444"></i> Estabilizador Roboqbo<span class="nav-stars"><i class="fas fa-star" style="color:#ef4444"></i></span></button>
+    <button class="nav-btn" onclick="detail('aire', this)"><i class="fas fa-wind" style="color:#38bdf8"></i> Aire Comprimido<span class="nav-stars">★★★★★</span></button>
+    <button class="nav-btn" onclick="detail('estandarizacion', this)"><i class="fas fa-clipboard-check" style="color:#a78bfa"></i> Estandarización<span class="nav-stars">★★★★</span></button>
+    <button class="nav-btn" onclick="detail('desague', this)"><i class="fas fa-water" style="color:#2dd4bf"></i> Desagüe Cloacal<span class="nav-stars">★★★★</span></button>
+    <button class="nav-btn" onclick="detail('argental', this)"><i class="fas fa-fire-burner" style="color:#fb923c"></i> Instalación Argental<span class="nav-stars">★★★★</span></button>
+    <button class="nav-btn" onclick="detail('rompedora', this)"><i class="fas fa-egg" style="color:#fcd34d"></i> Sala Rompedora<span class="nav-stars">★★★</span></button>
+    <button class="nav-btn" onclick="detail('harinas', this)"><i class="fas fa-warehouse" style="color:#d97706"></i> Módulo Harinas<span class="nav-stars">★★★</span></button>
+    <button class="nav-btn" onclick="detail('maqnuevas', this)"><i class="fas fa-cart-plus" style="color:#f472b6"></i> Máq. Nuevas Prod.<span class="nav-stars">★★</span></button>
+    <button class="nav-btn" onclick="detail('empanadas', this)"><i class="fas fa-utensils" style="color:#a3e635"></i> Línea Empanadas<span class="nav-stars">★★</span></button>
+    <button class="nav-btn" onclick="detail('maquinas', this)"><i class="fas fa-cogs" style="color:#9ca3af"></i> Inst. Máquinas<span class="nav-stars">★</span></button>
+    <button class="nav-btn" onclick="detail('ampliacion', this)"><i class="fas fa-building" style="color:#818cf8"></i> Ampliación Fábrica<span class="nav-stars">★</span></button>
+  </div>
+  <div class="sidebar-footer"><i class="far fa-clock" style="margin-right:4px;"></i>Hora Local: <span id="clock" style="font-family:monospace; font-size:10px;">--</span></div>
+</nav>
+
+<div class="main" id="main">
+
+<!-- ======== DASHBOARD ======== -->
+<div class="page active" id="pg-dashboard">
+  <div class="page-header"><h2>Dashboard de Proyectos</h2><p>Click en cualquier tarjeta para ver detalle completo, documentos y descargas.</p></div>
+  <div class="dash-top">
+    <div class="stats-col">
+      <div class="stat-card c1"><div class="stat-icon"><i class="fas fa-layer-group"></i></div><div class="stat-num">9</div><div class="stat-lbl">Frentes Activos</div></div>
+      <div class="stat-card c2"><div class="stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="stat-num">20</div><div class="stat-lbl">Tareas Pendientes</div></div>
+      <div class="stat-card c3"><div class="stat-icon"><i class="fas fa-hard-hat"></i></div><div class="stat-num">5</div><div class="stat-lbl">Obras en Curso</div></div>
+      <div class="stat-card c4"><div class="stat-icon"><i class="fas fa-file-invoice-dollar"></i></div><div class="stat-num">8</div><div class="stat-lbl">Cotizaciones Activas</div></div>
+    </div>
+    <div class="chart-card">
+      <h4><i class="fas fa-chart-bar"></i> Avance por Proyecto</h4>
+      <div class="chart-wrap"><canvas id="chartAvance"></canvas></div>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Buscar proyecto..." oninput="filter(this.value)"></div>
+    <button class="sort-btn active" onclick="sortCards('priority',this)"><i class="fas fa-star"></i> Por Prioridad</button>
+    <button class="sort-btn" onclick="sortCards('alpha',this)"><i class="fas fa-arrow-down-a-z"></i> Alfabético</button>
+    <a href="../05_Plan_Maestro_Fabrica/Plan_Maestro_V3_Integral.html" target="_blank" class="sort-btn" style="background:var(--sp-green-mid);color:white;text-decoration:none;"><i class="fas fa-file-pdf"></i> Abrir Plan Maestro Integral</a>
+  </div>
+  <div class="projects-grid" id="grid">
+    <div class="pcard" onclick="detail('roboqbo')" data-priority="6" data-name="Estabilizador Roboqbo"><div class="card-top"><h3>Estabilizador Roboqbo</h3><span class="badge b-prog" style="background:#7f1d1d;color:#fca5a5"><i class="fas fa-bolt"></i> Urgente</span></div><p class="card-desc">Cotización G. Gonzalez $4.66M + IVA. Entrega 48/72hs.</p><div class="card-footer"><div class="stars"><i class="fas fa-star max" title="MAXIMA PRIORIDAD"></i></div></div><div class="progress"><div class="fill" style="width:50%;background:#ef4444"></div></div></div>
+    <div class="pcard" onclick="detail('aire')" data-priority="5" data-name="Aire Comprimido"><div class="card-top"><h3>Línea de Aire Comprimido (7.5HP)</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Compras</span></div><p class="card-desc">Abastecer Rompedora, Cadec y Autoclave. Compresor BTA 300L 7.5HP — Manelli Hnos. $2.210.049,77 ARS.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div></div><div class="progress"><div class="fill" style="width:45%"></div></div></div>
+    <div class="pcard" onclick="detail('argental')" data-priority="4" data-name="Horno Argental"><div class="card-top"><h3>Horno Argental Compacto</h3><span class="badge b-prog"><i class="fas fa-fire-burner"></i> Reevaluando</span></div><p class="card-desc">Panier III descartado por falta de espacio f&iacute;sico. Evaluando modelo compacto de 8 bandejas.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div></div><div class="progress"><div class="fill" style="width:10%"></div></div></div>
+    <div class="pcard" onclick="detail('estandarizacion')" data-priority="4" data-name="Estandarización"><div class="card-top"><h3>Estandarización de Procesos</h3><span class="badge b-trans"><i class="fas fa-layer-group"></i> Transversal</span></div><p class="card-desc">POEs, sistema digital V3.2, organización con infraestructura actual.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:40%"></div></div></div>
+    <div class="pcard" onclick="detail('desague')" data-priority="4" data-name="Desagüe Cloacal"><div class="card-top"><h3>Readecuación Desagüe Cloacal</h3><span class="badge b-buy"><i class="fas fa-hard-hat"></i> Cotizado</span></div><p class="card-desc">Obra civil cotizada ($8.45M M.O.). Obra crítica que bloquea el montaje del módulo.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:28%"></div></div></div>
+    <div class="pcard" onclick="detail('rompedora')" data-priority="3" data-name="Sala Rompedora"><div class="card-top"><h3>Sala Rompedora de Huevos</h3><span class="badge b-rev"><i class="fas fa-hard-hat"></i> A Aprobar</span></div><p class="card-desc">Obra civil ($6.76M + Mats). Requisito sanitario para procesar huevo líquido fresco.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:45%"></div></div></div>
+    <div class="pcard" onclick="detail('harinas')" data-priority="3" data-name="Módulo Harinas"><div class="card-top"><h3>Módulo Exterior Harinas / TACC-free</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span></div><p class="card-desc">Metalúrgica pagada. CUELLO DE BOTELLA: Placas demoran 30 días. Depende de obra cloacal.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:30%"></div></div></div>
+    <div class="pcard" onclick="detail('maqnuevas')" data-priority="2" data-name="Máquinas Nuevas"><div class="card-top"><h3>Máquinas Nuevas de Producción</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span></div><p class="card-desc">Horno Rotativo, Sobadora Pesada, Cortadora Spiing MCD2.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:25%"></div></div></div>
+    <div class="pcard" onclick="detail('empanadas')" data-priority="2" data-name="Línea Empanadas"><div class="card-top"><h3>Línea Empanadas (G) + B2C Tapas</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span></div><p class="card-desc">Línea continua 100% automática. Empanadas semicongeladas + venta tapas crudas.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:30%"></div></div></div>
+    <div class="pcard" onclick="detail('maquinas')" data-priority="1" data-name="Instalación Máquinas"><div class="card-top"><h3>Instalación Máquinas Existentes</h3><span class="badge b-prog"><i class="fas fa-tools"></i> Bloqueado</span></div><p class="card-desc">Liofilizadora, Abatidor, Autoclave, Llenadora y Tapadora Cadec. Esperan aire comprimido.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:15%"></div></div></div>
+    <div class="pcard" onclick="detail('ampliacion')" data-priority="1" data-name="Ampliación Fábrica"><div class="card-top"><h3>Ampliación de Fábrica</h3><span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span></div><p class="card-desc">Ampliación trasera para máquinas chinas de huevo líquido y posible 2da liofilizadora.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:10%"></div></div></div>
+  </div>
+</div>
+
+<!-- ======== MAPA MENTAL ======== -->
+<div class="page" id="pg-mindmap">
+  <div class="page-header"><div class="breadcrumb"><i class="fas fa-home"></i> Dashboard <i class="fas fa-chevron-right"></i> Mapa Mental</div><h2>Mapa Mental de Proyectos</h2><p>Click en cualquier nodo para ir al detalle del proyecto.</p></div>
+  <div class="mm-canvas">
+    <div class="mm-center"><div class="mm-hub">🌾 SABOR PAMPEANO — Panificación</div></div>
+    <div class="mm-branches">
+      <div class="mm-branch"><h5><i class="fas fa-bolt" style="color:#d97706"></i> PRIORIDAD MÁXIMA</h5>
+        <div class="mm-leaf" onclick="detail('roboqbo')"><i class="fas fa-bolt"></i> Estabilizador Roboqbo <span class="leaf-stars" style="color:var(--star-on)">MAX</span></div>
+        <div class="mm-leaf" onclick="detail('aire')"><i class="fas fa-wind"></i> Aire Comprimido 7.5HP <span class="leaf-stars" style="color:var(--star-on)">★★★★★</span></div>
+        <div class="mm-leaf" onclick="detail('estandarizacion')"><i class="fas fa-clipboard-check"></i> Estandarización Procesos <span class="leaf-stars" style="color:var(--star-on)">★★★★</span></div>
+        <div class="mm-leaf" onclick="detail('desague')"><i class="fas fa-water"></i> Desagüe Cloacal <span class="leaf-stars" style="color:var(--star-on)">★★★★</span></div>
+      </div>
+      <div class="mm-branch"><h5><i class="fas fa-hammer" style="color:#2563eb"></i> INFRAESTRUCTURA</h5>
+        <div class="mm-leaf" onclick="detail('rompedora')"><i class="fas fa-egg"></i> Sala Rompedora 2.8×2.3m <span class="leaf-stars" style="color:var(--star-on)">★★★</span></div>
+        <div class="mm-leaf" onclick="detail('harinas')"><i class="fas fa-warehouse"></i> Módulo Harinas 4×4m <span class="leaf-stars" style="color:var(--star-on)">★★★</span></div>
+        <div class="mm-leaf" onclick="detail('ampliacion')"><i class="fas fa-building"></i> Ampliación de Fábrica <span class="leaf-stars" style="color:var(--star-on)">★</span></div>
+      </div>
+      <div class="mm-branch"><h5><i class="fas fa-industry" style="color:#7c3aed"></i> MAQUINARIA</h5>
+        <div class="mm-leaf" onclick="detail('maqnuevas')"><i class="fas fa-cart-plus"></i> Horno / Sobadora / Cortadora <span class="leaf-stars" style="color:var(--star-on)">★★</span></div>
+        <div class="mm-leaf" onclick="detail('maquinas')"><i class="fas fa-cogs"></i> Liofiliz. / Autoclave / Cadec <span class="leaf-stars" style="color:var(--star-on)">★</span></div>
+        <div class="mm-leaf" onclick="detail('empanadas')"><i class="fas fa-utensils"></i> Línea Empanadas Automática <span class="leaf-stars" style="color:var(--star-on)">★★</span></div>
+      </div>
+      <div class="mm-branch"><h5><i class="fas fa-link" style="color:#059669"></i> DEPENDENCIAS CRÍTICAS</h5>
+        <div class="mm-leaf" style="cursor:default;color:#9a3412"><i class="fas fa-exclamation-triangle"></i> Sin aire → No arrancan Cadec, Autoclave, Rompedora</div>
+        <div class="mm-leaf" style="cursor:default;color:#9a3412"><i class="fas fa-exclamation-triangle"></i> Sin desagüe → No se puede construir módulo harinas</div>
+        <div class="mm-leaf" style="cursor:default;color:#9a3412"><i class="fas fa-exclamation-triangle"></i> Sin módulo → No hay empanadas ni TACC-free</div>
+        <div class="mm-leaf" style="cursor:default;color:#065f46"><i class="fas fa-check-circle"></i> Estandarización avanza independiente ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== PENDIENTES ======== -->
+<div class="page" id="pg-pendientes">
+  <div class="page-header"><div class="breadcrumb"><i class="fas fa-home"></i> Dashboard <i class="fas fa-chevron-right"></i> Pendientes</div><h2>Lista Completa de Pendientes</h2><p>Extraídos de la Biblia (contexto_completo.md). Última sincronización: 08-Jun-2026.</p></div>
+  <div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Tareas Abiertas (20)</h4><ul class="chk">
+    <li><i class="fas fa-circle"></i> <strong>[AIRE]</strong> Contactar instalador para mano de obra de línea de aire comprimido (7.5HP)</li>
+    <li><i class="fas fa-circle"></i> <strong>[AIRE]</strong> Completar presupuesto: faltan FRLs, mangueras y acoples rápidos</li>
+    <li><i class="fas fa-circle"></i> <strong>[CLOACAS]</strong> Esperar presupuesto de Gabriel por obra cloacal (bloquea a Harinas)</li>
+    <li><i class="fas fa-circle"></i> <strong>[ROMPEDORA]</strong> Aprobar pto. Gabriel Sala de Rotura ($6.76M + mats elect/plom)</li>
+    <li><i class="fas fa-circle"></i> <strong>[DESAGÜE]</strong> Aprobar presupuesto Gabriel Reforma Cloacal (M.O. $8.45M)</li>
+    <li><i class="fas fa-circle"></i> <strong>[HARINAS]</strong> Confirmar con Bruno/Juan el pago de placas aislantes (Cuello de Botella: 30 días)</li>
+    <li><i class="fas fa-circle"></i> <strong>[HARINAS]</strong> Cotizar puerta, cortina PVC y aire acondicionado del módulo</li>
+    <li><i class="fas fa-circle"></i> <strong>[MÁQUINAS]</strong> Instalación Liofilizadora ORZF-5</li>
+    <li><i class="fas fa-circle"></i> <strong>[MÁQUINAS]</strong> Verificar capacidad bomba para viscosidad hummus</li>
+    <li><i class="fas fa-circle"></i> <strong>[MÁQUINAS]</strong> Armar esquema tiempos coordinados Abatidor (Línea B vs C)</li>
+    <li><i class="fas fa-circle"></i> <strong>[MAQ.NUEVAS]</strong> Recibir cotización formal Sobadora Pesada Argental</li>
+    <li><i class="fas fa-circle"></i> <strong>[MAQ.NUEVAS]</strong> Definir compra horno Argental ($11.6k vs $19.2k) y coordinar desarme (puerta 1.5m)</li>
+    <li><i class="fas fa-circle"></i> <strong>[MANTENIMIENTO]</strong> Revisar Abatidor viejo (no funciona)</li>
+    <li><i class="fas fa-circle"></i> <strong>[INFRAESTRUCTURA]</strong> Verificar si cámara de frío de cocina sale armada por puerta o hay que desarmarla para mudanza</li>
+    <li><i class="fas fa-circle"></i> <strong>[EMPANADAS]</strong> Evaluar cotizaciones Línea Continua (Analizar opción ALQUILER vs Compra en Empamec)</li>
+    <li><i class="fas fa-circle"></i> <strong>[EMPANADAS]</strong> Comprar Selladora Térmica de Pedal (~USD 300-500)</li>
+    <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Registrar Línea G (empanadas) en sistema Web App</li>
+    <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Comprar 10-20 moldes microperforados para prueba piloto tartas</li>
+    <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Revisar y actualizar Plan Maestro V2 con cronograma real</li>
+    <li><i class="fas fa-circle"></i> <strong>[GENERAL]</strong> Relevamiento eléctrico: Gabriel no envió tras el finde (PENDIENTE)</li>
+    <li><i class="fas fa-circle"></i> <strong>[ROBOQBO]</strong> Avanzar con Gustavo Gonzalez (Opción 12kVA Elev 140V: $2.79M + M.O. $1.87M + IVA)</li>
+    <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Instalar estanterías, embudos y organizar espacios</li>
+      <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Auditar POEs existentes: verificar utilidad, diseñar faltantes y definir archivo (físico/nube).</li>
+    <li><i class="fas fa-circle"></i> <strong>[ESTÁNDAR]</strong> Terminar armado estantería el martes. <strong style="color:#15803d">✓ Estantería vieja ya instalada en Etiquetado.</strong></li>
+  </ul></div>
+  <div class="info-box"><h4><i class="fas fa-circle-check" style="color:var(--sp-green-light)"></i> Completadas</h4><ul class="chk">
+    <li><i class="fas fa-circle-check"></i> <s>Definir marca/modelo empanadora semiautomática</s> → Cambio a Línea Continua Automática</li>
+    <li><i class="fas fa-circle-check"></i> <s>Definir variedades empanadas congeladas</s> → 7 básicas + 3 futuras definidas</li>
+  </ul></div>
+</div>
+
+<!-- ======== COTIZACIONES ======== -->
+<div class="page" id="pg-cotizaciones">
+  <div class="page-header"><div class="breadcrumb"><i class="fas fa-home"></i> Dashboard <i class="fas fa-chevron-right"></i> Cotizaciones</div><h2>Todas las Cotizaciones</h2><p>Click en cualquier archivo para abrirlo directamente.</p></div>
+  <div class="info-box"><h4><i class="fas fa-wind"></i> Aire Comprimido y Estructura</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th><th>Archivo</th></tr></thead><tbody>
+    <tr><td><strong>Manelli Hnos.</strong></td><td>Compresor De Aire Trifásico 300L – 7.5HP – BTA</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Mega Herrería</strong></td><td>Casilla/Estructura compresor</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Provín S.A. (Kaeser)</strong></td><td>Cañerías y elementos de línea</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Nitram</strong></td><td>Tubería 1" + 4 válvulas (incompleta)</td><td>$1.07M ARS</td><td><span class="badge b-prog">⚠️ Incompleta</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    
+    <tr><td><strong>BTA Tools (Nueva)</strong></td><td>Compresor 7.5HP 3 cil. 300L trif. 380V</td><td>Ver PDF</td><td><span class="badge b-done">✅ Recibida</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+    <tr><td><strong>Belachur</strong></td><td>Presupuesto integral (sala + cañerías)</td><td>Ver PDFs</td><td><span class="badge b-rev">❌ Descartado</span></td><td><a class="doc-link" href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></td></tr>
+  </tbody></table></div>
+  <div class="info-box"><h4><i class="fas fa-industry"></i> Maquinaria de Producción</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Equipo</th><th>Precio</th><th>Estado</th></tr></thead><tbody>
+    <tr><td><strong>Spiing</strong></td><td>Cortadora MCD2 Usada</td><td>USD 9.500</td><td><span class="badge b-done">✅ Recibida</span></td></tr>
+    <tr><td><strong>Spiing</strong></td><td>Cortadora MCD2 Nueva</td><td>USD 13.500</td><td><span class="badge b-done">✅ Recibida</span></td></tr>
+    <tr><td><strong>Argental</strong></td><td>Sobadora Pesada Blindada</td><td>~USD 8.000 est.</td><td><span class="badge b-prog">⚠️ Pendiente formal</span></td></tr>
+    <tr><td><strong>Argental</strong></td><td>Horno Rotativo (Panier 4570 / FE 4.0)</td><td>USD 11.6k / USD 19.2k</td><td><span class="badge b-prog">⚠️ Cotizados</span></td></tr>
+    <tr><td><strong>Sel-Maq / Empamec</strong></td><td>Línea Continua Empanadas (Venta/Alquiler)</td><td>A cotizar</td><td><span class="badge b-prog">⏳ En evaluación</span></td></tr>
+    <tr><td>—</td><td>Selladora Térmica de Pedal</td><td>~USD 300-500</td><td><span class="badge b-prog">⚠️ Pendiente</span></td></tr>
+  </tbody></table></div>
+  <div class="info-box"><h4><i class="fas fa-hammer"></i> Infraestructura / Obras Civiles</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th></tr></thead><tbody>
+    <tr><td><strong>Gabriel</strong></td><td>Estructura Módulo Harinas 4×4m</td><td>$20.187.536 ARS</td><td><span class="badge b-done">✅ Recibida</span></td></tr>
+    <tr><td><strong>Electricista</strong></td><td>Electricidad Módulo (M.O.)</td><td>$1.020.000 ARS</td><td><span class="badge b-done">✅ Recibida</span></td></tr>
+    <tr><td><strong>Plomero</strong></td><td>Plomería Módulo (M.O.)</td><td>$420.000 ARS</td><td><span class="badge b-done">✅ Recibida</span></td></tr>
+    <tr><td><strong>Arq. Gabriel</strong></td><td>Sala Rompedora de Huevos</td><td>$6.760.546 (MO+Mats Alb)</td><td><span class="badge b-prog">⚠️ A Aprobar</span></td></tr>
+    <tr><td><strong>Arq. Gabriel</strong></td><td>Readecuación Desagüe Cloacal</td><td>$8.450.000 (Solo M.O.)</td><td><span class="badge b-prog">⚠️ A Aprobar</span></td></tr>
+    <tr><td><strong>Gustavo Gonzalez</strong></td><td>Estabilizadores Roboqbo (3x12kVA 50A Elev 140V)</td><td>$2.792.400 + $1.870.000 (M.O.) + IVA</td><td><span class="badge b-prog"><i class="fas fa-spinner"></i> A Aprobar</span></td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- ======== DETAIL (dynamic) ======== -->
+<div class="page" id="pg-detail">
+  <button class="detail-back" onclick="go('dashboard',document.querySelector('.nav-btn'))"><i class="fas fa-arrow-left"></i> Volver al Dashboard</button>
+  <div class="detail-header"><div><h2 id="dt-title">—</h2></div><div id="dt-badge"></div></div>
+  <div class="detail-priority" id="dt-priority"></div>
+  <div class="tabs" id="dt-tabs"></div>
+  <div id="dt-body"></div>
+</div>
+
+</div>
+
+<!-- ======== AI CHAT ======== -->
+<button class="ai-btn" onclick="document.getElementById('ai-chat').classList.toggle('open')"><i class="fas fa-robot"></i></button>
+<div class="ai-chat" id="ai-chat">
+  <div class="ai-chat-header">
+    <h3><i class="fas fa-sparkles"></i> Asistente SP</h3>
+    <button onclick="setApiKey()" title="Configurar API Key"><i class="fas fa-cog"></i></button>
+  </div>
+  <div class="ai-chat-body" id="ai-body">
+    <div class="msg ai">¡Hola Juan! Soy tu asistente para el proyecto de Sabor Pampeano. Preguntame lo que necesites sobre el plan maestro o los proyectos en curso.</div>
+  </div>
+  <div class="ai-chat-input">
+    <input type="text" id="ai-input" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter') sendMsg()">
+    <button onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<script>
+const B='../';
+const P={
+roboqbo:{title:'Estabilizador de Tensión Roboqbo',ref:'Infraestructura Crítica — Prioridad Máxima',badge:'<span class="badge b-prog" style="background:#7f1d1d;color:#fca5a5"><i class="fas fa-bolt"></i> MAXIMA PRIORIDAD</span>',priority:6,tabs:{
+'Resumen':`<div class="info-box" style="border-left-color:#ef4444"><h4><i class="fas fa-radiation"></i> Riesgo Crítico</h4><p>La procesadora Roboqbo es el corazón de la línea de producción. Una baja o alta de tensión puede quemar su placa electrónica, paralizando la fábrica y costando miles de dólares en reparaciones.</p></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#ef4444"></i> Pendientes</h4><ul><li>Gabriel no envió relevamiento. Se avanza con Gustavo Gonzalez.</li><li>Cotización 3x 12kVA 50A (Elev 140V): $2.792.400 + IVA.</li><li>Mano de obra: $1.870.000 + IVA (Térmica 32A).</li><li>Gabriel vendrá personalmente a controlar el diámetro de cables antes de la instalación.</li><li>Estanterías tablero: consultar tamaño y forma requeridos. (Entrega estab. 48/72hs).</li></ul></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><p>No hay documentos cargados todavía.</p></div>`,
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text">El dueño lo eleva a hiper máxima prioridad. Se espera a Gabriel.</div></div></div></div>`}},
+aire:{title:'Línea de Aire Comprimido (7.5HP)',ref:'SP-OC-2026-002',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> En Compras</span>',priority:5,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Proveer aire comprimido a todos los equipos neumáticos: Rompedora (6 bar, 10 L/min), Llenadora LSL (10 L/min), Tapadora RLS (100 L/min) y Autoclave (50 L/min).</p></div>
+<div class="info-box"><h4><i class="fas fa-calculator"></i> Análisis Técnico de Capacidad</h4><table class="kv"><tr><td>Compresor</td><td><strong>7.5 HP</strong> → genera ~700-800 L/min de caudal (FAD) a 8 bar</td></tr><tr><td>Demanda pico simultánea</td><td>Tapadora RLS (100) + Llenadora LSL (10) + Autoclave (50) + Rompedora (10) = <strong>170 L/min</strong></td></tr><tr><td>Demanda c/ Margen (30%)</td><td>170 L/min × 1.3 = <strong>221 L/min</strong> (todas a 6 bar)</td></tr><tr><td>Ratio capacidad/demanda</td><td><strong>~3.5:1</strong> — El compresor genera más de 3 veces la demanda máxima segura</td></tr><tr><td>Tanque 300L</td><td>Buffer suficiente para picos. Cicla con mucha holgura.</td></tr></table><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Riesgos y Requisitos:</strong><br>- <strong>Filtros y cañerías:</strong> Considerar pérdida de carga por filtros y distancias largas. Solución: cañería principal 1" mínimo, bajadas 3/4".<br>- <strong>Regulador de Presión:</strong> Es <strong>obligatorio</strong> instalar un regulador de presión general a la salida del compresor.<br>- <strong>FRL:</strong> Instalar un FRL en cada punto de uso de las máquinas.</p></div>
+<div class="info-box"><h4><i class="fas fa-check-circle" style="color:var(--sp-green-light)"></i> Avances</h4><ul><li>Presupuesto integral de Belachur <strong>descartado 100%.</strong></li><li>Compresor BTA 300L 7.5HP — Manelli Hnos. $2.210.049,77 ARS (Bernabé).</li><li>Precio de la casilla obtenido (Mega Herrería).</li><li>Precios de cañerías (Provín / Kaeser).</li><li>Cotización Nitram evaluada ($1.07M) — incompleta, solo tubería y válvulas.</li><li>Especificaciones técnicas V4 documentadas.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li><strong>Conseguir presupuesto de mano de obra para la instalación física.</strong></li><li>Completar presupuesto: faltan FRLs, mangueras y acoples rápidos.</li><li>Exigir al instalador certificación de presión y caudal en el punto de uso de cada máquina.</li></ul></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos del Proyecto</h4><p>Todos los presupuestos y pliegos están en la carpeta del proyecto.</p><a class="open-folder" href="${B}01_Proyectos/01_Linea_Aire_Comprimido/" target="_blank" style="margin-top:12px"><i class="fas fa-folder-open"></i> Abrir Carpeta Aire Comprimido</a></div>`,
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">Mayo 2026</div><div class="tl-text">Pliego SP-OC-2026-002 enviado a Metalúrgica Belachur.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotización Nitram ($1.07M) evaluada — incompleta.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotizaciones individuales recibidas: Manelli Hnos., Mega Herrería, Provín/Kaeser.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Belachur descartado 100%.</strong> Estrategia: compra por separado. Compresor escalado a 7.5HP. Regulador de presión obligatorio.</div></div></div></div>`}},
+
+estandarizacion:{title:'Estandarización de Procesos',ref:'Gestión Transversal — Operación Actual',badge:'<span class="badge b-trans"><i class="fas fa-layer-group"></i> Transversal</span>',priority:4,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Acomodar y optimizar la operación con la <strong>infraestructura y maquinaria actual</strong>. Implementar POEs, buenas prácticas, organización visual, y ejecutar los mini-proyectos logísticos.</p></div>
+<div class="info-box"><h4><i class="fas fa-check-circle" style="color:var(--sp-green-light)"></i> Avances</h4><ul><li><strong>Sistema Digital V3.2</strong> desplegado (bugs corregidos).</li><li>Plan Maestro V1 presentado a Dirección.</li><li>Templates POES y recetas estandarizadas.</li><li>Planillas operativas: Cámara Fría, Mantenimiento, Repuestos.</li><li>Plan de Mantenimiento Preventivo.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li>POEs adicionales por línea con el equipamiento actual.</li><li>Terminar armado y pintura epoxi estantería 1.5m. Mudar estantería vieja a Etiquetado.</li><li>Instalación de embudos y organización de espacios.</li><li>Registrar Línea G (empanadas) en Web App (como flujo de proceso).</li><li>Plan Maestro <strong>V3 vigente</strong> (11/06/2026). Próxima revisión: Semana 4.</li></ul></div>`,
+'Mini Proyectos':`<div class="info-box"><h4><i class="fas fa-project-diagram"></i> Sub-proyectos Independientes</h4><p style="margin-bottom:12px;">Estos temas se trabajan como proyectos separados pero se agrupan aquí bajo la estandarización operativa. <a href="${B}01_Proyectos/Estandarizacion_Operativa_Master.html" target="_blank" style="color:var(--sp-green);font-weight:600;"><i class="fas fa-file-alt"></i> Ver Documento Maestro</a></p><table class="ctable"><thead><tr><th>Mini Proyecto</th><th>Estado / Etapa</th></tr></thead><tbody><tr><td><strong>1. Reemplazo Cajones</strong> (Madera a Plástico)</td><td><span class="badge b-concept">💡 Evaluación</span></td></tr><tr><td><strong>2. Lógica Térmica</strong> (Horno Argental + Abatidor Nuevo)</td><td><span class="badge b-plan">📋 Planificación</span></td></tr><tr><td><strong>3. SOP: Rotura de Huevos</strong></td><td><span class="badge b-prog">⚙️ En Proceso</span></td></tr><tr><td><strong>4. SOP: Envasado de Aceitunas</strong></td><td><span class="badge b-prog"><i class="fas fa-spinner"></i> Receta lista, falta tiempos</span></td></tr><tr><td><strong>5. POE: Tartas y Tortillas</strong> (procesos, tiempos, mejoras)</td><td><span class="badge b-done" style="background:#dcfce7;color:#15803d">&#10003; Documentado 12/06/2026</span></td></tr>
+<tr><td><strong>6. Piloto: Bandejas Microperforadas (Tartas)</strong></td><td><span class="badge b-buy"><i class="fas fa-comment-dots"></i> Consultas sin enviar</span></td></tr></tbody></table></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><a class="open-folder" href="${B}02_Operaciones_de_Fabrica/" target="_blank" style="margin-top:12px"><i class="fas fa-folder-open"></i> Abrir Carpeta Operaciones</a></div>`,
+'Historial':`<div class="info-box"><div class="timeline"><div class="tl-item"><div class="tl-date">Abr 2026</div><div class="tl-text">Plan Maestro V1 y templates POEs creados.</div></div><div class="tl-item"><div class="tl-date">May 2026</div><div class="tl-text">Sistema Digital evoluciona: V15→V2.1.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Formulario V3.2 desplegado.</strong> Workspace reorganizado en 6 áreas. Moldes microperforados aprobados.</div></div></div></div>`}},
+
+desague:{title:'Readecuación Desagüe Cloacal',ref:'Obra 5 — Arq. Gabriel cotizando',badge:'<span class="badge b-rev"><i class="fas fa-hard-hat"></i> Arq. Gabriel</span>',priority:4,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Correr el trazado del desagüe cloacal ~2m a la derecha (mirando a la calle) para liberar las tapas de registro y planificar acceso fácil ante la futura ampliación.</p></div>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Situación Actual</h4><ul><li><strong>Problema:</strong> Todas las tapas de registro están tapadas por el reefer.</li><li>La única tapa libre quedará justo debajo del futuro Módulo de Harinas.</li><li>Si no se corrige ahora, habría que romper el piso nuevo ante un taponamiento.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-lightbulb"></i> Concepto de la Obra</h4><ul><li>Corrimiento ~2m a la derecha.</li><li>Se diseña previendo la Ampliación Trasera (Obra 4).</li><li><strong>Recomendación:</strong> Dejar derivaciones "ciegas" de PVC hacia el fondo para la ampliación futura.</li><li>Gabriel cotiza junto con Sala Rompedora.</li></ul></div>`,
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">28-May-2026</div><div class="tl-text">Se acordó derivar desagües a un proyecto general de planta.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text">Se define necesidad de correr cloaca 2m. Gabriel cotizando.</div></div></div></div>`}},
+
+argental:{title:'Horno Compacto Argental (8 bandejas)',ref:'Evaluación de Horno',badge:'<span class="badge b-prog"><i class="fas fa-fire-burner"></i> Reevaluando</span>',priority:4,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Ampliar la capacidad productiva de tartas y poder procesar empanadas, instalando un nuevo horno en la cocina.</p></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Cambio de Rumbo (Bloqueo de Altura)</h4><ul><li><strong>Problema:</strong> El horno rotativo con carro (Panier III) no entra de alto bajo la campana extractora (límite 2m).</li><li><strong>Decisión tomada:</strong> Se descarta la idea de retirar/modificar la campana. "Eso no se toca".</li><li><strong>Nueva Estrategia:</strong> Se evaluó HORNO ROTATIVO FE III-315 IN-GAS-CONECT-T380/50 (US$ 16,071.67). Resta negociación de gerencia. Si avanza genial, en caso de no, reevaluar situación.</li></ul></div>`,
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">12-Jun-2026</div><div class="tl-text">Visita técnica confirma límite de 2m. Se descarta rotativo y desarme de campana. Se llama a ventas por modelo de 8 bandejas.</div></div></div></div>`}},
+
+rompedora:{title:'Adecuación Sala Rompedora de Huevos',ref:'SP-OC-2026-001 — V2',badge:'<span class="badge b-rev"><i class="fas fa-hard-hat"></i> En Revisión</span>',priority:3,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Sala dedicada 2.8×2.3m con estándares higiénico-sanitarios para la Rompedora automática.</p></div>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Especificaciones</h4><table class="kv"><tr><td>Sala</td><td>2.8 × 2.3 m</td></tr><tr><td>Máquina</td><td>1.75 × 1.15 m, 300W</td></tr><tr><td>Aire comprimido</td><td><strong>6 bar, 10 L/min</strong></td></tr><tr><td>Tomas eléctricas</td><td>IP65</td></tr><tr><td>Layout</td><td>Máquina + bacha pedal + tacho cáscaras + mesa huevo líquido + rejilla desagüe</td></tr></table></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes Rompedora</h4><ul><li>Conseguir precio: embudo inox, manguera, bowl y sistema de sujeción a mesa.</li><li>Diseñar proceso de cascado de huevos, estableciendo estándares de tiempo y detalles.</li></ul></div>
+  <div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><a class="open-folder" href="${B}01_Proyectos/03_Sala_Rompedora_Huevos/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta</a></div>`}},
+
+harinas:{title:'Módulo Exterior Harinas / TACC-free',ref:'SP-OC-2026-004',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span>',priority:3,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Módulo 4×4×2.8m exterior para zona TACC-free. Amasado + línea empanadas + cortadora.</p></div>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><ul><li>Presupuesto estructura Arneg recibido: <strong>$20.187.536 ARS</strong>.</li><li>Electricidad M.O.: $1.020.000 ARS.</li><li>Plomería M.O.: $420.000 ARS.</li><li><strong>CUELLO DE BOTELLA:</strong> Placas aislantes demoran 30 días.</li><li>Depende de la obra cloacal (Obra 5).</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li>Confirmar con Bruno/Juan el pago de placas aislantes.</li><li>Cotizar puerta, cortina PVC y aire acondicionado.</li><li>Confirmar método de construcción por partes.</li></ul></div>`,
+'Documentos':`<div class="info-box"><a class="open-folder" href="${B}01_Proyectos/02_Modulo_Exterior_Harinas/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta Módulo Harinas</a></div>`}},
+
+maqnuevas:{title:'Máquinas Nuevas de Producción',ref:'Cotizaciones en curso',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span>',priority:2,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-cart-plus"></i> Equipos en evaluación</h4><table class="kv"><tr><td>Cortadora Spiing MCD2</td><td>Usada USD 9.500 / Nueva USD 13.500</td></tr><tr><td>Sobadora Pesada Argental</td><td>~USD 8.000 (estimado, pendiente formal)</td></tr><tr><td><s>Horno Rotativo Panier III 4570</s></td><td><span class="badge b-rev">Descartado — sin espacio f&iacute;sico</span></td></tr></table></div>`}},
+
+empanadas:{title:'Línea Empanadas (G) + B2C Tapas',ref:'Cotizaciones en curso',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span>',priority:2,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-utensils"></i> Concepto</h4><p>Línea continua 100% automática (lamina + corta + dosifica + cierra). Capacidad: 1.000-2.000 u/hora. Empanadas semicongeladas + venta de tapas crudas al público.</p></div>
+<div class="info-box"><h4><i class="fas fa-list"></i> Variedades</h4><ul><li><strong>Básicas (7):</strong> Jamón y queso, carne a cuchillo, carne picada, 4 quesos, roquefort y nuez, humita, verdura.</li><li><strong>Futuras (premium):</strong> Carne desmechada, bondiola, panceta y cebolla.</li></ul></div>`}},
+
+maquinas:{title:'Instalación Máquinas Existentes',ref:'Bloqueado por aire comprimido',badge:'<span class="badge b-prog"><i class="fas fa-tools"></i> Bloqueado</span>',priority:1,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-cogs"></i> Equipos pendientes de instalación</h4><ul><li>Liofilizadora ORZF-5 (50kg/batch, 380V) — Guías para bandejas, sin carro. Ya comprada.</li><li>Abatidor (guías para bandejas, sin carro) — Ya comprado</li><li>Autoclave (a vapor, autónomo)</li><li>Llenadora LSL 100CNC (Cadec)</li><li>Tapadora RSL 1800P (Cadec)</li><li>Bomba elevadora (Roboqbo → LSL)</li></ul><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Bloqueante:</strong> La llenadora, tapadora y autoclave necesitan aire comprimido. Sin compresor instalado, Llenadora, Tapadora, Autoclave y <strong>Rompedora</strong> no arrancan.</p></div>`}},
+
+ampliacion:{title:'Ampliación de Fábrica',ref:'Obra 4 — Concepto',badge:'<span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span>',priority:1,tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-building"></i> Concepto</h4><p>Ampliación trasera de la fábrica para albergar línea completa de huevos (pasteurizador, homogeneizador, tanque refrigeración, llenadora, blast freezer), posiblemente 2da liofilizadora. Infraestructura 380V, aire comprimido, agua, desagües.</p></div>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><p>❌ <strong>CONCEPTO.</strong> No hay pliego ni cotización. Manuales archivados y traducidos.</p></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Manuales Chinos</h4><p style="font-size:12px;color:#6b7a52;margin-bottom:10px;">Todos los manuales traducidos están archivados.</p><a class="open-folder" href="${B}02_Operaciones_de_Fabrica/Mantenimiento_y_Manuales_Generales/Manuales/" target="_blank"><i class="fas fa-folder-open"></i> Abrir Carpeta Manuales</a></div>`}}
+};
+
+function go(page, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+page).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn){btn.classList.add('active');}
+}
+function detail(id, btn){
+  const d=P[id]; if(!d) return;
+  document.getElementById('dt-title').innerText=d.title;
+  document.getElementById('dt-badge').innerHTML=d.badge;
+  const stars = d.priority >= 6 ? '<i class="fas fa-star" style="color:#ef4444; animation: pulse 2s infinite;"></i> <b style="color:#ef4444">MÁXIMA</b>' : '★'.repeat(d.priority)+'☆'.repeat(Math.max(0, 5-d.priority));
+  document.getElementById('dt-priority').innerHTML='<span style="color:var(--star-on)">'+stars+'</span> — Ref: '+d.ref;
+  const tabsDiv=document.getElementById('dt-tabs'), bodyDiv=document.getElementById('dt-body');
+  tabsDiv.innerHTML=''; bodyDiv.innerHTML='';
+  let first=true;
+  for(let tab in d.tabs){
+    let b=document.createElement('button'); b.className='tab-btn'+(first?' active':''); b.innerText=tab;
+    let c=document.createElement('div'); c.className='tab-content'+(first?' active':''); c.innerHTML=d.tabs[tab];
+    b.onclick=function(){tabsDiv.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));bodyDiv.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));b.classList.add('active');c.classList.add('active');};
+    tabsDiv.appendChild(b); bodyDiv.appendChild(c); first=false;
+  }
+  go('detail', btn || null);
+}
+function filter(q){
+  q=q.toLowerCase();
+  document.querySelectorAll('.pcard').forEach(c=>{c.style.display=(c.dataset.name.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q))?'':'none';});
+}
+function sortCards(mode,btn){
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+  const grid=document.getElementById('grid'), cards=[...grid.querySelectorAll('.pcard')];
+  cards.sort((a,b)=>mode==='priority'?b.dataset.priority-a.dataset.priority:a.dataset.name.localeCompare(b.dataset.name));
+  cards.forEach(c=>grid.appendChild(c));
+}
+
+/* Clock logic */
+setInterval(() => {
+  const now = new Date();
+  const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  document.getElementById('clock').innerText = now.toLocaleDateString('es-AR', options).replace(',', '');
+}, 1000);
+
+/* Chart.js — Avance por Proyecto */
+window.addEventListener('DOMContentLoaded', () => {
+  const ctx = document.getElementById('chartAvance');
+  if(!ctx) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'Roboqbo ⚡', 'Aire Comprimido', 'Estandarización',
+        'Desagüe', 'Sala Rompedora', 'Módulo Harinas',
+        'Máq. Nuevas', 'Empanadas', 'Inst. Máquinas'
+      ],
+      datasets:[{
+        label:'% Avance',
+        data: [50, 45, 40, 40, 45, 30, 25, 30, 15],
+        backgroundColor:[
+          'rgba(185,60,44,.9)',
+          'rgba(62,139,125,.85)',
+          'rgba(122,85,158,.78)',
+          'rgba(193,123,60,.85)',
+          'rgba(184,74,60,.78)',
+          'rgba(62,139,125,.65)',
+          'rgba(122,85,158,.58)',
+          'rgba(62,139,125,.52)',
+          'rgba(140,140,155,.55)'
+        ],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options:{
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 900, easing: 'easeOutQuart' },
+      plugins:{
+        legend:{ display: false },
+        tooltip:{
+          callbacks:{
+            label: ctx => ` ${ctx.raw}% completado`
+          }
+        }
+      },
+      scales:{
+        x:{
+          min: 0, max: 100,
+          grid:{ color:'rgba(0,0,0,.05)' },
+          ticks:{
+            callback: v => v+'%',
+            font:{ size: 10 },
+            color:'#8a9a6e'
+          }
+        },
+        y:{
+          grid:{ display: false },
+          ticks:{ font:{ size: 10 }, color:'#4a5a36' }
+        }
+      }
+    }
+  });
+});
+
+/* AI Chat Logic */
+
+function setApiKey(){
+  const k = prompt("Para usar el chat necesitas una API Key de Google Gemini (es gratis en Google AI Studio).\n\nPegá acá tu clave (se guarda de forma segura en tu navegador):", localStorage.getItem('gemApiKey') || '');
+  if(k !== null && k.trim() !== '') localStorage.setItem('gemApiKey', k.trim());
+}
+let BIBLIA_CACHE = null;
+async function loadBiblia(){
+  if(BIBLIA_CACHE) return BIBLIA_CACHE;
+  try{
+    const bibliaPath = '../03_Herramientas_Sistemas/Herramientas_IA_y_Scripts/contexto_completo.md';
+    const r = await fetch(bibliaPath);
+    if(r.ok){ BIBLIA_CACHE = await r.text(); return BIBLIA_CACHE; }
+  }catch(e){}
+  // Fallback: use dashboard data only
+  let ctx = "";
+  for(let id in P){
+    const d = P[id];
+    ctx += `\nPROYECTO: ${d.title}\nPrioridad: ${d.priority}/5\nRef: ${d.ref}\n`;
+    for(let tab in d.tabs){
+      let tmp = document.createElement('div'); tmp.innerHTML = d.tabs[tab];
+      ctx += `${tab}: ${tmp.textContent.trim()}\n`;
+    }
+  }
+  BIBLIA_CACHE = ctx;
+  return BIBLIA_CACHE;
+}
+let chatHistory = [];
+async function sendMsg(){
+  const inp = document.getElementById('ai-input');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  inp.value = '';
+  addMsg(txt, 'user');
+  
+  const key = localStorage.getItem('gemApiKey');
+  if(!key){
+    addMsg('⚠️ No configuraste tu API Key de Gemini. Hacé click en el engranaje ⚙️ arriba a la derecha para agregarla.', 'ai');
+    return;
+  }
+  
+  const bodyDiv = document.getElementById('ai-body');
+  const loading = document.createElement('div');
+  loading.className = 'msg ai'; loading.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Pensando...';
+  bodyDiv.appendChild(loading); bodyDiv.scrollTop = bodyDiv.scrollHeight;
+
+  try{
+    const biblia = await loadBiblia();
+    const sysPrompt = `Sos un asesor experto en ingeniería industrial trabajando para Sabor Pampeano, una fábrica de alimentos en Bahía Blanca, Argentina. Vas directo al grano, sos incisivo pero natural y conciso. Ayudás a Juan Manuel Grasso (Jefe de Operaciones) a estandarizar procesos y supervisar proyectos. Respondé siempre en español de Argentina, corto y al pie.
+
+REGLA FUNDAMENTAL: Tenés acceso COMPLETO a "La Biblia" del proyecto — el documento maestro con TODA la información de la fábrica. Usá esta información obligatoriamente y NUNCA inventes datos. Si te preguntan algo que está en la Biblia, citá exactamente lo que dice. Si algo NO está en la Biblia, decilo claramente.
+
+A continuación va el contenido COMPLETO de La Biblia:
+
+${biblia}`;
+
+    chatHistory.push({ role: 'user', parts: [{ text: txt }] });
+    // Keep last 10 messages to stay within token limits
+    if(chatHistory.length > 50) chatHistory = chatHistory.slice(-50);
+
+    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + key, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: sysPrompt }] },
+        contents: chatHistory
+      })
+    });
+    const data = await res.json();
+    loading.remove();
+    if(data.error) throw new Error(data.error.message);
+    const text = data.candidates[0].content.parts[0].text;
+    chatHistory.push({ role: 'model', parts: [{ text: text }] });
+    addMsg(text, 'ai');
+  }catch(e){
+    loading.remove();
+    addMsg('❌ Error de conexión: ' + e.message, 'ai');
+  }
+}
+function addMsg(txt, role){
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.innerHTML = txt.replace(/\\n/g, '<br>').replace(/\\*\\*(.*?)\\*\\*/g, '<b>$1</b>');
+  document.getElementById('ai-body').appendChild(div);
+  document.getElementById('ai-body').scrollTop = document.getElementById('ai-body').scrollHeight;
+}
+</script>
+</body>
+</html>

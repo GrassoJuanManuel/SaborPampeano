@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sabor Pampeano - Averiguaciones de Maquinaria</title>
+    <style>
+        :root {
+            --sp-green: #4A5D23;
+            --sp-green-light: #7A9B3A;
+            --sp-accent: #C5D6A0;
+            --sp-bg: #f5f5ee;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--sp-bg);
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--sp-green);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--sp-accent);
+        }
+        .header h1 {
+            color: var(--sp-green);
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .header p {
+            color: #666;
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .machine-card {
+            background: #fafaf8;
+            border: 1px solid #e2e8d5;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.2s;
+        }
+        .machine-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 93, 35, 0.1);
+        }
+        .m-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .m-title {
+            margin: 0;
+            color: var(--sp-green);
+            font-size: 1.4em;
+        }
+        .badge {
+            background: var(--sp-green-light);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .badge.pending {
+            background: #d97706;
+        }
+        .badge.discarded {
+            background: #9ca3af;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .detail-item {
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .detail-label {
+            font-size: 0.85em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .detail-value {
+            font-weight: 600;
+            color: #222;
+            font-size: 1.1em;
+        }
+        .notes {
+            background: #fff;
+            padding: 15px;
+            border-left: 4px solid var(--sp-accent);
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        @media (max-width: 600px) {
+            .details-grid { grid-template-columns: 1fr; }
+            .m-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Resumen de Averiguaciones y Cotizaciones</h1>
+        <p>Maquinaria Nueva — Expansión de Líneas y Módulo de Harinas</p>
+        <p style="font-size:0.9em; color:#999; margin-top:5px;">Generado automáticamente del registro histórico de charlas</p>
+    </div>
+
+    <div class="machine-card">
+        <div class="m-header">
+            <h2 class="m-title">Cortadora de Discos de Masa</h2>
+            <span class="badge">Cotización Recibida</span>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Proveedor</span>
+                <span class="detail-value">Spiing (Modelo MCD2)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Capacidad</span>
+                <span class="detail-value">350 a 500 docenas/hora</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Precio Equipo NUEVO</span>
+                <span class="detail-value">USD 13.500</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Precio Equipo USADO</span>
+                <span class="detail-value">USD 9.500 (con garantía)</span>
+            </div>
+        </div>
+        <div class="notes">
+            <strong>Detalles del equipamiento:</strong> Incluye 1 cabezal de 130mm + mesa, 1 cabezal de 140mm + mesa, y 1 calibrador de masa. Como atención, el proveedor bonifica 1 cabezal extra o 1 tolva harinadora de obsequio. 
+            <br><br><em>Nota: El modelo superior (MCD5 de USD 17.500) fue descartado preliminarmente por cuestiones de espacio.</em>
+        </div>
+    </div>
+
+    <div class="machine-card">
+        <div class="m-header">
+            <h2 class="m-title">Sobadora Pesada Automática</h2>
+            <span class="badge pending">Esperando Cotización Formal</span>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Proveedor Objetivo</span>
+                <span class="detail-value">Argental</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Tipo de Equipo</span>
+                <span class="detail-value">Blindada, Rodillos Pesados</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Precio Estimado (Benchmark)</span>
+                <span class="detail-value">~ USD 8.000</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Ubicación Destino</span>
+                <span class="detail-value">Módulo TACC-Free (Exterior)</span>
+            </div>
+        </div>
+        <div class="notes">
+            <strong>Justificación Técnica:</strong> Se requiere este equipo pesado e "incansable" para reemplazar el estirado manual actual en la mesada de 225x65cm. Es fundamental para lograr un laminado exacto previo al corte de discos.
+        </div>
+    </div>
+
+    <div class="machine-card">
+        <div class="m-header">
+            <h2 class="m-title">Línea Continua Automática de Empanadas</h2>
+            <span class="badge pending">En Evaluación Comercial</span>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Proveedores en Evaluación</span>
+                <span class="detail-value">Sel-Maq / Empamec</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Modalidad (Empamec)</span>
+                <span class="detail-value">Compra o Alquiler</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Capacidad Requerida</span>
+                <span class="detail-value">1.000 a 2.000 unidades/hora</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Tipo de Proceso</span>
+                <span class="detail-value">Laminado, Corte, Dosificado y Cierre (100% Automático)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Método de Empaque</span>
+                <span class="detail-value">Termosellado Simple (IQF sin vacío)</span>
+            </div>
+        </div>
+        <div class="notes">
+            <strong>Detalles del proyecto:</strong> Esta línea reemplazará la idea original de usar una empanadora semiautomática (como la DGMAX 4 PRO o Dosarmec). Se busca máxima eficiencia en el nuevo módulo exterior. Las empanadas saldrán de acá directamente hacia la cámara de congelados para un congelamiento lento (no usarán el abatidor rápido).
+        </div>
+    </div>
+
+    <div class="machine-card">
+        <div class="m-header">
+            <h2 class="m-title">Horno Rotativo (Cotizado por Juan)</h2>
+            <span class="badge">Cotización Recibida</span>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label">Opción 1: Panier III 4570</span>
+                <span class="detail-value">USD 11.672 (C/IVA)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Opción 2: FOR EXPORT 4.0</span>
+                <span class="detail-value">USD 19.249 (C/IVA)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Dimensiones (Panier)</span>
+                <span class="detail-value">1150mm (Desarmado)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Financiación</span>
+                <span class="detail-value">Anticipo + 8 a 12 cuotas</span>
+            </div>
+        </div>
+        <div class="notes">
+            <strong>Análisis de Acceso:</strong> La puerta de la cocina mide 1500mm (1.5m). El horno Panier III armado sobre tarima mide 1580mm (NO PASA). <strong>Debe ser bajado de la tarima y/o desarmado</strong> (1150mm o 1355mm) para poder ingresar a la cocina.
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

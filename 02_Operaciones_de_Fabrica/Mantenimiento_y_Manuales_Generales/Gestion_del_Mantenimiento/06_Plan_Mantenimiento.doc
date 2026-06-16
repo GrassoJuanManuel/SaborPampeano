@@ -1,0 +1,211 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; color: #2c2c2c; margin: 0; padding: 0; }
+  h1 { font-size: 18pt; color: #4A5D23; border-bottom: 3px solid #4A5D23; padding-bottom: 6px; margin-top: 20px; page-break-after: avoid; }
+  h2 { font-size: 14pt; color: #5B7A2E; margin-top: 22px; border-bottom: 2px solid #C5D6A0; padding-bottom: 4px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #7A6530; margin-top: 16px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #4A5D23; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #4A5D23; color: #ffffff; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 9pt; }
+  td { padding: 5px 8px; border: 1px solid #c8c8c8; color: #333333; }
+  tr:nth-child(even) { background-color: #f4f7ee; }
+  tr:nth-child(odd) { background-color: #ffffff; }
+  pre { background-color: #f5f5ee; color: #333333; padding: 10px 14px; border-radius: 4px; font-size: 9pt; border: 1px solid #d4d4c8; page-break-inside: avoid; font-family: Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; }
+  code { background-color: #eef2e6; padding: 1px 4px; border-radius: 2px; font-size: 9.5pt; font-family: Consolas, monospace; color: #333333; }
+  pre code { background: none; padding: 0; }
+  blockquote { border-left: 4px solid #7A9B3A; margin: 10px 0; padding: 8px 14px; background-color: #f0f4e8; font-size: 9.5pt; page-break-inside: avoid; }
+  blockquote.warn { border-left-color: #C4841D; background-color: #fef8ee; }
+  blockquote.tip { border-left-color: #2E7D6B; background-color: #eef7f4; }
+  blockquote.important { border-left-color: #8B2E2E; background-color: #fdf0f0; }
+  hr { border: none; border-top: 1px solid #C5D6A0; margin: 18px 0; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin: 2px 0; }
+  .doc-header { background-color: #4A5D23; color: #ffffff; padding: 18px 22px; margin-bottom: 18px; border-radius: 4px; }
+  .doc-header h1 { color: #ffffff; border: none; margin: 0; font-size: 18pt; padding: 0; }
+  .doc-header .subtitle { color: #C5D6A0; font-size: 10pt; margin-top: 4px; }
+  .doc-footer { text-align: center; color: #999999; font-size: 8pt; margin-top: 30px; border-top: 1px solid #dddddd; padding-top: 8px; }
+  .gantt-img { width: 100%; max-width: 680px; display: block; margin: 15px auto; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head>
+<body>
+<div class='doc-header'><h1>Plan de Mantenimiento — Templates</h1><div class='subtitle'>Sabor Pampeano | Planta Bahía Blanca</div></div>
+<h1>Plan de Mantenimiento — Templates</h1>
+<h2>Sabor Pampeano | Planta Bahía Blanca</h2>
+
+<hr>
+<h2>1. Ficha Maestra de Equipo (Template en blanco)</h2>
+
+<table>
+<tr><th>Campo</th><th>Valor</th></tr>
+<tr><td><strong>Nombre del equipo</strong></td><td></td></tr>
+<tr><td><strong>Marca / Modelo</strong></td><td></td></tr>
+<tr><td><strong>Nº Serie</strong></td><td></td></tr>
+<tr><td><strong>Ubicación</strong></td><td>Cocina / Dep. PT / Exterior / Hab. Rompedora</td></tr>
+<tr><td><strong>Año adquisición</strong></td><td></td></tr>
+<tr><td><strong>Tensión / Potencia</strong></td><td>V / kW</td></tr>
+<tr><td><strong>Frecuencia de uso</strong></td><td>Diario / Semanal / Esporádico</td></tr>
+<tr><td><strong>Manual disponible</strong></td><td>Sí / No</td></tr>
+<tr><td><strong>Proveedor / Servicio técnico</strong></td><td></td></tr>
+<tr><td><strong>Teléfono servicio técnico</strong></td><td></td></tr>
+<tr><td><strong>Repuestos críticos</strong></td><td></td></tr>
+<tr><td><strong>Fecha última intervención</strong></td><td></td></tr>
+</table>
+
+<hr>
+<h2>2. Plan Preventivo por Equipo</h2>
+
+<h3>ROBOQBO QBO 25-4</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Limpieza CIP o manual post-uso (ver POES-004)</td><td>Operador</td></tr>
+<tr><td>Diario</td><td>Verificar estado de sellos de tapa</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Inspección visual cuchillas (desgaste, filo)</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar conexiones eléctricas y mangueras</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Lubricación según manual del fabricante</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar sistema de vacío (-990mbar)</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Calibración sensor de temperatura</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Servicio técnico completo (proveedor)</td><td>Proveedor</td></tr>
+</table>
+
+<h3>LSL LLENADORA (Cadec)</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Limpieza de tolva (60L) y boquillas</td><td>Operador</td></tr>
+<tr><td>Diario</td><td>Verificar que no haya fugas de producto</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Inspección mangueras neumáticas</td><td>Técnico</td></tr>
+<tr><td>Semanal</td><td>Verificar precisión de dosificación (pesar 5 frascos)</td><td>Operador + QC</td></tr>
+<tr><td>Mensual</td><td>Lubricación partes móviles</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar presión de aire comprimido</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Calibración volumétrica</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Servicio completo Cadec</td><td>Proveedor</td></tr>
+</table>
+
+<h3>RSL TAPADORA (Cadec)</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Limpieza cabezal de tapado</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar torque de cierre (muestra 5 frascos)</td><td>Operador + QC</td></tr>
+<tr><td>Semanal</td><td>Inspección correas y transmisión</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Lubricación</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Calibración torque</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Servicio completo Cadec</td><td>Proveedor</td></tr>
+</table>
+
+<h3>AUTOCLAVE</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Verificar nivel de agua, drenaje libre</td><td>Operador</td></tr>
+<tr><td>Diario</td><td>Inspección visual empaquetadura de puerta</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar válvula de seguridad (presión)</td><td>Técnico</td></tr>
+<tr><td>Semanal</td><td>Purgar sistema de vapor</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar manómetro y termómetro</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Inspección interna (corrosión, depósitos)</td><td>Técnico</td></tr>
+<tr><td>Semestral</td><td>Prueba hidrostática (según normativa)</td><td>Proveedor</td></tr>
+<tr><td>Anual</td><td>Inspección completa + certificación</td><td>Proveedor/Ente regulador</td></tr>
+</table>
+
+<blockquote class="warn"><strong>ATENCI&Oacute;N:</strong>
+<strong>El Autoclave es un equipo a presión.</strong> Requiere habilitación y controles periódicos obligatorios por normativa. El técnico debe verificar los requisitos regulatorios locales.<br>
+
+<h3>LIOFILIZADORA ORZF-5</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Por ciclo</td><td>Limpieza bandejas (24 u. de 61x58cm) y cámara</td><td>Operador</td></tr>
+<tr><td>Por ciclo</td><td>Verificar trampa de frío alcanza -45/-60°C</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar nivel de aceite bomba de vacío</td><td>Técnico</td></tr>
+<tr><td>Semanal</td><td>Inspección conexiones eléctricas 380V</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar sistema de calentamiento de bandejas</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Limpiar condensador</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Cambio aceite bomba de vacío</td><td>Técnico</td></tr>
+<tr><td>Semestral</td><td>Verificar gas refrigerante</td><td>Técnico/Frigorista</td></tr>
+<tr><td>Anual</td><td>Servicio completo (contactar fabricante)</td><td>Proveedor</td></tr>
+</table>
+
+<h3>BLAST CHILLER</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Limpieza interior post-uso</td><td>Operador</td></tr>
+<tr><td>Diario</td><td>Verificar que alcanza temperatura objetivo</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Limpiar filtros de aire</td><td>Operador</td></tr>
+<tr><td>Mensual</td><td>Inspección compresor y ventiladores</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar empaquetadura de puerta</td><td>Técnico</td></tr>
+<tr><td>Semestral</td><td>Verificar carga de gas refrigerante</td><td>Frigorista</td></tr>
+<tr><td>Anual</td><td>Servicio completo</td><td>Proveedor</td></tr>
+</table>
+
+<h3>COMPRESOR 3HP / 200L (Exterior)</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Purgar agua del tanque</td><td>Operador/Técnico</td></tr>
+<tr><td>Semanal</td><td>Verificar nivel aceite</td><td>Técnico</td></tr>
+<tr><td>Semanal</td><td>Inspeccionar estructura metálica exterior</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Limpiar filtro de aire</td><td>Técnico</td></tr>
+<tr><td>Mensual</td><td>Verificar mangueras y conexiones</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Cambio aceite</td><td>Técnico</td></tr>
+<tr><td>Semestral</td><td>Verificar válvula de seguridad</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Cambio filtro aire + servicio completo</td><td>Proveedor</td></tr>
+</table>
+
+<h3>HORNO RATIONAL</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Ciclo de autolimpieza del Rational</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Limpiar filtro de grasa</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar cierre de puerta y empaquetadura</td><td>Operador</td></tr>
+<tr><td>Mensual</td><td>Descalcificar (según dureza del agua)</td><td>Operador</td></tr>
+<tr><td>Trimestral</td><td>Inspección conexiones gas/eléctrica</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Servicio técnico Rational</td><td>Proveedor autorizado</td></tr>
+</table>
+
+<h3>2x TURBOVAR (Selladoras al vacío)</h3>
+<table>
+<tr><th>Frecuencia</th><th>Tarea</th><th>Responsable</th></tr>
+<tr><td>Diario</td><td>Limpieza cámara y barra de sellado</td><td>Operador</td></tr>
+<tr><td>Semanal</td><td>Verificar nivel aceite bomba de vacío</td><td>Técnico</td></tr>
+<tr><td>Semanal</td><td>Verificar calidad de sellado (prueba visual + tracción)</td><td>QC</td></tr>
+<tr><td>Mensual</td><td>Inspección resistencia de sellado</td><td>Técnico</td></tr>
+<tr><td>Trimestral</td><td>Cambio aceite bomba</td><td>Técnico</td></tr>
+<tr><td>Anual</td><td>Cambio resistencia + teflón barra sellado</td><td>Técnico</td></tr>
+</table>
+
+<hr>
+<h2>3. Registro de Intervenciones (Correctivo)</h2>
+
+<table>
+<tr><th>Fecha</th><th>Equipo</th><th>Tipo</th><th>Descripción del problema</th><th>Acción realizada</th><th>Repuestos</th><th>Tiempo parada</th><th>Responsable</th></tr>
+<tr><td></td><td></td><td>Prev/Corr</td><td></td><td></td><td></td><td>hs</td><td></td></tr>
+</table>
+
+<hr>
+<h2>4. Stock de Repuestos Críticos</h2>
+
+<table>
+<tr><th>Equipo</th><th>Repuesto</th><th>Cantidad mín.</th><th>Stock actual</th><th>Proveedor</th><th>Plazo entrega</th></tr>
+<tr><td>Roboqbo</td><td>Sellos tapa</td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td>Roboqbo</td><td>Cuchillas</td><td>1 juego</td><td></td><td></td><td></td></tr>
+<tr><td>Turbovar</td><td>Resistencia sellado</td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td>Turbovar</td><td>Teflón barra</td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td>Turbovar</td><td>Aceite bomba vacío</td><td>2L</td><td></td><td></td><td></td></tr>
+<tr><td>Compresor</td><td>Filtro aire</td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td>Compresor</td><td>Aceite</td><td>2L</td><td></td><td></td><td></td></tr>
+<tr><td>Liofilizadora</td><td>Aceite bomba vacío</td><td>5L</td><td></td><td></td><td></td></tr>
+<tr><td>Autoclave</td><td>Empaquetadura puerta</td><td>1</td><td></td><td></td><td></td></tr>
+<tr><td>Rational</td><td>Descalcificador</td><td>3</td><td></td><td></td><td></td></tr>
+<tr><td>Etiquetadora</td><td>_(repuestos por identificar tras reparación)_</td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<blockquote class="tip"><strong>SUGERENCIA:</strong>
+<strong>Para el técnico electromecánico:</strong> Este template es el punto de partida. Debe:<br>
+1. Completar las fichas maestras con datos reales de cada equipo (Nº serie, potencias, etc.)<br>
+2. Ajustar frecuencias según uso real y recomendaciones del fabricante<br>
+3. Completar el stock de repuestos críticos con cantidades y proveedores<br>
+4. Crear un calendario anual de mantenimiento preventivo<br>
+5. A futuro: implementar mantenimiento predictivo (vibración, termografía, análisis aceite)<br>
+
+<div class="doc-footer">Sabor Pampeano &mdash; Plan Maestro de Readecuaci&oacute;n &mdash; Abril 2026</div>
+</body>
+</html>

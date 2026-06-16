@@ -1,0 +1,205 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; color: #2c2c2c; margin: 0; padding: 0; }
+  h1 { font-size: 18pt; color: #4A5D23; border-bottom: 3px solid #4A5D23; padding-bottom: 6px; margin-top: 20px; page-break-after: avoid; }
+  h2 { font-size: 14pt; color: #5B7A2E; margin-top: 22px; border-bottom: 2px solid #C5D6A0; padding-bottom: 4px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #7A6530; margin-top: 16px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #4A5D23; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #4A5D23; color: #ffffff; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 9pt; }
+  td { padding: 5px 8px; border: 1px solid #c8c8c8; color: #333333; }
+  tr:nth-child(even) { background-color: #f4f7ee; }
+  tr:nth-child(odd) { background-color: #ffffff; }
+  pre { background-color: #f5f5ee; color: #333333; padding: 10px 14px; border-radius: 4px; font-size: 9pt; border: 1px solid #d4d4c8; page-break-inside: avoid; font-family: Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; }
+  code { background-color: #eef2e6; padding: 1px 4px; border-radius: 2px; font-size: 9.5pt; font-family: Consolas, monospace; color: #333333; }
+  pre code { background: none; padding: 0; }
+  blockquote { border-left: 4px solid #7A9B3A; margin: 10px 0; padding: 8px 14px; background-color: #f0f4e8; font-size: 9.5pt; page-break-inside: avoid; }
+  blockquote.warn { border-left-color: #C4841D; background-color: #fef8ee; }
+  blockquote.tip { border-left-color: #2E7D6B; background-color: #eef7f4; }
+  blockquote.important { border-left-color: #8B2E2E; background-color: #fdf0f0; }
+  hr { border: none; border-top: 1px solid #C5D6A0; margin: 18px 0; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin: 2px 0; }
+  .doc-header { background-color: #4A5D23; color: #ffffff; padding: 18px 22px; margin-bottom: 18px; border-radius: 4px; }
+  .doc-header h1 { color: #ffffff; border: none; margin: 0; font-size: 18pt; padding: 0; }
+  .doc-header .subtitle { color: #C5D6A0; font-size: 10pt; margin-top: 4px; }
+  .doc-footer { text-align: center; color: #999999; font-size: 8pt; margin-top: 30px; border-top: 1px solid #dddddd; padding-top: 8px; }
+  .gantt-img { width: 100%; max-width: 680px; display: block; margin: 15px auto; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head>
+<body>
+<div class='doc-header'><h1>Ficha de Receta Estandarizada — Template</h1><div class='subtitle'>Sabor Pampeano | Planta Bahía Blanca</div></div>
+<h1>Ficha de Receta Estandarizada — Template</h1>
+<h2>Sabor Pampeano | Planta Bahía Blanca</h2>
+
+<hr>
+<h2>FICHA EN BLANCO (para completar durante Fase 0 - Shadowing)</h2>
+
+<h3>Datos del Producto</h3>
+
+<table>
+<tr><th>Campo</th><th>Valor</th></tr>
+<tr><td><strong>Nombre del producto</strong></td><td></td></tr>
+<tr><td><strong>SKU / Código</strong></td><td></td></tr>
+<tr><td><strong>Línea de producción</strong></td><td>A / B / C / D</td></tr>
+<tr><td><strong>Peso neto</strong></td><td>g</td></tr>
+<tr><td><strong>Envase</strong></td><td>Frasco / Bandeja / Bolsa vacío / Otro</td></tr>
+<tr><td><strong>Vida útil estimada</strong></td><td></td></tr>
+<tr><td><strong>Condiciones de conservación</strong></td><td>Ambiente / Refrigerado / Congelado</td></tr>
+<tr><td><strong>Fecha de estandarización</strong></td><td>___/___/___</td></tr>
+<tr><td><strong>Elaborado por</strong></td><td></td></tr>
+<tr><td><strong>Validado por (Ing. Alimentos)</strong></td><td></td></tr>
+</table>
+
+<h3>Ingredientes (para 1 batch / lote)</h3>
+
+<table>
+<tr><th>#</th><th>Ingrediente</th><th>Cantidad</th><th>Unidad</th><th>Proveedor habitual</th><th>Observaciones</th></tr>
+<tr><td>1</td><td></td><td></td><td>kg / L / u</td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<strong>Rendimiento por batch:</strong> _____ unidades de _____ g/ml cada una
+
+<h3>Procedimiento Paso a Paso</h3>
+
+<table>
+<tr><th>Paso</th><th>Descripción</th><th>Equipo</th><th>Tiempo</th><th>Temp.</th><th>Parámetro crítico</th></tr>
+<tr><td>1</td><td></td><td></td><td>min</td><td>°C</td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>Puntos Críticos de Control (PCC)</h3>
+
+<table>
+<tr><th>PCC</th><th>Etapa</th><th>Qué se controla</th><th>Límite</th><th>Acción si no cumple</th></tr>
+<tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>Criterios de Aceptación / Rechazo del Producto Terminado</h3>
+
+<table>
+<tr><th>Criterio</th><th>Aceptable</th><th>Rechazo</th></tr>
+<tr><td>Peso</td><td>±___g del nominal</td><td>Fuera de rango</td></tr>
+<tr><td>Aspecto visual</td><td></td><td></td></tr>
+<tr><td>Color</td><td></td><td></td></tr>
+<tr><td>Textura/Consistencia</td><td></td><td></td></tr>
+<tr><td>Sellado/Vacío</td><td></td><td></td></tr>
+<tr><td>Etiquetado</td><td></td><td></td></tr>
+</table>
+
+<h3>Registro de Producción (completar por lote)</h3>
+
+<table>
+<tr><th>Fecha</th><th>Lote #</th><th>Batch</th><th>Hora inicio</th><th>Hora fin</th><th>Unidades</th><th>Merma</th><th>Operador</th><th>QC</th></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td>kg</td><td></td><td>✅/❌</td></tr>
+</table>
+
+<hr>
+<hr>
+<h2>EJEMPLO COMPLETO: Mermelada de Frutilla (LÍNEA A)</h2>
+
+<h3>Datos del Producto</h3>
+
+<table>
+<tr><th>Campo</th><th>Valor</th></tr>
+<tr><td><strong>Nombre del producto</strong></td><td>Mermelada de Frutilla</td></tr>
+<tr><td><strong>SKU</strong></td><td>MER-FRU-430</td></tr>
+<tr><td><strong>Línea de producción</strong></td><td>A (Roboqbo → Cadec → Autoclave)</td></tr>
+<tr><td><strong>Peso neto</strong></td><td>430g</td></tr>
+<tr><td><strong>Envase</strong></td><td>Frasco vidrio + tapa metálica</td></tr>
+<tr><td><strong>Vida útil estimada</strong></td><td>12 meses (sin abrir)</td></tr>
+<tr><td><strong>Condiciones de conservación</strong></td><td>Ambiente (una vez abierto: refrigerar)</td></tr>
+<tr><td><strong>Fecha de estandarización</strong></td><td>___/___/___</td></tr>
+<tr><td><strong>Elaborado por</strong></td><td>[Jefa de cocina turno mañana]</td></tr>
+<tr><td><strong>Validado por</strong></td><td>[Ingeniera en Alimentos]</td></tr>
+</table>
+
+<h3>Ingredientes (para 1 batch Roboqbo = 25L)</h3>
+
+<table>
+<tr><th>#</th><th>Ingrediente</th><th>Cantidad</th><th>Unidad</th><th>Observaciones</th></tr>
+<tr><td>1</td><td>Frutillas frescas (limpias, sin cabo)</td><td>_____</td><td>kg</td><td>MP llega pelada/limpia</td></tr>
+<tr><td>2</td><td>Azúcar</td><td>_____</td><td>kg</td><td></td></tr>
+<tr><td>3</td><td>Pectina</td><td>_____</td><td>g</td><td></td></tr>
+<tr><td>4</td><td>Ácido cítrico</td><td>_____</td><td>g</td><td>Ajustar pH</td></tr>
+<tr><td>5</td><td>Agua</td><td>_____</td><td>L</td><td>Si corresponde</td></tr>
+</table>
+
+<strong>Rendimiento estimado:</strong> _____ frascos de 430g por batch
+
+<blockquote><strong>NOTA:</strong>
+<strong>Las cantidades exactas se completan durante el shadowing con la jefa de cocina.</strong> Este template es la estructura; los valores se validan con la Ing. en Alimentos.<br>
+
+<h3>Procedimiento</h3>
+
+<table>
+<tr><th>Paso</th><th>Descripción</th><th>Equipo</th><th>Tiempo</th><th>Temp.</th><th>Parámetro crítico</th></tr>
+<tr><td>1</td><td>Cargar frutillas + azúcar en cuba</td><td>Roboqbo</td><td>—</td><td>—</td><td>Peso exacto</td></tr>
+<tr><td>2</td><td>Cocción con agitación</td><td>Roboqbo</td><td>___ min</td><td>___ °C</td><td>Temp. no superar ___°C</td></tr>
+<tr><td>3</td><td>Agregar pectina + ácido cítrico</td><td>Roboqbo</td><td>___ min</td><td>—</td><td>Dosificación exacta</td></tr>
+<tr><td>4</td><td>Cocción final hasta consistencia</td><td>Roboqbo</td><td>___ min</td><td>___ °C</td><td>°Brix: _____</td></tr>
+<tr><td>5</td><td>Trasiego a tolva de llenadora</td><td>Bomba + manguera</td><td>___ min</td><td>>___°C</td><td>Mantener temperatura</td></tr>
+<tr><td>6</td><td>Llenado automático</td><td>LSL Llenadora</td><td>Continuo</td><td>—</td><td>Peso/frasco: 430g ±__g</td></tr>
+<tr><td>7</td><td>Tapado automático</td><td>RSL Tapadora</td><td>Continuo</td><td>—</td><td>Torque de tapa</td></tr>
+<tr><td>8</td><td>Esterilización</td><td>Autoclave</td><td>___ min</td><td>___ °C</td><td>Tiempo + temp. críticos</td></tr>
+<tr><td>9</td><td>Enfriamiento</td><td>Ambiente/agua</td><td>Hasta <40°C</td><td><40°C</td><td>No abrir antes</td></tr>
+<tr><td>10</td><td>Revisión QC</td><td>Visual</td><td>—</td><td>—</td><td>Sellado, vacío, aspecto</td></tr>
+</table>
+
+<h3>Puntos Críticos de Control</h3>
+
+<table>
+<tr><th>PCC</th><th>Etapa</th><th>Qué se controla</th><th>Límite</th><th>Acción si no cumple</th></tr>
+<tr><td>1</td><td>Paso 4</td><td>°Brix (concentración azúcar)</td><td>≥___° Brix</td><td>Continuar cocción</td></tr>
+<tr><td>2</td><td>Paso 4</td><td>pH</td><td>≤___</td><td>Agregar ácido cítrico</td></tr>
+<tr><td>3</td><td>Paso 8</td><td>Temp. + tiempo Autoclave</td><td>___°C x ___min</td><td>Reprocesar lote</td></tr>
+</table>
+
+<h3>Criterios de Aceptación / Rechazo</h3>
+
+<table>
+<tr><th>Criterio</th><th>Aceptable</th><th>Rechazo</th></tr>
+<tr><td>Peso</td><td>430g ±15g</td><td>Fuera de rango</td></tr>
+<tr><td>Aspecto visual</td><td>Color uniforme, sin grumos anormales</td><td>Presencia de moho, color anormal</td></tr>
+<tr><td>Sellado</td><td>Tapa cóncava (vacío), sin fugas</td><td>Tapa convexa, fuga visible</td></tr>
+<tr><td>Etiquetado</td><td>Legible, bien adherida, datos correctos</td><td>Ilegible, despegada, datos erróneos</td></tr>
+</table>
+
+<hr>
+<h2>Notas para el equipo de estandarización</h2>
+
+<blockquote class="tip"><strong>SUGERENCIA:</strong>
+<strong>Cómo usar este template durante Fase 0 (Shadowing):</strong><br>
+1. Imprimir fichas en blanco (la primera sección)<br>
+2. Acompañar a la jefa de cocina mientras produce<br>
+3. Anotar EXACTAMENTE lo que hace: cantidades, tiempos, temperaturas<br>
+4. Preguntar: "¿por qué hacés esto?" en cada paso no obvio<br>
+5. Completar la ficha, validar con la Ing. en Alimentos<br>
+6. Repetir para cada producto (priorizar los 5 más frecuentes primero)<br>
+
+<strong>Orden sugerido de estandarización (por frecuencia):</strong>
+1. Tarta de Acelga (mayor volumen)
+2. Tortilla de Papa
+3. Mermelada de Frutilla
+4. Hummus Tradicional de Garbanzo
+5. Berenjenas en Escabeche
+
+<div class="doc-footer">Sabor Pampeano &mdash; Plan Maestro de Readecuaci&oacute;n &mdash; Abril 2026</div>
+</body>
+</html>

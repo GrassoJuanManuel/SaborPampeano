@@ -1,0 +1,97 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; color: #2c2c2c; margin: 0; padding: 0; }
+  h1 { font-size: 18pt; color: #4A5D23; border-bottom: 3px solid #4A5D23; padding-bottom: 6px; margin-top: 20px; page-break-after: avoid; }
+  h2 { font-size: 14pt; color: #5B7A2E; margin-top: 22px; border-bottom: 2px solid #C5D6A0; padding-bottom: 4px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #7A6530; margin-top: 16px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #4A5D23; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #4A5D23; color: #ffffff; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 9pt; }
+  td { padding: 5px 8px; border: 1px solid #c8c8c8; color: #333333; }
+  tr:nth-child(even) { background-color: #f4f7ee; }
+  tr:nth-child(odd) { background-color: #ffffff; }
+  pre { background-color: #f5f5ee; color: #333333; padding: 10px 14px; border-radius: 4px; font-size: 9pt; border: 1px solid #d4d4c8; page-break-inside: avoid; font-family: Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; }
+  code { background-color: #eef2e6; padding: 1px 4px; border-radius: 2px; font-size: 9.5pt; font-family: Consolas, monospace; color: #333333; }
+  pre code { background: none; padding: 0; }
+  blockquote { border-left: 4px solid #7A9B3A; margin: 10px 0; padding: 8px 14px; background-color: #f0f4e8; font-size: 9.5pt; page-break-inside: avoid; }
+  blockquote.warn { border-left-color: #C4841D; background-color: #fef8ee; }
+  blockquote.tip { border-left-color: #2E7D6B; background-color: #eef7f4; }
+  blockquote.important { border-left-color: #8B2E2E; background-color: #fdf0f0; }
+  hr { border: none; border-top: 1px solid #C5D6A0; margin: 18px 0; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin: 2px 0; }
+  .doc-header { background-color: #4A5D23; color: #ffffff; padding: 18px 22px; margin-bottom: 18px; border-radius: 4px; }
+  .doc-header h1 { color: #ffffff; border: none; margin: 0; font-size: 18pt; padding: 0; }
+  .doc-header .subtitle { color: #C5D6A0; font-size: 10pt; margin-top: 4px; }
+  .doc-footer { text-align: center; color: #999999; font-size: 8pt; margin-top: 30px; border-top: 1px solid #dddddd; padding-top: 8px; }
+  .gantt-img { width: 100%; max-width: 680px; display: block; margin: 15px auto; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head>
+<body>
+<div class='doc-header'><h1>Sabor Pampeano — Resumen Ejecutivo</h1><div class='subtitle'>Situación Actual</div></div>
+<h1>Sabor Pampeano — Resumen Ejecutivo</h1>
+<h3>Plan de Readecuación y Estandarización de Planta | Abril 2026</h3>
+
+<hr>
+<h2>Situación Actual</h2>
+
+La fábrica produce <strong>44 productos</strong> en una cocina de 140m² sin procesos documentados, sin pasillos de circulación y con riesgo ante inspección bromatológica. Se incorporan <strong>6 equipos nuevos</strong> (Liofilizadora, Blast Chiller, Autoclave, línea Cadec, Rompedora). El proceso de etiquetado requiere estandarización y reparación de equipos. No existe plan de mantenimiento preventivo.
+
+<hr>
+<h2>Propuesta: 4 Líneas de Producción</h2>
+
+<table>
+<tr><th>Línea</th><th>Productos</th><th>Equipo clave</th><th>Turno</th></tr>
+<tr><td><strong>A</strong> Envasados</td><td>16 conservas/mermeladas/hummus</td><td>Roboqbo → Cadec → Autoclave</td><td>Tarde</td></tr>
+<tr><td><strong>B</strong> Tartas/Tortillas</td><td>13 productos, ~500 u/turno</td><td>Sobadora → Hornos → Blast Chiller → Turbovar</td><td>Mañana</td></tr>
+<tr><td><strong>C</strong> Liofilizados (NUEVA)</td><td>Por definir, 100-150 kg/sem</td><td>Blast Chiller → ORZF-5</td><td>En paralelo</td></tr>
+<tr><td><strong>D</strong> Aceites/Aceitunas</td><td>13 productos, esporádica</td><td>Manual (aceitunas) / Fraccionamiento (aceites)</td><td>Variable</td></tr>
+</table>
+
+<hr>
+<h2>Cronograma (24 semanas)</h2>
+
+<table>
+<tr><th>Fase</th><th>Plazo</th><th>Foco</th><th>Inversión</th></tr>
+<tr><td><strong>0</strong></td><td>Esta semana</td><td>Documentar procesos, relevar planta, presentar plan</td><td>Horas</td></tr>
+<tr><td><strong>1</strong> Quick Wins</td><td>Sem. 2-4</td><td>5S, POES, reparar etiquetadora, estandarizar procesos, buscar técnico mant.</td><td><strong>Baja</strong></td></tr>
+<tr><td><strong>2</strong> Equipos</td><td>Sem. 4-8</td><td>Instalar Cadec + Autoclave + Blast Chiller + Liofilizadora + Rompedora</td><td><strong>Alta</strong> (ya adquiridos)</td></tr>
+<tr><td><strong>3</strong> Estandarización</td><td>Sem. 6-12</td><td>44 recetas documentadas, HACCP, capacitación</td><td><strong>Media</strong></td></tr>
+<tr><td><strong>4</strong> Optimización</td><td>Sem. 12-24</td><td>Análisis datos, desarrollo liofilizados, auditoría bromatológica</td><td><strong>Baja</strong></td></tr>
+</table>
+
+<hr>
+<h2>Acciones Inmediatas (costo $0)</h2>
+
+1. Procedimientos de limpieza plastificados al lado de cada máquina
+2. Sacar 4 freezers al depósito MP → <strong>liberar ~6m²</strong> para circulación
+3. Estandarizar transporte de MP pelada: <strong>recipientes tapados</strong>
+4. Reparar etiquetadora + estandarizar proceso de etiquetado
+5. Iniciar búsqueda de técnico electromecánico para mantenimiento preventivo
+
+<hr>
+<h2>Resultados Esperados</h2>
+
+<table>
+<tr><th>Indicador</th><th>Hoy</th><th>Meta 6 meses</th></tr>
+<tr><td>Procesos documentados</td><td>0</td><td>100% (44 recetas)</td></tr>
+<tr><td>Cumplimiento POES</td><td>0%</td><td>100%</td></tr>
+<tr><td>Merma MP</td><td>Sin medir</td><td>-20%</td></tr>
+<tr><td>Rechazo producto</td><td>Sin medir</td><td>< 2%</td></tr>
+<tr><td>Proceso etiquetado</td><td>Sin estandarizar</td><td>Estandarizado (máquina reparada + procedimiento)</td></tr>
+<tr><td>Plan mantenimiento</td><td>No existe</td><td>Preventivo implementado</td></tr>
+<tr><td>Inspección bromatológica</td><td>Vulnerable</td><td>Aprobación segura</td></tr>
+<tr><td>Liofilizados</td><td>Inexistente</td><td>100-150 kg/semana</td></tr>
+</table>
+
+<hr>
+<strong>Responsable:</strong> Juan Manuel Grasso — Jefe de Operaciones
+<strong>Soporte técnico:</strong> Ingeniera en Alimentos (protocolos QC, HACCP, estandarización)
+
+<div class="doc-footer">Sabor Pampeano &mdash; Plan Maestro de Readecuaci&oacute;n &mdash; Abril 2026</div>
+</body>
+</html>

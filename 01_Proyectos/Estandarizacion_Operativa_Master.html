@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estandarización de Procesos — Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --sp-green: #4A5D23;
+  --sp-green-light: #7A9B3A;
+  --sp-accent: #C5D6A0;
+  --sp-bg: #f4f3ec;
+  --text-dark: #1a2410;
+  --text-muted: #6b7a52;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.6s ease-out;
+}
+.header h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--sp-green);
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+}
+.header p {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 25px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(74, 93, 35, 0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(74, 93, 35, 0.12);
+  border-color: var(--sp-accent);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sp-green), var(--sp-green-light));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover::before { opacity: 1; }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(122, 155, 58, 0.1);
+  color: var(--sp-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.b-eval { background: #fef9c3; color: #854d0e; }
+.b-plan { background: #e0f2fe; color: #075985; }
+.b-prog { background: #d1fae5; color: #065f46; }
+.b-buy  { background: #fff7ed; color: #9a3412; }
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+}
+.card-body {
+  flex: 1;
+}
+.card-body p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+.card-body strong {
+  color: var(--sp-green);
+  font-weight: 600;
+}
+.card-footer {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  flex: 1;
+}
+.btn-primary {
+  background: var(--sp-green);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--sp-green-light);
+  transform: scale(1.02);
+}
+.btn-secondary {
+  background: #f4f3ec;
+  color: var(--sp-green);
+}
+.btn-secondary:hover {
+  background: #e8edd8;
+  color: var(--sp-green);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1><i class="fas fa-layer-group" style="font-size:28px; margin-right:10px;"></i> Programa Máster: Estandarización</h1>
+    <p>Consolidado de mini proyectos independientes enfocados en mejorar, estandarizar y eficientizar los procesos operativos y logísticos de Sabor Pampeano.</p>
+  </div>
+
+  <div class="grid">
+    
+    <!-- Proyecto 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-box-open"></i></div>
+        <span class="badge b-eval">Evaluación</span>
+      </div>
+      <h3 class="card-title">1. Reemplazo de Cajones</h3>
+      <div class="card-body">
+        <p><strong>Objetivo:</strong> Reemplazar los 100 cajones de madera actuales por cajones plásticos (30×50×25cm).</p>
+        <p><strong>Estrategia:</strong> Compra inicial de 50 unidades. Se busca optimizar la velocidad en la zona de etiquetado para acelerar la rotación de los cajones y evitar inmovilizar capital comprando los 100 de una vez.</p>
+      </div>
+      <div class="card-footer">
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/09_Reemplazo_Cajones_Logisticos/" class="btn btn-primary" target="_blank"><i class="fas fa-folder-open"></i> Abrir Proyecto</a>
+      </div>
+    </div>
+
+    <!-- Proyecto 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-temperature-low"></i></div>
+        <span class="badge b-plan">Planificación</span>
+      </div>
+      <h3 class="card-title">2. Integración Térmica (Argental)</h3>
+      <div class="card-body">
+        <p><strong>Objetivo:</strong> Acoplar la capacidad del nuevo Horno Argental Panier III con el nuevo Abatidor Chino.</p>
+        <p><strong>Estrategia:</strong> El Horno Rational trabajará con el abatidor viejo (ambos 32,5x52,5). Para el Argental, se usarán carros para bandejas de 40x60 cm (única medida que entra en el abatidor chino de 60cm prof.). El abatidor será tipo "Roll-in".</p>
+      </div>
+      <div class="card-footer">
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/10_Integracion_Argental_Abatidor/" class="btn btn-primary" target="_blank"><i class="fas fa-folder-open"></i> Abrir Proyecto</a>
+      </div>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-egg"></i></div>
+        <span class="badge b-prog">En Proceso</span>
+      </div>
+      <h3 class="card-title">3. Cascado de Huevos</h3>
+      <div class="card-body">
+        <p><strong>Objetivo:</strong> Procedimentar el paso a paso del cascado higiénico de huevos.</p>
+        <p><strong>Estrategia:</strong> Estandarización temporal mientras se espera la habilitación de la nueva sala limpia y la máquina rompedora automática china.</p>
+      </div>
+      <div class="card-footer">
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/11_Estandarizacion_Rotura_Huevos/" class="btn btn-primary" target="_blank"><i class="fas fa-folder"></i> Proyecto</a>
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/02_Operaciones_de_Fabrica/Procedimientos_SOP/01_Cascado_Huevos.md" class="btn btn-secondary" target="_blank"><i class="fas fa-file-alt"></i> Ver SOP</a>
+      </div>
+    </div>
+
+    <!-- Proyecto 4 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-seedling"></i></div>
+        <span class="badge b-prog">En Proceso</span>
+      </div>
+      <h3 class="card-title">4. Envasado de Aceitunas</h3>
+      <div class="card-body">
+        <p><strong>Objetivo:</strong> Estandarizar la receta de la salmuera (agua, sal, sorbato, ac. cítrico) y los pesos de escurrido.</p>
+        <p><strong>Estrategia:</strong> Aplicar estándar a variantes verdes/negras, con/sin carozo. Validar si es posible acelerar el proceso utilizando la tapadora Cadec.</p>
+      </div>
+      <div class="card-footer">
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/12_Estandarizacion_Aceitunas/" class="btn btn-primary" target="_blank"><i class="fas fa-folder"></i> Proyecto</a>
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/02_Operaciones_de_Fabrica/Procedimientos_SOP/04_Envasado_Aceitunas.md" class="btn btn-secondary" target="_blank"><i class="fas fa-file-alt"></i> Ver SOP</a>
+      </div>
+    </div>
+
+    <!-- Proyecto 5 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-pizza-slice"></i></div>
+        <span class="badge b-buy">Compras</span>
+      </div>
+      <h3 class="card-title">5. Piloto Bandejas Microperforadas</h3>
+      <div class="card-body">
+        <p><strong>Objetivo:</strong> Comprar entre 10 y 20 moldes microperforados de chapa oscura.</p>
+        <p><strong>Estrategia:</strong> Evaluar si mejora la cocción del "piso" de la masa de las tartas en el horno actual antes de escalar la compra al resto del stock.</p>
+      </div>
+      <div class="card-footer">
+        <a href="file:///g:/Mi%20unidad/Sabor%20Pampeano%20Workspace/01_Proyectos/13_Prueba_Bandejas_Microperforadas/" class="btn btn-primary" target="_blank"><i class="fas fa-folder-open"></i> Abrir Proyecto</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

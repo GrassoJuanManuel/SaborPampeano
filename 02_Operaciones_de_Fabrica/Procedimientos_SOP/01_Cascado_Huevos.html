@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POE: Cascado de Huevos — Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --sp-green: #4A5D23;
+  --sp-green-light: #7A9B3A;
+  --sp-accent: #C5D6A0;
+  --sp-bg: #f4f3ec;
+  --text-dark: #1a2410;
+  --text-muted: #6b7a52;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  border: 1px solid rgba(74, 93, 35, 0.1);
+}
+.header {
+  border-bottom: 2px solid var(--sp-accent);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--sp-green);
+  margin-bottom: 8px;
+}
+.header-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 15px;
+}
+.header-meta span {
+  display: flex; align-items: center; gap: 5px;
+}
+.print-btn {
+  background: var(--sp-green);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: all 0.2s;
+}
+.print-btn:hover { background: var(--sp-green-light); }
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--sp-green);
+  margin: 30px 0 15px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+h2 i { color: var(--sp-green-light); font-size: 18px; }
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 20px 0 10px 0;
+}
+
+.alert-box {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+}
+.alert-box h4 {
+  color: #b91c1c;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: flex; align-items: center; gap: 6px;
+}
+.alert-box ul { padding-left: 20px; color: #7f1d1d; font-size: 14px;}
+
+.info-box {
+  background: #f0fdf4;
+  border-left: 4px solid var(--sp-green-light);
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+}
+.info-box h4 {
+  color: var(--sp-green);
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+ul, ol { margin-left: 20px; margin-bottom: 15px; font-size: 14px; }
+li { margin-bottom: 8px; }
+
+.checklist { list-style: none; margin-left: 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: #f9faf4;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #e8edd8;
+}
+.checklist li i.fa-check-circle { color: var(--sp-green-light); margin-top: 3px; font-size: 16px;}
+
+.step-list { counter-reset: step-counter; list-style: none; margin-left: 0; }
+.step-list li {
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #f0f2e8;
+  padding-top: 15px; padding-bottom: 15px; padding-right: 15px;
+  border-radius: 8px;
+}
+.step-list li::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  position: absolute;
+  left: 10px; top: 12px;
+  width: 24px; height: 24px;
+  border-radius: 12px;
+  background: var(--sp-green);
+  color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-list li strong { color: var(--sp-green); }
+
+@media print {
+  body { background: white; padding: 0; }
+  .container { box-shadow: none; border: none; padding: 0; }
+  .print-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>POE: Cascado de Huevos</h1>
+      <div class="header-meta">
+        <span><i class="fas fa-barcode"></i> POE-001</span>
+        <span><i class="fas fa-calendar-alt"></i> Junio 2026</span>
+        <span><i class="fas fa-map-marker-alt"></i> Cocina Central</span>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button>
+  </div>
+
+  <div class="alert-box">
+    <h4><i class="fas fa-exclamation-triangle"></i> Problema del Método Anterior</h4>
+    <ul>
+      <li>Rotura manual directo a bowl y paso a embudo sobre bidones generando inestabilidad.</li>
+      <li>Desperdicio potencial de grandes cantidades de producto (hasta 5 maples) si un huevo en mal estado contamina el lote.</li>
+      <li>Tiempos de proceso muy largos y riesgo de vuelcos.</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h4><i class="fas fa-lightbulb"></i> Método Estandarizado (Transición)</h4>
+    <p style="font-size:14px; color:var(--sp-green);">Sistema de llenado por gravedad mediante estación fija. Este es un procedimiento temporal hasta la puesta en marcha de la rompedora automática china en la nueva sala limpia.</p>
+  </div>
+
+  <h2><i class="fas fa-tools"></i> Componentes del Sistema</h2>
+  <ul class="checklist">
+    <li><i class="fas fa-check-circle"></i> <div><strong>Bowl de Acero Inoxidable:</strong> Diámetro 30-40cm. Capacidad para 30 huevos (1 maple). Permite control visual/olfativo antes de integrar al lote. Límite de pérdida máxima: 30 huevos.</div></li>
+    <li><i class="fas fa-check-circle"></i> <div><strong>Embudo Fijo:</strong> Plástico grado alimenticio o acero inoxidable. Instalado con soporte fijo a la mesada.</div></li>
+    <li><i class="fas fa-check-circle"></i> <div><strong>Manguera de Descarga:</strong> Silicona o PVC atóxico transparente (min. 1 pulgada de diámetro).</div></li>
+    <li><i class="fas fa-check-circle"></i> <div><strong>Estación de Bidones:</strong> Estante inferior a la mesada para flujo por gravedad, con guías para encajar bidones (18x18x33 cm).</div></li>
+  </ul>
+
+  <h2><i class="fas fa-clipboard-list"></i> Procedimiento Paso a Paso</h2>
+  <ol class="step-list">
+    <li><strong>Preparación del Lote:</strong> Colocar todos los bidones vacíos necesarios para la producción (ej. 12 a 18 bidones) en el estante inferior. Una matriz de 6 de ancho por 2 o 3 de profundo es ideal.</li>
+    <li><strong>Inserción de Manguera:</strong> Insertar el extremo de la manguera en el primer bidón vacío.</li>
+    <li><strong>Cascado:</strong> Cascar exactamente un maple (30 huevos) en el bowl de acero inoxidable.</li>
+    <li><strong>Control de Calidad:</strong> Verificar visual y olfativamente el estado de los 30 huevos. Si hay un huevo podrido, descartar el bowl completo, lavar e iniciar de nuevo.</li>
+    <li><strong>Llenado:</strong> Volcar el contenido del bowl aprobado en el embudo fijo.</li>
+    <li><strong>Repetición:</strong> Repetir pasos 3 al 5 hasta llenar el bidón (aprox. 5 maples / 150 huevos).</li>
+    <li><strong>Cambio de Bidón:</strong> Al llenarse, levantar la manguera, doblarla en "U" con la mano para evitar goteo, y moverla inmediatamente al siguiente bidón vacío en la matriz.</li>
+    <li><strong>Cierre:</strong> Una vez llenados todos los bidones del lote, retirar del estante y proceder a taparlos herméticamente y refrigerarlos.</li>
+  </ol>
+
+</div>
+
+</body>
+</html>

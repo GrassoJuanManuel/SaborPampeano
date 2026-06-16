@@ -1,0 +1,150 @@
+Source: https://docs.google.com/spreadsheets/d/10ym38nAt6UfymKKZpemMyUmkSki4grXnesZznxNHhLg/export?format=csv&gid=0
+
+---
+
+Fecha del Registro,Fecha del Turno,Turno,Encargado,Tipo de Registro,E/S,Categoría,Producto / Insumo,Código Artículo,Cantidad,Motivo / Detalle / Comentarios,Estado
+7/5/2026 8:30:47,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA Y CEB X 600 GR,07010000,60,,Cargado en sistema
+7/5/2026 7:40:22,6/5/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,96,,Cargado en sistema
+7/5/2026 7:40:22,6/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,127,Faltaba liquido,Cargado en sistema
+7/5/2026 7:40:22,6/5/2026,Tarde,Raúl,DECOMISO,S,ENVASES,TAPAS AMANECER/MORRONERO,10060012,127, Reproceso,Cargado en sistema
+7/5/2026 7:40:22,6/5/2026,Tarde,Raúl,RECUPERO,E,OTRO,Frascos amanecer,,127,Se lavaron y esterilizaron,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA JAMÓN Y QUESO,07020005,100,,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA INTEGRAL,07020008,30,,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA INTEGRAL,07020012,38,,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA,07020006,26,,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA,07020001,30,,Cargado en sistema
+7/5/2026 6:17:07,6/5/2026,Mañana,Any,COMENTARIOS,-,-,-,-,-,"Se limpiaron 70 moldes ,empezamos con la limpieza de ollas",Cargado en sistema
+6/5/2026 17:42:07,6/5/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,188,,Cargado en sistema
+6/5/2026 17:42:07,6/5/2026,Mañana,Dani,DECOMISO,S,OTRO,Tomate,,75,Podrido y descarte,Cargado en sistema
+6/5/2026 17:42:07,6/5/2026,Mañana,Dani,EN PROCESO,-,OTRO,Tomate,,3 cajones,Para próxima producción,Cargado en sistema
+6/5/2026 8:37:21,5/5/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,110,,Cargado en sistema
+6/5/2026 8:37:21,5/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,"AC VE C/C N° 0 x 1,55 KG",05010002,7,Falta de líquido  | ,Cargado en sistema
+6/5/2026 8:37:21,5/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,"AC VE RELL N° 0 x 1,55 KG",05010010,60 frascos,Falta de liquido | ,Cargado en sistema
+6/5/2026 8:37:21,5/5/2026,Tarde,Raúl,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,27 kg,Podrido | ,Cargado en sistema
+6/5/2026 8:37:21,5/5/2026,Tarde,Raúl,DECOMISO,S,VERDURAS,BERENJENAS,10020000,275,Podrido | ,Cargado en sistema
+5/5/2026 22:21:48,5/5/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,184,,Cargado en sistema
+5/5/2026 22:21:48,5/5/2026,Mañana,Dani,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,68 kg,Podrido y descarte | ,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA,07020001,128,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA INTEGRAL,07020008,7,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CAPRESE INTEGRAL,07020010,49,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA,07020006,60,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA INTEGRAL,07020012,47,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA DE VERDURAS ASADAS,07020002,105,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA VERDURAS ASADAS INTEGRAL,07020009,47,,Cargado en sistema
+5/5/2026 19:30:43,5/5/2026,Mañana,Any,DECOMISO,S,VERDURAS,TOMATE CHERRY,10020013,35,Mal estado | Se da de baja 1 tarta de acelgas pinchada,Cargado en sistema
+5/5/2026 19:24:01,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA Y CEB X 600 GR,07010000,60,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,159,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,3,Faltaba liquido...lote 4-2/23 | ,Cargado en sistema
+
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas amanecer 3,,Asociado a reproceso de: BERENJENA E/ESCAB X 360 GR,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,46( lote 4-2/18),Falta aceite | ,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,7 Tapas amanecer ,,Asociado a reproceso de: BERENJENA E/ESCAB X 360 GR,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,45(lote 4-2/17),Falta de aceite | ,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,7 Tapas amanecer,,Asociado a reproceso de: BERENJENA E/ESCAB X 360 GR,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,94 lote 4-2/31,Falta aceite | ,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,14 tapas amanecer,,Asociado a reproceso de: BERENJENA E/ESCAB X 360 GR,,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,BERENJENA E/ESCAB X 360 GR,02030002,96, Falta aceite | ,Cargado en sistema
+4/5/2026 21:40:57,4/5/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,4 tapas amanecer,,Asociado a reproceso de: BERENJENA E/ESCAB X 360 GR,,Cargado en sistema
+4/5/2026 17:34:15,4/5/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,112,"Los lotes de pera son pruebas ambas.
+Pero están en frascos.",Cargado en sistema
+4/5/2026 17:34:15,4/5/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE PERA X 450 GR,04010006,22,"Los lotes de pera son pruebas ambas.
+Pero están en frascos.",Pendiente de carga en sistema
+4/5/2026 17:34:15,4/5/2026,Mañana,Dani,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,32kg,"Descarte | Los lotes de pera son pruebas ambas.
+Pero están en frascos.",Cargado en sistema
+4/5/2026 17:34:15,4/5/2026,Mañana,Dani,DECOMISO,S,FRUTAS,PERA,10030003,4kg,"Descarte | Los lotes de pera son pruebas ambas.
+Pero están en frascos.",Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA JAMÓN Y QUESO,07020005,106,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CALABAZA,07020000,60,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CALABAZA INTEGRAL,07020007,40,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA HUMITA,07020004,74,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA HUMITA INTEGRAL,07020011,51,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA DE VERDURAS ASADAS,07020002,60,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA VERDURAS ASADAS INTEGRAL,07020009,28,,Cargado en sistema
+4/5/2026 14:14:20,4/5/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA,07020001,31,,Cargado en sistema
+4/5/2026 9:43:25,30/4/2026,Tarde,Raúl,PRODUCCIÓN,E,ACEITUNAS,"AC VE C/C N° 0 x 1,55 KG",05010002,60,,Cargado en sistema
+4/5/2026 9:43:25,30/4/2026,Tarde,Raúl,PRODUCCIÓN,E,ACEITUNAS,"AC VE S/C N° 0 x 1,38 KG",05010006,60,,Cargado en sistema
+4/5/2026 9:43:25,30/4/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,139,,Cargado en sistema
+4/5/2026 9:43:25,30/4/2026,Tarde,Raúl,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,54,Podrido | ,Cargado en sistema
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CAPRESE,07020003,120,,Cargado en sistema
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CALABAZA INTEGRAL,07020007,60,,Cargado en sistema
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA,07020006,60,,Cargado en sistema
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA INTEGRAL,07020012,60,,Cargado en sistema
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CAPRESE INTEGRAL,07020010,60,,Cargado en sistema
+
+4/5/2026 6:16:54,30/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA X 600 GR,07010001,60,,Cargado en sistema
+30/4/2026 18:07:16,30/4/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,93,,Cargado en sistema
+30/4/2026 18:07:16,30/4/2026,Mañana,Dani,REPROCESO (Producto Salvado),E,OTRO,Mermelada tomate,,57,,Cargado en sistema
+30/4/2026 18:07:16,30/4/2026,Mañana,Dani,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,57 tapas,,Asociado a reproceso de: Mermelada tomate,,Cargado en sistema
+30/4/2026 18:07:16,30/4/2026,Mañana,Dani,DECOMISO,S,OTRO,Tomate,,12,,Cargado en sistema
+30/4/2026 18:07:16,30/4/2026,Mañana,Dani,EN PROCESO,-,OTRO,Tomate,,Olla de 30,"Tomate lavado | Había quedado líquida.  |Se hizo la primer prueba de 5 kg de garbanzo en humus de pimiento ahumado. 
+Se dejó 6 kg de garbanzo cocidos en el freezer 
+Lo que demoro mucho la limpieza y el vaciado del producto de la maquina. 
+Se hicieron 3 limpiezas de la máquina por cambios de productos. (Cada proceso de limpieza dura aproximadamente 45 minutos)",Cargado en sistema
+30/4/2026 9:40:52,30/4/2026,Mañana,Any,DECOMISO,S,TARTAS Y TORTILLAS,TORTILLA PAPA X 600 GR,07010001,1,Prueba | ,Cargado en sistema
+30/4/2026 9:40:52,30/4/2026,Mañana,Any,DECOMISO,S,TARTAS Y TORTILLAS,TORTILLA PAPA Y CEB X 600 GR,07010000,1,Prueba | ,Cargado en sistema
+30/4/2026 9:28:49,29/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA JAMÓN Y QUESO,07020005,144,,Cargado en sistema
+30/4/2026 9:28:49,29/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CALABAZA,07020000,100,,Cargado en sistema
+30/4/2026 9:28:49,29/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA HUMITA,07020004,120,,Cargado en sistema
+30/4/2026 9:28:49,29/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA HUMITA INTEGRAL,07020011,58,,Cargado en sistema
+30/4/2026 9:28:49,29/4/2026,Mañana,Any,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CALABAZA INTEGRAL,07020007,60,,Cargado en sistema
+30/4/2026 6:13:07,29/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA X 600 GR,07010001,60,,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,PRODUCCIÓN,E,ACEITUNAS,AC VE C/C N° 00 x 370 GR,05010011,49,,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,PRODUCCIÓN,E,ACEITUNAS,AC VE C/C N° 0 x 370 GR,05010001,44,,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,PRODUCCIÓN,E,SALSAS,TOMATE TRITURADO X 500 GR,08010001,36,,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,117,Se rompió la maxi pimer,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,450,Podrido | Se rompió la maxi pimer,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,DECOMISO,S,VERDURAS,BERENJENAS,10020000,105,Podrido | Se rompió la maxi pimer,Cargado en sistema
+30/4/2026 2:00:45,29/4/2026,Tarde,Raúl,MERMA,S,SALSAS,TOMATE TRITURADO X 940 GR,08010000,5 botellas lote 4-15/279,Se utilizaron en la preparación de viandas | Se rompió la maxi pimer,Cargado en sistema
+29/4/2026 18:03:23,29/4/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,141,Se utilizaron 18 cajones de tomates. Todos en muy mal estado. Se fue seleccionando los apropiados para la mermelada.,Cargado en sistema
+29/4/2026 18:03:23,29/4/2026,Mañana,Dani,DECOMISO,S,OTRO,TOMATE PERITA,10020014,154,Muy podrido | Se utilizaron 18 cajones de tomates. Todos en muy mal estado. Se fue seleccionando los apropiados para la mermelada.,Cargado en sistema
+29/4/2026 18:03:23,29/4/2026,Mañana,Dani,EN PROCESO,-,OTRO,Garbanzo en remojo,,5kg,"Quedo en remojo, para prueba de humus. También se dejo preparado el morrón asado con ajo confitado | Se utilizaron 18 cajones de tomates. Todos en muy mal estado. Se fue seleccionando los apropiados para la mermelada.",Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,129,,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,111,Faltaba líquido...lote reprocesado es del lote 4-8/01 del día 24 del 4 | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas Amanecer 111,,Asociado a reproceso de: MORRONES E/ESCAB X 450 GR,,Cargado en sistema
+
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,OTRO,MORRONES E/ESCAB X 450 GR,,47,Faltaba liquido | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas Amanecer 47,,Asociado a reproceso de: Morrones por 450g,,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,OTRO,Puré tomate botella de 500cc,,111,"Las 111 son del turno mañanadel día 23 del 4 pertenecientes a los lotes 4-15/280 y 4-15/281 y sus ph son 30,915 y 20 ,915 respectivamente...a ambos lotes se les agregó  acido cítrico porce no tenian | ",Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas Botella de Tomate 111,,Asociado a reproceso de: Puré tomate botella de 500cc,,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,OTRO,Frascos de berengenas,,17,Faltaba aceite...lote 4-2/24....se tiraron 4 contenidos de los frascos por infiltración de agua en el proceso de esterilizacion | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas Amanecer 13,,Asociado a reproceso de: Frascos de berengenas,,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,OTRO,Frascos de berenjenas,,9,Faltaba aceite...lote 4-2/24 | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,Tapas Amanecer 9,,Asociado a reproceso de: Frascos de berenjenas,,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,DECOMISO,S,OTRO,Tomate perita,,20kg,Podrido | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,DECOMISO,S,OTRO,Morrón rojo,,11kg,Mal estado | ,Cargado en sistema
+29/4/2026 6:06:42,28/4/2026,Tarde,Raúl,DECOMISO,S,OTRO,Bidón q separa aceitunas x 8k,,1,Se utilizo para contener garbanzos para hidratar para viandas | ,Cargado en sistema
+28/4/2026 16:35:13,28/4/2026,Mañana,Dani,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,148,,Cargado en sistema
+28/4/2026 16:35:13,28/4/2026,Mañana,Dani,DECOMISO,S,OTRO,Tomate perita,,45,Podrido | ,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA,07020001,66,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA ACELGA INTEGRAL,07020008,60,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CAPRESE,07020003,120,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CAPRESE INTEGRAL,07020010,38,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA,07020006,81,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TARTA CEBOLLA CARAMELIZADA INTEGRAL,07020012,55,,Cargado en sistema
+28/4/2026 15:43:42,28/4/2026,Mañana,Ana,DECOMISO,S,OTRO,Tarta de cebolla integral ,,1 unidad ,Pinchada  | ,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,PRODUCCIÓN,E,CONSERVAS,MORRONES E/ESCAB X 450 GR,02030005,146,"Se realizaron opciones para viandas
+Arroz con albóndigas(10)
+Ternera bourgignon con ñoquis soufle(10)
+Guisado de vegetales(10)
+Hamburguesas de lentejas gratinadas con calabaza asada(10)",Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,AC NEG C/C N° 0 x 8 KG,05020003,30,Las aceitunas no estaban sumergidas en la salmuera,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,No,,Asociado a reproceso de: AC NEG C/C N° 0 x 8 KG,,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,"AC NEG C/C N° 0 x 1,55 KG",05020002,37,Aceitunas no sumergidas totalmente en la salmuera,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,No,,"Asociado a reproceso de: AC NEG C/C N° 0 x 1,55 KG",,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,"AC VE C/C N° 0 x 1,55 KG",05010002,60,Aceitunas no estaban totalmente sumergidas en la salmuera,Cargado en sistema
+
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,No,,"Asociado a reproceso de: AC VE C/C N° 0 x 1,55 KG",,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Producto Salvado),E,ACEITUNAS,"AC VE RELL N° 0 x 1,55 KG",05010010,40,Aceitunas no sumergidas totalmente en salmuera,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,REPROCESO (Insumos Gastados),S,INSUMOS EXTRAS,No,,"Asociado a reproceso de: AC VE RELL N° 0 x 1,55 KG",,Cargado en sistema
+27/4/2026 23:53:18,27/4/2026,Tarde,Raúl,DECOMISO,S,OTRO,Tomate perita,,645,Podrido,Cargado en sistema
+24/4/2026 16:34:14,24/4/2026,Tarde,Dani,PRODUCCIÓN,E,PRODUCTO TERMINADO,MERMELADA DE TOMATE X 430 GR,04010007,87,"Se probó receta de pera, no conforme.",Cargado en sistema
+24/4/2026 16:34:14,24/4/2026,Tarde,Dani,DECOMISO,S,INSUMO EXTERNO / OTRO,TOMATE PERITA,10020014,23,"Podrido | Se probó receta de pera, no conforme.",Cargado en sistema
+24/4/2026 16:34:14,24/4/2026,Tarde,Dani,DECOMISO,S,INSUMO EXTERNO / OTRO,Pera ,10030003,5,"Prueba receta | Se probó receta de pera, no conforme.",Cargado en sistema
+24/4/2026 16:34:14,24/4/2026,Tarde,Dani,DECOMISO,S,INSUMO EXTERNO / OTRO,Azucar,10050001,4,"Prueba receta | Se probó receta de pera, no conforme.",Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,PRODUCCIÓN,E,MERMELADAS,MERMELADA DE TOMATE X 430 GR,04010007,151,,Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA X 600 GR,07010001,120,,Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,PRODUCCIÓN,E,TARTAS Y TORTILLAS,TORTILLA PAPA Y CEB X 600 GR,07010000,60,,Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,PRODUCCIÓN,E,SALSAS,TOMATE TRITURADO X 500 GR,08010001,111,,Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,DECOMISO,S,VERDURAS,PAPAS,10020015,23,feas | ,Cargado en sistema
+24/4/2026 8:20:52,24/4/2026,Mañana,Ana,DECOMISO,S,VERDURAS,TOMATE PERITA,10020014,277,Podrido | ,Cargado en sistema
+

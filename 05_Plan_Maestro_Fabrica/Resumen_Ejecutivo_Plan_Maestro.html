@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<script>
+    if (!sessionStorage.getItem('auth_ok')) {
+        let pwd = prompt('Ingrese la contraseña para acceder a Operaciones:');
+        if (pwd === 'SaborPampeanoOperaciones') {
+            sessionStorage.setItem('auth_ok', 'true');
+        } else {
+            document.write('<div style="font-family:sans-serif;text-align:center;margin-top:100px;color:#333;"><h1>Acceso Denegado</h1><p>Contraseña incorrecta.</p></div>');
+            window.stop();
+        }
+    }
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen Ejecutivo — Plan de Acción Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --sp-green: #313B24;
+  --sp-green-mid: #7A8B6B;
+  --sp-green-light: #A4B495;
+  --sp-accent: #C98877;
+  --sp-bg: #F0F2EB;
+  --card-bg: #FFFFFF;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--sp-green);
+  margin: 0; padding: 40px 20px;
+  display: flex; justify-content: center;
+}
+.container {
+  max-width: 800px; width: 100%;
+}
+.header {
+  text-align: center; margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 28px; font-weight: 800; margin-bottom: 8px; color: var(--sp-green);
+}
+.header p {
+  font-size: 14px; color: var(--sp-green-mid);
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(49, 59, 36, 0.05);
+  border-left: 6px solid var(--sp-green-mid);
+}
+.card.done { border-left-color: var(--sp-green-light); opacity: 0.9; }
+.card.now { border-left-color: var(--sp-accent); }
+.card h2 {
+  font-size: 18px; font-weight: 800; margin-top: 0; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.card h2 i { font-size: 20px; }
+.card.now h2 i { color: var(--sp-accent); }
+.checklist {
+  list-style: none; padding: 0; margin: 0;
+}
+.checklist li {
+  font-size: 14px; line-height: 1.5; margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 12px;
+  color: #4A553F;
+}
+.checklist li:last-child { margin-bottom: 0; }
+.checklist li i {
+  font-size: 16px; margin-top: 2px;
+}
+.chk-done i { color: var(--sp-green-light); }
+.chk-pend i { color: #D1D6C9; }
+.chk-act i { color: var(--sp-accent); }
+.badge {
+  display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  background: #F0F2EB; color: var(--sp-green-mid); margin-bottom: 12px;
+}
+.print-btn {
+  display: block; width: 100%; padding: 14px; text-align: center;
+  background: var(--sp-green-mid); color: white; text-decoration: none;
+  font-weight: 600; border-radius: 8px; margin-top: 30px; transition: 0.2s;
+  cursor: pointer; border: none; font-size: 15px; font-family: inherit;
+}
+.print-btn:hover { background: var(--sp-green); }
+
+@media print {
+  body { background: white; padding: 0; }
+  .card { box-shadow: none; border: 1px solid #eee; border-left: 6px solid var(--sp-green-mid); page-break-inside: avoid; }
+  .card.now { border-left-color: var(--sp-accent); }
+  .print-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Resumen Ejecutivo — Plan de Acción</h1>
+    <p>Estado de proyectos y prioridades de fábrica. Sabor Pampeano.</p>
+  </div>
+
+  <div class="card done">
+    <h2><i class="fas fa-clipboard-check"></i> Trabajo Realizado (Últimos 2 Meses)</h2>
+    <div class="badge">Abril - Junio</div>
+    <ul class="checklist">
+      <li class="chk-done"><i class="fas fa-check-square"></i> Gestión de producción operativa ininterrumpida mientras se organizaba la llegada de equipos.</li>
+      <li class="chk-done"><i class="fas fa-check-square"></i> Recepción de máquinas importadas de China (24 de Abril).</li>
+      <li class="chk-done"><i class="fas fa-check-square"></i> Asistencia en montaje de seleccionadora de huevos en el campo (Fábrica de Buratovich - 8 y 12 de Mayo).</li>
+      <li class="chk-done"><i class="fas fa-check-square"></i> Despeje físico de depósito para transformarlo en futura Sala de Rompedora de Huevos.</li>
+      <li class="chk-done"><i class="fas fa-check-square"></i> Reparación de balanzas, resolución de falla térmica en bomba de agua, y coordinación de fumigación.</li>
+      <li class="chk-done"><i class="fas fa-check-square"></i> Cambio de correas y botones en múltiples máquinas (peladora, sobadora, cortadora en proceso).</li>
+    </ul>
+  </div>
+
+  <div class="card now">
+    <h2><i class="fas fa-rocket"></i> FASE 0: Acciones Inmediatas (Esta semana)</h2>
+    <div class="badge">Prioridad Actual</div>
+    <ul class="checklist">
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Nuevo Horno Argental:</strong> Horno rotativo descartado por altura. Evaluar HORNO ROTATIVO FE III-315 (US$ 16,071.67) sujeto a gerencia.</li>
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Línea de Aire Comprimido:</strong> Aprobar a Mega Herrería para hacer la casilla y comprar compresor BTA 7.5HP (tarda 1 semana a Bahía Blanca). Esperar cotización Proing SA.</li>
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Línea Cadec (Tapadora/Llenadora):</strong> Ingresar máquinas a la cocina para ver layout físico y estudiar manuales.</li>
+      <li class="chk-act"><i class="far fa-square"></i> <strong>Estabilizadores Eléctricos:</strong> Exigir a Gabriel el relevamiento eléctrico urgente y definir compra de equipos Solytec.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><i class="fas fa-bolt"></i> FASE 1: Protecciones y Aire</h2>
+    <div class="badge">Depende de Fase 0</div>
+    <ul class="checklist">
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Proteger la Roboqbo:</strong> Instalar los 3 estabilizadores Solytec (Cuello de botella principal).</li>
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Energizar Máquinas:</strong> Instalar red de cañerías de aire comprimido desde el compresor hacia la Tapadora, Llenadora y Rompedora.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><i class="fas fa-hard-hat"></i> FASE 2: Obras y Montaje</h2>
+    <div class="badge">Obras Civiles</div>
+    <ul class="checklist">
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Horno Compacto Argental:</strong> Instalación de modelo de 8 bandejas bajo la campana existente.</li>
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Desagüe Cloacal:</strong> Corrimiento de tubería para liberar tapas de registro antes de poner el módulo de harinas.</li>
+      <li class="chk-pend"><i class="far fa-square"></i> <strong>Módulo Harinas y Sala Rompedora:</strong> Ejecución de obras de infraestructura para áreas segregadas.</li>
+    </ul>
+  </div>
+
+  <button class="print-btn" onclick="window.print()"><i class="fas fa-file-pdf"></i> Guardar como PDF / Imprimir</button>
+</div>
+
+</body>
+</html>

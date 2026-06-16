@@ -1,0 +1,413 @@
+﻿<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; color: #2c2c2c; margin: 0; padding: 0; }
+  h1 { font-size: 18pt; color: #4A5D23; border-bottom: 3px solid #4A5D23; padding-bottom: 6px; margin-top: 20px; page-break-after: avoid; }
+  h2 { font-size: 14pt; color: #5B7A2E; margin-top: 22px; border-bottom: 2px solid #C5D6A0; padding-bottom: 4px; page-break-after: avoid; }
+  h3 { font-size: 12pt; color: #7A6530; margin-top: 16px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #4A5D23; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #4A5D23; color: #ffffff; padding: 6px 8px; text-align: left; font-weight: 600; font-size: 9pt; }
+  td { padding: 5px 8px; border: 1px solid #c8c8c8; color: #333333; }
+  tr:nth-child(even) { background-color: #f4f7ee; }
+  tr:nth-child(odd) { background-color: #ffffff; }
+  pre { background-color: #f5f5ee; color: #333333; padding: 10px 14px; border-radius: 4px; font-size: 9pt; border: 1px solid #d4d4c8; page-break-inside: avoid; font-family: Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; }
+  code { background-color: #eef2e6; padding: 1px 4px; border-radius: 2px; font-size: 9.5pt; font-family: Consolas, monospace; color: #333333; }
+  pre code { background: none; padding: 0; }
+  blockquote { border-left: 4px solid #7A9B3A; margin: 10px 0; padding: 8px 14px; background-color: #f0f4e8; font-size: 9.5pt; page-break-inside: avoid; }
+  blockquote.warn { border-left-color: #C4841D; background-color: #fef8ee; }
+  blockquote.tip { border-left-color: #2E7D6B; background-color: #eef7f4; }
+  blockquote.important { border-left-color: #8B2E2E; background-color: #fdf0f0; }
+  hr { border: none; border-top: 1px solid #C5D6A0; margin: 18px 0; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin: 2px 0; }
+  .doc-header { background-color: #4A5D23; color: #ffffff; padding: 18px 22px; margin-bottom: 18px; border-radius: 4px; }
+  .doc-header h1 { color: #ffffff; border: none; margin: 0; font-size: 18pt; padding: 0; }
+  .doc-header .subtitle { color: #C5D6A0; font-size: 10pt; margin-top: 4px; }
+  .doc-footer { text-align: center; color: #999999; font-size: 8pt; margin-top: 30px; border-top: 1px solid #dddddd; padding-top: 8px; }
+  .gantt-img { width: 100%; max-width: 680px; display: block; margin: 15px auto; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head>
+<body>
+<div class='doc-header'><h1>Plan Maestro de Readecuación - Fábrica Sabor Pampeano</h1><div class='subtitle'>Documento para presentación a Dirección — Abril 2026</div></div>
+<h1>Plan Maestro de Readecuación - Fábrica Sabor Pampeano</h1>
+<h2>Documento para presentación a Dirección — Abril 2026</h2>
+
+<hr>
+<h2>1. Resumen Ejecutivo</h2>
+
+Sabor Pampeano (Bahía Blanca) opera con una cocina de ~140m² (10x14m) en configuración sándwich: Depósito de Materia Prima (MP, derecha) → Cocina → Depósito de Producto Terminado (PT, izquierda). La fábrica produce <strong>44+ SKUs (Unidades de Inventario)</strong> en <strong>4 líneas</strong> con ~11 personas en producción directa. Se incorporan 6 equipos nuevos: <strong>Liofilizadora ORZF-5, Blast Chiller, Autoclave, Llenadora LSL, Tapadora RSL (Cadec)</strong> y <strong>Rompedora de huevos</strong>.
+
+<strong>Objetivo:</strong> Planta eficiente, segura y escalable en <strong>4-6 meses</strong>.
+
+<hr>
+<h2>2. Diagnóstico</h2>
+
+<h3>2.1 Catálogo Completo (44 SKUs)</h3>
+
+<strong>LÍNEA B — Tartas y Tortillas (13 SKUs) | Turno Mañana | ~500 u/turno</strong>
+<table>
+<tr><th>#</th><th>Producto</th><th>Peso</th><th>Variante</th></tr>
+<tr><td>1</td><td>Tarta de Cebolla Caramelizada (con queso)</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>2</td><td>Tarta de Verduras Asadas</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>3</td><td>Tarta de Humita</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>4</td><td>Tarta de Caprese</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>5</td><td>Tarta de Acelga</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>6</td><td>Tarta de Calabaza, Cebolla y Curry</td><td>500g</td><td>Común + Integral</td></tr>
+<tr><td>13</td><td>Tortilla de Papa</td><td>600g</td><td>—</td></tr>
+</table>
+
+<strong>LÍNEA A — Envasados en Frasco (16 SKUs) | Turno Mañana y Tarde (línea operativa la mayor cantidad de tiempo posible)</strong>
+<table>
+<tr><th>Grupo</th><th>Productos</th><th>Peso</th></tr>
+<tr><td>Mermeladas (7)</td><td>Ciruela, Frutilla, Frutos Rojos BC, Higo, Pera, Durazno, Tomate</td><td>215-450g</td></tr>
+<tr><td>Escabeches (4)</td><td>Berenjenas, Morrón, Poroto Colorado, Lentejas</td><td>330-450g</td></tr>
+<tr><td>Hummus/Paté (4)</td><td>Garbanzo, Pimientos, Remolacha, Paté Zanahoria</td><td>215-220g</td></tr>
+<tr><td>Salsas (1)</td><td>Tomate Perita Triturado</td><td>940g</td></tr>
+</table>
+
+<blockquote><strong>NOTA:</strong>
+<strong>Producción no continua:</strong> No todos los productos se fabrican permanentemente. Depende de estación y stock de seguridad. Ej: si quedan pocas berenjenas en escabeche → se analiza detener otra producción para hacer lotes.<br>
+<strong>Roboqbo:</strong> Uso principal para mermeladas y hummus. El hummus es muy espeso y complica el envasado posterior (posible cuello de botella en la bomba/llenadora).<br>
+
+<strong>LÍNEA D — Aceitunas y Aceites (13 SKUs)</strong>
+<table>
+<tr><th>Grupo</th><th>Productos</th><th>Presentación</th><th>Notas</th></tr>
+<tr><td>Aceitunas frasco chico (5)</td><td>Negras/Verdes, varios calibres</td><td>400g</td><td>Envasado manual en cocina</td></tr>
+<tr><td>Aceitunas garrafa chica (1)</td><td>—</td><td>1.55kg</td><td>Envasado manual en cocina</td></tr>
+<tr><td>Aceitunas garrafa grande (2)</td><td>Negras rodajas + otra</td><td>8kg</td><td>Envasado manual en cocina</td></tr>
+<tr><td>Aceites Oliva (4)</td><td>Extra Virgen, distintas presentaciones</td><td>250ml / 3L</td><td>Llegan envasados, solo etiquetado</td></tr>
+<tr><td>Aceite Saborizado (1)</td><td>1 variedad</td><td>250ml</td><td>Llega envasado, solo etiquetado</td></tr>
+</table>
+
+<blockquote class="warn"><strong>ATENCI&Oacute;N:</strong>
+<strong>Aceitunas se envasan A MANO.</strong> No se puede usar la tapadora Cadec.<br>
+<strong>Aceites:</strong> Llegan ya envasados de origen. Solo se etiquetan. No pasan por la cocina, van directo al área de etiquetado en depósito de Producto Terminado.<br>
+
+<strong>VIANDAS (2 SKUs, inactivas):</strong> Wok de Vegetales, Crepes Rellenos (sous vide).
+
+<strong>HUEVOS:</strong> Solo distribución. Producidos en planta Buratovich → llegan en maples etiquetados → almacén en depósito PT → distribución.
+
+<h3>2.2 Problemas Críticos</h3>
+
+1. <strong>Conocimiento no documentado:</strong> Procesos en la cabeza de la jefa de cocina turno mañana
+2. <strong>Sin pasillos de circulación:</strong> Entrada/salida 1.5m, sin caminos definidos
+3. <strong>Bromatología vulnerable:</strong> Habilitación vigente pero con puntos de falla
+4. <strong>Tango mal configurado:</strong> No registra cantidades < 0,0001 → discrepancias stock
+5. <strong>Sin POES (Procedimientos Operativos Estandarizados de Saneamiento) formales:</strong> Limpieza sin procedimientos escritos
+6. <strong>Equipamiento nuevo sin integrar:</strong> 6 máquinas por ubicar en espacio limitado
+7. <strong>Optimizar protocolos de inspección de Control de Calidad (QC):</strong> Definir formalmente cuándo y cómo se realizan los controles de cada producto, frecuencias de muestreo y criterios de aceptación/rechazo
+8. <strong>Etiquetado limitado por herramientas:</strong> El proceso de etiquetado en depósito de Producto Terminado se ve afectado por una etiquetadora fuera de servicio (requiere reparación + etiquetas correctas) y faltantes de insumos (etiquetas). La estandarización del proceso y la reparación del equipo permitirán mejorar significativamente los tiempos
+9. <strong>Transporte de Materia Prima sin estandarizar:</strong> La MP llega pelada y limpia a cocina, pero se transporta en ollas sin tapa → riesgo de contaminación
+10. <strong>Sin plan de mantenimiento:</strong> No existe programa de mantenimiento preventivo ni predictivo para los equipos. Se busca técnico electromecánico para diseñar e implementar el plan completo (preventivo + correctivo + predictivo)
+11. <strong>Depósito de Producto Terminado:</strong> Pendiente verificar organización y distribución del espacio. Hay lugar disponible pero posiblemente mal utilizado
+
+<h3>2.3 Equipamiento</h3>
+
+<strong>Dentro de cocina:</strong>
+<table>
+<tr><th>Equipo</th><th>Función/Notas</th></tr>
+<tr><td>Roboqbo QBO 25-4</td><td>25L, 120°C, vacío. Foco: mermeladas y hummus</td></tr>
+<tr><td>Rational</td><td>Horno combi programable — tartas/tortillas</td></tr>
+<tr><td>Horno pizzero</td><td>Tartas/tortillas</td></tr>
+<tr><td>4x Anafes</td><td>Dorar cebollas/verduras para rellenos de tartas</td></tr>
+<tr><td>Freidora</td><td>Freír papas para tortillas de papa</td></tr>
+<tr><td>2x Sous vide</td><td>Viandas (inactivos)</td></tr>
+<tr><td>Amasadora</td><td>Masa de tartas</td></tr>
+<tr><td>Sobadora/Laminadora</td><td>Aplana masa (sobre Mesada 225x65)</td></tr>
+<tr><td>Enfriadora rápida</td><td>Junto al Rational y Turbovar — enfriamiento tartas/tortillas</td></tr>
+<tr><td>2x Turbovar</td><td>Sellado vacío tartas/tortillas</td></tr>
+<tr><td>Bachas</td><td>Lavado de utensilios</td></tr>
+<tr><td>Mesadas</td><td>180x90 (varias, zona hornos/tartas), 300x90 (centro), 225x65 (sobadora)</td></tr>
+<tr><td>Estanterías</td><td>Condimentos y suministros de cocina</td></tr>
+<tr><td>Bomba elevadora + manguera</td><td>Trasiego Roboqbo → Llenadora. <strong>⚠️ Sin verificar especificaciones</strong></td></tr>
+</table>
+
+<strong>Fuera de cocina:</strong>
+<table>
+<tr><th>Equipo</th><th>Ubicación</th></tr>
+<tr><td>Compresor 3HP/200L</td><td>Exterior, en estructura metálica con techo y paredes rebatibles. <strong>⚠️ Seleccionado para Cadec únicamente — verificar requerimientos del Autoclave</strong></td></tr>
+<tr><td>Selladora</td><td>Depósito PT</td></tr>
+<tr><td>2x Etiquetadoras</td><td>Depósito PT (1 requiere reparación + insumos correctos)</td></tr>
+<tr><td>Cámara frigorífica</td><td>Externa a cocina (tartas/tortillas)</td></tr>
+<tr><td>Rompedora de huevos</td><td>Habitación 2.5x2.5m (a adecuar)</td></tr>
+</table>
+
+<strong>A REMOVER de cocina (~6-7m² liberados):</strong>
+<li>4x Freezers → Depósito MP</li>
+
+<strong>A incorporar:</strong>
+<table>
+<tr><th>Equipo</th><th>Dimensiones</th><th>Función</th></tr>
+<tr><td>LSL Llenadora (Cadec)</td><td>~120x95x120cm</td><td>Tolva <strong>60L</strong> (2+ batches Roboqbo)</td></tr>
+<tr><td>RSL Tapadora (Cadec)</td><td>~similar</td><td>Tapado automático (NO para aceitunas)</td></tr>
+<tr><td>Liofilizadora ORZF-5</td><td>320x160x190cm</td><td>50kg/batch, 24 bandejas, 380V, ciclos 24-48hs</td></tr>
+<tr><td>Blast Chiller</td><td>120x100x220cm</td><td><strong>Exclusivo Línea C:</strong> pre-enfriamiento para liofilización (junto a Liofilizadora)</td></tr>
+<tr><td>Autoclave</td><td>140x115x200cm</td><td>Esterilización post-envasado, vapor autónomo</td></tr>
+</table>
+
+<hr>
+<h2>3. Líneas de Producción</h2>
+
+<h3>3.1 LÍNEA A — Envasados en Frasco (16 SKUs)</h3>
+
+<pre><code>MP → Preparación → ROBOQBO (25L) → Bomba → LSL Llenadora (tolva 60L) → RSL Tapadora
+→ AUTOCLAVE → Enfriamiento → REVISIÓN QC → LIBERADO / REPROCESO / DECOMISO
+→ Depósito PT → Etiquetado → Despacho
+</code></pre>
+
+<strong>Semi-continuo:</strong> Tolva 60L = Roboqbo arranca batch 2 mientras se envasa batch 1.
+
+<blockquote class="warn"><strong>ATENCI&Oacute;N:</strong>
+<strong>Hummus:</strong> Producto muy espeso, puede complicar el trasiego por bomba y el llenado. Verificar que la bomba y la LSL soporten esta viscosidad.<br>
+
+<strong>Operativa de QC:</strong>
+<li><strong>Liberado:</strong> Producto aprobado → pasa a etiquetado en depósito PT</li>
+<li><strong>Reproceso:</strong> Producto con falla recuperable → se reprocesa en el <strong>turno siguiente</strong> correspondiente</li>
+<li><strong>Decomiso:</strong> Producto irrecuperable → descarte inmediato. Frascos → limpieza → esterilización → reutilización</li>
+
+<h3>3.2 LÍNEA B — Tartas y Tortillas (13 SKUs)</h3>
+
+<pre><code>Huevos (Rompedora, hab. separada) + MP pelada (en recipientes tapados)
+→ Amasadora → SOBADORA → Mesada 225x65 (corte manual)
+→ En paralelo: ANAFES (dorar verduras/cebollas) + FREIDORA (papas p/tortilla)
+→ Armado/relleno en mesadas → HORNO (Rational + Pizzero simultáneo)
+→ ENFRIADORA RÁPIDA (junto al Rational) → 2x TURBOVAR (sellado vacío)
+→ [¿Etiquetado inline?] → Cámara fría (externa) → PT
+</code></pre>
+
+<blockquote class="tip"><strong>SUGERENCIA:</strong>
+<strong>Propuesta para evaluar:</strong> Si el % de rechazo QC de tartas es bajo, conviene etiquetar inmediatamente después del Turbovar (inline) y enviar directo a cámara fría. QC se hace en cámara. <strong>Analizar costo de etiquetas perdidas vs. costo de etiquetar aparte.</strong><br>
+
+<h3>3.3 LÍNEA C — Liofilizados (NUEVA)</h3>
+
+<pre><code>Producto preparado → BLAST CHILLER (-40°C) → LIOFILIZADORA ORZF-5 (24-48hs) → Envasado → PT
+</code></pre>
+
+<strong>Capacidad:</strong> 50kg/batch, ~100-150kg/semana.
+<strong>Equipos dedicados:</strong> El Blast Chiller es de uso exclusivo para esta línea (tartas usan la enfriadora rápida existente).
+
+<h3>3.4 LÍNEA D — Aceitunas y Aceites (13 SKUs)</h3>
+
+<pre><code>Aceitunas: MP → Envasado A MANO → Tapado manual → Etiquetado → PT
+Aceites: Llegan ya envasados → Directo a depósito PT → Etiquetado → Despacho
+</code></pre>
+
+<strong>Aceitunas:</strong> Producción esporádica, envasado manual en cocina.
+<strong>Aceites:</strong> NO pasan por la cocina. Llegan envasados de origen, se reciben en depósito y solo se etiquetan.
+
+<h3>3.5 ROMPEDORA DE HUEVOS (Habitación dedicada 2.5x2.5m)</h3>
+
+<pre><code>Maples huevos (Buratovich) → ROMPEDORA → Huevo líquido → Cocina (insumo Línea B)
+</code></pre>
+
+Adecuación: revestimiento sanitario, bacha, ventilación. Zona sucia aislada (Salmonella).
+
+<hr>
+<h2>4. Layout</h2>
+
+<h3>4.1 Reglas de Oro</h3>
+
+1. <strong>Flujo unidireccional:</strong> MP (derecha) → Proceso → PT (izquierda)
+2. <strong>Zonificación:</strong> Sucia → Intermedia → Limpia
+3. <strong>Pasillos ≥ 1.2m</strong> para circulación con carros
+4. <strong>Transporte MP estandarizado:</strong> Recipientes tapados para verdura pelada
+5. <strong>Canaletas de desagüe:</strong> Verificar que no queden obstruidas por equipos. Deben permanecer accesibles para limpieza y uso
+6. <strong>Mesadas con estante inferior:</strong> Proponer instalar estantes a media altura debajo de las mesadas para almacenar utensilios o insumos según corresponda (optimiza espacio vertical sin ocupar piso)
+
+<h3>4.2 Distribución según CAD (abril 2026)</h3>
+
+<strong>Pared inferior — Línea A (der→izq, flujo MP→PT):</strong>
+<pre><code>[ROBOQBO]→[Bomba]→[LSL Llenadora]→[RSL Tapadora]→[AUTOCLAVE]
+                    ↑ 80cm paso/limpieza ↓
+                [Mesada 300x90 (centro cocina)]
+</code></pre>
+
+<strong>Pared derecha — Línea B prep + Línea C:</strong>
+<pre><code>[AMASADORA]→[SOBADORA + Mesada 225x65]→[ESTANTERÍA]
+                                        [LIOFILIZADORA (centro)]
+                                        [BLAST CHILLER (esquina sup.der)]
+</code></pre>
+
+<strong>Pared de fondo (izq→der) — Cocción Línea B:</strong>
+<pre><code>[RATIONAL]—[FREIDORA]—[HORNO PIZZERO]—[4x ANAFES]—[SOUS VIDE]
+[Mesadas 180x90 (varias, zona trabajo tartas)]—[BACHA]
+</code></pre>
+
+<strong>Zona superior izquierda — Enfriamiento + sellado Línea B:</strong>
+<pre><code>[ENFRIADORA RÁPIDA (junto a Rational)]→[2x TURBOVAR]→Cámara fría (ext.)
+</code></pre>
+
+<strong>Zona izquierda — QC + PT:</strong>
+<pre><code>[Revisión]→[Liberado]→[Etiquetado]→Despacho
+[Reproceso][Decomiso]  [Selladora]
+</code></pre>
+
+<strong>Exterior:</strong>
+<li>Compresor 3HP/200L: estructura metálica protegida</li>
+<li>Rompedora de huevos: habitación 2.5x2.5m</li>
+<li>Freezers: por reubicar (depósito MP u otro espacio)</li>
+
+<strong>Líneas punteadas celestes en CAD = zonas de circulación</strong> concéntricas a cada máquina/elemento.
+
+<h3>4.3 Flujo de Etiquetado (Depósito PT)</h3>
+
+<pre><code>Producto liberado (cocina) → DEPÓSITO PT → Selladora → Etiquetadoras → Despacho
+Aceites (llegan envasados) → DEPÓSITO PT → Etiquetadoras → Despacho
+</code></pre>
+
+<blockquote><strong>NOTA:</strong>
+<strong>Oportunidad de mejora:</strong> El proceso de etiquetado se puede optimizar mediante:<br>
+1. Reparar la etiquetadora fuera de servicio + conseguir etiquetas correctas<br>
+2. Estandarizar el proceso de etiquetado (procedimiento + tiempos)<br>
+3. Evaluar etiquetado inline para tartas (propuesta sección 3.2)<br>
+4. Asegurar abastecimiento continuo de etiquetas<br>
+
+<hr>
+<h2>5. Rol de la Ingeniera en Alimentos</h2>
+
+<h3>5.1 Disponibilidad: 5hs/día (2.5h mañana + 2.5h tarde)</h3>
+
+<h3>5.2 Protocolo QC Diario</h3>
+
+<strong>MAÑANA (2.5 hs) — Foco Línea B</strong>
+
+<table>
+<tr><th>Actividad</th><th>Duración</th></tr>
+<tr><td>Verificación pre-operacional: POES, checklist limpieza</td><td>15 min</td></tr>
+<tr><td>Control primer batch tartas: peso, visual, temp. centro, sellado</td><td>30 min</td></tr>
+<tr><td>Revisión registros producción día anterior</td><td>30 min</td></tr>
+<tr><td>Muestreo aleatorio segundo batch</td><td>30 min</td></tr>
+<tr><td>Trabajo documental: HACCP, recetas, POES</td><td>45 min</td></tr>
+</table>
+
+<strong>TARDE (2.5 hs) — Foco Línea A</strong>
+
+<table>
+<tr><th>Actividad</th><th>Duración</th></tr>
+<tr><td>Verificación inicio turno: POES, equipos</td><td>15 min</td></tr>
+<tr><td>Control batch Roboqbo: temp., textura, color, pH (escabeches)</td><td>30 min</td></tr>
+<tr><td>Control post-autoclave: sellado, vacío, etiquetado</td><td>30 min</td></tr>
+<tr><td>Revisión Liberado/Reproceso/Decomiso</td><td>30 min</td></tr>
+<tr><td>Documentación + capacitación puntual</td><td>45 min</td></tr>
+</table>
+
+<h3>5.3 Principio de Delegación</h3>
+
+<strong>La Ing. diseña los protocolos y audita. Los jefes de cocina ejecutan los controles.</strong>
+<li>Jefes firman checklist pre-operacional al inicio de turno</li>
+<li>Jefes registran temperatura y peso por batch</li>
+<li>Jefes separan producto sospechoso → Ing. valida decisión</li>
+<li>Esto maximiza las 5hs: menos piso, más diseño de sistemas</li>
+
+<hr>
+<h2>6. Ítems Pendientes de Verificación</h2>
+
+<table>
+<tr><th>Ítem</th><th>Responsable</th><th>Prioridad</th></tr>
+<tr><td>Bomba elevadora: ¿especificaciones adecuadas para viscosidad hummus?</td><td>Juan Manuel + proveedor</td><td>Alta</td></tr>
+<tr><td>Compresor 3HP/200L: ¿suficiente para Autoclave + Cadec?</td><td>Electricista/proveedor autoclave</td><td>Alta</td></tr>
+<tr><td>Etiquetadora: reparación + stock de etiquetas correctas</td><td>Juan Manuel</td><td>Alta</td></tr>
+<tr><td>% rechazo QC tartas: medir para evaluar etiquetado inline</td><td>Ing. Alimentos</td><td>Media</td></tr>
+<tr><td>Aceites: ¿vale la pena usar LSL o mantener manual?</td><td>Juan Manuel</td><td>Baja</td></tr>
+<tr><td>Contratación técnico electromecánico (mant. preventivo/correctivo/predictivo)</td><td>Juan Manuel</td><td>Alta</td></tr>
+</table>
+
+<hr>
+<h2>7. Plan de Ejecución</h2>
+
+<h3>FASE 0 — PLAN (Esta semana)</h3>
+Shadowing ambos turnos, relevamiento, presentación al dueño.
+
+<h3>FASE 1 — QUICK WINS (Sem. 2-4) | Bajo costo</h3>
+&#9744; 5S en cocina + sacar 4 freezers a MP (~6m² liberados)
+&#9744; Demarcación pisos, señalética
+&#9744; POES escritos + plastificados al lado de cada máquina
+&#9744; Protocolo QC de la Ing. implementado
+&#9744; Primeras 5 recetas estandarizadas
+&#9744; Estandarizar transporte MP: recipientes tapados para verdura pelada
+&#9744; Reparar etiquetadora + resolver faltante etiquetas
+&#9744; Estandarizar proceso de etiquetado (procedimiento + tiempos)
+&#9744; Medir % rechazo QC tartas (baseline para propuesta etiquetado inline)
+&#9744; Iniciar búsqueda de técnico electromecánico para mantenimiento
+
+<h3>FASE 2 — EQUIPOS (Sem. 4-8) | Alto (ya adquiridos)</h3>
+&#9744; Consulta electricista industrial
+&#9744; Verificar compresor para Autoclave (actualmente solo para Cadec)
+&#9744; Verificar bomba elevadora (viscosidad hummus)
+&#9744; Instalar línea Cadec + Autoclave
+&#9744; Instalar Blast Chiller + Liofilizadora
+&#9744; Adecuar habitación Rompedora
+&#9744; Estructura exterior compresor
+&#9744; Pruebas línea completa
+
+<h3>FASE 3 — ESTANDARIZACIÓN (Sem. 6-12)</h3>
+&#9744; Documentar 44 recetas con parámetros exactos
+&#9744; Manuales de operación plastificados
+&#9744; Capacitación ambos turnos
+&#9744; Plan HACCP (Análisis de Peligros y Puntos Críticos de Control)
+&#9744; Corregir Tango (unidades problemáticas)
+&#9744; Implementar registro producción diario
+&#9744; Estandarizar proceso de pelado y control mermas MP
+&#9744; <strong>Plan de mantenimiento preventivo</strong> (con técnico electromecánico): fichas por equipo, frecuencias, repuestos críticos
+
+<h3>FASE 4 — OPTIMIZACIÓN (Sem. 12-24)</h3>
+&#9744; Análisis datos producción
+&#9744; Desarrollo liofilizados (Investigación y Desarrollo)
+&#9744; Evaluar etiquetado inline tartas (si datos Fase 1 lo justifican)
+&#9744; Auditoría bromatológica formal
+&#9744; Mejora continua: reunión semanal 15 min
+&#9744; <strong>Mantenimiento predictivo:</strong> implementar con datos del técnico electromecánico
+
+<hr>
+<h2>8. Organigrama</h2>
+
+<pre><code>                        DUEÑO
+                          │
+                 ┌────────┴────────┐
+                 │                 │
+          Jefe de Operaciones   Administración
+         (Juan Manuel Grasso)  (Contador, Economista,
+                 │              Facturación, Pagos,
+        ┌────────┼──────────┐   Compras prod.,
+        │        │          │   Compras no-prod.)
+   Producción  Logística  Calidad
+        │        │        (Ing. Alimentos, 5hs/día)
+   ┌────┴────┐   │
+T.Mañana  T.Tarde  Enc. Logística
+(5 pers)  (4 pers) Enc. Depósito + 3 pers
+ 2 pers (medio turno)    (etiquetado/cajas)
+ 2 pers limpieza
+</code></pre>
+
+<h2>9. Normativa</h2>
+
+<table>
+<tr><th>Normativa</th><th>Estado</th><th>Acción</th></tr>
+<tr><td>CAA (Código Alimentario Argentino)</td><td>Habilitado con riesgos</td><td>Auditoría Fase 1</td></tr>
+<tr><td>SENASA 233/98 (Procedimientos Operativos Estandarizados de Saneamiento)</td><td>No tiene</td><td>Redactar Fase 1</td></tr>
+<tr><td>GMC 80/96 (Buenas Prácticas de Manufactura - MERCOSUR)</td><td>Parcial</td><td>Fase 3</td></tr>
+<tr><td>Bromatología Municipal</td><td>Vulnerable</td><td>Reforzar Fase 1</td></tr>
+</table>
+
+<h2>10. KPIs</h2>
+
+<table>
+<tr><th>KPI</th><th>Hoy</th><th>Meta 6 meses</th></tr>
+<tr><td>Tartas+Tortillas/turno</td><td>~500</td><td>550+</td></tr>
+<tr><td>% Merma MP</td><td>Sin medir</td><td>-20%</td></tr>
+<tr><td>% Rechazo producto</td><td>Sin medir</td><td>< 2%</td></tr>
+<tr><td>Cumplimiento POES (Proc. Operativos Estand. de Saneamiento)</td><td>0%</td><td>100%</td></tr>
+<tr><td>Recetas documentadas</td><td>0</td><td>100% (44)</td></tr>
+<tr><td>Frascos/hora Línea A</td><td>Manual</td><td>Medir y optimizar</td></tr>
+<tr><td>Liofilizados kg/sem</td><td>0</td><td>100-150kg</td></tr>
+<tr><td>Proceso etiquetado estandarizado</td><td>No</td><td>Sí (con máquina reparada + procedimiento)</td></tr>
+<tr><td>Plan mantenimiento preventivo</td><td>No existe</td><td>Implementado (fichas por equipo)</td></tr>
+</table>
+
+<div class="doc-footer">Sabor Pampeano &mdash; Plan Maestro de Readecuaci&oacute;n &mdash; Abril 2026</div>
+</body>
+</html>

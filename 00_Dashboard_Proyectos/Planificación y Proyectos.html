@@ -554,26 +554,34 @@ async function changePriority(projKey) {
         return;
     }
     
+    let savedLocally = false;
+    
+    // Intento 1: Servidor Local Invisible
     try {
-        try {
-        let savedLocally = false;
-        try {
-            const res = await fetch('http://localhost:8080/api/update-priority', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ projKey: projKey, newPri: newPri })
-            });
-            if (res.ok) {
-                savedLocally = true;
-                alert("¡Criticidad actualizada automáticamente en segundo plano! Sincronizando con el Plan Maestro...");
-                location.reload();
-            }
-        } catch(err) {
-            // Server not running or fetch failed, fallback below
+        const res = await fetch('http://localhost:8080/api/update-priority', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ projKey: projKey, newPri: newPri })
+        });
+        if (res.ok) {
+            savedLocally = true;
+            alert("¡Criticidad actualizada automáticamente de fondo!");
+            location.reload();
+            return;
+        }
+    } catch(err) {
+        // Servidor no responde (estamos en celular o el servidor está apagado)
+        console.log("Servidor local no disponible, pasando a Plan B...");
+    }
+    
+    // Intento 2: Edición manual si el servidor no está (sólo funciona en PC moderna)
+    if (!savedLocally) {
+        if (!window.showOpenFilePicker) {
+            alert("❌ Estás en un celular o navegador remoto que no soporta edición directa. Para editar criticidades, abrí el Dashboard en tu computadora principal con el servidor prendido.");
+            return;
         }
         
-        if (!savedLocally) {
-            // Fallback: Si el servidor invisible de python no está corriendo, pedimos permiso manual
+        try {
             const [handle] = await window.showOpenFilePicker({
                 types: [{description: 'Archivo HTML del Dashboard', accept: {'text/html': ['.html']}}],
                 multiple: false
@@ -581,7 +589,7 @@ async function changePriority(projKey) {
             const file = await handle.getFile();
             let content = await file.text();
             
-            let regex = new RegExp(`(${projKey}:\\{.*?(?:badge:.*?|ref:.*?))priority:\\s*\\d+(,\\s*tabs:)`, 'g');
+            let regex = new RegExp(`(${projKey}:\{.*?(?:badge:.*?|ref:.*?))priority:\s*\d+(,\s*tabs:)`, 'g');
             let newContent = content.replace(regex, `$1priority:${newPri}$2`);
             
             if (content === newContent) {
@@ -593,11 +601,11 @@ async function changePriority(projKey) {
             await writable.write(newContent);
             await writable.close();
             
-            alert("¡Criticidad actualizada manualmente! Sincronizando con el Plan Maestro...");
+            alert("¡Criticidad actualizada manualmente!");
             location.reload();
+        } catch (e) {
+            if(e.name !== 'AbortError') alert("Error al guardar: " + e.message);
         }
-    } catch (e) {
-        if(e.name !== 'AbortError') alert("Error al guardar: " + e.message);
     }
 }
 

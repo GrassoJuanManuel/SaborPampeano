@@ -17,12 +17,15 @@
     }
 
 async function openFolder(folderPath) {
-    if (window.location.protocol === 'https:' || window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        alert("❌ Las carpetas y archivos locales de Windows no se pueden abrir desde el celular o desde internet. Abrí el Dashboard en la PC de Sabor Pampeano.");
+    // Si estamos en internet (GitHub Pages o celular), abrimos el repositorio de GitHub para ver los archivos
+    if (window.location.protocol === 'https:' || (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+        // Limpiamos la ruta por si tiene ../
+        let cleanPath = folderPath.replace(/^(\.\.\/)+/, '');
+        window.open('https://github.com/GrassoJuanManuel/SaborPampeano/tree/main/' + cleanPath, '_blank');
         return;
     }
     
-    // Si estamos en localhost, le pedimos al servidor Python que abra la carpeta
+    // Si estamos en localhost, le pedimos al servidor Python que abra la carpeta local
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         try {
             await fetch('http://localhost:8080/api/open-folder', {
@@ -32,11 +35,12 @@ async function openFolder(folderPath) {
             });
         } catch(e) {
             console.log("No se pudo contactar al servidor para abrir la carpeta.");
-            window.open(folderPath, '_blank');
+            // Fallback a file protocol local relativo
+            window.open('../' + folderPath, '_blank');
         }
     } else {
-        // Estamos en file:///
-        window.open(folderPath, '_blank');
+        // Estamos en file:/// local, abrimos relativo al directorio raíz
+        window.open('../' + folderPath, '_blank');
     }
 }
 </script>

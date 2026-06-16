@@ -609,7 +609,7 @@ desague:{title:'Readecuación Desagüe Cloacal',ref:'Obra 5 — A Cotizar',badge
 <div class="info-box"><h4><i class="fas fa-lightbulb"></i> Concepto de la Obra</h4><ul><li>Corrimiento ~2m a la derecha.</li><li>Se diseña previendo la Ampliación Trasera (Obra 4).</li><li><strong>Recomendación:</strong> Dejar derivaciones "ciegas" de PVC hacia el fondo para la ampliación futura.</li></ul>
     
   </div>`,
-'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">28-May-2026</div><div class="tl-text">Se acordó derivar desagües a un proyecto general de planta.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text">Se define necesidad de correr cloaca 2m. Falta cotizar.</div></div></div></div>`}},
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">28-May-2026</div><div class="tl-text">Se acordó derivar desagües a un proyecto general de planta.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text">Se define necesidad de correr cloaca 2m.</div></div><div class="tl-item"><div class="tl-date">16-Jun-2026</div><div class="tl-text">Gabriel envía presupuesto de Mano de Obra ($8.450.000). Pendiente evaluar y materiales.</div></div></div></div>`}},
 
 argental:{title:'Horno Compacto Argental (8 bandejas)',ref:'Evaluación de Horno',badge:'<span class="badge b-prog"><i class="fas fa-fire-burner"></i> Reevaluando</span>',priority:4,tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Ampliar la capacidad productiva de tartas y poder procesar empanadas, instalando un nuevo horno en la cocina.</p></div>
@@ -638,9 +638,19 @@ rompedora:{title:'Adecuación Sala Rompedora de Huevos',ref:'SP-OC-2026-001 — 
   </div>
   <div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><button class="open-folder" onclick="openFolder(\'01_Proyectos/03_Sala_Rompedora_Huevos/\')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></div>`}},
 
-harinas:{title:'Módulo Exterior Harinas / TACC-free',ref:'SP-OC-2026-004',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span>',priority:3,tabs:{
+harinas:{title:'Módulo Exterior Harinas / TACC-free',ref:'SP-OC-2026-004',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span>',priority:3,budget: [
+    {
+      name: 'Instalación Módulo y Servicios',
+      items: [
+        { desc: 'Electricidad M.O.: $1.020.000', miss: false },
+        { desc: 'Plomería M.O.: $420.000', miss: false },
+        { desc: 'Placas aislantes, puerta, A/A, estructura', miss: true }
+      ],
+      total: '$1.440.000 + Estructura (Gabriel) + Materiales'
+    }
+  ],tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Módulo 4×4×2.8m exterior para zona TACC-free. Amasado + línea empanadas + cortadora.</p></div>
-<div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><ul><li>Estructura metálica en proceso de fabricación por la metalúrgica de Gabriel (es su responsabilidad).</li><li>Electricidad M.O.: $1.020.000 ARS.</li><li>Plomería M.O.: $420.000 ARS.</li><li><strong>CUELLO DE BOTELLA:</strong> Placas aislantes demoran 30 días.</li><li>Depende de la obra cloacal (Obra 5).</li></ul>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><ul><li>Estructura metálica en proceso de fabricación por la metalúrgica de Gabriel (es su responsabilidad).</li><li>Se recibieron los presupuestos formales de Mano de Obra para plomería y electricidad.</li><li><strong>CUELLO DE BOTELLA:</strong> Placas aislantes demoran 30 días.</li><li>Depende de la obra cloacal (Obra 5).</li></ul>
     
   </div>
 <div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li>Confirmar con Bruno/Juan el pago de placas aislantes.</li><li>Cotizar puerta, cortina PVC y aire acondicionado.</li><li>Confirmar método de construcción por partes.</li></ul>

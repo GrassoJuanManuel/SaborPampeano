@@ -404,7 +404,19 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
     <div class="pcard" onclick="detail('harinas')" data-priority="3" data-name="Módulo Harinas"><div class="card-top"><h3>Módulo Exterior Harinas / TACC-free</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Comprando</span></div><p class="card-desc">Metalúrgica pagada. CUELLO DE BOTELLA: Placas demoran 30 días. Depende de obra cloacal.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:30%"></div></div></div>
     <div class="pcard" onclick="detail('maqnuevas')" data-priority="2" data-name="Máquinas Nuevas"><div class="card-top"><h3>Máquinas Nuevas de Producción</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span></div><p class="card-desc">Horno Rotativo, Sobadora Pesada, Cortadora Spiing MCD2.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:25%"></div></div></div>
     <div class="pcard" onclick="detail('empanadas')" data-priority="2" data-name="Línea Empanadas"><div class="card-top"><h3>Línea Empanadas (G) + B2C Tapas</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span></div><p class="card-desc">Línea continua 100% automática. Empanadas semicongeladas + venta tapas crudas.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:30%"></div></div></div>
-    <div class="pcard" onclick="detail('maquinas')" data-priority="1" data-name="Instalación Máquinas"><div class="card-top"><h3>Instalación Máquinas Existentes</h3><span class="badge b-prog"><i class="fas fa-tools"></i> En Progreso</span></div><p class="card-desc">Llenadora y Tapadora en cocina (pruebas con compresor temporal). Autoclave pendiente de reubicar freezers.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:35%"></div></div></div>
+    
+    <div class="pcard" onclick="detail('transformador')" data-priority="1" data-name="Transformador T3">
+      <div class="card-top">
+        <h3>Repotenciación Tarifa 3 (400kVA)</h3>
+        <span class="badge b-crit"><i class="fas fa-bolt"></i> Urgente</span>
+      </div>
+      <p class="card-desc">Cambio de transformador a 400kVA (110kW). Reunión martes c/ Gustavo.</p>
+      <div class="card-footer">
+        <div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div>
+      </div>
+      <div class="progress"><div class="fill" style="width:20%"></div></div>
+    </div>
+<div class="pcard" onclick="detail('maquinas')" data-priority="1" data-name="Instalación Máquinas"><div class="card-top"><h3>Instalación Máquinas Existentes</h3><span class="badge b-prog"><i class="fas fa-tools"></i> En Progreso</span></div><p class="card-desc">Llenadora y Tapadora en cocina (pruebas con compresor temporal). Autoclave pendiente de reubicar freezers.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:35%"></div></div></div>
     <div class="pcard" onclick="detail('ampliacion')" data-priority="1" data-name="Ampliación Fábrica"><div class="card-top"><h3>Ampliación de Fábrica</h3><span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span></div><p class="card-desc">Ampliación trasera para máquinas chinas de huevo líquido y posible 2da liofilizadora.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:10%"></div></div></div>
   </div>
 </div>
@@ -671,6 +683,18 @@ empanadas:{title:'Línea Empanadas (G) + B2C Tapas',ref:'Cotizaciones en curso',
     
   </div>`}},
 
+
+transformador:{title:'Repotenciación a Tarifa 3 (T3BT)',ref:'P11 — Transformador 400kVA',badge:'<span class="badge b-crit"><i class="fas fa-bolt"></i> Máxima Prioridad</span>',priority:1,budget:[
+    {name:'Componentes y Obra Exterior', items:[
+        {desc:'Transformador 400kVA (FOHAMA)', miss:false},
+        {desc:'Mano de obra y proyecto (VALSOL)', miss:false},
+        {desc:'Armado de pilar (A Verificar)', miss:true},
+        {desc:'Materiales exteriores (Cotizando)', miss:true}
+    ], total:'u$s 11.585 + $5.850.000 ARS + Materiales'}
+],tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bolt"></i> Estado del Proyecto</h4><ul><li><strong>Potencia:</strong> Se solicitaron 110 kW a EDES (Tarifa T3BT).</li><li><strong>Transformador:</strong> 400kVA cotizado por FOHAMA (Hay 2 en stock, pago anticipado).</li><li><strong>Obra Exterior:</strong> Proyecto VALSOL hasta fusilera.</li><li><strong>Cortes de Luz:</strong> Gustavo Gonzalez trabajará fines de semana para no frenar la producción actual.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes Inmediatos</h4><ul><li><strong>Reunión Martes:</strong> Juan y Gustavo definirán plan de acción para la instalación interior post-transformador.</li><li><strong>Pilar:</strong> Verificar si sirve el pilar existente o si hay que construir uno nuevo (no incluido por VALSOL).</li><li><strong>Materiales:</strong> Esperar las cotizaciones de los 3 proveedores locales contactados por Gabriel.</li></ul></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><p>Presupuestos de Fohama y Valsol guardados en la carpeta.</p><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Transformador</button></div>`}},
 maquinas:{title:'Instalación Máquinas Existentes',ref:'Bloqueado por aire comprimido',badge:'<span class="badge b-prog"><i class="fas fa-tools"></i> Bloqueado</span>',priority:1,tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-cogs"></i> Equipos pendientes de instalación</h4><ul><li>Llenadora LSL 100CNC (Cadec) — <strong>Ya ingresada a la cocina.</strong></li><li>Tapadora RSL 1800P (Cadec) — <strong>Ya ingresada a la cocina.</strong></li><li>Autoclave (a vapor, autónomo) — <strong>Pendiente: Limpiar/despejar área junto a cámara de congelados para reubicar 4 freezers horizontales de la cocina, y revisar conexiones eléctricas.</strong></li><li>Liofilizadora ORZF-5 (50kg/batch, 380V) — Guías para bandejas, sin carro. Ya comprada.</li><li>Abatidor (guías para bandejas, sin carro) — Ya comprado</li><li>Bomba elevadora (Roboqbo → LSL)</li></ul><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Estrategia Actual:</strong> Se realizarán pruebas de Llenadora y Tapadora esta misma semana utilizando el compresor pequeño del área de etiquetado, para avanzar con la calibración mientras se instala la línea definitiva de aire.</p></div>`}},
 

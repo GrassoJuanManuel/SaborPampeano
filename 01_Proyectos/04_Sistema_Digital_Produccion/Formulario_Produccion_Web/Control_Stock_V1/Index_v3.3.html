@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<title>Reporte de Producción</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{--primary:#4A5D23;--secondary:#C5D6A0;--accent:#7A9B3A;--bg:#f5f5ee;--text:#333;--white:#fff;--border:#d4d4c8}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:20px;line-height:1.6}
+.container{max-width:650px;margin:0 auto;background:var(--white);padding:25px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+.header{text-align:center;border-bottom:2px solid var(--primary);padding-bottom:15px;margin-bottom:20px}
+.header h1{color:var(--primary);margin:0;font-size:24px}
+.form-group{margin-bottom:15px}
+label{display:block;font-weight:600;margin-bottom:5px;color:var(--primary);font-size:14px}
+input[type="date"],input[type="text"],input[type="number"],select,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:4px;box-sizing:border-box;font-family:inherit;font-size:14px}
+textarea{resize:vertical;height:90px}
+.section-title{background:var(--secondary);color:var(--primary);padding:10px 15px;border-radius:4px;margin:30px 0 15px;font-weight:bold;font-size:16px;border-left:5px solid var(--primary)}
+.item-block{background:#fafaf5;border:1px solid var(--border);padding:15px;border-radius:4px;margin-bottom:15px;position:relative}
+.remove-btn{position:absolute;top:8px;right:8px;background:#e74c3c;color:#fff;border:none;border-radius:4px;padding:8px 14px;cursor:pointer;font-size:14px;min-width:36px;min-height:36px;line-height:1}
+.add-btn{background:var(--bg);color:var(--primary);border:2px dashed var(--primary);padding:10px 15px;border-radius:4px;cursor:pointer;font-weight:bold;width:100%;margin-bottom:10px;transition:.2s}
+.add-btn:hover{background:var(--secondary)}
+.add-btn-primary{background:var(--accent);color:#fff;border:none;border-style:solid}
+.submit-btn{background:var(--primary);color:#fff;border:none;padding:15px;width:100%;border-radius:4px;cursor:pointer;font-size:18px;font-weight:bold;margin-top:30px}
+.help-text{font-size:12px;color:#666;margin-top:2px;display:block}
+#loader,#success-message{display:none;text-align:center;margin-top:20px}
+.spinner{border:4px solid rgba(0,0,0,.1);width:36px;height:36px;border-radius:50%;border-left-color:var(--primary);animation:spin 1s linear infinite;margin:0 auto 10px}
+@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.success-icon{color:#27ae60;font-size:48px;margin-bottom:10px}
+.new-report-btn{background:var(--white);color:var(--primary);border:2px solid var(--primary);padding:10px 20px;border-radius:4px;cursor:pointer;font-weight:bold;margin-top:15px}
+.radio-group{display:flex;gap:15px;margin-top:5px}
+.radio-label{font-weight:normal;color:#333;display:flex;align-items:center;cursor:pointer}
+.radio-label input{width:auto;margin-right:8px}
+.lote-block{background:#f0f0e8;border:1px dashed var(--accent);padding:12px;border-radius:4px;margin-bottom:10px;position:relative}
+.lotes-wrapper{margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.lote-inline{display:flex;align-items:center;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+.lote-inline input{width:70px;text-align:center;padding:10px 6px;font-size:16px}
+.lote-inline span{font-weight:bold;font-size:16px;color:var(--primary)}
+.lote-inline label{margin-bottom:0;white-space:nowrap}
+.desglose-toggle{background:#e8f0d8;color:var(--primary);border:1px solid var(--accent);font-size:13px;margin-top:5px}
+.desglose-toggle.active{background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.brix-ph-row{display:flex;gap:10px}
+.brix-ph-row .form-group{flex:1}
+#review-screen{display:none}
+#offline-banner{display:none;position:fixed;top:0;left:0;right:0;background:#e74c3c;color:#fff;text-align:center;padding:10px;font-weight:bold;font-size:14px;z-index:9999;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.review-header{text-align:center;border-bottom:2px solid var(--primary);padding-bottom:12px;margin-bottom:18px}
+.review-header h2{color:var(--primary);margin:0 0 4px}
+.review-header p{color:#666;font-size:13px;margin:0}
+.review-badge{display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:15px}
+.review-section{margin-bottom:18px}
+.review-section-title{font-weight:bold;color:var(--white);background:var(--primary);padding:7px 12px;border-radius:4px;font-size:14px;margin-bottom:8px}
+.review-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:5px}
+.review-table th{background:var(--secondary);color:var(--primary);padding:6px 8px;text-align:left;font-size:12px;border:1px solid var(--border)}
+.review-table td{padding:6px 8px;border:1px solid var(--border);vertical-align:top}
+.review-table tr:nth-child(even){background:#fafaf5}
+.review-obs{background:#fafaf5;border:1px solid var(--border);padding:10px 12px;border-radius:4px;font-size:13px;color:#555;white-space:pre-wrap}
+.review-empty{color:#999;font-style:italic;font-size:13px;padding:8px 0}
+.review-actions{display:flex;gap:12px;margin-top:22px}
+.review-actions button{flex:1;padding:14px;border-radius:4px;cursor:pointer;font-size:16px;font-weight:bold;border:none}
+.btn-corregir{background:var(--white);color:var(--primary);border:2px solid var(--primary)!important}
+.btn-confirmar{background:var(--primary);color:var(--white)}
+.review-count{font-size:11px;color:#888;font-weight:normal;margin-left:6px}
+</style>
+</head>
+<body>
+<datalist id="dl-reproceso"></datalist>
+<datalist id="dl-decomiso"></datalist>
+<datalist id="dl-mermas"></datalist>
+<datalist id="dl-enproceso"></datalist>
+
+<div class="container">
+  <div class="header"><h1>Sabor Pampeano</h1><p>Parte Diario de Producción y Novedades</p></div>
+  <div id="loader-inicial" style="text-align:center;padding:20px">
+    <div class="spinner"></div><p id="loader-msg">Conectando con el Excel...</p>
+  </div>
+  <div id="form-container" style="display:none">
+    <form id="reportForm">
+      <div class="section-title">1. Datos del Turno</div>
+      <div class="form-group"><label>Fecha del Turno</label><input type="date" id="fecha" required><span class="help-text">Se autocompleta con hoy. Cambiala si cargás un turno de otro día.</span></div>
+      <div class="form-group"><label>Turno</label><select id="turno" required><option value="">Seleccione turno...</option></select></div>
+      <div class="form-group"><label>Encargado</label><select id="encargado" required onchange="onEncargadoChange(this)"></select></div>
+
+      <div class="section-title">2. Producción</div>
+      <div id="produccion-container"></div>
+      <button type="button" class="add-btn" onclick="agregarProduccion(true)">+ Producto MISMA Categoría</button>
+      <button type="button" class="add-btn add-btn-primary" onclick="agregarProduccion(false)">+ Producto OTRA Categoría</button>
+
+      <div class="section-title">3. Reproceso</div>
+      <span class="help-text">Producto que se vuelve a procesar.</span>
+      <div id="reproceso-container"></div>
+      <button type="button" class="add-btn" onclick="agregarReproceso()">+ Sumar Reproceso</button>
+
+      <div class="section-title">4. Decomiso / Descarte</div>
+      <span class="help-text">Producto o materia prima que se tira.</span>
+      <div id="decomiso-container"></div>
+      <button type="button" class="add-btn" onclick="agregarDecomiso()">+ Sumar Decomiso</button>
+
+      <div class="section-title">5. Mermas / Recuperos</div>
+      <span class="help-text">Roturas (Pérdidas) o material recuperado.</span>
+      <div id="mermas-container"></div>
+      <button type="button" class="add-btn" onclick="agregarMerma()">+ Sumar Merma o Recupero</button>
+
+      <div class="section-title">6. En Proceso</div>
+      <span class="help-text">Productos que se empezaron pero no se terminaron en el turno.</span>
+      <div id="enproceso-container"></div>
+      <button type="button" class="add-btn" onclick="agregarEnProceso()">+ Sumar Producto en Proceso</button>
+
+      <div class="section-title">7. Comentarios / Novedades</div>
+      <div class="form-group"><textarea id="observaciones" placeholder="Ej: Faltantes de insumos, se cortó la luz..."></textarea></div>
+      <button type="submit" class="submit-btn">ENVIAR PARTE DIARIO</button>
+    </form>
+  </div>
+  <div id="review-screen">
+    <div class="review-header">
+      <h2>📋 Revisá antes de Enviar</h2>
+      <p>Verificá que todos los datos estén correctos</p>
+    </div>
+    <div class="review-badge">⚠️ Todavía NO se envió — revisá y confirmá abajo</div>
+    <div id="review-body"></div>
+    <div class="review-actions">
+      <button type="button" class="btn-corregir" onclick="volverAlForm()">✏️ Corregir</button>
+      <button type="button" class="btn-confirmar" onclick="confirmarEnvio()">✅ Confirmar y Enviar</button>
+    </div>
+  </div>
+  <div id="loader"><div class="spinner"></div><p>Guardando datos...</p></div>
+  <div id="success-message"><div class="success-icon">&#10004;</div><h2>¡Reporte Enviado!</h2><button class="new-report-btn" onclick="resetForm()">Cargar otro reporte</button></div>
+</div>
+<div id="offline-banner">⚠️ Sin conexión a internet — No envíes el reporte hasta que se restablezca</div>
+
+<script>
+var catalogo=[], ultimaCategoria="";
+var encargadoTurnos={};
+var contadores={prod:0,rep:0,dec:0,mer:0,ep:0};
+var loteContadores={};
+var simpleLoteContadores={rep:{},dec:{},mer:{}};
+var catProd=[],catRep=[],catDec=[],catMer=[],catEP=[];
+var categoriasProd=[];
+
+document.addEventListener("DOMContentLoaded",function(){
+  document.getElementById('fecha').valueAsDate=new Date();
+  google.script.run
+    .withSuccessHandler(inicializarFormulario)
+    .withFailureHandler(function(err){
+      document.getElementById('loader-msg').innerHTML="<span style='color:red'><b>Error crítico:</b><br>"+err.message+"</span>";
+      document.querySelector('#loader-inicial .spinner').style.display='none';
+    })
+    .obtenerOpciones();
+});
+
+function inicializarFormulario(opciones){
+  catalogo=opciones.catalogo;
+
+  // Turnos dinámicos
+  var selTurno=document.getElementById('turno');
+  selTurno.innerHTML='<option value="">Seleccione turno...</option>';
+  opciones.turnos.forEach(function(t){selTurno.innerHTML+='<option value="'+t+'">'+t+'</option>';});
+
+  // Encargados + mapeo a turno
+  encargadoTurnos={};
+  var selEnc=document.getElementById('encargado');
+  selEnc.innerHTML='<option value="">Seleccione encargado...</option>';
+  opciones.encargados.forEach(function(e){
+    selEnc.innerHTML+='<option value="'+e.nombre+'">'+e.nombre+'</option>';
+    if(e.turno) encargadoTurnos[e.nombre]=e.turno;
+  });
+
+  catProd=catalogo.filter(function(p){return p.produccion;});
+  catRep=catalogo.filter(function(p){return p.reproceso;});
+  catDec=catalogo.filter(function(p){return p.decomiso;});
+  catMer=catalogo.filter(function(p){return p.mermas;});
+  catEP=catalogo.filter(function(p){return p.enProceso;});
+
+  var seen={};
+  catProd.forEach(function(p){
+    if(p.categoria&&!seen[p.categoria]){categoriasProd.push(p.categoria);seen[p.categoria]=true;}
+  });
+  categoriasProd.sort();
+
+  poblarDatalist('dl-reproceso',catRep);
+  poblarDatalist('dl-decomiso',catDec);
+  poblarDatalist('dl-mermas',catMer);
+  poblarDatalist('dl-enproceso',catEP);
+
+  document.getElementById('loader-inicial').style.display='none';
+  document.getElementById('form-container').style.display='block';
+}
+
+function onEncargadoChange(el){
+  var turnoAsignado=encargadoTurnos[el.value];
+  if(turnoAsignado){document.getElementById('turno').value=turnoAsignado;}
+}
+
+function poblarDatalist(id,lista){
+  var dl=document.getElementById(id);
+  var sorted=lista.slice().sort(function(a,b){return a.producto.localeCompare(b.producto);});
+  var html='';
+  sorted.forEach(function(p){html+='<option value="'+p.producto+'">';});
+  dl.innerHTML=html;
+}
+
+function getCatOptions(sel){
+  var h='<option value="">Seleccione Categoría...</option>';
+  categoriasProd.forEach(function(c){h+='<option value="'+c+'"'+(c===sel?' selected':'')+'>'+c+'</option>';});
+  return h;
+}
+function getProdOptions(cat){
+  var f=catProd.filter(function(i){return i.categoria===cat;}).sort(function(a,b){return a.producto.localeCompare(b.producto);});
+  var h='<option value="">Seleccione Producto...</option>';
+  f.forEach(function(p){h+='<option value="'+p.producto+'" data-codigo="'+p.codigo+'">'+p.producto+'</option>';});
+  return h;
+}
+function onCategoriaChange(el){
+  ultimaCategoria=el.value;
+  var block=el.closest('.item-block');
+  var ps=block.querySelector('.select-producto');
+  if(ultimaCategoria){ps.innerHTML=getProdOptions(ultimaCategoria);ps.disabled=false;}
+  else{ps.innerHTML='<option value="">Primero categoría</option>';ps.disabled=true;}
+  block.querySelector('.hidden-codigo').value="";
+}
+function onProductoChange(el){
+  var opt=el.options[el.selectedIndex];
+  el.closest('.item-block').querySelector('.hidden-codigo').value=opt.getAttribute('data-codigo')||"";
+}
+function verificarDatalist(el,seccion){
+  var block=el.closest('.item-block');
+  var lista=seccion==='rep'?catRep:seccion==='dec'?catDec:seccion==='mer'?catMer:catEP;
+  var val=el.value.trim();
+  var enc=lista.find(function(p){return p.producto===val;});
+  if(!enc)enc=catalogo.find(function(p){return p.producto===val;});
+  if(enc){
+    block.querySelector('.hidden-codigo').value=enc.codigo;
+    block.querySelector('.hidden-categoria').value=enc.categoria;
+  } else {
+    block.querySelector('.hidden-codigo').value="";
+    block.querySelector('.hidden-categoria').value="OTRO";
+  }
+}
+
+function blurDatalist(el, seccion) {
+  var block=el.closest('.item-block');
+  var val=el.value.trim();
+  var w = block.querySelector('.prod-warning');
+  if(!w) {
+    w = document.createElement('div');
+    w.className = 'prod-warning';
+    w.style.color = '#e74c3c';
+    w.style.fontSize = '12px';
+    w.style.marginTop = '4px';
+    w.style.fontWeight = 'bold';
+    w.textContent = '❌ Debés seleccionar un producto válido de la lista.';
+    el.parentNode.appendChild(w);
+  }
+  if(!val) {
+     w.style.display = 'none';
+     return;
+  }
+  var lista=seccion==='rep'?catRep:seccion==='dec'?catDec:seccion==='mer'?catMer:catEP;
+  var enc=lista.find(function(p){return p.producto===val;});
+  if(!enc)enc=catalogo.find(function(p){return p.producto===val;});
+  
+  if(!enc) {
+    el.value = "";
+    block.querySelector('.hidden-codigo').value="";
+    block.querySelector('.hidden-categoria').value="";
+    w.style.display = 'block';
+  } else {
+    w.style.display = 'none';
+  }
+}
+
+function resolverCodigoLocal(nombre){
+  var p=catalogo.find(function(c){return c.producto===nombre;});
+  return p?p.codigo:"";
+}
+
+function agregarProduccion(misma){
+  var id=++contadores.prod;loteContadores[id]=0;
+  var cActual=misma?ultimaCategoria:"";
+  var html='<div class="item-block prod-item" id="prod-'+id+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'prod-'+id+'\').remove()">X</button>'
+    +'<div class="form-group"><label>Categoría</label><select class="select-categoria" onchange="onCategoriaChange(this)" required>'+getCatOptions(cActual)+'</select></div>'
+    +'<div class="form-group"><label>Producto Final</label><select class="select-producto" onchange="onProductoChange(this)" '+(cActual?'':'disabled')+' required>'+(cActual?getProdOptions(cActual):'<option value="">Primero categoría</option>')+'</select></div>'
+    +'<input type="hidden" class="hidden-codigo">'
+    +'<div class="form-group"><label>Cantidad Producida Total (Unidades)</label><input type="number" class="prod-cantidad" required min="0.01" step="any"></div>'
+    +'<button type="button" class="add-btn desglose-toggle" id="btn-desglose-'+id+'" onclick="toggleDesglose('+id+')">📋 Desglosar en Lotes</button>'
+    +'<div id="lotes-container-'+id+'" class="lotes-wrapper" style="display:none">'
+    +'<div id="lotes-'+id+'"></div>'
+    +'<button type="button" class="add-btn" onclick="agregarLote('+id+')" style="margin-top:5px">+ Agregar otro Lote</button>'
+    +'</div></div>';
+  document.getElementById('produccion-container').insertAdjacentHTML('beforeend',html);
+  agregarLote(id);
+  setTimeout(function(){document.getElementById('prod-'+id).scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+function toggleDesglose(prodId){
+  var c=document.getElementById('lotes-container-'+prodId);
+  var b=document.getElementById('btn-desglose-'+prodId);
+  if(c.style.display==='none'){c.style.display='block';b.textContent='✕ Cerrar Desglose';b.classList.add('active');
+    if(document.querySelectorAll('#lotes-'+prodId+' .lote-block').length===0)agregarLote(prodId);
+  }else{c.style.display='none';b.textContent='📋 Desglosar en Lotes';b.classList.remove('active');}
+}
+function agregarLote(prodId){
+  loteContadores[prodId]=(loteContadores[prodId]||0)+1;var lid=loteContadores[prodId];
+  var html='<div class="lote-block" id="lote-'+prodId+'-'+lid+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'lote-'+prodId+'-'+lid+'\').remove()">X</button>'
+    +'<div class="lote-inline"><label style="margin-bottom:0">N° Lote:</label>'
+    +'<input type="text" class="lote-n1" placeholder="00" inputmode="numeric"><span>-</span>'
+    +'<input type="text" class="lote-n2" placeholder="00" inputmode="numeric"><span>/</span>'
+    +'<input type="text" class="lote-n3" placeholder="00" inputmode="numeric"></div>'
+    +'<div class="form-group"><label>Cantidad del Lote</label><input type="number" class="lote-cant" min="1" placeholder="Unidades"></div>'
+    +'<div class="brix-ph-row">'
+    +'<div class="form-group"><label>°Brix</label><input type="text" class="lote-brix" placeholder="Ej: 65.5" inputmode="decimal"></div>'
+    +'<div class="form-group"><label>PH</label><input type="text" class="lote-ph" placeholder="Ej: 3.2" inputmode="decimal"></div>'
+    +'</div></div>';
+  document.getElementById('lotes-'+prodId).insertAdjacentHTML('beforeend',html);
+}
+function agregarLoteSimple(seccion,parentId){
+  if(!simpleLoteContadores[seccion][parentId])simpleLoteContadores[seccion][parentId]=0;
+  var lid=++simpleLoteContadores[seccion][parentId];
+  var html='<div class="lote-block" id="sl-'+seccion+'-'+parentId+'-'+lid+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'sl-'+seccion+'-'+parentId+'-'+lid+'\').remove()">X</button>'
+    +'<div class="lote-inline"><label style="margin-bottom:0">N° Lote:</label>'
+    +'<input type="text" class="lote-n1" placeholder="00" inputmode="numeric"><span>-</span>'
+    +'<input type="text" class="lote-n2" placeholder="00" inputmode="numeric"><span>/</span>'
+    +'<input type="text" class="lote-n3" placeholder="00" inputmode="numeric"></div>'
+    +'<div class="form-group"><label>Cantidad del Lote</label><input type="number" class="lote-cant" min="1" placeholder="Unidades"></div></div>';
+  document.getElementById('sl-list-'+seccion+'-'+parentId).insertAdjacentHTML('beforeend',html);
+}
+function toggleLoteSimple(seccion,parentId){
+  var c=document.getElementById('sl-wrap-'+seccion+'-'+parentId);
+  var b=document.getElementById('sl-btn-'+seccion+'-'+parentId);
+  if(c.style.display==='none'){c.style.display='block';b.textContent='\u2715 Cerrar Lotes';b.classList.add('active');
+    if(document.querySelectorAll('#sl-list-'+seccion+'-'+parentId+' .lote-block').length===0)agregarLoteSimple(seccion,parentId);
+  }else{c.style.display='none';b.textContent='\ud83d\udccb Desglosar en Lotes';b.classList.remove('active');}
+}
+function recogerLotesSimples(el, obligatorios){
+  var lotes=[];
+  var wrapper=el.querySelector('.lotes-wrapper');
+  var lotesBlocks = el.querySelectorAll('.lote-block');
+  if (obligatorios && lotesBlocks.length === 0) return null;
+  var faltanCampos = false;
+  if(wrapper&&wrapper.style.display!=='none'){
+    lotesBlocks.forEach(function(lb){
+      var n1=lb.querySelector('.lote-n1').value.trim();
+      var n2=lb.querySelector('.lote-n2').value.trim();
+      var n3=lb.querySelector('.lote-n3').value.trim();
+      var lc=lb.querySelector('.lote-cant').value.trim();
+      if(obligatorios && (!n1||!n2||!n3||!lc)) { faltanCampos = true; }
+      if(n1&&n2&&n3&&lc)lotes.push({numero:n1+'-'+n2+'/'+n3,cantidad:lc});
+    });
+  }
+  if (faltanCampos) return null;
+  return lotes;
+}
+
+function agregarReproceso(){
+  var id=++contadores.rep;
+  var html='<div class="item-block rep-item" id="rep-'+id+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'rep-'+id+'\').remove()">X</button>'
+    +'<div class="form-group"><label>Producto Reprocesado</label>'
+    +'<input type="text" class="rep-prod" list="dl-reproceso" oninput="verificarDatalist(this,\'rep\')" onchange="verificarDatalist(this,\'rep\')" onblur="blurDatalist(this,\'rep\')" placeholder="Buscar producto..." required autocomplete="off">'
+    +'<input type="hidden" class="hidden-codigo"><input type="hidden" class="hidden-categoria"></div>'
+    +'<div class="form-group"><label>Cantidad Reprocesada</label><input type="number" class="rep-cant" min="0.01" step="any" placeholder="Ej: 50" required></div>'
+    +'<button type="button" class="add-btn desglose-toggle" id="sl-btn-rep-'+id+'" onclick="toggleLoteSimple(\'rep\','+id+')">\ud83d\udccb Desglosar en Lotes</button>'
+    +'<div id="sl-wrap-rep-'+id+'" class="lotes-wrapper" style="display:none"><div id="sl-list-rep-'+id+'"></div>'
+    +'<button type="button" class="add-btn" onclick="agregarLoteSimple(\'rep\','+id+')" style="margin-top:5px">+ Agregar otro Lote</button></div>'
+    +'<div class="form-group"><label>¿Usaron Insumos Nuevos? (Opcional)</label><input type="text" class="rep-insumos" placeholder="Ej: 50 tapas amanecer nuevas"></div>'
+    +'<div class="form-group"><label>Motivo</label><input type="text" class="rep-motivo" placeholder="Ej: Vencidas, mal cerradas" required></div></div>';
+  document.getElementById('reproceso-container').insertAdjacentHTML('beforeend',html);
+  agregarLoteSimple('rep', id);
+  setTimeout(function(){document.getElementById('rep-'+id).scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+
+function agregarDecomiso(){
+  var id=++contadores.dec;
+  var html='<div class="item-block dec-item" id="dec-'+id+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'dec-'+id+'\').remove()">X</button>'
+    +'<div class="form-group"><label>Descarte / Materia Prima Podrida</label>'
+    +'<input type="text" class="dec-prod" list="dl-decomiso" oninput="verificarDatalist(this,\'dec\')" onchange="verificarDatalist(this,\'dec\')" onblur="blurDatalist(this,\'dec\')" placeholder="Buscar producto..." required autocomplete="off">'
+    +'<input type="hidden" class="hidden-codigo"><input type="hidden" class="hidden-categoria"></div>'
+    +'<div class="form-group"><label>Cantidad</label><input type="number" class="dec-cant" min="0.01" step="any" placeholder="Ej: 10" required></div>'
+    +'<button type="button" class="add-btn desglose-toggle" id="sl-btn-dec-'+id+'" onclick="toggleLoteSimple(\'dec\','+id+')">\ud83d\udccb Desglosar en Lotes</button>'
+    +'<div id="sl-wrap-dec-'+id+'" class="lotes-wrapper" style="display:none"><div id="sl-list-dec-'+id+'"></div>'
+    +'<button type="button" class="add-btn" onclick="agregarLoteSimple(\'dec\','+id+')" style="margin-top:5px">+ Agregar otro Lote</button></div>'
+    +'<div class="form-group"><label>Motivo</label><input type="text" class="dec-motivo" placeholder="Ej: Podrido, quemado" required></div></div>';
+  document.getElementById('decomiso-container').insertAdjacentHTML('beforeend',html);
+  setTimeout(function(){document.getElementById('dec-'+id).scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+
+function agregarMerma(){
+  var id=++contadores.mer;
+  var html='<div class="item-block mer-item" id="mer-'+id+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'mer-'+id+'\').remove()">X</button>'
+    +'<div class="form-group"><label>Materia Prima / Insumo / Producto</label>'
+    +'<input type="text" class="mer-prod" list="dl-mermas" oninput="verificarDatalist(this,\'mer\')" onchange="verificarDatalist(this,\'mer\')" onblur="blurDatalist(this,\'mer\')" placeholder="Buscar producto..." required autocomplete="off">'
+    +'<input type="hidden" class="hidden-codigo"><input type="hidden" class="hidden-categoria"></div>'
+    +'<div class="form-group"><label>¿Qué pasó?</label>'
+    +'<div class="radio-group">'
+    +'<label class="radio-label"><input type="radio" name="mer_tipo_'+id+'" value="Pérdida" required> ❌ Pérdida / Rotura</label>'
+    +'<label class="radio-label"><input type="radio" name="mer_tipo_'+id+'" value="Recupero" required> ✅ Recupero</label>'
+    +'</div></div>'
+    +'<div class="form-group"><label>Cantidad</label><input type="number" class="mer-cant" min="0.01" step="any" placeholder="Ej: 5" required></div>'
+    +'<button type="button" class="add-btn desglose-toggle" id="sl-btn-mer-'+id+'" onclick="toggleLoteSimple(\'mer\','+id+')">\ud83d\udccb Desglosar en Lotes</button>'
+    +'<div id="sl-wrap-mer-'+id+'" class="lotes-wrapper" style="display:none"><div id="sl-list-mer-'+id+'"></div>'
+    +'<button type="button" class="add-btn" onclick="agregarLoteSimple(\'mer\','+id+')" style="margin-top:5px">+ Agregar otro Lote</button></div>'
+    +'<div class="form-group"><label>Motivo</label><input type="text" class="mer-motivo" placeholder="Ej: Se rompieron al lavar" required></div></div>';
+  document.getElementById('mermas-container').insertAdjacentHTML('beforeend',html);
+  setTimeout(function(){document.getElementById('mer-'+id).scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+
+function agregarEnProceso(){
+  var id=++contadores.ep;
+  var html='<div class="item-block ep-item" id="ep-'+id+'">'
+    +'<button type="button" class="remove-btn" onclick="document.getElementById(\'ep-'+id+'\').remove()">X</button>'
+    +'<div class="form-group"><label>Producto en Proceso</label>'
+    +'<input type="text" class="ep-prod" list="dl-enproceso" oninput="verificarDatalist(this,\'ep\')" onchange="verificarDatalist(this,\'ep\')" onblur="blurDatalist(this,\'ep\')" placeholder="Buscar producto..." required autocomplete="off">'
+    +'<input type="hidden" class="hidden-codigo"><input type="hidden" class="hidden-categoria"></div>'
+    +'<div class="form-group"><label>Cantidad / Volumen aproximado</label><input type="number" class="ep-cant" min="0.01" step="any" placeholder="Ej: 50" required></div>'
+    +'<div class="form-group"><label>Estado / Aclaración (Opcional)</label><input type="text" class="ep-motivo" placeholder="Ej: Quedó enfriando para mañana"></div></div>';
+  document.getElementById('enproceso-container').insertAdjacentHTML('beforeend',html);
+  setTimeout(function(){document.getElementById('ep-'+id).scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+
+var datosParaEnviar=null;
+
+function recopilarDatos(){
+  var fecha = document.getElementById('fecha').value;
+  var turno = document.getElementById('turno').value;
+  var encargado = document.getElementById('encargado').value;
+  if(!fecha){alert('Seleccioná la fecha del turno.');return null;}
+  if(!turno){alert('Seleccioná el turno.');return null;}
+  if(!encargado){alert('Seleccioná el encargado.');return null;}
+  var datos={
+    fecha:fecha,
+    turno:turno,
+    encargado:encargado,
+    observaciones:document.getElementById('observaciones').value,
+    produccion:[],reproceso:[],decomiso:[],mermas:[],en_proceso:[]
+  };
+  var errorLotes=false;var errorSuma=false;var errorSumaMsg='';
+  document.querySelectorAll('.prod-item').forEach(function(el){
+    var prodSelect=el.querySelector('.select-producto');
+    var prodNombre=prodSelect.value;
+    var codVal=el.querySelector('.hidden-codigo').value;
+    if(!codVal&&prodNombre){
+      var opt=prodSelect.options[prodSelect.selectedIndex];
+      codVal=opt?opt.getAttribute('data-codigo')||"":"";
+      if(!codVal)codVal=resolverCodigoLocal(prodNombre);
+    }
+    var pd={categoria:el.querySelector('.select-categoria').value,producto:prodNombre,codigo:codVal,cantidad:el.querySelector('.prod-cantidad').value,lotes:[]};
+    var sumaLotes=0;
+    var lotesBlocks = el.querySelectorAll('.lote-block');
+    if (lotesBlocks.length === 0) errorLotes = true;
+    lotesBlocks.forEach(function(lb){
+      var n1=lb.querySelector('.lote-n1').value.trim();
+      var n2=lb.querySelector('.lote-n2').value.trim();
+      var n3=lb.querySelector('.lote-n3').value.trim();
+      var lc=lb.querySelector('.lote-cant').value.trim();
+      if(!n1||!n2||!n3||!lc){errorLotes=true;return;}
+      sumaLotes+=parseFloat(lc)||0;
+      pd.lotes.push({numero:n1+'-'+n2+'/'+n3,cantidad:lc,brix:(lb.querySelector('.lote-brix').value||'').replace(',','.'),ph:(lb.querySelector('.lote-ph').value||'').replace(',','.')});
+    });
+    var totalProd=parseFloat(pd.cantidad)||0;
+    if(pd.lotes.length>0&&sumaLotes!==totalProd){errorSuma=true;errorSumaMsg+='"'+pd.producto+'": total='+totalProd+', lotes='+sumaLotes+'\n';}
+    datos.produccion.push(pd);
+  });
+  if(errorLotes){alert('Completá todos los campos de cada lote (N° y Cantidad).');return null;}
+  if(errorSuma){alert('La suma de los lotes NO coincide con la cantidad total:\n\n'+errorSumaMsg+'\nCorregí antes de enviar.');return null;}
+  document.querySelectorAll('.rep-item').forEach(function(el){
+    var nom=el.querySelector('.rep-prod').value;var cod=el.querySelector('.hidden-codigo').value;
+    if(!cod&&nom)cod=resolverCodigoLocal(nom);
+    var lotesRep = recogerLotesSimples(el, true);
+    if (!lotesRep) { errorLotes = true; lotesRep = []; }
+    var totalRep = parseFloat(el.querySelector('.rep-cant').value) || 0;
+    var sumaRep = lotesRep.reduce(function(acc, l) { return acc + (parseFloat(l.cantidad) || 0); }, 0);
+    if(lotesRep.length>0 && sumaRep !== totalRep) { errorSuma=true; errorSumaMsg+='"'+nom+'" (Reproceso): total='+totalRep+', lotes='+sumaRep+'\n'; }
+    datos.reproceso.push({categoria:el.querySelector('.hidden-categoria')?el.querySelector('.hidden-categoria').value||"OTRO":"OTRO",producto:nom,codigo:cod,cantidad:el.querySelector('.rep-cant').value,insumos_nuevos:el.querySelector('.rep-insumos').value,motivo:el.querySelector('.rep-motivo').value,lotes:lotesRep});
+  });
+  document.querySelectorAll('.dec-item').forEach(function(el){
+    var nom=el.querySelector('.dec-prod').value;var cod=el.querySelector('.hidden-codigo').value;
+    if(!cod&&nom)cod=resolverCodigoLocal(nom);
+    datos.decomiso.push({categoria:el.querySelector('.hidden-categoria')?el.querySelector('.hidden-categoria').value||"OTRO":"OTRO",producto:nom,codigo:cod,cantidad:el.querySelector('.dec-cant').value,motivo:el.querySelector('.dec-motivo').value,lotes:recogerLotesSimples(el)});
+  });
+  document.querySelectorAll('.mer-item').forEach(function(el){
+    var idB=el.id.split('-')[1];var checked=el.querySelector('input[name="mer_tipo_'+idB+'"]:checked');
+    var nom=el.querySelector('.mer-prod').value;var cod=el.querySelector('.hidden-codigo').value;
+    if(!cod&&nom)cod=resolverCodigoLocal(nom);
+    datos.mermas.push({categoria:el.querySelector('.hidden-categoria')?el.querySelector('.hidden-categoria').value||"OTRO":"OTRO",producto:nom,codigo:cod,cantidad:el.querySelector('.mer-cant').value,tipo_movimiento:checked?checked.value:"Pérdida",motivo:el.querySelector('.mer-motivo').value,lotes:recogerLotesSimples(el)});
+  });
+  document.querySelectorAll('.ep-item').forEach(function(el){
+    var nom=el.querySelector('.ep-prod').value;var cod=el.querySelector('.hidden-codigo')?el.querySelector('.hidden-codigo').value:"";
+    if(!cod&&nom)cod=resolverCodigoLocal(nom);
+    datos.en_proceso.push({categoria:el.querySelector('.hidden-categoria')?el.querySelector('.hidden-categoria').value||"":"",producto:nom,codigo:cod,cantidad:el.querySelector('.ep-cant').value,motivo:el.querySelector('.ep-motivo').value});
+  });
+  if(datos.produccion.length===0&&datos.reproceso.length===0&&datos.decomiso.length===0&&datos.mermas.length===0&&datos.en_proceso.length===0&&datos.observaciones.trim()===""){
+    alert("Debés agregar al menos un registro o un comentario.");return null;
+  }
+  return datos;
+}
+
+function construirResumen(d){
+  var h='';var fechaFmt=d.fecha.split('-');fechaFmt=fechaFmt[2]+'/'+fechaFmt[1]+'/'+fechaFmt[0];
+  h+='<div class="review-section"><div class="review-section-title">\ud83d\udcc5 Datos del Turno</div>';
+  h+='<table class="review-table"><tr><th>Fecha</th><td>'+fechaFmt+'</td><th>Turno</th><td>'+d.turno+'</td></tr>';
+  h+='<tr><th>Encargado</th><td colspan="3">'+d.encargado+'</td></tr></table></div>';
+  if(d.produccion.length>0){
+    h+='<div class="review-section"><div class="review-section-title">\ud83c\udfed Producción<span class="review-count">('+d.produccion.length+')</span></div>';
+    h+='<table class="review-table"><tr><th>Categoría</th><th>Producto</th><th>Código</th><th>Cantidad</th></tr>';
+    d.produccion.forEach(function(p){
+      h+='<tr><td>'+p.categoria+'</td><td>'+p.producto+'</td><td>'+(p.codigo||'<span style="color:#e74c3c">\u26a0\ufe0f sin código</span>')+'</td><td><b>'+p.cantidad+'</b></td></tr>';
+      if(p.lotes&&p.lotes.length>0){
+        h+='<tr><td colspan="4" style="padding:4px 8px 8px"><b style="font-size:11px;color:#666">Lotes:</b><table class="review-table" style="margin:4px 0 0"><tr><th>N° Lote</th><th>Cant</th><th>°Brix</th><th>PH</th></tr>';
+        p.lotes.forEach(function(l){h+='<tr><td>'+l.numero+'</td><td>'+l.cantidad+'</td><td>'+(l.brix||'-')+'</td><td>'+(l.ph||'-')+'</td></tr>';});
+        h+='</table></td></tr>';
+      }
+    });
+    h+='</table></div>';
+  }
+  if(d.reproceso.length>0){
+    h+='<div class="review-section"><div class="review-section-title">\ud83d\udd04 Reproceso<span class="review-count">('+d.reproceso.length+')</span></div>';
+    h+='<table class="review-table"><tr><th>Producto</th><th>Código</th><th>Cantidad</th><th>Motivo</th></tr>';
+    d.reproceso.forEach(function(r){h+='<tr><td>'+r.producto+'</td><td>'+(r.codigo||'-')+'</td><td>'+r.cantidad+'</td><td>'+r.motivo+'</td></tr>';if(r.insumos_nuevos)h+='<tr><td colspan="4" style="font-size:12px;color:#666">Insumos nuevos: '+r.insumos_nuevos+'</td></tr>';});
+    h+='</table></div>';
+  }
+  if(d.decomiso.length>0){
+    h+='<div class="review-section"><div class="review-section-title">\ud83d\uddd1\ufe0f Decomiso<span class="review-count">('+d.decomiso.length+')</span></div>';
+    h+='<table class="review-table"><tr><th>Producto</th><th>Código</th><th>Cantidad</th><th>Motivo</th></tr>';
+    d.decomiso.forEach(function(x){h+='<tr><td>'+x.producto+'</td><td>'+(x.codigo||'-')+'</td><td>'+x.cantidad+'</td><td>'+x.motivo+'</td></tr>';});
+    h+='</table></div>';
+  }
+  if(d.mermas.length>0){
+    h+='<div class="review-section"><div class="review-section-title">\ud83d\udcc9 Mermas / Recuperos<span class="review-count">('+d.mermas.length+')</span></div>';
+    h+='<table class="review-table"><tr><th>Tipo</th><th>Producto</th><th>Código</th><th>Cantidad</th><th>Motivo</th></tr>';
+    d.mermas.forEach(function(m){h+='<tr><td>'+(m.tipo_movimiento==="Pérdida"?"\u274c Pérdida":"\u2705 Recupero")+'</td><td>'+m.producto+'</td><td>'+(m.codigo||'-')+'</td><td>'+m.cantidad+'</td><td>'+m.motivo+'</td></tr>';});
+    h+='</table></div>';
+  }
+  if(d.en_proceso.length>0){
+    h+='<div class="review-section"><div class="review-section-title">\u23f3 En Proceso<span class="review-count">('+d.en_proceso.length+')</span></div>';
+    h+='<table class="review-table"><tr><th>Producto</th><th>Código</th><th>Cantidad</th><th>Estado</th></tr>';
+    d.en_proceso.forEach(function(ep){h+='<tr><td>'+ep.producto+'</td><td>'+(ep.codigo||'-')+'</td><td>'+ep.cantidad+'</td><td>'+(ep.motivo||'-')+'</td></tr>';});
+    h+='</table></div>';
+  }
+  if(d.observaciones&&d.observaciones.trim()){
+    h+='<div class="review-section"><div class="review-section-title">\ud83d\udcac Comentarios</div><div class="review-obs">'+d.observaciones+'</div></div>';
+  }
+  return h;
+}
+
+document.getElementById('reportForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var datos=recopilarDatos();
+  if(!datos)return;
+  datosParaEnviar=datos;
+  document.getElementById('review-body').innerHTML=construirResumen(datos);
+  document.getElementById('form-container').style.display='none';
+  document.getElementById('review-screen').style.display='block';
+  window.scrollTo(0,0);
+});
+
+function volverAlForm(){
+  datosParaEnviar=null;
+  document.getElementById('review-screen').style.display='none';
+  document.getElementById('form-container').style.display='block';
+  window.scrollTo(0,0);
+}
+
+var enviando = false;
+function confirmarEnvio(){
+  if(!datosParaEnviar)return;
+  if(enviando)return;
+  enviando=true;
+  var btnConf=document.querySelector('.btn-confirmar');
+  if(btnConf){btnConf.disabled=true;btnConf.textContent='\u23f3 Enviando...';}
+  var datos=datosParaEnviar;
+  try{localStorage.setItem('sp_backup_datos',JSON.stringify(datos));localStorage.setItem('sp_backup_ts',new Date().toISOString());}catch(e){}
+  var pdfDiv=document.createElement('div');
+  pdfDiv.style.fontFamily="'Segoe UI',Arial,sans-serif";
+  pdfDiv.style.color="#333";
+  pdfDiv.style.fontSize="13px";
+  pdfDiv.style.lineHeight="1.5";
+  var ahora=new Date();
+  var fechaGen=ahora.toLocaleDateString('es-AR')+' '+ahora.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  pdfDiv.innerHTML='<div style="text-align:center;border-bottom:3px solid #4A5D23;padding-bottom:12px;margin-bottom:15px;">'
+    +'<h1 style="color:#4A5D23;margin:0;font-size:22px;">Sabor Pampeano</h1>'
+    +'<p style="color:#666;font-size:14px;margin:4px 0 0;">Comprobante de Parte Diario</p>'
+    +'<p style="font-size:11px;color:#999;margin:3px 0 0;">Generado: '+fechaGen+'</p></div>'
+    +document.getElementById('review-body').innerHTML;
+  var opt={
+    margin:[8,8,8,8],
+    filename:'Parte_'+datos.fecha+'_'+datos.turno+'_'+datos.encargado.replace(/\s+/g,'_')+'.pdf',
+    image:{type:'jpeg',quality:0.95},
+    html2canvas:{scale:2,useCORS:true},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+  };
+  document.getElementById('review-screen').style.display='none';
+  document.getElementById('loader').style.display='block';
+  document.querySelector('#loader p').textContent='Generando comprobante PDF...';
+
+  function enviarAlServidor(){
+    document.querySelector('#loader p').textContent='Guardando datos...';
+    google.script.run.withSuccessHandler(function(){
+      try{localStorage.removeItem('sp_backup_datos');localStorage.removeItem('sp_backup_ts');}catch(e){}
+      document.getElementById('loader').style.display='none';
+      document.getElementById('success-message').style.display='block';
+      datosParaEnviar=null;
+      enviando=false;
+      if(btnConf){btnConf.disabled=false;btnConf.textContent='\u2705 Confirmar y Enviar';}
+    }).withFailureHandler(function(error){
+      enviando=false;
+      if(btnConf){btnConf.disabled=false;btnConf.textContent='\u2705 Confirmar y Enviar';}
+      document.getElementById('loader').style.display='none';
+      document.getElementById('review-screen').style.display='block';
+      var reintentar=confirm('¡Error al guardar!\n\n'+error.message+'\n\nTus datos están respaldados.\n¿Querés reintentar?');
+      if(reintentar){confirmarEnvio();}
+    }).guardarReporte(datos);
+  }
+
+  html2pdf().set(opt).from(pdfDiv).save().then(function(){
+    enviarAlServidor();
+  }).catch(function(err){
+    console.error('Error PDF:',err);
+    enviarAlServidor();
+  });
+}
+
+function resetForm(){
+  document.getElementById('reportForm').reset();
+  document.getElementById('fecha').valueAsDate=new Date();
+  ['produccion','reproceso','decomiso','mermas','enproceso'].forEach(function(s){document.getElementById(s+'-container').innerHTML='';});
+  ultimaCategoria="";loteContadores={};simpleLoteContadores={rep:{},dec:{},mer:{}};
+  document.getElementById('success-message').style.display='none';
+  document.getElementById('form-container').style.display='block';
+  window.scrollTo(0,0);
+}
+
+window.addEventListener('offline',function(){document.getElementById('offline-banner').style.display='block';});
+window.addEventListener('online',function(){document.getElementById('offline-banner').style.display='none';});
+if(!navigator.onLine){document.getElementById('offline-banner').style.display='block';}
+
+window.addEventListener('load',function(){
+  try{
+    var backup=localStorage.getItem('sp_backup_datos');
+    var ts=localStorage.getItem('sp_backup_ts');
+    if(backup && ts){
+      var diff=(new Date()-new Date(ts))/1000/60;
+      if(diff < 60){
+        var reenviar=confirm('Se encontró un reporte pendiente de envío (hace '+Math.round(diff)+' minutos).\n\n¿Querés reenviarlo ahora?');
+        if(reenviar){
+          var datos=JSON.parse(backup);
+          document.getElementById('form-container').style.display='none';
+          document.getElementById('loader').style.display='block';
+          document.querySelector('#loader p').textContent='Reenviando reporte pendiente...';
+          google.script.run.withSuccessHandler(function(){
+            localStorage.removeItem('sp_backup_datos');localStorage.removeItem('sp_backup_ts');
+            document.getElementById('loader').style.display='none';
+            alert('\u2705 Reporte pendiente enviado correctamente.');
+            document.getElementById('form-container').style.display='block';
+          }).withFailureHandler(function(error){
+            document.getElementById('loader').style.display='none';
+            document.getElementById('form-container').style.display='block';
+            alert('Error al reenviar: '+error.message+'\nEl backup sigue guardado, intentá de nuevo más tarde.');
+          }).guardarReporte(datos);
+        } else {
+          localStorage.removeItem('sp_backup_datos');localStorage.removeItem('sp_backup_ts');
+        }
+      } else {
+        localStorage.removeItem('sp_backup_datos');localStorage.removeItem('sp_backup_ts');
+      }
+    }
+  }catch(e){}
+});
+</script>
+</body>
+</html>

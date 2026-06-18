@@ -244,41 +244,79 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
     Elaborado por: Ing. Juan Manuel Grasso — Jefe de Operaciones
 
-    Fecha: 11 de Junio de 2026
+  DOCUMENTO CONFIDENCIAL
 
-    Dirigido a: Dirección General
+## 1. PLAN DE ACCIÓN Y DESEMBOLSOS (CRONOLÓGICO)
 
-  DOCUMENTO CONFIDENCIAL — V3.0
+  Vista simplificada paso a paso para Juan. Muestra las compras a realizar y contrataciones ordenadas lógicamente para evitar cuellos de botella y sobrecostos.
 
-## 1. RESUMEN EJECUTIVO
+   PASO 1: Proteger la fábrica (Urgente)
+  La máquina Roboqbo y otros equipos corren riesgo de quemarse con las tormentas. Hay que estabilizar la tensión antes de enchufar equipos nuevos.
 
-Este documento presenta la planificación integral, paso a paso, de todos los proyectos activos y pendientes de la fábrica Sabor Pampeano. Cada tarea está organizada por fases cronológicas, con dependencias explícitas, plazos estimados y responsables asignados.
+    ✅ Comprar 3 Estabilizadores Electro Tec 12kVA (140V) — $2.792.400 + IVA (Prov: Gustavo Gonzalez)
+    ✅ Instalar estabilizadores + térmica 32A — $1.870.000 + IVA (Prov: Gustavo Gonzalez)
+    ❌ Comprar estanterías para tablero eléctrico — Falta cotizar (Valor ínfimo en proporción)
 
-  8Proyectos activos
-  5Fases de ejecución
-  ~65Tareas identificadas
-  14-18Semanas estimadas
+   PASO 2: Resolver el desagüe cloacal (Bloqueante)
+  Hay que mover la cloaca 2 metros para liberar las tapas antes de poder poner el módulo de harinas encima. Si no, ante un taponamiento hay que romper todo el piso nuevo.
 
-  ⚡ PRIORIDAD MÁXIMA — ESTABILIZADORES ROBOQBO
-  La Roboqbo QBO 25-4 es el corazón de producción de Línea A (conservas, hummus, salsas). Una fluctuación de tensión puede quemar su placa electrónica, costando miles de dólares y paralizando la fábrica. ESTO SE EJECUTA PRIMERO.
+    ✅ Construir corrimiento de cloaca (Mano de Obra) — $8.450.000 (Prov: Gabriel). *Recomendación: Pedir más presupuestos, parece caro.
+    ❌ Comprar materiales PVC y bocas de registro — Falta cotizar
+
+   PASO 3: Módulo de Harinas (TACC-free)
+  Una vez corrida la cloaca, se puede armar el módulo exterior para independizar la zona de harinas y poner la sobadora y empanaderas.
+
+    ✅ Comprar placas aislantes — Ya pagadas (Llegan en 30-40 días)
+    ✅ Construir estructura metálica — Acordado (Prov: Gabriel - en proceso)
+    ✅ Instalar electricidad interior — $1.020.000
+    ✅ Instalar plomería interior — $420.000
+    ❌ Comprar puerta, cortina PVC, aire acondicionado — Falta cotizar
+
+   PASO 4: Aire Comprimido para máquinas
+  Sin este compresor, la rompedora, llenadora, tapadora y autoclave NO pueden arrancar. Proing SA fue DESCARTADO por altos costos y por negarse a entregar el cómputo de materiales sin asegurar la obra. Urgente: Conseguir un instalador (ej. Provín) que haga el cómputo de materiales exacto y cotice mano de obra razonable.
+
+    ✅ Comprar Compresor BTA 300L 7.5HP — $2.210.049 (Prov: Manelli Hnos.)
+    ✅ Construir platea de hormigón — $556.000 (Prov: Juan Carlos).
+    ✅ Comprar casilla metálica con instalación — $1.806.916 (Prov: Mega Herrería).
+    ❌ Instalar cañería de aluminio y electricidad — A cotizar (Proing descartado. Esperando a Provín / otros).
+    ❌ Comprar tubería, mangueras y acoples — Bloqueado (Falta que el instalador entregue el listado de materiales).
+
+   PASO 5: Proyectos en Pausa (A decidir luego)
+
+    ⏸️ Adecuar Sala Rompedora de Huevos — Presupuesto excesivo ($6.760.000). Paralizado, pendiente hablar con Gabriel para simplificar y achicar el número.
+    ⏸️ Comprar Horno Rotativo Argental FE III-315 — US$ 16.071. Oferta recibida, paralizado hasta confirmación tuya.
 
 ## 2. INVENTARIO COMPLETO DE PROYECTOS
 
 #ProyectoPrioridadEstado ActualInversión Est.
 
- | P1 | Estabilizadores de Tensión (Roboqbo) | MÁXIMA | Cotizado — Esperando aprobación | ~$4.6M ARS
+ | P1 | Estabilizadores de Tensión (Roboqbo) | MÁXIMA | 
+    Cotizado Electro Tec (3 Estabilizadores 12kVA = $2.792.400 + IVA). Aguardando decisión de Juan.
+ | ~$2.79M + IVA
 
- | P2 | Relevamiento Eléctrico + Instalación | MÁXIMA | Control de cables por Gustavo. Instalación por G. Gonzalez | Incl. en P1
+ | P2 | Relevamiento Eléctrico + Instalación | MÁXIMA | Gustavo Gonzalez: Relevamiento general, plan de acción y charla para instalación de futura Tarifa 3 (T3). El trámite T3 lo inició Gabriel. | A cotizar (Gustavo)
 
- | P3 | Compresor + Línea de Aire Comprimido | OPCIONAL | Cotizado: Manelli Hnos. $2.210.049,77 ARS (P.U. $2.442.105 + IVA 10,5%). Proing SA cotiza instalación. | ~$3-5M ARS
+ | P3 | Compresor + Línea de Aire Comprimido | OPCIONAL | Proing descartado (malas prácticas comerciales/precio). Urge conseguir listado de materiales con otro instalador (Provín). | ~$5.0M ARS + Instalación
 
- | P4 | Readecuación Desagüe Cloacal | BAJA | Cotizando Obra | A cotizar
+ | P4 | Readecuación Desagüe Cloacal | BAJA | 
+    Árbol de Decisión:
+
+    ▶ Opción A: Arquitecto Gabriel (Muy caro) = $8.450.000 + Mat.
+
+    ▶ Opción B: Buscar nuevo presupuesto de plomería (Pendiente).
+ | A cotizar
 
  | P5 | Módulo Exterior Harinas (4×4m TACC-free) | MEDIA | Presupuesto estructura recibido ($20.18M) | ~$25M ARS
 
- | P6 | Sala Rompedora de Huevos (2.8×2.3m) | MEDIA | Cotizando Obra | A cotizar
+ | P6 | Sala Rompedora de Huevos (2.8×2.3m) | MEDIA | 
+    Árbol de Decisión:
 
- | P7 | Horno Argental Panier III 4570 | BAJA | Descartado por falta de espacio físico. Se evalúa modelo compacto 8 bandejas. | —
+    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000
+
+    ▶ Opción B (Separado): Paredes PVC (Idea Juan) + Albañilería/Piso (Juan Carlos) + Electricidad (Gustavo) + Puerta y media con vidrio.
+ | A cotizar (Opc. B)
+
+ | P7 | Horno Argental FE III-315 | BAJA | Ofertado a fábrica. Aguardando Juan. | US$ 16.071
 
  | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | ALTA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
 
@@ -328,23 +366,6 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 ## 4. FASES DE EJECUCIÓN — PASO A PASO
 
-     TRABAJO REALIZADO (Últimos 2 Meses)
-    Abril - Junio
-
-  Registro de hitos y trabajos ejecutados previos al Master Plan V3.
-
--  Gestión operativa ininterrumpida de producción mientras se organizaban nuevas áreas.
-
--  Recepción logística de máquinas importadas de China (24 de Abril).
-
--  Asistencia técnica y montaje de seleccionadora de huevos en el campo (Fábrica de Buratovich - 8 y 12 de Mayo).
-
--  Despeje físico y limpieza profunda de depósito para transformarlo en futura Sala de Rompedora de Huevos.
-
--  Reparación de balanzas, resolución de falla térmica intermitente (bomba elevadora de agua) y coordinación de fumigación.
-
--  Cambio de correas y botones en múltiples máquinas (peladora, sobadora, cortadora en proceso).
-
     FASE 0 — ACCIÓN INMEDIATA Y VICTORIAS TEMPRANAS (Esta semana)
     AHORA Sem 1
 
@@ -352,13 +373,17 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 #### 0.1 — Preparación de Equipos Nuevos (Línea Cadec)
 
-- Mover físicamente el Autoclave, la Llenadora y Tapadora hacia la cocina (hoy o la semana próxima) para definir su layout final. Nota: La Rompedora queda en espera porque no entra por dimensiones.
+- Mover físicamente las máquinas: La Llenadora y la Tapadora ya están en la cocina, listas para funcionar (pendiente detalles de configuración). Bloqueante: Para ingresar el Autoclave a vapor, se necesita limpiar/despejar el sector contiguo a la cámara de congelados, reubicar allí los 4 freezers horizontales que hoy ocupan espacio en la cocina, y revisar conexiones eléctricas.
 
-- Leer los manuales técnicos y contactar a Cadec para solicitar explicación de funcionamiento y capacitación remota.
+- Calibración Inicial: Conectar Llenadora y Tapadora temporalmente al compresor pequeño (usado en área de etiquetado) para verificar detalles de configuración esta misma semana, mientras se espera el compresor definitivo.
 
-- RESULTADO: Dejan de ser "cajas en el depósito". El equipo se familiariza con la maquinaria mientras se espera la instalación del aire comprimido.
+- Reunión de Compras (Viernes): Definir presupuesto y el listado de prioridades urgentes a desembolsar.
+
+- RESULTADO: Dejan de ser "cajas en el depósito". Se gana tiempo adelantando la calibración y las pruebas sin esperar la instalación neumática definitiva.
 
 #### 0.2 — Compras y Obras Menores Independientes
+
+- Cámara de Frío: Estantería instalada y funcional (Período de prueba de 1 semana). Pendiente comprar ~6 contadores de lote (impresión 3D).
 
 - Casilla del Compresor: Aprobar a Mega Herrería para hacer la base y la casilla exterior. Es el paso previo necesario para recibir el compresor BTA.
 
@@ -372,7 +397,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Si no lo entrega el lunes → Gustavo arranca de cero.
 
-- Solytec: Ya tenemos los presupuestos actualizados. Definir compra directa de los 3 equipos ST-11KVA para saltar el 8% de comisión y avanzar.
+- Electro Tec: Gustavo cotizó 2 opciones de estabilizadores. Opción 1 (140V): $2.792.400. Opción 2 (160V): $2.125.500. M.O. $1.870.000 (igual para ambas). Aguardando decisión de Juan.
 
 #### 0.4 — Estanterías y Orden Físico
 
@@ -397,7 +422,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 #### 1.1 — Instalación de Estabilizadores PRIORIDAD MÁXIMA
 
-- Recibir estabilizadores Solytec (plazo proveedor: ~1 semana tras la compra).
+- Recibir estabilizadores Electro Tec (plazo proveedor: 48-72hs tras la compra).
 
 - Gustavo instala los 3 estabilizadores: Roboqbo + Líneas auxiliares. Duración estimada: 2-3 días.
 
@@ -409,7 +434,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Recibir el compresor BTA Tools (tarda 1 semana en llegar a Bahía).
 
-- Recibir cotización de Proing SA para la instalación de la línea + verificación de materiales.
+- Buscar nuevo instalador: Proing SA fue descartado. Recibir a Provín u otros para obtener cotización de instalación y el listado de materiales exacto.
 
 - Comprar materiales de cañería según pliego actualizado: SmartPipe 25mm, manguera PU 12mm, regulador, filtro coalescente, FRLs, acoples.
 
@@ -645,21 +670,28 @@ Cada columna = 1 semana. Barras muestran duración estimada. Colores = prioridad
 
 ConceptoMonto (ARS)Monto (USD)Estado
 
- | Instalación eléctrica estabilizadores | $1.870.000 | — | Cotizado (G. Gonzalez)
+ | 3 Estabilizadores Electro Tec 12kVA (Elev 140V) | $2.792.400 + IVA | — | Cotizado (Gustavo Gonzalez)
+     | Alt: 3 Estabilizadores Electro Tec 12kVA (Elev 160V) | $2.125.500 + IVA | — | Cotizado (Gustavo Gonzalez)
 
- | Compresor De Aire Trifásico 300L – 7.5HP – BTA | $2.210.049,77 | — | Cotizado
+ | Instalación eléctrica estabilizadores + Térmica 32A | $1.870.000 + IVA | — | Cotizado (Gustavo Gonzalez)
+
+ | Compresor De Aire Trifásico 300L – 7.5HP – BTA | $2.210.049 | — | Cotizado (Manelli Hnos.)
+
+ | Platea hormigón 2,5m×1m×0,2m (fibra sintética) | $556.000 | — | Cotizado (Juan Carlos)
 
  | Cañerías, FRLs, accesorios aire | ~$500.000 | — | Estimado
 
- | Instalación línea de aire (Proing SA) | A cotizar | — | En proceso
+ | Instalación línea de aire y electricidad | A cotizar | — | Pendiente (Proing descartado. Esperando Provín)
 
  | Módulo Harinas (Electricidad + Plomería M.O.) | $1.440.000 | — | Cotizado
 
  | Módulo Harinas (Puerta, Cortina, A/C) | ~$2.000.000 | — | Estimado
 
- | Sala Rompedora (Mat. Eléctricos + Plomería) | ~$500.000 | — | Estimado
+ | Desagüe Cloacal — Mano de Obra | $8.450.000 | — | Cotizado (Gabriel)
 
- | Horno Argental Panier III | — | USD 11.672 | Descartado
+ | Sala Rompedora — Obra Civil (a renegociar) | $6.760.000 | — | Cotizado (Gabriel) — Paralizado
+
+ | Horno Argental FE III-315 (Paralizado) | — | USD 16.071 | Aguardando Juan
 
  | Sobadora Pesada Blindada | — | ~USD 8.000 | Estimado
 
@@ -682,7 +714,7 @@ RiesgoImpactoProbabilidadMitigación
 
  | Roboqbo se quema por pico de tensión | ALTO | Alta (cada tormenta) | Instalar estabilizadores en Fase 1 SIN demoras.
 
- | Capacidad de cables insuficiente para estabilizadores | MEDIO | Media | Gabriel controlará diámetro antes. Si falta, cotizar recableado.
+ | Capacidad de cables insuficiente para estabilizadores | MEDIO | Media | Gustavo Gonzalez controlará diámetro de cables antes de la instalación. Si falta, cotizar recableado.
 
  | Abatidor viejo irreparable | MEDIO | Media | Circuito 1 (Rational) sigue usando el enfriador rápido. Abatidor actual tiene guías para bandejas. Ya comprado, no se cambia. Priorizar conexión eléctrica.
 
@@ -736,9 +768,9 @@ Usar este checklist cada lunes para verificar avance y tomar acciones correctiva
 
 - Aguardar negociación gerencia por Horno FE III-315
 
-- Gustavo visita la planta para controlar diámetro de cables
+- Gustavo Gonzalez visita la planta para controlar diámetro de cables
 
-- Aprobar compra directa de estabilizadores Solytec
+- Decisión de Juan: Estabilizadores Electro Tec Opción 1 (140V, $2.79M) u Opción 2 (160V, $2.12M)
 
 - Terminar estantería el martes (mudada a etiquetado)
 
@@ -746,9 +778,9 @@ Usar este checklist cada lunes para verificar avance y tomar acciones correctiva
 
 - Consultar tamaño de estantería necesaria para tableros
 
-- Recibir estabilizadores Solytec
+- Recibir estabilizadores Electro Tec (48-72hs post compra)
 
-- Instalar estabilizadores (Gustavo, 2-3 días)
+- Instalar estabilizadores Electro Tec (Gustavo Gonzalez, 2-3 días)
 
 - Verificar Roboqbo con estabilizador conectado
 
@@ -768,7 +800,7 @@ Usar este checklist cada lunes para verificar avance y tomar acciones correctiva
 
 - ✓ PLACAS PAGADAS (~10/06/2026). Fabricación en curso.
 
-- Aprobar obra cloacal (A definir)
+- Aprobar obra cloacal — Pedir más presupuestos de mano de obra
 
 #### Semana 4-6 (30 Jun — 18 Jul) — FASE 2
 

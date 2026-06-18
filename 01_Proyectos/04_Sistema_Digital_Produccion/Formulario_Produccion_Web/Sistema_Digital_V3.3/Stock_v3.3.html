@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<title>Control de Stock - Sabor Pampeano</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{--primary:#4A5D23;--secondary:#C5D6A0;--accent:#7A9B3A;--bg:#f5f5ee;--text:#333;--white:#fff;--border:#d4d4c8}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:20px;line-height:1.6}
+.container{max-width:650px;margin:0 auto;background:var(--white);padding:25px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+.header{text-align:center;border-bottom:2px solid var(--primary);padding-bottom:15px;margin-bottom:20px}
+.header h1{color:var(--primary);margin:0;font-size:24px}
+.form-group{margin-bottom:15px}
+label{display:block;font-weight:600;margin-bottom:5px;color:var(--primary);font-size:14px}
+input[type="date"],textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:4px;box-sizing:border-box;font-family:inherit;font-size:14px}
+textarea{resize:vertical;height:90px}
+.section-title{background:var(--secondary);color:var(--primary);padding:10px 15px;border-radius:4px;margin:30px 0 15px;font-weight:bold;font-size:16px;border-left:5px solid var(--primary)}
+.submit-btn{background:var(--primary);color:#fff;border:none;padding:15px;width:100%;border-radius:4px;cursor:pointer;font-size:18px;font-weight:bold;margin-top:30px}
+.help-text{font-size:12px;color:#666;margin-top:2px;display:block}
+#loader,#success-message{display:none;text-align:center;margin-top:20px}
+.spinner{border:4px solid rgba(0,0,0,.1);width:36px;height:36px;border-radius:50%;border-left-color:var(--primary);animation:spin 1s linear infinite;margin:0 auto 10px}
+@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.success-icon{color:#27ae60;font-size:48px;margin-bottom:10px}
+.new-report-btn{background:var(--white);color:var(--primary);border:2px solid var(--primary);padding:10px 20px;border-radius:4px;cursor:pointer;font-weight:bold;margin-top:15px}
+
+table{width:100%;border-collapse:collapse;margin-bottom:15px;}
+th, td{padding:10px;border:1px solid var(--border);text-align:left;font-size:13px;}
+th{background-color:var(--primary);color:var(--white);}
+tr:nth-child(even){background-color:#E8F0D8;}
+tr:nth-child(odd){background-color:var(--white);}
+.prod-name{font-weight:600;color:#333;}
+.qty-input{width:100%;text-align:center;padding:8px;border:1px solid var(--border);border-radius:4px;box-sizing:border-box;font-size:16px;font-weight:bold;}
+.qty-input:focus{outline:2px solid var(--accent);border-color:transparent;}
+
+#review-screen{display:none}
+#offline-banner{display:none;position:fixed;top:0;left:0;right:0;background:#e74c3c;color:#fff;text-align:center;padding:10px;font-weight:bold;font-size:14px;z-index:9999;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.review-header{text-align:center;border-bottom:2px solid var(--primary);padding-bottom:12px;margin-bottom:18px}
+.review-header h2{color:var(--primary);margin:0 0 4px}
+.review-header p{color:#666;font-size:13px;margin:0}
+.review-badge{display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:15px}
+.review-section{margin-bottom:18px}
+.review-section-title{font-weight:bold;color:var(--white);background:var(--primary);padding:7px 12px;border-radius:4px;font-size:14px;margin-bottom:8px}
+.review-obs{background:#fafaf5;border:1px solid var(--border);padding:10px 12px;border-radius:4px;font-size:13px;color:#555;white-space:pre-wrap}
+.review-actions{display:flex;gap:12px;margin-top:22px}
+.review-actions button{flex:1;padding:14px;border-radius:4px;cursor:pointer;font-size:16px;font-weight:bold;border:none}
+.btn-corregir{background:var(--white);color:var(--primary);border:2px solid var(--primary)!important}
+.btn-confirmar{background:var(--primary);color:var(--white)}
+
+@media (max-width: 480px) {
+  th, td { padding: 6px; font-size: 11px; }
+  .qty-input { padding: 6px; font-size: 14px; }
+  .header h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Sabor Pampeano</h1>
+    <p>Control de Stock Diario</p>
+  </div>
+  
+  <div id="form-container">
+    <form id="stockForm">
+      <div class="section-title">1. Fecha del Registro</div>
+      <div class="form-group">
+        <label>Fecha del Turno</label>
+        <input type="date" id="fecha" required>
+        <span class="help-text">Se completa sola con la fecha de hoy.</span>
+      </div>
+
+      <div class="section-title">2. Cantidades en Stock</div>
+      <span class="help-text" style="margin-bottom: 10px;">Completá las cantidades de cada producto. Si dejás vacío, se asume 0.</span>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th style="width: 80px; text-align: center;">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-productos">
+          <!-- Las filas se generan por JavaScript -->
+        </tbody>
+      </table>
+
+      <div class="section-title">3. Comentarios Adicionales</div>
+      <div class="form-group">
+        <textarea id="comentarios" placeholder="Ej: Faltantes de insumos, se cortó la luz..."></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">REVISAR CONTROL DE STOCK</button>
+    </form>
+  </div>
+
+  <div id="review-screen">
+    <div class="review-header">
+      <h2>📋 Revisá antes de Enviar</h2>
+      <p>Verificá que todo esté bien contado</p>
+    </div>
+    <div class="review-badge">⚠️ Todavía NO se envió — revisá y confirmá abajo</div>
+    
+    <div id="review-body"></div>
+    
+    <div class="review-actions">
+      <button type="button" class="btn-corregir" onclick="volverAlForm()">✏️ Corregir</button>
+      <button type="button" class="btn-confirmar" onclick="confirmarEnvio()">✅ Confirmar y Enviar</button>
+    </div>
+  </div>
+
+  <div id="loader"><div class="spinner"></div><p>Guardando datos de forma segura...</p></div>
+  <div id="success-message">
+    <div class="success-icon">&#10004;</div>
+    <h2>¡Control Registrado!</h2>
+    <p id="success-date" style="color: #666; font-size: 14px; font-weight: bold;"></p>
+    <button class="new-report-btn" onclick="resetForm()">Cargar otro control</button>
+  </div>
+</div>
+
+<div id="offline-banner">⚠️ Sin conexión a internet — Tus datos están a salvo, envialos cuando vuelva</div>
+
+<script>
+const listaProductos = [
+  { nombre: "TARTA ACELGA", codigo: "07020001" },
+  { nombre: "TARTA ACELGA INTEGRAL", codigo: "07020008" },
+  { nombre: "TARTA CALABAZA", codigo: "07020000" },
+  { nombre: "TARTA CALABAZA INTEGRAL", codigo: "07020007" },
+  { nombre: "TARTA CAPRESE", codigo: "07020003" },
+  { nombre: "TARTA CAPRESE INTEGRAL", codigo: "07020010" },
+  { nombre: "TARTA CEBOLLA CARAMELIZADA", codigo: "07020006" },
+  { nombre: "TARTA CEBOLLA CARAMELIZADA INTEGRAL", codigo: "07020012" },
+  { nombre: "TARTA DE VERDURAS ASADAS", codigo: "07020002" },
+  { nombre: "TARTA HUMITA", codigo: "07020004" },
+  { nombre: "TARTA HUMITA INTEGRAL", codigo: "07020011" },
+  { nombre: "TARTA JAMÓN Y QUESO", codigo: "07020005" },
+  { nombre: "TARTA VERDURAS ASADAS INTEGRAL", codigo: "07020009" },
+  { nombre: "TORTILLA PAPA X 600 GR", codigo: "07010001" },
+  { nombre: "TORTILLA PAPA Y CEB X 600 GR", codigo: "07010000" }
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('fecha').valueAsDate = new Date();
+  
+  const tbody = document.getElementById('tabla-productos');
+  let html = '';
+  listaProductos.forEach((p, idx) => {
+    html += `
+      <tr>
+        <td class="prod-name">${p.nombre}</td>
+        <td>
+          <input type="number" class="qty-input" id="qty-${idx}" data-codigo="${p.codigo}" data-nombre="${p.nombre}" min="0" inputmode="numeric">
+        </td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+  
+  document.querySelectorAll('.qty-input').forEach(input => {
+    input.addEventListener('keydown', function(e) {
+      if (['e', 'E', '-', '+', '.', ','].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+    input.addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    });
+  });
+});
+
+let datosParaEnviar = null;
+
+document.getElementById('stockForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const fecha = document.getElementById('fecha').value;
+  const comentarios = document.getElementById('comentarios').value.trim();
+  
+  if(!fecha) { alert("Seleccioná la fecha del turno."); return; }
+  
+  let items = [];
+  let tieneCantidades = false;
+  
+  listaProductos.forEach((p, idx) => {
+    let cantInput = document.getElementById(`qty-${idx}`).value;
+    let cant = parseInt(cantInput) || 0;
+    if (cant > 0) tieneCantidades = true;
+    
+    items.push({ producto: p.nombre, codigo: p.codigo, cantidad: cant });
+  });
+  
+  if (!tieneCantidades && comentarios === "") {
+    let confirmarVacio = confirm("Estás enviando un registro con stock CERO en todos los productos y sin comentarios. ¿Estás seguro?");
+    if (!confirmarVacio) return;
+  }
+  
+  datosParaEnviar = { fecha: fecha, comentarios: comentarios, items: items };
+
+  try {
+    localStorage.setItem('sp_stock_backup', JSON.stringify(datosParaEnviar));
+    localStorage.setItem('sp_stock_ts', new Date().toISOString());
+  } catch(e) { console.warn("No se pudo guardar el backup local"); }
+  
+  let fechaFmt = fecha.split('-');
+  fechaFmt = fechaFmt[2] + '/' + fechaFmt[1] + '/' + fechaFmt[0];
+  
+  let reviewHtml = `
+    <div class="review-section">
+      <div class="review-section-title">📅 Fecha del Turno</div>
+      <div class="review-obs" style="text-align: center; font-weight: bold; font-size: 16px;">${fechaFmt}</div>
+    </div>
+    <div class="review-section">
+      <div class="review-section-title">📦 Cantidades Contadas</div>
+      <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 5px;">
+        <tr>
+          <th style="background:var(--secondary);color:var(--primary);padding:6px;text-align:left;border:1px solid var(--border)">Producto</th>
+          <th style="background:var(--secondary);color:var(--primary);padding:6px;text-align:center;border:1px solid var(--border);width:60px;">Cant.</th>
+        </tr>
+  `;
+  
+  items.forEach(i => {
+    let cantDisplay = i.cantidad > 0 ? `<b style="font-size:14px;">${i.cantidad}</b>` : `<span style="color:#aaa">0</span>`;
+    let rowBg = i.cantidad > 0 ? '#fff' : '#fafaf5';
+    reviewHtml += `
+      <tr style="background: ${rowBg}">
+        <td style="padding:6px;border:1px solid var(--border)">${i.producto}</td>
+        <td style="padding:6px;border:1px solid var(--border);text-align:center">${cantDisplay}</td>
+      </tr>
+    `;
+  });
+  reviewHtml += `</table></div>`;
+  
+  if (comentarios) {
+    reviewHtml += `
+      <div class="review-section">
+        <div class="review-section-title">💬 Comentarios</div>
+        <div class="review-obs">${comentarios}</div>
+      </div>
+    `;
+  }
+  
+  document.getElementById('review-body').innerHTML = reviewHtml;
+  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('review-screen').style.display = 'block';
+  window.scrollTo(0,0);
+});
+
+function volverAlForm() {
+  document.getElementById('review-screen').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+let enviando = false;
+function confirmarEnvio() {
+  if(!datosParaEnviar) return;
+  if(enviando) return;
+  enviando = true;
+  
+  const btnConf = document.querySelector('.btn-confirmar');
+  if(btnConf) { btnConf.disabled = true; btnConf.textContent = '⏳ Preparando PDF...'; }
+  
+  // 1. GENERAR EL PDF
+  var pdfDiv = document.createElement('div');
+  pdfDiv.style.fontFamily = "'Segoe UI',Arial,sans-serif";
+  pdfDiv.style.color = "#333";
+  pdfDiv.style.fontSize = "13px";
+  pdfDiv.style.lineHeight = "1.5";
+  pdfDiv.style.padding = "10px";
+  
+  var ahora = new Date();
+  var fechaGen = ahora.toLocaleDateString('es-AR') + ' ' + ahora.toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'});
+  
+  // Encabezado para el PDF
+  pdfDiv.innerHTML = '<div style="text-align:center;border-bottom:3px solid #4A5D23;padding-bottom:12px;margin-bottom:15px;">'
+    + '<h1 style="color:#4A5D23;margin:0;font-size:22px;">Sabor Pampeano</h1>'
+    + '<p style="color:#666;font-size:14px;margin:4px 0 0;">Comprobante de Control de Stock</p>'
+    + '<p style="font-size:11px;color:#999;margin:3px 0 0;">Generado: ' + fechaGen + '</p></div>'
+    + document.getElementById('review-body').innerHTML;
+
+  var fechaFmt = datosParaEnviar.fecha.split('-').reverse().join('');
+  var opt = {
+    margin: [8, 8, 8, 8],
+    filename: 'Stock_' + fechaFmt + '.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  document.getElementById('review-screen').style.display = 'none';
+  document.getElementById('loader').style.display = 'block';
+  document.querySelector('#loader p').textContent = 'Generando comprobante PDF...';
+
+  function enviarAlServidor() {
+    document.querySelector('#loader p').textContent = 'Guardando datos de forma segura...';
+    google.script.run
+      .withSuccessHandler(function() {
+        try { localStorage.removeItem('sp_stock_backup'); localStorage.removeItem('sp_stock_ts'); } catch(e) {}
+        document.getElementById('loader').style.display = 'none';
+        let fFmt = datosParaEnviar.fecha.split('-');
+        document.getElementById('success-date').textContent = "Stock del " + fFmt[2] + "/" + fFmt[1] + " guardado.";
+        document.getElementById('success-message').style.display = 'block';
+        datosParaEnviar = null;
+        enviando = false;
+        if(btnConf) { btnConf.disabled = false; btnConf.textContent = '✅ Confirmar y Enviar'; }
+      })
+      .withFailureHandler(function(error) {
+        enviando = false;
+        if(btnConf) { btnConf.disabled = false; btnConf.textContent = '✅ Confirmar y Enviar'; }
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('review-screen').style.display = 'block';
+        let reintentar = confirm('¡Error de conexión!\n\nNo te preocupes, TUS DATOS ESTÁN RESPALDADOS en el celular.\nDetalle: ' + error.message + '\n\n¿Querés reintentar enviar ahora?');
+        if(reintentar) { confirmarEnvio(); }
+      })
+      .guardarControlStock(datosParaEnviar);
+  }
+
+  // Crear el PDF y luego enviar
+  html2pdf().set(opt).from(pdfDiv).save().then(function() {
+    enviarAlServidor();
+  }).catch(function(err) {
+    console.error('Error al generar PDF:', err);
+    enviarAlServidor(); // Si falla el PDF, enviamos igual para no perder los datos
+  });
+}
+
+function resetForm() {
+  document.getElementById('stockForm').reset();
+  document.getElementById('fecha').valueAsDate = new Date();
+  document.getElementById('success-message').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+// Detección offline
+window.addEventListener('offline', function(){ document.getElementById('offline-banner').style.display = 'block'; });
+window.addEventListener('online', function(){ document.getElementById('offline-banner').style.display = 'none'; });
+if(!navigator.onLine){ document.getElementById('offline-banner').style.display = 'block'; }
+
+// Recuperar reporte no enviado
+window.addEventListener('load', function() {
+  try {
+    let backup = localStorage.getItem('sp_stock_backup');
+    let ts = localStorage.getItem('sp_stock_ts');
+    if (backup && ts) {
+      let diff = (new Date() - new Date(ts)) / 1000 / 60; 
+      if (diff < 120) {
+        let reenviar = confirm('Se encontró un control de stock pendiente de envío (hace ' + Math.round(diff) + ' minutos).\n\n¿Querés enviarlo ahora?');
+        if (reenviar) {
+          datosParaEnviar = JSON.parse(backup);
+          document.getElementById('form-container').style.display = 'none';
+          document.getElementById('loader').style.display = 'block';
+          document.querySelector('#loader p').textContent = 'Recuperando y enviando registro...';
+          
+          google.script.run
+            .withSuccessHandler(function() {
+              localStorage.removeItem('sp_stock_backup');
+              localStorage.removeItem('sp_stock_ts');
+              document.getElementById('loader').style.display = 'none';
+              alert('✅ Registro recuperado y enviado exitosamente.');
+              resetForm();
+            })
+            .withFailureHandler(function(error) {
+              document.getElementById('loader').style.display = 'none';
+              document.getElementById('form-container').style.display = 'block';
+              alert('Falló el reenvío. El backup sigue intacto.\nError: ' + error.message);
+            })
+            .guardarControlStock(datosParaEnviar);
+        } else {
+          localStorage.removeItem('sp_stock_backup');
+          localStorage.removeItem('sp_stock_ts');
+        }
+      } else {
+        localStorage.removeItem('sp_stock_backup');
+        localStorage.removeItem('sp_stock_ts');
+      }
+    }
+  } catch(e) {}
+});
+</script>
+</body>
+</html>

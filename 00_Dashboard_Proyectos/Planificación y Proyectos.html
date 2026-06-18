@@ -146,7 +146,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
 }
 .chart-card h4{font-size:13px;font-weight:700;color:#1a2410;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
 .chart-card h4 i{color:var(--sp-green-light);}
-.chart-wrap{position:relative;height:240px;}
+.chart-wrap{position:relative;height:420px;}
 
 /* TOOLBAR */
 .stars{display:inline-flex;gap:2px;}.stars i{color:var(--star-off);font-size:11px;}.stars i.on{color:var(--star-on);}
@@ -388,6 +388,14 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
       <div class="chart-wrap"><canvas id="chartAvance"></canvas></div>
     </div>
   </div>
+
+  <!-- ======== CRONOGRAMA VISUAL ======== -->
+  <div class="chart-card" style="margin-bottom:28px;">
+    <h4><i class="fas fa-stream"></i> Cronograma de Dependencias — Cadenas Críticas</h4>
+    <p style="font-size:11px;color:#8a9a6e;margin-bottom:20px;margin-top:-8px;">Las fases se organizan por dependencia real, no por semana calendario. El ancho indica duración relativa estimada.</p>
+    <div id="cronograma"></div>
+  </div>
+
   <div class="toolbar">
     <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Buscar proyecto..." oninput="filter(this.value)"></div>
     <button class="sort-btn active" onclick="sortCards('priority',this)"><i class="fas fa-star"></i> Por Prioridad</button>
@@ -953,11 +961,86 @@ function renderDashboard() {
         },
         y: {
           grid: { display: false },
-          ticks: { font: { size: 10 }, color: '#4a5a36' }
+          ticks: { font: { size: 11.5 }, color: '#4a5a36' }
         }
       }
     }
   });
+
+  // --- Cronograma Visual ---
+  const CADENAS = [
+    {
+      nombre: '⚡ Cadena A — Línea de Producción',
+      color: '#ef4444',
+      pasos: [
+        { label: 'P1 · Estabilizadores Roboqbo', estado: 'cotizando', nota: 'Charla martes c/ Gustavo. 2 opciones 12kVA.', dur: 2 },
+        { label: 'P2 · Relevamiento Eléctrico', estado: 'cotizando', nota: 'Gustavo Gonzalez. Previo a instalar estabilizadores.', dur: 1 },
+        { label: 'P3 · Línea de Aire Comprimido', estado: 'proceso', nota: 'Provín relevó hoy. Instalación puede ir en paralelo (manguera flexible).', dur: 3 },
+        { label: 'P10 · Puesta en Marcha Máquinas', estado: 'bloqueado', nota: 'Llenadora, Tapadora, Autoclave — dependen del aire.', dur: 2 },
+      ]
+    },
+    {
+      nombre: '🏗️ Cadena B — Módulo de Harinas',
+      color: '#d97706',
+      pasos: [
+        { label: 'P4 · Desagüe Cloacal', estado: 'cotizando', nota: 'Presupuesto Gabriel $8.45M recibido. Pendiente analizar.', dur: 2 },
+        { label: 'P5 · Módulo Ext. Harinas', estado: 'proceso', nota: 'Placas aislantes ya compradas. Bloqueado por cloaca.', dur: 4 },
+        { label: 'P8 · Máquinas Prod. (Harinas)', estado: 'bloqueado', nota: 'Sobadora y empanaderas se instalan en el módulo.', dur: 2 },
+      ]
+    },
+    {
+      nombre: '🥚 Cadena C — Sala Rompedora',
+      color: '#7c3aed',
+      pasos: [
+        { label: 'P6 · Sala Rompedora Huevos', estado: 'cotizando', nota: 'Presupuesto nuevo (Opción B: PVC + albañilería + elec.) pendiente.', dur: 3 },
+        { label: 'P13 · Liofilizadora', estado: 'bloqueado', nota: 'Pendiente espacio + electricidad. 4 freezers a reubicar.', dur: 2 },
+      ]
+    },
+    {
+      nombre: '🔌 Independiente',
+      color: '#0891b2',
+      pasos: [
+        { label: 'P9 · Transformador T3', estado: 'cotizando', nota: 'FOHAMA u$s11.585 + VALSOL $5.85M. Fuera del presupuesto interno.', dur: 3 },
+        { label: 'P7 · Horno Argental', estado: 'pausa', nota: 'Evaluando modelo compacto (altura campana). En pausa.', dur: 2 },
+      ]
+    }
+  ];
+
+  const ESTADO_META = {
+    'cotizando': { bg: '#fef9c3', border: '#ca8a04', text: '#854d0e', icon: '💬' },
+    'proceso':   { bg: '#dcfce7', border: '#16a34a', text: '#15803d', icon: '🔨' },
+    'bloqueado': { bg: '#f1f5f9', border: '#94a3b8', text: '#475569', icon: '⏸️' },
+    'pausa':     { bg: '#fce7f3', border: '#db2777', text: '#9d174d', icon: '⏹️' },
+  };
+
+  const cron = document.getElementById('cronograma');
+  if (cron) {
+    let html = '';
+    CADENAS.forEach(cadena => {
+      html += `<div style="margin-bottom:28px;">`;
+      html += `<div style="font-size:12px;font-weight:700;color:${cadena.color};margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:12px;height:12px;background:${cadena.color};border-radius:3px;"></span>${cadena.nombre}</div>`;
+      html += `<div style="display:flex;gap:4px;align-items:stretch;">`;
+      cadena.pasos.forEach((paso, i) => {
+        const meta = ESTADO_META[paso.estado] || ESTADO_META['bloqueado'];
+        const flex = paso.dur || 1;
+        html += `
+          <div style="flex:${flex};background:${meta.bg};border:1.5px solid ${meta.border};border-radius:10px;padding:10px 12px;position:relative;min-width:0;">
+            <div style="font-size:10px;font-weight:700;color:${meta.text};margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${meta.icon} ${paso.label}</div>
+            <div style="font-size:9.5px;color:#6b7a52;line-height:1.4;">${paso.nota}</div>
+          </div>
+          ${i < cadena.pasos.length - 1 ? `<div style="display:flex;align-items:center;color:#94a3b8;font-size:14px;flex-shrink:0;">→</div>` : ''}
+        `;
+      });
+      html += `</div></div>`;
+    });
+    // Leyenda
+    html += `<div style="display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;">`;
+    Object.entries(ESTADO_META).forEach(([k,v]) => {
+      html += `<div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#6b7a52;"><span style="width:10px;height:10px;background:${v.bg};border:1.5px solid ${v.border};border-radius:3px;display:inline-block;"></span>${v.icon} ${k.charAt(0).toUpperCase()+k.slice(1)}</div>`;
+    });
+    html += `</div>`;
+    cron.innerHTML = html;
+  }
 }
 
 window.addEventListener('DOMContentLoaded', renderDashboard);

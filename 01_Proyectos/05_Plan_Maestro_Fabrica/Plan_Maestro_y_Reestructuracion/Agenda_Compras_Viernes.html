@@ -1,24 +1,38 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Agenda Compras Viernes</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Agenda de Compras</title>
+    
 <style>
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; color: #333; max-width: 800px; margin: 0 auto; }
-h1 { color: #1e3a8a; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
-h2 { color: #047857; margin-top: 30px; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
-th { background-color: #f3f4f6; color: #374151; font-weight: bold; }
-blockquote { border-left: 4px solid #f59e0b; padding-left: 15px; background: #fffbeb; padding: 10px; border-radius: 4px; }
-li { margin-bottom: 8px; }
+:root { --sp-green: #313B24; --sp-green-mid: #7A8B6B; --sp-bg: #F0F2EB; --card-bg: #FFFFFF; }
+body { font-family: 'Inter', sans-serif; background: var(--sp-bg); color: var(--sp-green); padding: 40px; line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+h1, h2, h3 { color: var(--sp-green); border-bottom: 2px solid var(--sp-bg); padding-bottom: 10px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 30px; }
+th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+th { background-color: var(--sp-bg); color: var(--sp-green); font-weight: bold; }
+ul { margin-bottom: 20px; }
+.print-btn { display: block; width: 100%; padding: 14px; text-align: center; background: var(--sp-green-mid); color: white; text-decoration: none; font-weight: 600; border-radius: 8px; margin-top: 30px; cursor: pointer; border: none; font-size: 15px; font-family: inherit; }
+.print-btn:hover { background: var(--sp-green); }
+@media print {
+  body { background: white; padding: 0; }
+  .container { box-shadow: none; padding: 0; }
+  .print-btn { display: none; }
+}
 </style>
-</head><body><h1>📋 Agenda y Prioridades de Compras (Reunión del Viernes)</h1>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Agenda y Prioridades de Compras (Reunión del Viernes)</h1>
 <p>Este documento guía la reunión de compras con Juan, enfocado en el cronograma real de dependencias físicas de la obra.</p>
-<blockquote>
-<p>[!IMPORTANT]
-<strong>Estrategia Cronológica de Aire Comprimido:</strong>
-1. Hacer la <strong>Platea</strong> ya (tarda 2 días en fraguar).
-2. Encargar <strong>Casilla</strong> ya (tarda 1 semana, se instala sobre platea lista).
-3. Comprar <strong>Compresor</strong> ya (tarda 1 semana en llegar).
-4. Cuando esté todo esto, se inicia la <strong>Instalación de cañerías</strong> (varios días).</p>
-</blockquote>
+<div style="background:#fff3cd; color:#856404; padding:15px; border-left:6px solid #ffeeba; margin-bottom:20px; border-radius:4px;"><b>⚠️ IMPORTANTE</b><br>
+<b>Estrategia de Instalación de Aire Comprimido:</b><br>
+- La **Instalación de cañerías** se puede iniciar sin esperar el resto, ya que la conexión final al compresor se realiza con **manguera flexible**, dando margen de ajuste físico.<br>
+- Se debe avanzar en paralelo con la Platea, Casilla y Compresor.</div>
+
 <hr />
 <h2>⚡ PROYECTO INDEPENDIENTE: TRANSFORMADOR T3</h2>
 <p><em>Corre por fuera del presupuesto interno de fábrica. Definir cómo avanzar.</em></p>
@@ -107,7 +121,15 @@ li { margin-bottom: 8px; }
 <hr />
 <h2>🟡 3. EN ESPERA (Reunión del Martes)</h2>
 <ul>
-<li><strong>Estabilizadores:</strong> Ya descartada la opción de 30kVA. Queda en pie la opción de 3x12kVA ($2.79M). Todo depende de la charla del martes con Gustavo Gonzalez.</li>
+<li><strong>Estabilizadores:</strong> Opción de 30kVA descartada. En la mesa están las <strong>2 opciones de 3x12kVA de Electro Tec</strong> cotizadas por Gustavo Gonzalez:</li>
+<li>Opción 1 (Elev 140V): $2.792.400 + IVA.</li>
+<li>Opción 2 (Elev 160V): $2.125.500 + IVA.</li>
+<li>Mano de Obra + Térmica (fijo para ambas): $1.870.000 + IVA.</li>
+<li><em>Todo depende de la charla del martes con Gustavo Gonzalez.</em></li>
 <li><strong>Sala Rompedora de Huevos:</strong> En espera de los nuevos presupuestos (PVC, albañilería, puerta).</li>
-<li><strong>Desagües Cloacales:</strong> En pausa hasta conseguir un nuevo plomero (Arquitecto descartado).</li>
-</ul></body></html>
+<li><strong>Desagües Cloacales:</strong> Presupuesto de M.O. recibido por parte de Gabriel ($8.45M). Pendiente de analizar (ya charlado con él).</li>
+</ul>
+        <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+    </div>
+</body>
+</html>

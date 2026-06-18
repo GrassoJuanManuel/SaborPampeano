@@ -250,6 +250,15 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
   Vista simplificada paso a paso para Juan. Muestra las compras a realizar y contrataciones ordenadas lógicamente para evitar cuellos de botella y sobrecostos.
 
+   MACRO-PROYECTO INDEPENDIENTE: Repotenciación Tarifa 3 (Transformador)
+  Prioridad Absoluta. Corre por un carril totalmente separado del resto de las obras de la fábrica. El objetivo es pasar a tarifa T3BT solicitando 110 kW a EDES.
+
+    ✅ Comprar Transformador 400kVA — u$s 11.585 + IVA (Prov: FOHAMA). Cotización recibida, hay 2 en stock.
+    ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: VALSOL).
+    ❌ Comprar Materiales exteriores — Esperando 3 cotizaciones locales solicitadas por Gabriel.
+    ❌ Reunión Definir instalación interior (Juan + Gustavo).
+    ❌ Armar Pilar Verificar si sirve el actual o hay que hacerlo nuevo.
+
    PASO 1: Proteger la fábrica (Urgente)
   La máquina Roboqbo y otros equipos corren riesgo de quemarse con las tormentas. Hay que estabilizar la tensión antes de enchufar equipos nuevos.
 
@@ -311,12 +320,12 @@ Plan Maestro Integral V3 — Sabor Pampeano
  | P6 | Sala Rompedora de Huevos (2.8×2.3m) | MEDIA | 
     Árbol de Decisión:
 
-    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000
+    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000 (PARALIZADO - Muy caro)
 
     ▶ Opción B (Separado): Paredes PVC (Idea Juan) + Albañilería/Piso (Juan Carlos) + Electricidad (Gustavo) + Puerta y media con vidrio.
  | A cotizar (Opc. B)
 
- | P7 | Horno Argental FE III-315 | BAJA | Ofertado a fábrica. Aguardando Juan. | US$ 16.071
+ | P7 | Horno Argental FE III-315 | BAJA | PARALIZADO. Ofertado a fábrica FE III-315, aguardando Juan. | US$ 16.071
 
  | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | ALTA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
 

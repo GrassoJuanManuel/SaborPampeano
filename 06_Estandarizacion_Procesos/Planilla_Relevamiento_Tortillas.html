@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Planilla de Relevamiento - Tortillas</title>
+    <style>
+        @page { size: A4 portrait; margin: 15mm; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: white; color: #000; margin: 0; padding: 20px; font-size: 10pt; }
+        
+        .header { text-align: center; border-bottom: 3px solid #4A5D23; padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { font-size: 18pt; margin: 0; color: #2d3b14; text-transform: uppercase; }
+        .header p { margin: 5px 0 0 0; color: #555; }
+        
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; }
+        .info-row div { border-bottom: 1px dotted #999; padding-bottom: 2px; flex-grow: 1; margin: 0 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #eee; border: 1px solid #333; padding: 8px; text-align: left; }
+        td { border: 1px solid #333; padding: 12px 8px; }
+        
+        .blank-cell { width: 25%; }
+        
+        .footer-notes { border: 1px solid #333; height: 100px; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PLANILLA DE RELEVAMIENTO DE TIEMPOS Y DATOS</h1>
+        <p>Proceso: Elaboración de Tortillas de Papa (con/sin cebolla)</p>
+    </div>
+
+    <div class="info-row">
+        <div style="flex-grow: 0.5;">Fecha: ______/______/202__</div>
+        <div>Auditor / Operario: ___________________________</div>
+        <div style="flex-grow: 0.5;">Lote N°: _____________</div>
+    </div>
+
+    <h3>1. Variables a Medir (Pesar y Anotar)</h3>
+    <table>
+        <tr>
+            <th>Métrica a medir</th>
+            <th class="blank-cell">Valor Real Registrado</th>
+            <th>Observaciones</th>
+        </tr>
+        <tr>
+            <td>Peso exacto de 1 bolsa de papas (con cáscara)</td>
+            <td>___,___ kg</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Peso del desperdicio (cáscaras) por bolsa</td>
+            <td>___,___ kg</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Aceite consumido total (en fritura por lote)</td>
+            <td>___,___ litros / kg</td>
+            <td>Diferencia entre aceite inicial y final</td>
+        </tr>
+        <tr>
+            <td>Rendimiento real: Cantidad tortillas del lote</td>
+            <td>_______ unidades</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h3>2. Tiempos y Capacidades por Paso (Medir con cronómetro)</h3>
+    <table>
+        <tr>
+            <th>Paso del Proceso</th>
+            <th class="blank-cell">Tiempo Real (Minutos)</th>
+            <th class="blank-cell">Detalle / Capacidad Máx.</th>
+        </tr>
+        <tr>
+            <td>1. Pelado completo de 1 bolsa de papas</td>
+            <td>_____ min</td>
+            <td>¿Cuántas personas? ___</td>
+        </tr>
+        <tr>
+            <td>2. Corte en máquina automática (Lote entero)</td>
+            <td>_____ min</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3. Fritura (Tiempo de cocción de 1 tanda de papas)</td>
+            <td>_____ min</td>
+            <td>¿Cuántas tandas se hacen? ___</td>
+        </tr>
+        <tr>
+            <td>4. Mezclado, condimentado y armado de moldes</td>
+            <td>_____ min</td>
+            <td>¿Cuántas personas arman? ___</td>
+        </tr>
+        <tr>
+            <td>5A. HORNO RATIONAL: Cant. Moldes por Bandeja</td>
+            <td>N/A</td>
+            <td>_____ moldes / bandeja</td>
+        </tr>
+        <tr>
+            <td>5B. HORNO RATIONAL: Cant. Bandejas que entran</td>
+            <td>N/A</td>
+            <td>_____ bandejas</td>
+        </tr>
+        <tr>
+            <td>5C. HORNO RATIONAL: Tiempo de Horneado</td>
+            <td>_____ min</td>
+            <td>A temperatura: _____ °C</td>
+        </tr>
+        <tr>
+            <td>6. HORNO PIZZERO: Capacidad / Tiempo</td>
+            <td>_____ min</td>
+            <td>Capac: _____ bandejas</td>
+        </tr>
+        <tr>
+            <td>7. Enfriamiento en Cámara (Tiempo hasta envasado)</td>
+            <td>_____ min</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8. Envasado al Vacío (Tiempo por lote / tanda)</td>
+            <td>_____ min</td>
+            <td>¿Cuántas personas? ___</td>
+        </tr>
+        <tr>
+            <td>TIEMPO OCIOSO: Esperas / Cuellos de botella</td>
+            <td>_____ min</td>
+            <td>(Ej: Esperando al horno)</td>
+        </tr>
+    </table>
+
+    <div class="footer-notes">
+        <strong>Notas / Dificultades detectadas durante la producción:</strong><br><br>
+    </div>
+
+</body>
+</html>

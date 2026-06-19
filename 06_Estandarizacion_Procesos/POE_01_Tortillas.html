@@ -9,34 +9,29 @@
         body { background: #f4f6f0; color: #333; margin: 0; padding: 20px; }
         .document-container { background: white; max-width: 210mm; margin: 0 auto; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 6px solid #4A5D23; border-radius: 4px; }
         
-        /* Header */
         .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e5e7eb; padding-bottom: 15px; margin-bottom: 25px; }
         .header-title h1 { color: #2d3b14; font-size: 24pt; margin: 0 0 5px 0; }
         .header-title h2 { color: #7A9B3A; font-size: 14pt; margin: 0; font-weight: 500; }
         .header-meta { text-align: right; font-size: 9pt; color: #666; }
         .header-meta p { margin: 2px 0; }
         
-        /* Sections */
         h3 { color: #4A5D23; font-size: 14pt; border-bottom: 1px solid #C5D6A0; padding-bottom: 5px; margin-top: 30px; }
         
-        /* Tables */
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 9.5pt; }
         th { background-color: #f8f9f4; color: #4A5D23; padding: 10px; text-align: left; border: 1px solid #e5e7eb; }
         td { padding: 10px; border: 1px solid #e5e7eb; vertical-align: top; }
         
-        /* Process Steps */
         .step { display: flex; margin-bottom: 15px; background: #fafafa; border: 1px solid #eee; border-radius: 6px; padding: 15px; }
         .step-number { background: #4A5D23; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12pt; flex-shrink: 0; margin-right: 15px; }
         .step-content { flex-grow: 1; }
         .step-content h4 { margin: 0 0 8px 0; color: #2d3b14; font-size: 11pt; }
-        .step-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 9pt; color: #555; }
-        .step-details span { display: block; }
-        .step-details strong { color: #333; }
+        .step-details { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 9.5pt; color: #555; }
+        .step-details strong { color: #333; display: inline-block; width: 140px; }
         
-        /* Badges */
         .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 8pt; font-weight: bold; background: #e5e7eb; color: #374151; }
         .badge.time { background: #dbeafe; color: #1e40af; }
         .badge.resource { background: #fef3c7; color: #92400e; }
+        .badge.pending { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
@@ -50,7 +45,7 @@
         </div>
         <div class="header-meta">
             <p><strong>Emisión:</strong> Junio 2026</p>
-            <p><strong>Revisión:</strong> 01</p>
+            <p><strong>Revisión:</strong> 01 (Borrador - Faltan datos de tiempo)</p>
             <p><strong>Aprobado por:</strong> Ing. J.M. Grasso</p>
         </div>
     </div>
@@ -66,8 +61,8 @@
             <td>600 gramos</td>
         </tr>
         <tr>
-            <th>Tamaño del Lote (Batch)</th>
-            <td><em>[A definir con Juan - Ej. 50 tortillas por horneada]</em></td>
+            <th>Tamaño del Lote Nominal</th>
+            <td>Aprox. 180 tortillas (Requiere ~12 bolsas de papa cruda)</td>
         </tr>
     </table>
 
@@ -98,17 +93,88 @@
         <div class="step-content">
             <h4>Pelado de Papas</h4>
             <div class="step-details">
-                <span><strong>Acción:</strong> Cargar papas en la peladora mecánica y procesar.</span>
-                <span><strong>Insumos:</strong> Papa cruda con cáscara.</span>
-                <span><strong>Tiempo:</strong> <span class="badge time">1/2 bolsa por minuto</span></span>
-                <span><strong>Maquinaria/Personal:</strong> Peladora de papas / 1 Operario.</span>
+                <div><strong>Acción:</strong> Cargar papas crudas directamente de la bolsa a la peladora mecánica. Tara máxima de media bolsa por tanda para cuidar la máquina.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge time">~5 min / bolsa</span> <span class="badge pending">Confirmar peso bolsa</span></div>
             </div>
         </div>
     </div>
 
-    <!-- Próximos pasos a completar por Juan -->
-    <div style="text-align: center; padding: 20px; color: #999; font-style: italic; border: 1px dashed #ccc; margin-top: 20px;">
-        Esperando los siguientes pasos del proceso (Ej: Corte, Cocción de la papa, Mezclado, Horneado de la tortilla, Envasado, etc.) para continuar el documento.
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h4>Corte y Tratamiento</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Cortar las papas peladas con la cortadora automática. Agregar Ácido Cítrico para evitar oscurecimiento por oxidación. Escurrir rápidamente.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge time">~10 seg / papa</span> <span class="badge pending">Medir corte lote completo</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h4>Fritura</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Llevar las papas escurridas a la freidora (precalentada). Freír tanda completa.</div>
+                <div><strong>Tiempo Estimado:</strong> Precalentamiento: <span class="badge time">15-20 min</span> | Fritura: <span class="badge pending">A medir</span></div>
+                <div><strong>Consumo Aceite:</strong> <span class="badge pending">A medir por lote</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <h4>Preparación de la Mezcla</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> En una olla, volcar el huevo (previamente roto), condimentar con la sal. <em>Si es de cebolla, agregar la cebolla.</em> Volcar las papas fritas y mezclar para integrar todo uniformemente.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge pending">A medir</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+            <h4>Armado (Llenado de Moldes)</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Aceitar moldes de tortilla manualmente utilizando una esponja embebida en aceite de producción. Rellenar los moldes con la mezcla integrada y colocar los moldes en bandejas de horneado.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge pending">A medir</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+            <h4>Horneado</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Introducir bandejas al horno (Rational / Pizzero). Los tiempos y temperaturas son iguales para ambas variedades.</div>
+                <div><strong>Tiempo / Capacidad:</strong> <span class="badge pending">Medir tiempo de cocción</span> <span class="badge pending">Verificar cant. bandejas por horno</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">7</div>
+        <div class="step-content">
+            <h4>Enfriamiento (Abatimiento)</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Retirar bandejas del horno. Pasar tortillas a bandejas de enfriamiento e ingresar inmediatamente a la cámara de frío para bajar temperatura rápidamente.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge pending">Medir tiempo en cámara</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">8</div>
+        <div class="step-content">
+            <h4>Envasado al Vacío</h4>
+            <div class="step-details">
+                <div><strong>Acción:</strong> Retirar de la cámara de frío, trasladar al área de envasado al vacío. Colocar en bolsas 20x30, sellar al vacío, etiquetar y retornar inmediatamente a la cámara de refrigeración para almacenaje final.</div>
+                <div><strong>Tiempo Estimado:</strong> <span class="badge pending">Medir tiempo de envasado/etiquetado</span></div>
+            </div>
+        </div>
     </div>
 
 </div>

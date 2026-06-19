@@ -250,17 +250,6 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
   Vista simplificada paso a paso para Juan. Muestra las compras a realizar y contrataciones ordenadas lógicamente para evitar cuellos de botella y sobrecostos.
 
-   MACRO-PROYECTO INDEPENDIENTE: Repotenciación Tarifa 3 (Transformador)
-  Prioridad Absoluta. Corre por un carril totalmente separado del resto de las obras de la fábrica. El objetivo es pasar a tarifa T3BT solicitando 110 kW a EDES.
-
-    ✅ Comprar Transformador 400kVA — 2 cotizaciones recibidas:
-- FOHAMA: u$s 11.585 + IVA (hay 2 en stock, pago anticipado).
-- REMOJU SRL: u$s 12.360 + IVA 10,5% — 400kVA 13,2kV llenado integral en Al, puesto en Bahía Blanca (18-Jun-2026). Archivo: 2026-06-18 REMOJU SRL.
-    ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: VALSOL).
-    ❌ Comprar Materiales exteriores — Esperando 3 cotizaciones locales solicitadas por Gabriel.
-    ❌ Reunión Definir instalación interior (Juan + Gustavo).
-    ❌ Armar Pilar Verificar si sirve el actual o hay que hacerlo nuevo.
-
    PASO 1: Proteger la fábrica (Urgente)
   La máquina Roboqbo y otros equipos corren riesgo de quemarse con las tormentas. Hay que estabilizar la tensión antes de enchufar equipos nuevos.
 
@@ -301,13 +290,13 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
 #ProyectoPrioridadEstado ActualInversión Est.
 
- | P1 | Estabilizadores de Tensión (Roboqbo) | MÁXIMA | 
+ | P1 | Estabilizadores de Tensión (Roboqbo) | BAJA | 
     Cotizado Electro Tec (3 Estabilizadores 12kVA = $2.792.400 + IVA). Aguardando decisión de Juan.
  | ~$2.79M + IVA
 
- | P2 | Relevamiento Eléctrico + Instalación | MÁXIMA | Gustavo Gonzalez: Relevamiento general, plan de acción y charla para instalación de futura Tarifa 3 (T3). El trámite T3 lo inició Gabriel. | A cotizar (Gustavo)
+ | P2 | Relevamiento Eléctrico + Instalación | BAJA | Gustavo Gonzalez: Relevamiento general, plan de acción y charla para instalación de futura Tarifa 3 (T3). El trámite T3 lo inició Gabriel. | A cotizar (Gustavo)
 
- | P3 | Compresor + Línea de Aire Comprimido | OPCIONAL | Proing descartado (malas prácticas comerciales/precio). Urge conseguir listado de materiales con otro instalador (Provín). | ~$5.0M ARS + Instalación
+ | P3 | Compresor + Línea de Aire Comprimido | BAJA | Proing descartado (malas prácticas comerciales/precio). Urge conseguir listado de materiales con otro instalador (Provín). | ~$5.0M ARS + Instalación
 
  | P4 | Readecuación Desagüe Cloacal | BAJA | 
     Árbol de Decisión:
@@ -319,25 +308,25 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
  | P5 | Módulo Exterior Harinas (4×4m TACC-free) | MEDIA | Presupuesto estructura recibido ($20.18M) | ~$25M ARS
 
- | P6 | Sala Rompedora de Huevos (2.8×2.3m) | MEDIA | 
+ | P6 | Sala Rompedora de Huevos (2.8×2.3m) | OPCIONAL | 
     Árbol de Decisión:
 
-    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000 (PARALIZADO - Muy caro)
+    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000
 
     ▶ Opción B (Separado): Paredes PVC (Idea Juan) + Albañilería/Piso (Juan Carlos) + Electricidad (Gustavo) + Puerta y media con vidrio.
  | A cotizar (Opc. B)
 
- | P7 | Horno Argental FE III-315 | BAJA | PARALIZADO. Ofertado a fábrica FE III-315, aguardando Juan. | US$ 16.071
+ | P7 | Horno Argental FE III-315 | MÁXIMA | Ofertado a fábrica. Aguardando Juan. | US$ 16.071
 
- | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | ALTA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
+ | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | BAJA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
 
- | P9 | Estanterías y Organización de Planta | ALTA | En ejecución parcial | 
+ | P9 | Estanterías y Organización de Planta | BAJA | En ejecución parcial | 
 
- | P10 | Puesta en Marcha de Máquinas Existentes | CRÍTICA | Pendiente (Llenadora, Tapadora, Autoclave, Rompedora) | $0 (ya compradas)
+ | P10 | Puesta en Marcha de Máquinas Existentes | ALTA | Pendiente (Llenadora, Tapadora, Autoclave, Rompedora) | $0 (ya compradas)
 
  | P11 | Moldes Microperforados (Prueba Piloto Tartas) | CRÍTICA | Aprobado, pendiente compra | 
 
- | P12 | Cajones Plásticos (reemplazo madera) | BAJA | En evaluación (tanda de 50 unidades) | ~$300k ARS
+ | P12 | Cajones Plásticos (reemplazo madera) | ALTA | En evaluación (tanda de 50 unidades) | ~$300k ARS
 
  | P13 | Liofilizadora ORZF-5 (Instalación) | BAJA | Pendiente espacio y electricidad | $0 (ya comprada)
 

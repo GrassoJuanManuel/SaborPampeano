@@ -250,41 +250,64 @@ Plan Maestro Integral V3 — Sabor Pampeano
 
   Vista simplificada paso a paso para Juan. Muestra las compras a realizar y contrataciones ordenadas lógicamente para evitar cuellos de botella y sobrecostos.
 
-   PASO 1: Proteger la fábrica (Urgente)
+   PASO 1: Línea de Aire Comprimido (Bloqueante Producción)
+  Sin este compresor, la rompedora, llenadora, tapadora y autoclave NO pueden arrancar. Proing SA fue DESCARTADO. Provín cotizando alternativas.
+
+    ✅ Comprar Compresor BTA 300L 7.5HP — $2.210.049 (Prov: Manelli Hnos.)
+    ✅ Construir platea de hormigón — $556.000 (Prov: Juan Carlos)
+    ✅ Comprar casilla metálica — $1.806.916 (Prov: Mega Herrería)
+    ✅ Mano de Obra instalación neumática — $1.450.000 (Provín)
+    ✅ Materiales línea de aire (cañería, FRLs, acoples) — u$s 1.126
+
+   PASO 2: Resolver el desagüe cloacal (Bloqueante Módulo)
+  Hay que mover la cloaca 2 metros para liberar las tapas antes de poder poner el módulo de harinas encima. Si no, ante un taponamiento hay que romper todo el piso nuevo.
+
+    ✅ Construir corrimiento de cloaca (M.O.) — $8.450.000 (Prov: Gabriel). *Recomendación: Pedir más presupuestos, parece caro.
+    ✅ Comprar materiales PVC y bocas de registro — $3.795.798
+
+   PASO 3: Proteger la fábrica (Estabilizadores)
   La máquina Roboqbo y otros equipos corren riesgo de quemarse con las tormentas. Hay que estabilizar la tensión antes de enchufar equipos nuevos.
 
     ✅ Comprar 3 Estabilizadores Electro Tec 12kVA (140V) — $2.792.400 + IVA (Prov: Gustavo Gonzalez)
     ✅ Instalar estabilizadores + térmica 32A — $1.870.000 + IVA (Prov: Gustavo Gonzalez)
-    ❌ Comprar estanterías para tablero eléctrico — Falta cotizar (Valor ínfimo en proporción)
+    ❌ Comprar estanterías para tablero eléctrico — Falta cotizar (Valor ínfimo)
 
-   PASO 2: Resolver el desagüe cloacal (Bloqueante)
-  Hay que mover la cloaca 2 metros para liberar las tapas antes de poder poner el módulo de harinas encima. Si no, ante un taponamiento hay que romper todo el piso nuevo.
+   PASO 4: Repotenciación Tarifa 3 (Transformador)
+  Corre por un carril separado. El objetivo es pasar a tarifa T3BT solicitando 110 kW a EDES por calle Don Bosco. Arquitectura dual: se conserva la conexión de calle Bolivia.
 
-    ✅ Construir corrimiento de cloaca (Mano de Obra) — $8.450.000 (Prov: Gabriel). *Recomendación: Pedir más presupuestos, parece caro.
-    ❌ Comprar materiales PVC y bocas de registro — Falta cotizar
+    ✅ Comprar Transformador 400kVA — FOHAMA (u$s 11.585) o REMOJU (u$s 12.360) + IVA
+    ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: VALSOL)
+    ✅ Materiales armado soporte y conexiones — u$s 2.058,85
+    ❌ Materiales exteriores — Esperando 3 cotizaciones (Gabriel)
+    ❌ Armar Pilar — Verificar si sirve el actual o hacerlo nuevo
 
-   PASO 3: Módulo de Harinas (TACC-free)
-  Una vez corrida la cloaca, se puede armar el módulo exterior para independizar la zona de harinas y poner la sobadora y empanaderas.
+   PASO 5: Horno Rotativo Argental FE III-315
+  Triplicará la capacidad de horneado en la cocina actual. Se instala en el espacio existente.
 
-    ✅ Comprar placas aislantes — Ya pagadas (Llegan en 30-40 días)
-    ✅ Construir estructura metálica — Acordado (Prov: Gabriel - en proceso)
-    ✅ Instalar electricidad interior — $1.020.000
-    ✅ Instalar plomería interior — $420.000
+    ✅ Cotización Horno — US$ 16.071. Oferta recibida.
+    ❌ M.O. Instalación — Falta cotizar
+
+   PASO 6: Sala Rompedora de Huevos
+  Necesario para generar huevo líquido propio. Requiere la línea de aire (Paso 1) terminada.
+
+    ✅ Adecuación de sala (Gabriel — M.O. y Mat.) — $6.760.000 + 8%
+    ❌ Opcional: Hacer por oficios separados (PVC, Albañilería, etc) — A cotizar
+
+   PASO 7: Línea Empanadas (G) + B2C Tapas
+  Línea continua 100% automática. Se instalará dentro del futuro módulo de harinas (Paso 8).
+
+    ✅ Cortadora Spiing MCD2 — u$s 9.500 usada / u$s 13.500 nueva
+    ✅ Sobadora Pesada Argental — ~u$s 8.000 est.
+    ❌ Comprar línea de empanadas — Cotizando opciones
+
+   PASO 8: Módulo Exterior Harinas (4×4m TACC-free)
+  Debe esperar a que se termine de mover la cloaca (Paso 2). Una vez listo, se arma el módulo exterior para independizar la zona de harinas.
+
+    ✅ Placas aislantes — Ya pagadas (Llegan en 30-40 días)
+    ✅ Materiales + M.O. + Montaje Estructura — $20.187.536 (Gabriel)
+    ✅ Plomería — Mat: $238.000 / M.O.: $420.000
+    ✅ Electricidad — Mat: $801.000 / M.O.: $1.020.000
     ❌ Comprar puerta, cortina PVC, aire acondicionado — Falta cotizar
-
-   PASO 4: Aire Comprimido para máquinas
-  Sin este compresor, la rompedora, llenadora, tapadora y autoclave NO pueden arrancar. Proing SA fue DESCARTADO por altos costos y por negarse a entregar el cómputo de materiales sin asegurar la obra. Urgente: Conseguir un instalador (ej. Provín) que haga el cómputo de materiales exacto y cotice mano de obra razonable.
-
-    ✅ Comprar Compresor BTA 300L 7.5HP — $2.210.049 (Prov: Manelli Hnos.)
-    ✅ Construir platea de hormigón — $556.000 (Prov: Juan Carlos).
-    ✅ Comprar casilla metálica con instalación — $1.806.916 (Prov: Mega Herrería).
-    ❌ Instalar cañería de aluminio y electricidad — A cotizar (Proing descartado. Esperando a Provín / otros).
-    ❌ Comprar tubería, mangueras y acoples — Bloqueado (Falta que el instalador entregue el listado de materiales).
-
-   PASO 5: Proyectos en Pausa (A decidir luego)
-
-    ⏸️ Adecuar Sala Rompedora de Huevos — Presupuesto excesivo ($6.760.000). Paralizado, pendiente hablar con Gabriel para simplificar y achicar el número.
-    ⏸️ Comprar Horno Rotativo Argental FE III-315 — US$ 16.071. Oferta recibida, paralizado hasta confirmación tuya.
 
 ## 2. INVENTARIO COMPLETO DE PROYECTOS
 

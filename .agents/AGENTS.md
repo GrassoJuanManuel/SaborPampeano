@@ -20,3 +20,10 @@ Cada vez que el usuario te dé un "update" de novedades de la fábrica, DEBES se
 4. **Búsqueda Quirúrgica:** Debes usar scripts o `multi_replace_file_content` para buscar y reemplazar el texto exacto en el objeto `P`. Asegúrate de borrar la situación "vieja" (ej. "Esperando presupuesto") cuando ingresas la "nueva" (ej. "Presupuesto recibido").
 5. **Comportamiento Tipo "App":** Tu rol al recibir updates es funcionar como el backend de una App. Actualiza los datos, guarda el archivo, y avisa. No cambies la lógica de funcionamiento ni la UI a menos que te lo pidan explícitamente.
 6. **Formato de Salida de Documentos:** Cuando generes minutas, agendas o reportes para el usuario, SIEMPRE guárdalos como `.html` en la carpeta correspondiente del Workspace, usando el estilo visual de la empresa y con un botón de imprimir/PDF. NO dejes los reportes finales como artefactos `.md` internos, ya que el usuario necesita abrirlos y enviarlos.
+
+## Manipulación de Documentos HTML Estilizados
+**NUNCA regeneres documentos HTML completos** usando scripts de conversión (como de Markdown a HTML) si el archivo ya tiene una estructura estética, clases CSS personalizadas o íconos integrados.
+Para modificar texto, reordenar secciones o actualizar datos en reportes HTML o dashboards:
+1. Inspecciona la estructura original exacta del bloque a modificar.
+2. Utiliza herramientas de reemplazo de texto (`replace_file_content` o `multi_replace_file_content`) para intervenir **quirúrgicamente** solo los bloques necesarios (cortar/pegar `<div>`s, cambiar textos).
+3. Debes preservar intactas las etiquetas estructurales, atributos de clase (`class="..."`) y estilos en línea (`style="..."`).

@@ -146,7 +146,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
 }
 .chart-card h4{font-size:13px;font-weight:700;color:#1a2410;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
 .chart-card h4 i{color:var(--sp-green-light);}
-.chart-wrap{position:relative;height:420px;}
+.chart-wrap{position:relative;height:220px;}
 
 /* TOOLBAR */
 .stars{display:inline-flex;gap:2px;}.stars i{color:var(--star-off);font-size:11px;}.stars i.on{color:var(--star-on);}
@@ -355,6 +355,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
     <div class="nav-section">Proyectos (por prioridad)</div>
     <button class="nav-btn" onclick="detail('roboqbo', this)"><i class="fas fa-bolt" style="color:#ef4444"></i> Estabilizador Roboqbo<span class="nav-stars"><i class="fas fa-star" style="color:#ef4444"></i></span></button>
     <button class="nav-btn" onclick="detail('aire', this)"><i class="fas fa-wind" style="color:#38bdf8"></i> Aire Comprimido<span class="nav-stars">★★★★★</span></button>
+    <button class="nav-btn" onclick="detail('transformador', this)"><i class="fas fa-plug" style="color:#f59e0b"></i> Transformador T3<span class="nav-stars">★★★★★</span></button>
     <button class="nav-btn" onclick="detail('estandarizacion', this)"><i class="fas fa-clipboard-check" style="color:#a78bfa"></i> Estandarización<span class="nav-stars">★★★★</span></button>
     <button class="nav-btn" onclick="detail('desague', this)"><i class="fas fa-water" style="color:#2dd4bf"></i> Desagüe Cloacal<span class="nav-stars">★★★★</span></button>
     <button class="nav-btn" onclick="detail('argental', this)"><i class="fas fa-fire-burner" style="color:#fb923c"></i> Instalación Argental<span class="nav-stars">★★★★</span></button>
@@ -383,17 +384,6 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
       <div class="stat-card c3"><div class="stat-icon"><i class="fas fa-hard-hat"></i></div><div class="stat-num">4</div><div class="stat-lbl">Obras en Curso</div></div>
       <div class="stat-card c4"><div class="stat-icon"><i class="fas fa-file-invoice-dollar"></i></div><div class="stat-num">10</div><div class="stat-lbl">Cotizaciones Activas</div></div>
     </div>
-    <div class="chart-card">
-      <h4><i class="fas fa-chart-bar"></i> Avance por Proyecto</h4>
-      <div class="chart-wrap"><canvas id="chartAvance"></canvas></div>
-    </div>
-  </div>
-
-  <!-- ======== CRONOGRAMA VISUAL ======== -->
-  <div class="chart-card" style="margin-bottom:28px;">
-    <h4><i class="fas fa-stream"></i> Cronograma de Dependencias — Cadenas Críticas</h4>
-    <p style="font-size:11px;color:#8a9a6e;margin-bottom:20px;margin-top:-8px;">Las fases se organizan por dependencia real, no por semana calendario. El ancho indica duración relativa estimada.</p>
-    <div id="cronograma"></div>
   </div>
 
   <div class="toolbar">
@@ -404,7 +394,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
   </div>
   <div class="projects-grid" id="grid">
     <div class="pcard" onclick="detail('roboqbo')" data-priority="6" data-name="Estabilizador Roboqbo"><div class="card-top"><h3>Estabilizador Roboqbo</h3><span class="badge b-prog" style="background:#7f1d1d;color:#fca5a5"><i class="fas fa-bolt"></i> Urgente</span></div><p class="card-desc">Cotización G. Gonzalez $4.66M + IVA. Entrega 48/72hs.</p><div class="card-footer"><div class="stars"><i class="fas fa-star max" title="MAXIMA PRIORIDAD"></i></div></div><div class="progress"><div class="fill" style="width:50%;background:#ef4444"></div></div></div>
-    <div class="pcard" onclick="detail('aire')" data-priority="5" data-name="Aire Comprimido"><div class="card-top"><h3>Línea de Aire Comprimido (7.5HP)</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Compras</span></div><p class="card-desc">Abastecer Rompedora, Cadec y Autoclave. Compresor BTA 300L 7.5HP — Manelli Hnos. $2.210.049,77 ARS.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div></div><div class="progress"><div class="fill" style="width:45%"></div></div></div>
+    <div class="pcard" onclick="detail('aire')" data-priority="5" data-name="Aire Comprimido"><div class="card-top"><h3>Línea de Aire Comprimido</h3><span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Compras</span></div><p class="card-desc">2 opciones: Opc. A BTA 300L 7.5HP (exterior) — Opc. B KAESER I.COMP 3 oil-free (interior, Sala Rompedora). Presupuesto Provín pendiente.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div></div><div class="progress"><div class="fill" style="width:45%"></div></div></div>
     <div class="pcard" onclick="detail('argental')" data-priority="4" data-name="Horno Argental"><div class="card-top"><h3>Horno Argental Compacto</h3><span class="badge b-prog"><i class="fas fa-fire-burner"></i> Reevaluando</span></div><p class="card-desc">Panier III descartado por falta de espacio f&iacute;sico. Evaluando modelo compacto de 8 bandejas.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i></div></div><div class="progress"><div class="fill" style="width:10%"></div></div></div>
     <div class="pcard" onclick="detail('estandarizacion')" data-priority="4" data-name="Estandarización"><div class="card-top"><h3>Estandarización de Procesos</h3><span class="badge b-trans"><i class="fas fa-layer-group"></i> Transversal</span></div><p class="card-desc">POEs, sistema digital V3.2, organización con infraestructura actual.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:40%"></div></div></div>
     <div class="pcard" onclick="detail('desague')" data-priority="4" data-name="Desagüe Cloacal"><div class="card-top"><h3>Readecuación Desagüe Cloacal</h3><span class="badge b-buy"><i class="fas fa-hard-hat"></i> Cotizado</span></div><p class="card-desc">Obra civil cotizada ($8.45M M.O.). Obra crítica que bloquea el montaje del módulo.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:28%"></div></div></div>
@@ -459,6 +449,25 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
       </div>
     </div>
   </div>
+
+  <!-- ======== GRÁFICOS (Avance + Cronograma) ======== -->
+  <div style="display:flex;align-items:center;gap:14px;margin:32px 0 24px;">
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,#dde8c4,transparent);"></div>
+    <span style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#a4b495;font-weight:700;">Análisis y Cronograma</span>
+    <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#dde8c4);"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:24px;">
+    <h4><i class="fas fa-chart-bar"></i> Avance por Proyecto</h4>
+    <div class="chart-wrap"><canvas id="chartAvance"></canvas></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:0;">
+    <h4><i class="fas fa-stream"></i> Cronograma de Dependencias — Cadenas Críticas</h4>
+    <p style="font-size:11px;color:#a4b495;margin-bottom:20px;margin-top:-8px;font-style:italic;">Las fases se organizan por dependencia real, no por semana calendario. El ancho indica duración relativa estimada.</p>
+    <div id="cronograma"></div>
+  </div>
+
 </div>
 
 <!-- ======== PENDIENTES ======== -->
@@ -507,11 +516,13 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
   
   <div class="info-box" style="border-left-color:var(--sp-red);"><h4><i class="fas fa-bolt"></i> Repotenciación Transformador T3BT</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th><th>Archivo</th></tr></thead><tbody>
     <tr><td><strong>FOHAMA</strong></td><td>Transformador 400kVA</td><td>u$s 11.585 + IVA</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
+    <tr><td><strong>REMOJU SRL</strong></td><td>Transformador 400kVA 13.2kV (Al) — Puesto en Bahía Blanca</td><td>u$s 12.360 + IVA 10,5%</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
     <tr><td><strong>VALSOL</strong></td><td>Proyecto y M.O. Exterior</td><td>$5.850.000 ARS</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
   </tbody></table></div>
 
   <div class="info-box"><h4><i class="fas fa-wind"></i> Aire Comprimido</h4><table class="ctable"><thead><tr><th>Proveedor</th><th>Concepto</th><th>Precio</th><th>Estado</th><th>Archivo</th></tr></thead><tbody>
-    <tr><td><strong>Manelli Hnos.</strong></td><td>Compresor BTA 300L 7.5HP</td><td>$2.210.049,77 ARS</td><td><span class="badge b-done">✅ Aprobado</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/01_Linea_Aire_Comprimido/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
+    <tr><td><strong>Manelli Hnos.</strong></td><td>Compresor BTA 300L 7.5HP <em>(Opc. A — exterior)</em></td><td>$2.210.049,77 ARS</td><td><span class="badge b-done">✅ Recibida</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/01_Linea_Aire_Comprimido/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
+    <tr><td><strong>Provín S.A. (Kaeser)</strong></td><td>I.COMP 3 oil-free + tankón 90L + inst. <em>(Opc. B — interior Rompedora)</em></td><td>A cotizar (hoy)</td><td><span class="badge b-prog">⏳ Cotizando</span></td><td><button class="open-folder" onclick="openFolder('01_Proyectos/01_Linea_Aire_Comprimido/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;"><i class="fas fa-folder-open"></i> Abrir Carpeta</button></td></tr>
     <tr><td><strong>Juan Carlos (Albañil)</strong></td><td>Platea hormigón c/fibra 2.5x1x0.2m</td><td>$556.000 ARS</td><td><span class="badge b-done">✅ Recibida</span></td><td><span style="color:#aaa">-</span></td></tr>
     <tr><td><strong>Mega Herrería</strong></td><td>Casilla/Estructura compresor</td><td>$1.806.916 ARS</td><td>Cotizado</td><td><span style="color:#aaa">-</span></td></tr>
     <tr><td><strong>Provín S.A.</strong></td><td>Mano de obra instalación neumática</td><td>A cotizar</td><td><span class="badge b-prog">⏳ Cotizando</span></td><td><span style="color:#aaa">-</span></td></tr>
@@ -588,27 +599,33 @@ roboqbo:{title:'Estabilizador de Tensión Roboqbo',ref:'Infraestructura Crítica
 'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text">El dueño lo eleva a hiper máxima prioridad. Se descarta a Gabriel.</div></div><div class="tl-item"><div class="tl-date">16-Jun-2026</div><div class="tl-text">Gustavo cotiza estabilizadores Electro Tec. Aguardando decisión del dueño.</div></div></div></div>`}},
 aire:{title:'Línea de Aire Comprimido (7.5HP)',ref:'SP-OC-2026-002',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> En Compras</span>',priority:5,progress:45,statusType:'en_curso',budget: [
     {
-      name: 'Equipo e Instalación Completa',
+      name: 'Opc. A — Compresor Exterior (BTA 300L 7.5HP)',
       items: [
-        { desc: 'Compresor BTA 300L (Manelli): $2.210.049', miss: false },
+        { desc: 'Compresor BTA 300L 7.5HP (Manelli Hnos.): $2.210.049', miss: false },
         { desc: 'Platea hormigón (Juan Carlos): $556.000', miss: false },
         { desc: 'Casilla metálica (Mega Herrería): $1.806.916', miss: false },
-        { desc: 'Mano de obra instalación neumática', miss: true },
-        { desc: 'Materiales cañería aluminio (tubería, FRLs)', miss: true }
+        { desc: 'Mano de obra instalación neumática (Provín)', miss: true },
+        { desc: 'Materiales cañería aluminio (tubos, FRLs, acoples)', miss: true }
       ],
-      total: '~$4.572.965 + Materiales + Mano de Obra'
+      total: '~$4.572.965 + Materiales + M.O. — requiere casilla y platea'
+    },
+    {
+      name: 'Opc. B — KAESER I.COMP 3 (interior, oil-free, Sala Rompedora)',
+      items: [
+        { desc: 'KAESER I.COMP 3 oil-free + tankón pulmón 90L (Provín): u$s 3.260 + IVA', miss: false },
+        { desc: 'Instalación en altura +2m en Sala Rompedora (Provín): a cotizar', miss: true },
+        { desc: 'Materiales cañería (menos metros vs Opc. A): a cotizar', miss: true }
+      ],
+      total: 'u$s 3.260 + IVA + Instalación'
     }
   ],tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Proveer aire comprimido a todos los equipos neumáticos: Rompedora (6 bar, 10 L/min), Llenadora LSL (10 L/min), Tapadora RLS (100 L/min) y Autoclave (50 L/min).</p></div>
-<div class="info-box"><h4><i class="fas fa-calculator"></i> Análisis Técnico de Capacidad</h4><table class="kv"><tr><td>Compresor</td><td><strong>7.5 HP</strong> → genera ~700-800 L/min de caudal (FAD) a 8 bar</td></tr><tr><td>Demanda pico simultánea</td><td>Tapadora RLS (100) + Llenadora LSL (10) + Autoclave (50) + Rompedora (10) = <strong>170 L/min</strong></td></tr><tr><td>Demanda c/ Margen (30%)</td><td>170 L/min × 1.3 = <strong>221 L/min</strong> (todas a 6 bar)</td></tr><tr><td>Ratio capacidad/demanda</td><td><strong>~3.5:1</strong> — El compresor genera más de 3 veces la demanda máxima segura</td></tr><tr><td>Tanque 300L</td><td>Buffer suficiente para picos. Cicla con mucha holgura.</td></tr></table><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Riesgos y Requisitos:</strong><br>- <strong>Filtros y cañerías:</strong> Considerar pérdida de carga por filtros y distancias largas. Solución: cañería principal 1" mínimo, bajadas 3/4".<br>- <strong>Regulador de Presión:</strong> Es <strong>obligatorio</strong> instalar un regulador de presión general a la salida del compresor.<br>- <strong>FRL:</strong> Instalar un FRL en cada punto de uso de las máquinas.</p></div>
-<div class="info-box"><h4><i class="fas fa-check-circle" style="color:var(--sp-green-light)"></i> Avances</h4><ul><li>Presupuesto integral de Belachur <strong>descartado 100%.</strong></li><li>Compresor BTA 300L 7.5HP — Manelli Hnos. $2.210.049,77 ARS (Bernabé).</li><li>Precio de la casilla obtenido (Mega Herrería): $1.8M.</li><li><strong>Platea para compresor (Albañil Juan Carlos):</strong> $556.000 (materiales y mano de obra). Hormigón con fibra sintética de 2,5m x 1m x 0,2m.</li><li>Cotización Proing SA <strong>DESCARTADA TOTALMENTE</strong> (Mala práctica de ventas, no querían entregar listado de materiales y cobraban excesivamente caro).</li><li><strong>Provín:</strong> Hoy visita Nicolás para relevar trabajo, confirmar materiales y presupuestar M.O. y materiales.</li><li>Especificaciones técnicas V4 documentadas.</li></ul>
-    
-  </div>
-<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li><strong>REUNIÓN DE COMPRAS (VIERNES):</strong> Definir presupuesto y prioridades definitivas de compras.</li><li><strong>Conseguir listado de materiales urgente:</strong> Aguardar el cómputo de Nicolás (Provín) (tubos, FRLs, acoples) para poder comprarlo.</li><li>Analizar presupuestos de platea (Juan Carlos) y casilla (Mega Herrería).</li><li>Completar presupuesto general de instalación.</li></ul>
-    
-  </div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos del Proyecto</h4><p>Todos los presupuestos y pliegos están en la carpeta del proyecto.</p><button class="open-folder" onclick="openFolder('01_Proyectos/01_Linea_Aire_Comprimido/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Aire Comprimido</button></div>`,
-'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">Mayo 2026</div><div class="tl-text">Pliego SP-OC-2026-002 enviado a Metalúrgica Belachur.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotización Nitram ($1.07M) evaluada — incompleta.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotizaciones individuales recibidas: Manelli Hnos., Mega Herrería, Provín/Kaeser.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Belachur descartado 100%.</strong> Estrategia: compra por separado. Compresor escalado a 7.5HP. Regulador de presión obligatorio.</div></div></div></div>`}},
+<div class="info-box"><h4><i class="fas fa-calculator"></i> Análisis Técnico de Capacidad (ambas opciones)</h4><table class="kv"><tr><td>Demanda pico simultánea</td><td>Tapadora RLS (100) + Llenadora LSL (10) + Autoclave (50) + Rompedora (10) = <strong>170 L/min</strong></td></tr><tr><td>Demanda c/ Margen (30%)</td><td>170 L/min × 1.3 = <strong>221 L/min</strong></td></tr><tr><td>Ratio Opc. A (7.5HP)</td><td>~700-800 L/min → ratio <strong>3.5:1</strong> — holgado</td></tr><tr><td>Opc. B (KAESER I.COMP 3)</td><td>Entrega <strong>160 L/min a 6 bar</strong>. Queda <strong>por debajo</strong> del pico teórico (170 L/min). Dependería excesivamente del pulmón de 90L y trabajaría sin margen.</td></tr></table><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Requisitos comunes:</strong> Regulador de presión general obligatorio. FRL en cada punto de uso. Cañería principal 1" mínimo.</p></div>
+<div class="info-box" style="border-left:4px solid #d97706;"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Estado y Alternativas</h4><ul><li>Proing SA fue DESCARTADO.</li><li>Nicolás (Provín) ofreció el Kaeser por u$s 3.260 + IVA, pero al revisar la capacidad, no daría abasto holgadamente.</li><li><strong>Nuevo Plan:</strong> Nicolás está cotizando <strong>dos compresores a pistón</strong> para garantizar el margen de seguridad que exigimos.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-check-circle" style="color:var(--sp-green-light)"></i> Avances</h4><ul><li>Belachur descartado 100%.</li><li>Proing SA descartada totalmente (mala práctica de ventas).</li><li><strong>Opc. A:</strong> Compresor BTA 300L 7.5HP Manelli $2.210.049 + Platea $556.000 + Casilla Mega Herrería $1.8M.</li><li><strong>Opc. B:</strong> Nicolás de Provín ofreció Kaeser I.COMP 3 (u$s 3.260 + IVA).</li><li>Especificaciones técnicas V4 documentadas.</li></ul></div>
+<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes</h4><ul><li><strong>Recibir cotización completa Provín (Opc. B):</strong> alternativa a pistón para garantizar caudal.</li><li><strong>Comparar Opc. A vs Opc. B:</strong> precio total, tiempo de ejecución, impacto en obra civil.</li><li>Decidir opción antes de avanzar con cualquier compra.</li></ul></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos del Proyecto</h4><p>Presupuestos, especificaciones y ficha ICOMP 3 Kaeser en la carpeta del proyecto.</p><button class="open-folder" onclick="openFolder('01_Proyectos/01_Linea_Aire_Comprimido/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Aire Comprimido</button></div>`,
+'Historial':`<div class="info-box"><h4><i class="fas fa-clock-rotate-left"></i> Línea de Tiempo</h4><div class="timeline"><div class="tl-item"><div class="tl-date">Mayo 2026</div><div class="tl-text">Pliego SP-OC-2026-002 enviado a Metálurgica Belachur.</div></div><div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-text">Cotizaciones individuales recibidas: Manelli Hnos., Mega Herrería, Provín/Kaeser.</div></div><div class="tl-item"><div class="tl-date">08-Jun-2026</div><div class="tl-text"><strong>Belachur descartado 100%.</strong> Estrategia: compra por separado. Compresor 7.5HP. Regulador de presión obligatorio.</div></div><div class="tl-item"><div class="tl-date">18-Jun-2026</div><div class="tl-text"><strong>Evaluación técnica:</strong> Kaeser I.COMP 3 (u$s 3.260) insuficiente para pico 170 L/min. Provín cotizando alternativamente compresores a pistón.</div></div></div></div>`}},
 
 estandarizacion:{title:'Estandarización de Procesos',ref:'Gestión Transversal — Operación Actual',badge:'<span class="badge b-trans"><i class="fas fa-layer-group"></i> Transversal</span>',priority:4,progress:40,statusType:'en_curso',tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-bullseye"></i> Objetivo</h4><p>Acomodar y optimizar la operación con la <strong>infraestructura y maquinaria actual</strong>. Implementar POEs, buenas prácticas, organización visual, y ejecutar los mini-proyectos logísticos.</p></div>
@@ -694,22 +711,20 @@ maqnuevas:{title:'Máquinas Nuevas de Producción',ref:'Cotizaciones en curso',b
 
 empanadas:{title:'Línea Empanadas (G) + B2C Tapas',ref:'Cotizaciones en curso',badge:'<span class="badge b-buy"><i class="fas fa-shopping-cart"></i> Cotizando</span>',priority:2,progress:30,statusType:'cotizando',tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-utensils"></i> Concepto</h4><p>Línea continua 100% automática (lamina + corta + dosifica + cierra). Capacidad: 1.000-2.000 u/hora. Empanadas semicongeladas + venta de tapas crudas al público.</p></div>
-<div class="info-box"><h4><i class="fas fa-list"></i> Variedades</h4><ul><li><strong>Básicas (7):</strong> Jamón y queso, carne a cuchillo, carne picada, 4 quesos, roquefort y nuez, humita, verdura.</li><li><strong>Futuras (premium):</strong> Carne desmechada, bondiola, panceta y cebolla.</li></ul>
-    
-  </div>`}},
+<div class="info-box"><h4><i class="fas fa-list"></i> Variedades</h4><ul><li><strong>Básicas (7):</strong> Jamón y queso, carne a cuchillo, carne picada, 4 quesos, roquefort y nuez, humita, verdura.</li><li><strong>Futuras (premium):</strong> Carne desmechada, bondiola, panceta y cebolla.</li></ul></div>`}},
 
-
-transformador:{title:'Repotenciación a Tarifa 3 (T3BT)',ref:'P11 — Transformador 400kVA',badge:'<span class="badge b-crit"><i class="fas fa-bolt"></i> Máxima Prioridad</span>',priority:1,progress:20,statusType:'en_curso',budget:[
-    {name:'Componentes y Obra Exterior', items:[
-        {desc:'Transformador 400kVA (FOHAMA)', miss:false},
-        {desc:'Mano de obra y proyecto (VALSOL)', miss:false},
+transformador:{title:'Repotenciación a Tarifa 3 (T3BT)',ref:'P11 — Transformador 400kVA',badge:'<span class="badge b-crit"><i class="fas fa-bolt"></i> Máxima Prioridad</span>',priority:5,progress:20,statusType:'en_curso',budget:[
+    {name:'Componentes y Obra Exterior (calle Don Bosco)', items:[
+        {desc:'Opción A — Transformador 400kVA (FOHAMA): u$s 11.585 + IVA', miss:false},
+        {desc:'Opción B — Transformador 400kVA 13.2kV Al (REMOJU SRL): u$s 12.360 + IVA 10,5% — Puesto en Bahía Blanca', miss:false},
+        {desc:'Mano de obra y proyecto exterior (VALSOL): $5.850.000 ARS', miss:false},
         {desc:'Armado de pilar (A Verificar)', miss:true},
         {desc:'Materiales exteriores (Cotizando)', miss:true}
-    ], total:'u$s 11.585 + $5.850.000 ARS + Materiales'}
+    ], total:'FOHAMA: u$s 11.585 / REMOJU: u$s 12.360 + $5.850.000 ARS + Materiales'}
 ],tabs:{
-'Resumen':`<div class="info-box"><h4><i class="fas fa-bolt"></i> Estado del Proyecto</h4><ul><li><strong>Potencia:</strong> Se solicitaron 110 kW a EDES (Tarifa T3BT).</li><li><strong>Transformador:</strong> 400kVA cotizado por FOHAMA (Hay 2 en stock, pago anticipado).</li><li><strong>Obra Exterior:</strong> Proyecto VALSOL hasta fusilera.</li><li><strong>Cortes de Luz:</strong> Gustavo Gonzalez trabajará fines de semana para no frenar la producción actual.</li></ul></div>
-<div class="info-box"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes Inmediatos</h4><ul><li><strong>Reunión Martes:</strong> Juan y Gustavo definirán plan de acción para la instalación interior post-transformador.</li><li><strong>Pilar:</strong> Verificar si sirve el pilar existente o si hay que construir uno nuevo (no incluido por VALSOL).</li><li><strong>Materiales:</strong> Esperar las cotizaciones de los 3 proveedores locales contactados por Gabriel.</li></ul></div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><p>Presupuestos de Fohama y Valsol guardados en la carpeta.</p><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Transformador</button></div>`}},
+'Resumen':`<div class="info-box"><h4><i class="fas fa-bolt"></i> Estado del Proyecto</h4><ul><li><strong>Potencia solicitada a EDES:</strong> 110 kW (Tarifa T3BT) por calle Don Bosco.</li><li><strong>Arquitectura eléctrica dual:</strong> La fábrica tiene DOS conexiones a la red:<ul style="margin-top:6px;"><li><strong>Calle Bolivia:</strong> Transformador existente que se conserva (potencia propia, a verificar con Gustavo).</li><li><strong>Calle Don Bosco:</strong> Transformador nuevo 400 kVA T3BT — los 110 kW son <em>adicionales</em> a Bolivia.</li></ul></li><li><strong>Implicancia:</strong> Potencia total = Bolivia + Don Bosco. Los 110 kW de Don Bosco podrían ser suficientes según lo disponible en Bolivia. <strong>Confirmar con Gustavo el martes.</strong></li><li><strong>Transformador — 2 Cotizaciones Recibidas:</strong><ul style="margin-top:6px;"><li>FOHAMA: u$s 11.585 + IVA (2 en stock, pago anticipado).</li><li>REMOJU SRL: u$s 12.360 + IVA 10,5% — 400kVA 13,2kV en Al, puesto en Bahía Blanca.</li></ul></li><li><strong>Obra Exterior:</strong> VALSOL hasta fusilera.</li><li><strong>Cortes de Luz:</strong> Gustavo trabajará fines de semana.</li></ul></div>
+<div class="info-box" style="border-left:4px solid #d97706;"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Pendientes Inmediatos</h4><ul><li><strong>Reunión Martes c/ Gustavo:</strong> Verificar potencia contratada en Bolivia y confirmar balance eléctrico total (Bolivia + Don Bosco).</li><li><strong>Pilar:</strong> Verificar si sirve el existente o hay que construir uno nuevo (no incluido por VALSOL).</li><li><strong>Materiales:</strong> Esperar cotizaciones de los 3 proveedores locales contactados por Gabriel.</li></ul></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Documentos</h4><p>Presupuestos de Fohama, REMOJU SRL y Valsol guardados en la carpeta.</p><button class="open-folder" onclick="openFolder('01_Proyectos/09_Transformador/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Transformador</button></div>`}},
 maquinas:{title:'Instalación Máquinas Existentes',ref:'Bloqueado por aire comprimido',badge:'<span class="badge b-prog"><i class="fas fa-tools"></i> Bloqueado</span>',priority:1,progress:45,statusType:'en_curso',tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-cogs"></i> Equipos pendientes de instalación</h4><ul><li>Llenadora LSL 100CNC (Cadec) — <strong>Ya ingresada a la cocina. Lista para funcionar.</strong></li><li>Tapadora RSL 1800P (Cadec) — <strong>Ya ingresada a la cocina. Lista para funcionar.</strong></li><li>Autoclave (a vapor, autónomo) — <strong>Pendiente: Limpiar/despejar área junto a cámara de congelados para reubicar 4 freezers horizontales de la cocina, y revisar conexiones eléctricas.</strong></li><li>Liofilizadora ORZF-5 (50kg/batch) — Ya comprada. Sin espacio aún (depende de correr 4 freezers entre cámaras).</li><li>Abatidor (guías para bandejas, sin carro) — Ya comprado</li><li>Bomba elevadora (Roboqbo → LSL)</li></ul><p style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e"><strong>⚠️ Estrategia Actual:</strong> Se ajustarán detalles de configuración de Llenadora y Tapadora utilizando el compresor pequeño del área de etiquetado, quedando 100% calibradas a la espera del compresor definitivo.</p></div>`}},
 
@@ -915,14 +930,28 @@ function renderDashboard() {
   
   // Sort by priority descending for chart
   const sorted = Object.keys(P).sort((a, b) => P[b].priority - P[a].priority);
-  const labels = sorted.map(id => {
-    let t = P[id].title;
-    if (t.length > 20) t = t.substring(0, 18) + '...';
-    if (P[id].priority >= 6) t += ' ⚡';
-    return t;
-  });
+  // Short labels map — display names for the chart
+  const SHORT_LABELS = {
+    roboqbo:      'Estabilizador Roboqbo',
+    aire:         'Línea de Aire',
+    estandarizacion: 'Estandarización',
+    desague:      'Cloacas',
+    argental:     'Horno Argental',
+    rompedora:    'Sala Rompedora',
+    harinas:      'Módulo Harinas',
+    maqnuevas:    'Máquinas Nuevas',
+    empanadas:    'Línea Empanadas',
+    transformador:'Transformador T3',
+    maquinas:     'Inst. Máquinas',
+    ampliacion:   'Ampliación Fábrica',
+  };
+  const labels = sorted.map(id => SHORT_LABELS[id] || P[id].title.substring(0, 20));
   const data = sorted.map(id => P[id].progress || 0);
   const colors = sorted.map(id => CHART_COLORS[id] || 'rgba(150,150,150,.5)');
+
+  // Dynamic height: 32px per project — balanced spacing with short labels
+  const chartWrap = ctx.parentElement;
+  chartWrap.style.height = Math.max(200, sorted.length * 32) + 'px';
   
   new Chart(ctx, {
     type: 'bar',
@@ -932,8 +961,10 @@ function renderDashboard() {
         label: '% Avance',
         data: data,
         backgroundColor: colors,
-        borderRadius: 6,
+        borderRadius: 8,
         borderSkipped: false,
+        barThickness: 18,
+        maxBarThickness: 22,
       }]
     },
     options: {
@@ -944,24 +975,36 @@ function renderDashboard() {
       plugins: {
         legend: { display: false },
         tooltip: {
+          backgroundColor: 'rgba(26,36,16,0.92)',
+          padding: 12,
+          titleFont: { size: 12, weight: '600' },
+          bodyFont: { size: 11 },
           callbacks: {
-            label: ctx => ` ${ctx.raw}% completado`
+            title: items => P[sorted[items[0].dataIndex]]?.title || items[0].label,
+            label: item => `  ${item.raw}% completado`
           }
         }
       },
       scales: {
         x: {
           min: 0, max: 100,
-          grid: { color: 'rgba(0,0,0,.05)' },
+          grid: { color: 'rgba(0,0,0,.04)', lineWidth: 1 },
+          border: { display: false },
           ticks: {
             callback: v => v + '%',
             font: { size: 10 },
-            color: '#8a9a6e'
+            color: '#a4b495',
+            stepSize: 25,
           }
         },
         y: {
           grid: { display: false },
-          ticks: { font: { size: 11.5 }, color: '#4a5a36' }
+          border: { display: false },
+          ticks: {
+            font: { size: 11.5, weight: '500' },
+            color: '#4a5a36',
+            padding: 8,
+          }
         }
       }
     }
@@ -1000,7 +1043,7 @@ function renderDashboard() {
       nombre: '🔌 Independiente',
       color: '#0891b2',
       pasos: [
-        { label: 'P9 · Transformador T3', estado: 'cotizando', nota: 'FOHAMA u$s11.585 + VALSOL $5.85M. Fuera del presupuesto interno.', dur: 3 },
+        { label: 'P9 · Transformador T3', estado: 'cotizando', nota: 'FOHAMA u$s11.585 vs REMOJU u$s12.360 + IVA + VALSOL $5.85M. 2 cotizaciones recibidas.', dur: 3 },
         { label: 'P7 · Horno Argental', estado: 'pausa', nota: 'Evaluando modelo compacto (altura campana). En pausa.', dur: 2 },
       ]
     }

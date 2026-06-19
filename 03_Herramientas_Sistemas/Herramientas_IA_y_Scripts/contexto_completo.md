@@ -253,7 +253,9 @@ Plan Maestro Integral V3 — Sabor Pampeano
    MACRO-PROYECTO INDEPENDIENTE: Repotenciación Tarifa 3 (Transformador)
   Prioridad Absoluta. Corre por un carril totalmente separado del resto de las obras de la fábrica. El objetivo es pasar a tarifa T3BT solicitando 110 kW a EDES.
 
-    ✅ Comprar Transformador 400kVA — u$s 11.585 + IVA (Prov: FOHAMA). Cotización recibida, hay 2 en stock.
+    ✅ Comprar Transformador 400kVA — 2 cotizaciones recibidas:
+- FOHAMA: u$s 11.585 + IVA (hay 2 en stock, pago anticipado).
+- REMOJU SRL: u$s 12.360 + IVA 10,5% — 400kVA 13,2kV llenado integral en Al, puesto en Bahía Blanca (18-Jun-2026). Archivo: 2026-06-18 REMOJU SRL.
     ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: VALSOL).
     ❌ Comprar Materiales exteriores — Esperando 3 cotizaciones locales solicitadas por Gabriel.
     ❌ Reunión Definir instalación interior (Juan + Gustavo).

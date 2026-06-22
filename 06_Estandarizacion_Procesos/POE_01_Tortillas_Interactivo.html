@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>POE-01: Elaboración de Tortillas (Editable)</title>
+    <style>
+        @page { size: A4; margin: 15mm; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: #f4f6f0; color: #333; margin: 0; padding: 20px; padding-top: 60px; }
+        .document-container { background: white; max-width: 210mm; margin: 0 auto; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 6px solid #4A5D23; border-radius: 4px; }
+        
+        /* Floating Toolbar (hides when printing) */
+        .toolbar { position: fixed; top: 0; left: 0; right: 0; background: #2d3b14; padding: 10px; display: flex; justify-content: center; gap: 15px; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .toolbar button { background: #7A9B3A; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .toolbar button:hover { background: #8bb542; }
+        @media print { .toolbar { display: none !important; } body { padding-top: 0; background: white; } .document-container { box-shadow: none; border: none; } }
+        
+        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e5e7eb; padding-bottom: 15px; margin-bottom: 25px; }
+        .header-title h1 { color: #2d3b14; font-size: 24pt; margin: 0 0 5px 0; }
+        .header-title h2 { color: #7A9B3A; font-size: 14pt; margin: 0; font-weight: 500; }
+        .header-meta { text-align: right; font-size: 9pt; color: #666; }
+        .header-meta p { margin: 2px 0; }
+        
+        h3 { color: #4A5D23; font-size: 14pt; border-bottom: 1px solid #C5D6A0; padding-bottom: 5px; margin-top: 30px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 9.5pt; }
+        th { background-color: #f8f9f4; color: #4A5D23; padding: 10px; text-align: left; border: 1px solid #e5e7eb; }
+        td { padding: 10px; border: 1px solid #e5e7eb; vertical-align: top; }
+        
+        .step { display: flex; margin-bottom: 15px; background: #fafafa; border: 1px solid #eee; border-radius: 6px; padding: 15px; }
+        .step-number { background: #4A5D23; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12pt; flex-shrink: 0; margin-right: 15px; }
+        .step-content { flex-grow: 1; }
+        .step-content h4 { margin: 0 0 8px 0; color: #2d3b14; font-size: 11pt; }
+        .step-details { display: grid; grid-template-columns: 1fr; gap: 8px; font-size: 9.5pt; color: #555; }
+        .step-details strong { color: #333; display: inline-block; width: 140px; }
+        
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 8pt; font-weight: bold; background: #e5e7eb; color: #374151; }
+        .badge.time { background: #dbeafe; color: #1e40af; }
+        .badge.pending { background: #fee2e2; color: #991b1b; }
+        
+        /* Make editable areas obvious on hover */
+        [contenteditable="true"]:hover { background: #fffae6; outline: 1px dashed #eab308; cursor: text; }
+        [contenteditable="true"]:focus { background: #fffae6; outline: 2px solid #eab308; }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button onclick="window.print()">🖨️ Imprimir / Guardar a PDF</button>
+    <button onclick="downloadHTML()">💾 Descargar HTML Modificado</button>
+    <span style="color:#A4C639; align-self: center; font-size: 9pt;">Hacé click en cualquier texto para editarlo.</span>
+</div>
+
+<!-- The whole container is editable -->
+<div class="document-container" id="doc" contenteditable="true">
+    
+    <div class="header">
+        <div class="header-title">
+            <h1>POE-01</h1>
+            <h2>Elaboración de Tortillas de Papa (con y sin cebolla)</h2>
+        </div>
+        <div class="header-meta">
+            <p><strong>Emisión:</strong> Junio 2026</p>
+            <p><strong>Revisión:</strong> 02 (Borrador)</p>
+            <p><strong>Aprobado por:</strong> Ing. J.M. Grasso</p>
+        </div>
+    </div>
+
+    <h3>1. DEFINICIÓN DEL PRODUCTO</h3>
+    <table>
+        <tr><th>Producto Final</th><td>Tortilla de Papa / Tortilla de Papa y Cebolla (Envasada al vacío)</td></tr>
+        <tr><th>Peso Neto Unitario</th><td>600 gramos</td></tr>
+        <tr><th>Tamaño del Lote Nominal</th><td>Aprox. 180 tortillas (Requiere ~12 bolsas de papa cruda)</td></tr>
+    </table>
+
+    <h3>2. INSUMOS Y MATERIAS PRIMAS (Por unidad de 600gr)</h3>
+    <table>
+        <thead><tr><th>Insumo</th><th>Papa Sola</th><th>Papa y Cebolla</th></tr></thead>
+        <tbody>
+            <tr><td>Papas</td><td>0,900 kg</td><td>0,900 kg</td></tr>
+            <tr><td>Huevos</td><td>5 unidades</td><td>5 unidades</td></tr>
+            <tr><td>Sal</td><td>0,002 kg (2 gr)</td><td>0,002 kg (2 gr)</td></tr>
+            <tr><td>Aceite Producción</td><td>0,003 kg (3 gr)</td><td>0,003 kg (3 gr)</td></tr>
+            <tr><td>Ácido Cítrico</td><td>0,002 kg (2 gr)</td><td>0,002 kg (2 gr)</td></tr>
+            <tr><td>Cebolla Producción</td><td>-</td><td>0,030 kg (30 gr)</td></tr>
+            <tr><td>Bolsas Vacío 20x30</td><td>1 unidad</td><td>1 unidad</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3. FLUJO DE PROCESO ESTANDARIZADO</h3>
+    
+    <div class="step"><div class="step-number">1</div><div class="step-content"><h4>Traslado Inicial</h4><div class="step-details"><div><strong>Acción:</strong> Trasladar bolsas de papas desde el depósito hacia la zona de la peladora.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">2</div><div class="step-content"><h4>Pelado Mecánico</h4><div class="step-details"><div><strong>Acción:</strong> Cargar media bolsa de papas en peladora para cuidar la máquina.</div><div><strong>Tiempo Estimado:</strong> <span class="badge time">1 min / media bolsa</span></div></div></div></div>
+    <div class="step"><div class="step-number">3</div><div class="step-content"><h4>Traslado y Preparación</h4><div class="step-details"><div><strong>Acción:</strong> Retirar papas peladas y trasladar a la cortadora automática.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">4</div><div class="step-content"><h4>Corte Automático</h4><div class="step-details"><div><strong>Acción:</strong> Cortar las papas. Se agrega ácido cítrico para evitar oscurecimiento.</div><div><strong>Tiempo Estimado:</strong> <span class="badge time">~10 seg / papa</span></div></div></div></div>
+    <div class="step"><div class="step-number">5</div><div class="step-content"><h4>Escurrido</h4><div class="step-details"><div><strong>Acción:</strong> Escurrir rápidamente las papas cortadas para quitar exceso de humedad.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">6</div><div class="step-content"><h4>Calentamiento Freidora</h4><div class="step-details"><div><strong>Acción:</strong> Encender y precalentar la freidora a temperatura de cocción.</div><div><strong>Tiempo Estimado:</strong> <span class="badge time">15 - 20 min</span></div></div></div></div>
+    <div class="step"><div class="step-number">7</div><div class="step-content"><h4>Fritura</h4><div class="step-details"><div><strong>Acción:</strong> Sumergir la tanda completa de papas escurridas en el aceite caliente.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">8</div><div class="step-content"><h4>Preparación Mezcla</h4><div class="step-details"><div><strong>Acción:</strong> Romper los huevos en olla y preparar base con sal (y cebolla).</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">9</div><div class="step-content"><h4>Integración</h4><div class="step-details"><div><strong>Acción:</strong> Volcar papas fritas en la olla con huevo y mezclar.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">10</div><div class="step-content"><h4>Preparación Moldes</h4><div class="step-details"><div><strong>Acción:</strong> Aceitar los moldes de tortilla manualmente con esponja embebida.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">11</div><div class="step-content"><h4>Rellenado</h4><div class="step-details"><div><strong>Acción:</strong> Volcar preparación en moldes aceitados (600g c/u).</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">12</div><div class="step-content"><h4>Traslado a Hornos</h4><div class="step-details"><div><strong>Acción:</strong> Mover bandejas con moldes rellenos a hornos.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">13</div><div class="step-content"><h4>Horno Rational</h4><div class="step-details"><div><strong>Acción:</strong> Introducir bandejas y hornear. (Cantidad: [Falta]).</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">14</div><div class="step-content"><h4>Horno Pizzero</h4><div class="step-details"><div><strong>Acción:</strong> Introducir bandejas y hornear. (Cantidad: [Falta]).</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">15</div><div class="step-content"><h4>Traslado a Frío</h4><div class="step-details"><div><strong>Acción:</strong> Retirar, colocar en bandejas de enfriamiento y mover a cámara.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">16</div><div class="step-content"><h4>Abatimiento</h4><div class="step-details"><div><strong>Acción:</strong> Dejar en cámara de frío para bajar la temperatura.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">17</div><div class="step-content"><h4>Traslado Envasado</h4><div class="step-details"><div><strong>Acción:</strong> Mover desde cámara hacia el área de vacío.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">18</div><div class="step-content"><h4>Envasado al Vacío</h4><div class="step-details"><div><strong>Acción:</strong> Sellar en bolsas de 20x30 y etiquetar.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+    <div class="step"><div class="step-number">19</div><div class="step-content"><h4>Retorno a Frío</h4><div class="step-details"><div><strong>Acción:</strong> Guardar producto terminado en refrigeración.</div><div><strong>Tiempo Estimado:</strong> <span class="badge pending">[A medir]</span></div></div></div></div>
+
+</div>
+
+<script>
+function downloadHTML() {
+    let htmlContent = "<!DOCTYPE html>\\n<html lang=\\"es\\">\\n<head>" + document.head.innerHTML + "</head>\\n<body>\\n" + document.body.innerHTML + "\\n</body>\\n</html>";
+    let blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "POE_01_Tortillas_Modificado.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Planilla de Relevamiento (Editable)</title>
+    <style>
+        @page { size: A4 portrait; margin: 15mm; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: white; color: #000; margin: 0; padding: 20px; padding-top: 60px; font-size: 10pt; }
+        
+        .toolbar { position: fixed; top: 0; left: 0; right: 0; background: #2d3b14; padding: 10px; display: flex; justify-content: center; gap: 15px; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .toolbar button { background: #7A9B3A; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .toolbar button:hover { background: #8bb542; }
+        @media print { .toolbar { display: none !important; } body { padding-top: 0; } }
+        
+        .header { text-align: center; border-bottom: 3px solid #4A5D23; padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { font-size: 18pt; margin: 0; color: #2d3b14; text-transform: uppercase; }
+        .header p { margin: 5px 0 0 0; color: #555; }
+        
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; }
+        .info-row div { border-bottom: 1px dotted #999; padding-bottom: 2px; flex-grow: 1; margin: 0 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #eee; border: 1px solid #333; padding: 8px; text-align: left; }
+        td { border: 1px solid #333; padding: 12px 8px; }
+        
+        .blank-cell { width: 25%; }
+        
+        .footer-notes { border: 1px solid #333; height: 100px; padding: 10px; margin-top: 20px; }
+        
+        [contenteditable="true"]:hover { background: #fffae6; outline: 1px dashed #eab308; cursor: text; }
+        [contenteditable="true"]:focus { background: #fffae6; outline: 2px solid #eab308; }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button onclick="window.print()">🖨️ Imprimir / Guardar a PDF</button>
+    <button onclick="downloadHTML()">💾 Descargar HTML Modificado</button>
+    <span style="color:#A4C639; align-self: center; font-size: 9pt;">Hacé click en los espacios en blanco o líneas para escribir.</span>
+</div>
+
+<div id="doc" contenteditable="true">
+    <div class="header">
+        <h1>PLANILLA DE RELEVAMIENTO DE TIEMPOS Y DATOS</h1>
+        <p>Proceso: Elaboración de Tortillas de Papa (con/sin cebolla)</p>
+    </div>
+
+    <div class="info-row">
+        <div style="flex-grow: 0.5;">Fecha: ______/______/202__</div>
+        <div>Auditor / Operario: ___________________________</div>
+        <div style="flex-grow: 0.5;">Lote N°: _____________</div>
+    </div>
+
+    <h3>1. Variables a Medir (Pesar y Anotar)</h3>
+    <table>
+        <tr><th>Métrica a medir</th><th class="blank-cell">Valor Real Registrado</th><th>Observaciones</th></tr>
+        <tr><td>Peso exacto de 1 bolsa de papas (con cáscara)</td><td>___,___ kg</td><td></td></tr>
+        <tr><td>Cantidad promedio de papas por bolsa</td><td>_______ unidades</td><td></td></tr>
+        <tr><td>Peso del desperdicio (cáscaras) por bolsa</td><td>___,___ kg</td><td></td></tr>
+        <tr><td>Aceite consumido total (en fritura por lote)</td><td>___,___ litros</td><td>Medir inicial vs final</td></tr>
+        <tr><td>Rendimiento real: Cantidad de tortillas finales</td><td>_______ unidades</td><td></td></tr>
+    </table>
+
+    <h3>2. Tiempos y Capacidades por Paso (Cronometrar)</h3>
+    <table>
+        <tr><th>Paso del Proceso</th><th class="blank-cell">Tiempo Real</th><th class="blank-cell">Detalles</th></tr>
+        <tr><td>1. Traslado de papas desde depósito a peladora</td><td>_____ min</td><td></td></tr>
+        <tr><td>2. Pelado mecánico (Media bolsa / bolsa entera)</td><td>_____ min</td><td>¿Cant. personas? ___</td></tr>
+        <tr><td>3. Traslado de papas peladas a cortadora</td><td>_____ min</td><td></td></tr>
+        <tr><td>4. Corte en máquina automática</td><td>_____ min / tanda</td><td></td></tr>
+        <tr><td>5. Escurrido de las papas cortadas</td><td>_____ min</td><td></td></tr>
+        <tr><td>6. Pre-calentamiento de la freidora</td><td>_____ min</td><td>¿Llegó a temp? ___°C</td></tr>
+        <tr><td>7. Fritura (Cocción de 1 tanda de papas)</td><td>_____ min / tanda</td><td>¿Cant. tandas? ___</td></tr>
+        <tr><td>8. Rotura de huevos y preparación en olla</td><td>_____ min</td><td>Previo a integrar papa</td></tr>
+        <tr><td>9. Mezclado e integración (papa + huevo/cebolla)</td><td>_____ min</td><td></td></tr>
+        <tr><td>10. Aceitado manual de moldes (con esponja)</td><td>_____ min</td><td></td></tr>
+        <tr><td>11. Rellenado manual de moldes</td><td>_____ min</td><td>¿Cant. personas? ___</td></tr>
+        <tr><td>12. Traslado de moldes/bandejas a los hornos</td><td>_____ min</td><td></td></tr>
+        <tr><td>13A. HORNO RATIONAL: Cantidad de moldes por bandeja</td><td>N/A</td><td>_____ moldes / band.</td></tr>
+        <tr><td>13B. HORNO RATIONAL: Cantidad de bandejas totales</td><td>N/A</td><td>_____ bandejas en horno</td></tr>
+        <tr><td>13C. HORNO RATIONAL: Tiempo de Horneado</td><td>_____ min</td><td>Temp: _____ °C</td></tr>
+        <tr><td>14A. HORNO PIZZERO: Cantidad de moldes por bandeja</td><td>N/A</td><td>_____ moldes / band.</td></tr>
+        <tr><td>14B. HORNO PIZZERO: Cantidad de bandejas totales</td><td>N/A</td><td>_____ bandejas en horno</td></tr>
+        <tr><td>14C. HORNO PIZZERO: Tiempo de Horneado</td><td>_____ min</td><td>Temp: _____ °C</td></tr>
+        <tr><td>15. Retirado de hornos y traslado a cámara de frío</td><td>_____ min</td><td></td></tr>
+        <tr><td>16. Enfriamiento / Abatimiento en cámara</td><td>_____ min</td><td>Hasta poder envasar</td></tr>
+        <tr><td>17. Traslado al área de envasado al vacío</td><td>_____ min</td><td></td></tr>
+        <tr><td>18. Envasado, sellado y etiquetado</td><td>_____ min / lote</td><td>¿Cant. personas? ___</td></tr>
+        <tr><td>19. Retorno a cámara de refrigeración</td><td>_____ min</td><td></td></tr>
+        <tr style="background:#FDF2F8; font-weight:bold;"><td>20. TIEMPO OCIOSO: Esperas y Cuellos de botella</td><td>_____ min</td><td>(Ej: Esperando al horno)</td></tr>
+    </table>
+
+    <div class="footer-notes">
+        <strong>Notas / Dificultades detectadas durante la producción:</strong><br><br>
+    </div>
+</div>
+
+<script>
+function downloadHTML() {
+    let htmlContent = "<!DOCTYPE html>\\n<html lang=\\"es\\">\\n<head>" + document.head.innerHTML + "</head>\\n<body>\\n" + document.body.innerHTML + "\\n</body>\\n</html>";
+    let blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "Planilla_Relevamiento_Tortillas_Modificada.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+</script>
+</body>
+</html>

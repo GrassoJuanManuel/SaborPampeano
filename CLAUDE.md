@@ -158,8 +158,7 @@ Replicar exactamente dónde Antigravity guardaba cada cosa:
 - Pliegos formales: `SP-OC-YYYY-NNN [Vn]` (ej. `SP-OC-2026-001 V2` = Rompedora Huevos)
 
 ### Workspaces secundarios
-- `C:\Users\jmgra\OneDrive\Desktop\Planillas Ro\` — workspace activo de Roxana
-- *(`Planillas Roxana\` es nombre histórico — la carpeta real es `Planillas Ro\`)*
+- Sin workspaces secundarios activos. (Proyectos personales o de terceros — ej. `Planillas Ro` — quedan fuera del scope de Sabor Pampeano.)
 
 ---
 

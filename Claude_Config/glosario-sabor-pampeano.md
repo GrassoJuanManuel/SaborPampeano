@@ -131,8 +131,6 @@
 | **Radice** | Constructor | Pilar nuevo para Transformador T3BT 400kVA (P11_A) |
 | **Arquitecto Gabriel** | Cotizador de obras civiles | 3 obras principales: Módulo Harinas, Sala Rompedora, ampliación trasera futura |
 | **Técnico electromecánico** | Rol pendiente de contratar | Mantenimiento preventivo/correctivo |
-| **Roxana** | Admin / planillas | Workspace `OneDrive\Desktop\Planillas Ro\` (el nombre histórico era `Planillas Roxana\`) |
-| **Oxana** | (a confirmar con Juan) | Conversación `3e6f5c8c` se llama "proyecto Oxana". Posiblemente sea typo de "Roxana" o nombre interno de proyecto Apps Script. **Preguntar antes de asumir.** |
 | **Trifical** | Proveedor | Moldes microperforados (en evaluación) |
 | **Equipos BB** | Proveedor | Carros 60×40 (en evaluación) |
 | **Ing. en Alimentos** | Referente técnico (a contratar/consultar) | Antigravity delegaba dudas sanitarias |

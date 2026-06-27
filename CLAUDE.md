@@ -148,39 +148,51 @@ Antigravity guardaba todas las versiones (`.resolved.0`, `.resolved.1`, …). Cl
 
 ---
 
-## 5. Convenciones de save (paths exactos)
+## 5. Estructura del Workspace y reglas de archivos
 
-Replicar exactamente dónde Antigravity guardaba cada cosa:
+### Estructura (respetar siempre)
 
-### Drive principal (cuenta saborpampeano.com)
 **Root:** `G:\Mi unidad\Sabor Pampeano Workspace\`
 
 ```
-├── 01_Proyectos\
-│   ├── 03_Sala_Rompedora_Huevos\
-│   ├── 05_Plan_Maestro_Fabrica\Plan_Maestro_y_Reestructuracion\
-│   └── …
-├── 02_Operaciones_de_Fabrica\
+├── 00_Dashboard_Proyectos\         ← Dashboard HTML interactivo "Estado_Proyectos.html"
+├── 01_Proyectos\                   ← Subcarpetas por proyecto (01_Linea_Aire_Comprimido, 03_Sala_Rompedora_Huevos, etc.)
+│                                      Cada uno con sus pliegos, manuales y cotizaciones.
+├── 02_Operaciones_de_Fabrica\      ← POEs, recetas, RRHH, mantenimiento, manuales generales
 │   ├── Procedimientos_SOP\
 │   ├── Recetas_y_Formulas\
-│   ├── Mantenimiento_y_Manuales_Generales\
-│   │   ├── Gestion_del_Mantenimiento\
-│   │   └── EQUIPOS\<nombre_equipo>\
-│   └── …
-└── 03_Herramientas_Sistemas\
+│   └── Mantenimiento_y_Manuales_Generales\
+│       ├── Gestion_del_Mantenimiento\
+│       └── EQUIPOS\<equipo>\        ← manuales PDF/DOC + fotos por equipo
+└── 03_Herramientas_Sistemas\       ← Código, scripts, Biblia, herramientas IA
     └── Herramientas_IA_y_Scripts\
-        └── contexto_completo.md  ← LA BIBLIA
+        └── contexto_completo.md     ← LA BIBLIA
 ```
+
+### Reglas de organización (estrictas)
+
+1. **CERO archivos basura**: todo archivo generado va en la carpeta correcta del Workspace.
+2. **Nunca dejar archivos sueltos en la raíz** — excepciones permitidas: `AI_INSTRUCTIONS.md`, `CLAUDE.md`, `timestamps.json`, y el dashboard HTML.
+3. **No duplicar información** — un solo lugar para cada cosa.
+4. **Rescatar archivos sueltos**: cuando Juan pase presupuestos, folletos, manuales o adjuntos (ej. desde Descargas), copiarlos a la carpeta correspondiente del proyecto en el Workspace para no perder información vital.
 
 ### Reglas de naming
 - Carpeta por equipo: `EQUIPOS\<nombre>\` con manuales PDF/DOC + fotos
-- Templates oficiales: `0X_Template_<TIPO>.doc` (formato legacy `.doc`, no `.docx`). Si Claude busca, debe globear ambas extensiones.
+- Templates oficiales: `0X_Template_<TIPO>.doc` (legacy `.doc`, algunos también `.pdf`)
 - Versiones: sufijo `_vN` o fecha `YYYYMMDD`
 - Apps Script: archivo `_v3.3.gs` o `_v3.3.html` separado
 - Pliegos formales: `SP-OC-YYYY-NNN [Vn]` (ej. `SP-OC-2026-001 V2` = Rompedora Huevos)
 
-### Workspaces secundarios
-- Sin workspaces secundarios activos. (Proyectos personales o de terceros — ej. `Planillas Ro` — quedan fuera del scope de Sabor Pampeano.)
+### Reglas de generación de código
+- **UTF-8 estricto:** scripts Python que generen documentos (Word, txt, HTML) en español → siempre `# -*- coding: utf-8 -*-` y manejar tildes/eñes correctamente.
+- **Conversión a PDF de pliegos formales:** usar COM objects de PowerShell + Word para garantizar que no se desconfiguren al imprimir.
+
+### Cómo indicar rutas a Juan
+Cuando le menciones a Juan dónde quedó un archivo, **NO usar rutas de sistema** tipo `G:\Mi unidad\...`. Usar formato legible tipo:
+
+> `Carpeta > Subcarpeta > Subcarpeta > archivo.ext`
+
+Ej.: `01_Proyectos > 03_Sala_Rompedora_Huevos > Pliegos > SP-OC-2026-001 V2.pdf`
 
 ---
 

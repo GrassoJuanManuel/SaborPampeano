@@ -252,7 +252,17 @@ Cada conector requiere un OAuth nuevo (los tokens de Antigravity están DPAPI-en
 
 - `Claude_Config/playbook-sabor-pampeano.md` — patrones de tareas recurrentes con paso a paso
 - `Claude_Config/glosario-sabor-pampeano.md` — vocabulario del negocio (equipos, proveedores, productos, abreviaturas)
-- `Claude_Config/indice-conversaciones.md` — índice navegable de las 58 conversaciones migradas
+- `Claude_Config/indice-conversaciones.md` — índice navegable de las 52 conversaciones migradas
+
+## 9.1. Backups automáticos
+
+Backup diario del Workspace con rotación abuelo-padre-hijo, guardado en `C:\Users\jmgra\OneDrive\Desktop\Backup Workspace\`:
+
+- **Diarios:** se conservan los últimos 7
+- **Semanales:** uno por semana (lunes) hasta los 90 días
+- **Mensuales:** uno por mes (día 1) indefinido
+
+Tarea programada en Windows Task Scheduler: `SaborPampeano_BackupWorkspace_Daily` corre todos los días a las 22:00 (no depende de que Claude esté abierto). Logs en `Backup Workspace\backup.log`. Si Juan necesita recuperar un backup, descomprimir el `.zip` correspondiente.
 
 ---
 

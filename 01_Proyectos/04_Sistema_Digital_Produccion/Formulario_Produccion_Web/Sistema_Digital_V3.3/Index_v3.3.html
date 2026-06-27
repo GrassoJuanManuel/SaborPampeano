@@ -33,9 +33,9 @@ textarea{resize:vertical;height:90px}
 .lote-block{background:#f0f0e8;border:1px dashed var(--accent);padding:12px;border-radius:4px;margin-bottom:10px;position:relative}
 .lotes-wrapper{margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
 .lote-inline{display:flex;align-items:center;gap:5px;margin-bottom:10px;flex-wrap:wrap}
-.lote-inline input{width:70px;text-align:center;padding:10px 6px;font-size:16px}
+.lote-inline input{width:60px;text-align:center;padding:10px 4px;font-size:15px;flex:1;min-width:45px;max-width:70px}
 .lote-inline span{font-weight:bold;font-size:16px;color:var(--primary)}
-.lote-inline label{margin-bottom:0;white-space:nowrap}
+.lote-inline label{margin-bottom:5px!important;white-space:normal;font-size:13px;width:100%}
 .desglose-toggle{background:#e8f0d8;color:var(--primary);border:1px solid var(--accent);font-size:13px;margin-top:5px}
 .desglose-toggle.active{background:#f8d7da;color:#721c24;border-color:#f5c6cb}
 .brix-ph-row{display:flex;gap:10px}
@@ -136,7 +136,13 @@ var catProd=[],catRep=[],catDec=[],catMer=[],catEP=[];
 var categoriasProd=[], categoriasRep=[];
 
 document.addEventListener("DOMContentLoaded",function(){
-  document.getElementById('fecha').valueAsDate=new Date();
+  var ahora = new Date();
+  if (ahora.getHours() >= 22) { ahora.setDate(ahora.getDate() + 1); }
+  var year = ahora.getFullYear();
+  var month = String(ahora.getMonth() + 1).padStart(2, '0');
+  var day = String(ahora.getDate()).padStart(2, '0');
+  document.getElementById('fecha').value = year + '-' + month + '-' + day;
+  
   google.script.run
     .withSuccessHandler(inicializarFormulario)
     .withFailureHandler(function(err){
@@ -692,7 +698,12 @@ function confirmarEnvio(){
 
 function resetForm(){
   document.getElementById('reportForm').reset();
-  document.getElementById('fecha').valueAsDate=new Date();
+  var ahora = new Date();
+  if (ahora.getHours() >= 22) { ahora.setDate(ahora.getDate() + 1); }
+  var year = ahora.getFullYear();
+  var month = String(ahora.getMonth() + 1).padStart(2, '0');
+  var day = String(ahora.getDate()).padStart(2, '0');
+  document.getElementById('fecha').value = year + '-' + month + '-' + day;
   ['produccion','reproceso','decomiso','mermas','enproceso'].forEach(function(s){document.getElementById(s+'-container').innerHTML='';});
   ultimaCategoria="";loteContadores={};simpleLoteContadores={rep:{},dec:{},mer:{}};
   document.getElementById('success-message').style.display='none';

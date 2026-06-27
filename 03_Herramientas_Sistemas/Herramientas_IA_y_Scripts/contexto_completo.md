@@ -111,23 +111,26 @@ body {
 ##  FASE 0: Acciones Inmediatas (Esta semana)
     Prioridad Actual
 
-       Nuevo Horno Argental: Horno rotativo descartado por altura. Evaluar HORNO ROTATIVO FE III-315 (US$ 16,071.67) sujeto a gerencia.
-       Línea de Aire Comprimido: Aprobar a Mega Herrería para hacer la casilla y comprar compresor BTA 7.5HP (tarda 1 semana a Bahía Blanca). Esperar cotización Proing SA.
-       Equipos Menores (Autoclave, Tapadora, Llenadora): Ingresar máquinas a la cocina para ver layout físico y estudiar manuales.
-       Estabilizadores Eléctricos: Gustavo controlará sección de cables. Avanza cotización Gustavo Gonzalez ($4.66M). Consultar estanterías.
+       Compresor de Aire BTA 7.5HP: Aprobado ($2.25M). Platea en proceso por albañil. Casilla aprobada ($1.8M). Materiales cañería comprados (u$s 1.126). M.O. instalación cotizada ($1.45M). Pendiente tender cañerías.
+       Horno Rotativo: Panier III descartado por altura de campana. Evaluando marcas y modelos compactos. Operación paralizada hasta aviso de Juan.
+       Equipos Cadec (Autoclave, Tapadora, Llenadora): Ya en cocina. Dependen del aire comprimido para puesta en marcha.
+       Estabilizadores Eléctricos: ⏸️ PAUSADOS. Se priorizó el Transformador T3BT de 110kVA. Revisar a futuro.
+       Empanadas: Máquina manual (2 unidades) comprada para prueba piloto. Cortadora y Sobadora PAUSADAS.
+       Relevamiento Eléctrico: Gustavo relevará la planta actual y diseñará plan de adecuación contemplando ampliaciones.
+       Prueba Piloto Tartas: Evaluando moldes microperforados, moldes 16x3, y cotizaciones de carros (Trifical, Equipos BB).
 
 ##  FASE 1: Protecciones y Aire
     Depende de Fase 0
 
-       Proteger la Roboqbo: Instalar los 3 estabilizadores Solytec (Cuello de botella principal).
-       Energizar Máquinas: Instalar red de cañerías de aire comprimido desde el compresor hacia el Autoclave, Tapadora, Llenadora y Rompedora.
+       Transformador T3BT: Aguardando trámites para 110kVA por calle Don Bosco. Obra del Pilar Nuevo y exterior a cargo de Radice (cotizado).
+       Red Neumática: Tender cañerías desde compresor hacia Autoclave, Tapadora, Llenadora y Rompedora. Materiales ya comprados, M.O. cotizada.
 
 ##  FASE 2: Obras y Montaje
     Obras Civiles
 
-       Horno Compacto Argental: Instalación de modelo de 8 bandejas bajo la campana existente.
-       Desagüe Cloacal: Corrimiento de tubería para liberar tapas de registro antes de poner el módulo de harinas.
-       Módulo Harinas y Sala Rompedora: Ejecución de obras de infraestructura para áreas segregadas.
+       Desagüe Cloacal: Corrimiento 2m. Materiales comprados ($3.79M). M.O. a cotizar (presupuesto Gabriel $8.45M caro). Bloqueante para el módulo.
+       Módulo Harinas: Estructura en fabricación. Esperando paneles (placas pagadas, ~30-40 días). Bloqueado por cloaca que pasa por debajo.
+       Sala Rompedora: Pendiente confirmar albañil y comprar materiales (suelo, puerta, rejilla). Arranca post-platea del compresor.
 
    Guardar como PDF / Imprimir
 
@@ -251,13 +254,12 @@ Plan Maestro Integral V3 — Sabor Pampeano
   Vista simplificada paso a paso para Juan. Muestra las compras a realizar y contrataciones ordenadas lógicamente para evitar cuellos de botella y sobrecostos.
 
    PASO 1: Línea de Aire Comprimido (Bloqueante Producción)
-  Sin este compresor, la rompedora, llenadora, tapadora y autoclave NO pueden arrancar. Proing SA fue DESCARTADO. Provín cotizando alternativas.
+  Sin este compresor, la rompedora, llenadora, tapadora y autoclave NO pueden arrancar. Proing SA fue DESCARTADO. Compresor BTA aprobado. Platea en proceso.
 
-    ✅ Comprar Compresor BTA 300L 7.5HP — $2.210.049 (Prov: Manelli Hnos.)
-    ✅ Construir platea de hormigón — $556.000 (Prov: Juan Carlos)
+    ✅ APROBADO Compresor BTA 300L 7.5HP — $2.250.000 (Prov: Manelli Hnos.)
+    ✅ Construcción de platea de hormigón — En proceso (Albañil)
     ✅ Comprar casilla metálica — $1.806.916 (Prov: Mega Herrería)
-    ✅ Mano de Obra instalación neumática — $1.450.000 (Provín)
-    ✅ Materiales línea de aire (cañería, FRLs, acoples) — u$s 1.126
+    ⏳ Instalación Red Neumática: Materiales de cañería ya comprados (u$s 1.126). Mano de obra instalación: $1.450.000. Pendiente tender cañerías.
 
    PASO 2: Resolver el desagüe cloacal (Bloqueante Módulo)
   Hay que mover la cloaca 2 metros para liberar las tapas antes de poder poner el módulo de harinas encima. Si no, ante un taponamiento hay que romper todo el piso nuevo.
@@ -268,58 +270,54 @@ Plan Maestro Integral V3 — Sabor Pampeano
    PASO 3: Proteger la fábrica (Estabilizadores)
   La máquina Roboqbo y otros equipos corren riesgo de quemarse con las tormentas. Hay que estabilizar la tensión antes de enchufar equipos nuevos.
 
-    ✅ Comprar 3 Estabilizadores Electro Tec 12kVA (140V) — $2.792.400 + IVA (Prov: Gustavo Gonzalez)
-    ✅ Instalar estabilizadores + térmica 32A — $1.870.000 + IVA (Prov: Gustavo Gonzalez)
-    ❌ Comprar estanterías para tablero eléctrico — Falta cotizar (Valor ínfimo)
+    ⏸️ Pausado: Se instalará transformador T3BT de 110kVA justo afuera. Se opta por no proteger con estabilizadores individuales por ahora (a revisar a futuro).
 
    PASO 4: Repotenciación Tarifa 3 (Transformador)
   Corre por un carril separado. El objetivo es pasar a tarifa T3BT solicitando 110 kW a EDES por calle Don Bosco. Arquitectura dual: se conserva la conexión de calle Bolivia.
 
     ✅ Comprar Transformador 400kVA — FOHAMA (u$s 11.585) o REMOJU (u$s 12.360) + IVA
-    ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: VALSOL)
+    ✅ Contratar Obra Exterior y Proyecto — $5.850.000 ARS (Prov: Radice)
     ✅ Materiales armado soporte y conexiones — u$s 2.058,85
-    ❌ Materiales exteriores — Esperando 3 cotizaciones (Gabriel)
-    ❌ Armar Pilar — Verificar si sirve el actual o hacerlo nuevo
+    ✅ Cotizaciones recibidas. Esperando avance de trámites.
+    ✅ Armar Pilar Nuevo — Obra a cargo de Radice (Pilar actual descartado)
 
-   PASO 5: Horno Rotativo Argental FE III-315
+   PASO 5: Horno Rotativo (Marcas y Modelos en Evaluación)
   Triplicará la capacidad de horneado en la cocina actual. Se instala en el espacio existente.
 
-    ✅ Cotización Horno — US$ 16.071. Oferta recibida.
-    ❌ M.O. Instalación — Falta cotizar
+    ⏳ Evaluando opciones de marcas y modelos compactos.
 
    PASO 6: Sala Rompedora de Huevos
   Necesario para generar huevo líquido propio. Requiere la línea de aire (Paso 1) terminada.
 
-    ✅ Adecuación de sala (Gabriel — M.O. y Mat.) — $6.760.000 + 8%
-    ❌ Opcional: Hacer por oficios separados (PVC, Albañilería, etc) — A cotizar
+    ⏳ Albañilería: Pendiente confirmar albañil y comprar materiales (suelo, puerta, rejilla). Inicia tras finalizar platea de compresor.
 
    PASO 7: Línea Empanadas (G) + B2C Tapas
-  Línea continua 100% automática. Se instalará dentro del futuro módulo de harinas (Paso 8).
+  Se compró la máquina manual de sobremesa (2 empanadas) para prueba piloto. Cortadora y sobadora quedan PAUSADAS.
 
-    ✅ Cortadora Spiing MCD2 — u$s 9.500 usada / u$s 13.500 nueva
-    ✅ Sobadora Pesada Argental — ~u$s 8.000 est.
-    ❌ Comprar línea de empanadas — Cotizando opciones
+    ✅ Máquina manual comprada (2 empanadas por ciclo) — Prueba piloto en curso.
+    ⏸️ Cortadora Spiing MCD2 — PAUSADA (u$s 9.500 usada / u$s 13.500 nueva)
+    ⏸️ Sobadora Pesada Argental — PAUSADA (~u$s 8.000 est.)
 
    PASO 8: Módulo Exterior Harinas (4×4m TACC-free)
-  Debe esperar a que se termine de mover la cloaca (Paso 2). Una vez listo, se arma el módulo exterior para independizar la zona de harinas.
+  ⚠️ BLOQUEADO por obra de cloacas (Paso 2) que pasa por debajo del módulo. Primero hay que resolver al menos ese sector.
 
-    ✅ Placas aislantes — Ya pagadas (Llegan en 30-40 días)
-    ✅ Materiales + M.O. + Montaje Estructura — $20.187.536 (Gabriel)
+    🔨 Estructura metálica: Se está fabricando.
+    ⏳ Paneles (placas aislantes): Ya pagadas. Esperando entrega (~30-40 días desde el pago).
     ✅ Plomería — Mat: $238.000 / M.O.: $420.000
     ✅ Electricidad — Mat: $801.000 / M.O.: $1.020.000
-    ❌ Comprar puerta, cortina PVC, aire acondicionado — Falta cotizar
+    ⏳ Puerta, cortina y A/A se evaluarán una vez que el módulo esté físicamente instalado.
 
 ## 2. INVENTARIO COMPLETO DE PROYECTOS
 
 #ProyectoPrioridadEstado ActualInversión Est.
 
- | P1 | Estabilizadores de Tensión (Roboqbo) | BAJA | 
-    Cotizado Electro Tec (3 Estabilizadores 12kVA = $2.792.400 + IVA). Aguardando decisión de Juan.
+ | P1 | Estabilizadores de Tensión (Roboqbo) | ALTA | 
+    Pausado temporalmente. Se evaluará a futuro tras instalación del transformador T3BT de 110kVA.
  | ~$2.79M + IVA
 
- | P2 | Relevamiento Eléctrico + Instalación | BAJA | Gustavo Gonzalez: Relevamiento general, plan de acción y charla para instalación de futura Tarifa 3 (T3). El trámite T3 lo inició Gabriel. | A cotizar (Gustavo)
+ | P2 | Relevamiento Eléctrico | ALTA | Gustavo Gonzalez: Únicamente realizará relevamiento de planta actual y plan de adecuación considerando la ampliación de potencia y futuras máquinas. | A cotizar (Gustavo)
 
- | P3 | Compresor + Línea de Aire Comprimido | BAJA | Proing descartado (malas prácticas comerciales/precio). Urge conseguir listado de materiales con otro instalador (Provín). | ~$5.0M ARS + Instalación
+ | P3 | Compresor + Línea de Aire Comprimido | BAJA | Compresor BTA aprobado. Platea en proceso. Casilla aprobada. Materiales cañería comprados. Mano de obra instalación cotizada ($1.450.000). | ~$6.0M ARS + u$s 1.126
 
  | P4 | Readecuación Desagüe Cloacal | BAJA | 
     Árbol de Decisión:
@@ -329,25 +327,25 @@ Plan Maestro Integral V3 — Sabor Pampeano
     ▶ Opción B: Buscar nuevo presupuesto de plomería (Pendiente).
  | A cotizar
 
- | P5 | Módulo Exterior Harinas (4×4m TACC-free) | MEDIA | Presupuesto estructura recibido ($20.18M) | ~$25M ARS
+ | P5 | Módulo Exterior Harinas (4×4m TACC-free) | MEDIA | Estructura en fabricación. Esperando paneles. Bloqueado por obra cloacal. | ~$25M ARS
 
  | P6 | Sala Rompedora de Huevos (2.8×2.3m) | OPCIONAL | 
     Árbol de Decisión:
 
-    ▶ Opción A (Gabriel): Proyecto completo = $6.760.000
-
-    ▶ Opción B (Separado): Paredes PVC (Idea Juan) + Albañilería/Piso (Juan Carlos) + Electricidad (Gustavo) + Puerta y media con vidrio.
+    Aprobado: Albañil (suelo, puerta, rejilla, electricidad). Inicia post-platea.
  | A cotizar (Opc. B)
 
- | P7 | Horno Argental FE III-315 | MÁXIMA | Ofertado a fábrica. Aguardando Juan. | US$ 16.071
+ | P7 | Horno Rotativo (Marcas en evaluación) | MÁXIMA | Evaluando y cotizando otras marcas y modelos. | US$ 16.071
 
- | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | BAJA | Cortadora cotizada. Sobadora y empanadas en evaluación. | ~USD 20-30k
+ | P8 | Máquinas de Producción (Cortadora, Sobadora, Línea Empanadas) | BAJA | Cortadora y Sobadora PAUSADAS. Máquina manual de empanadas comprada para prueba piloto. | ~USD 20-30k
 
- | P9 | Estanterías y Organización de Planta | BAJA | En ejecución parcial | 
+ | P9 | Estanterías y Organización de Planta | ALTA | En ejecución parcial | 
 
  | P10 | Puesta en Marcha de Máquinas Existentes | ALTA | Pendiente (Llenadora, Tapadora, Autoclave, Rompedora) | $0 (ya compradas)
 
- | P11 | Moldes Microperforados (Prueba Piloto Tartas) | CRÍTICA | Aprobado, pendiente compra | 
+ | P11 | Prueba Piloto Tartas, Moldes y Carros | CRÍTICA | Cotizando moldes microperforados y desmoldables 16x3. Evaluando Carros 60x40 (Trifical / Equipos BB). | A cotizar
+
+ | P11_A | Transformador 400kVA T3BT (FOHAMA/REMOJU + Radice) | MÁXIMA | Aguardando trámites. Cotizaciones listas. Pilar nuevo por Radice. | ~$15M ARS + u$s 13k
 
  | P12 | Cajones Plásticos (reemplazo madera) | ALTA | En evaluación (tanda de 50 unidades) | ~$300k ARS
 
@@ -396,7 +394,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 #### 0.1 — Preparación de Equipos Nuevos (Línea Cadec)
 
-- Mover físicamente las máquinas: La Llenadora y la Tapadora ya están en la cocina, listas para funcionar (pendiente detalles de configuración). Bloqueante: Para ingresar el Autoclave a vapor, se necesita limpiar/despejar el sector contiguo a la cámara de congelados, reubicar allí los 4 freezers horizontales que hoy ocupan espacio en la cocina, y revisar conexiones eléctricas.
+- Mover físicamente las máquinas: La Llenadora y la Tapadora ya están en la cocina, listas para funcionar (pendiente detalles de configuración). Bloqueante: El Autoclave a vapor ya está ubicado en la cocina. Faltan hacer las conexiones de agua, desagüe, aire comprimido y electricidad para enchufarla.
 
 - Calibración Inicial: Conectar Llenadora y Tapadora temporalmente al compresor pequeño (usado en área de etiquetado) para verificar detalles de configuración esta misma semana, mientras se espera el compresor definitivo.
 
@@ -443,7 +441,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
   Objetivo: Proteger la inversión existente (Roboqbo) y habilitar el aire comprimido que desbloquea 4 máquinas.
 
-#### 1.1 — Instalación de Estabilizadores PRIORIDAD MÁXIMA
+#### 1.1 — Instalación de Estabilizadores PRIORIDAD EVALUACIÓN
 
 - Recibir estabilizadores Electro Tec (plazo proveedor: 48-72hs tras la compra).
 
@@ -457,7 +455,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Recibir el compresor BTA Tools (tarda 1 semana en llegar a Bahía).
 
-- Buscar nuevo instalador: Proing SA fue descartado. Recibir a Provín u otros para obtener cotización de instalación y el listado de materiales exacto.
+- Red neumática: Materiales de cañería ya comprados (u$s 1.126). Mano de obra de instalación cotizada ($1.450.000). Pendiente ejecución del tendido.
 
 - Comprar materiales de cañería según pliego actualizado: SmartPipe 25mm, manguera PU 12mm, regulador, filtro coalescente, FRLs, acoples.
 
@@ -520,9 +518,9 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - RESULTADO: Decisión de reparar o descartar para liberar espacio crítico.
 
-#### 2.5 — Horno Argental (Panier III DESCARTADO — se evalúa modelo compacto 8 bandejas)
+#### 2.5 — Horno Rotativo (Marcas en evaluación)
 
-- Si gerencia aprueba Horno FE III-315, avanzar con compra. No requeriría tocar la campana.
+- Avanzar con compra tras evaluar alternativas. No requeriría tocar la campana.
 
 - Realizar conexiones a servicios (Agua, Luz, Gas).
 
@@ -541,7 +539,7 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Aguardar o buscar albañil para Obra Cloacal.
 
-- Comprar materiales de plomería (caños PVC, bocas de registro, etc.).
+- Materiales de plomería ya comprados ($3.79M).
 
 - Ejecutar obra: zanjeo, corrimiento de cloaca 2m a la derecha, instalación de nuevas tapas de registro, dejar derivaciones "ciegas" de PVC para la ampliación futura trasera.
 
@@ -563,17 +561,13 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Plomería: conexión de agua + desagüe de piso.
 
-- Cotizar y comprar: puerta isotérmica, cortina de lamas PVC, aire acondicionado.
-
 - Pintar, señalizar, habilitar.
 
 - RESULTADO: Módulo TACC-free operativo. Listo para recibir amasadora, sobadora y línea de empanadas.
 
 #### 3.3 — Sala Rompedora de Huevos (Sem 8-12, paralelo al módulo)
 
-- Cotizar ejecución de Sala Rompedora.
-
-- Obra civil: levantar paredes 2.8×2.3m, revocar, pintar con pintura epoxi apta alimentaria.
+- Obra civil: Nivelar suelo, puerta, rejilla y luz, pintar con pintura epoxi apta alimentaria.
 
 - Electricidad: tomas IP65, conexión a tierra, derivación de aire comprimido (6 bar).
 
@@ -606,13 +600,9 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Instalar en módulo, posición Pared 2 (tren de laminado).
 
-#### 4.3 — Línea de Empanadas (Empamec — Alquiler)
+#### 4.3 — Línea de Empanadas
 
-- Formalizar contrato de alquiler con Empamec (M2000x7 PLUS, 2.6×0.7m).
-
-- Recibir e instalar en módulo, posición Pared 2 (a continuación de sobadora).
-
-- Conectar a electricidad (220V, 50Hz). NO requiere aire comprimido.
+- Prueba piloto con máquina manual de 2 unidades.
 
 - Capacitar operarios en uso y mantenimiento.
 
@@ -630,10 +620,6 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - RESULTADO: Corte de discos automatizado. Producción de tapas crudas habilitada (nueva unidad de negocio B2C).
 
-#### 4.5 — Selladora Térmica de Pedal (Pausado)
-
-- Proyecto en espera. Se evaluará recién cuando se adquiera la cortadora de discos y se decida el layout final para la línea retail B2C.
-
     FASE 5 — OPTIMIZACIÓN Y CONSOLIDACIÓN
     Semanas 16-18 (12 Sep — 26 Sep)
 
@@ -649,103 +635,67 @@ ProyectoDepende de (BLOQUEANTE)Habilita a
 
 - Plan Maestro V4: Actualizar este documento con los resultados reales, lecciones aprendidas, y planificar la Fase 2 de expansión (Ampliación Trasera).
 
-- Cámara de frío de cocina: ✓ Confirmado que sale por la puerta sacando el marco. Se retira cuando el abatidor esté conectado eléctricamente.
+## 5. CRONOGRAMA GANTT MACRO (Estimado)
 
-- Contratar técnico electromecánico: Para mantenimiento preventivo de toda la planta expandida.
+        Fase / Actividad
+        Jun 1Jun 2Jun 3Jun 4
+        Jul 1Jul 2Jul 3Jul 4
+        Ago 1Ago 2Ago 3Ago 4
+        Sep 1Sep 2
 
-- Sistema de seguridad: Cotizar cámaras, cerraduras, lector código de barras.
+        Fase 0: Acondicionamiento
+        0.1 |  |  |  |  |  |  |  |  |  |  |  |  | 
 
-## 5. CRONOGRAMA VISUAL (14 Semanas)
+        Fase 1: Estabilizadores y Aire
+         | 1.1 - 1.2 |  |  |  |  |  |  |  |  |  | 
 
-Cada columna = 1 semana. Barras muestran duración estimada. Colores = prioridad.
+        Fase 2: Autoclave y Máq.
+         |  |  | 2.1 - 2.5 |  |  |  |  |  |  |  | 
 
-    SEMANA →
+        Fase 3: Cloacas y Módulo
+         |  |  | CloacaMontaje Módulo + Rompedora |  |  |  |  | 
 
-        S1S2S3
-        S4S5S6
-        S7S8S9
-        S10S11S12
-        S13S14
+        Fase 4: Línea Empanadas
+         |  |  |  |  |  |  |  |  |  | 4.1 - 4.5 | 
 
-  Relev. EléctricoP2
-  Compra EstabilizadoresCompra
-  Instalación EstabilizadoresP1
-  Compra Compresor BTACompra+Flete
-  Instalación Línea AireP3
-  Estanterías (cámara)P9
-  Horno Argental (pedido→inst.)P7
-  Puesta marcha CadecP10
-  Puesta marcha AutoclaveP10
-  Prueba RompedoraP10
-  Diagnóstico Abatidor viejoP10
-  Obra CloacalP4
-  Pago placas módulo$$$
-  Fabricación placas (30d)Espera fabricación
-  Construcción MóduloP5
-  Sala RompedoraP6
-  Mudanza Amasadora→Módulo
-  Sobadora + CortadoraP8
-  Línea EmpanadasP8
-  Moldes microperforadosP11
-  LiofilizadoraP13
+        Fase 5: Optimización
+         |  |  |  |  |  |  |  |  |  |  |  | 5.1 - 5.5
 
 ## 6. RESUMEN PRESUPUESTARIO GLOBAL
 
-ConceptoMonto (ARS)Monto (USD)Estado
+FaseConcepto PrincipalMonto Estimado (ARS)Monto Estimado (USD)
 
- | 3 Estabilizadores Electro Tec 12kVA (Elev 140V) | $2.792.400 + IVA | — | Cotizado (Gustavo Gonzalez)
-     | Alt: 3 Estabilizadores Electro Tec 12kVA (Elev 160V) | $2.125.500 + IVA | — | Cotizado (Gustavo Gonzalez)
+ | Fase 0 | Moldes, reparaciones, relevamiento eléctrico | $ 800.000 | -
 
- | Instalación eléctrica estabilizadores + Térmica 32A | $1.870.000 + IVA | — | Cotizado (Gustavo Gonzalez)
+ | Fase 1 | Estabilizadores (Pausados) y Línea de Aire (P3) | $ 4.056.916 | US$ 1.126
 
- | Compresor De Aire Trifásico 300L – 7.5HP – BTA | $2.210.049 | — | Cotizado (Manelli Hnos.)
+ | Fase 2 | Puesta en marcha, reparaciones | $ 500.000 | -
 
- | Platea hormigón 2,5m×1m×0,2m (fibra sintética) | $556.000 | — | Cotizado (Juan Carlos)
+ | Fase 3 | Cloacas (P4), Módulo Harinas (P5) y Rompedora (P6) | $ 32.433.334 | -
 
- | Cañerías, FRLs, accesorios aire | ~$500.000 | — | Estimado
+ | Fase 4 | Sobadora, Empanadas, Cortadora (P8) | - | US$ 21.500 - 30.500
 
- | Instalación línea de aire y electricidad | A cotizar | — | Pendiente (Proing descartado. Esperando Provín)
+ | Transversal | Horno Argental (P7) y Transformador T3BT | $ 5.850.000 | US$ 27.656
 
- | Módulo Harinas (Electricidad + Plomería M.O.) | $1.440.000 | — | Cotizado
+      INVERSIÓN TOTAL ESTIMADA:
+       | ~ $ 43.640.250 ARS
+       | ~ US$ 50.282
 
- | Módulo Harinas (Puerta, Cortina, A/C) | ~$2.000.000 | — | Estimado
+  Nota Presupuestaria: Los valores son estimaciones basadas en cotizaciones recibidas a Junio 2026. Los montos finales pueden variar según tipo de cambio y paritarias.
 
- | Desagüe Cloacal — Mano de Obra | $8.450.000 | — | Cotizado (Gabriel)
+## 7. MATRIZ DE RIESGOS
 
- | Sala Rompedora — Obra Civil (a renegociar) | $6.760.000 | — | Cotizado (Gabriel) — Paralizado
+RiesgoImpactoProb.Mitigación Preventiva
 
- | Horno Argental FE III-315 (Paralizado) | — | USD 16.071 | Aguardando Juan
+ | Falla de suministro eléctrico continuo (cortes) | ALTO | Alta | Procurar celeridad en trámite Tarifa 3 (EDEA) + Transformador.
 
- | Sobadora Pesada Blindada | — | ~USD 8.000 | Estimado
+ | Demora en instalación línea de aire | MEDIO | Media | Materiales comprados. Coordinar con instalador para tender cañerías una vez lista la platea.
 
- | Cortadora Spiing MCD2 (usada) | — | USD 9.500 | Cotizado
+ | Incapacidad estructural módulo de harinas | MEDIO | Baja | Materiales de primera calidad (PIR 50mm) y validación técnica antes del pago final al proveedor.
 
- | Línea Empanadas Empamec (alquiler) | Mensual | A cotizar | En evaluación
+ | Mala operación máquinas nuevas por personal | ALTO | Alta | Capacitación exhaustiva (videos POE y acompañamiento de supervisor por 2 semanas).
 
- | Selladora Térmica de Pedal | — | ~USD 400 | A comprar
-
- | Moldes microperforados (10-20 uds.) | ~$150.000 | — | A comprar
-
- | Cajones plásticos (50 uds.) | ~$300.000 | — | A comprar
-     | TOTAL ESTIMADO (sin alquiler empanadas) | ~$52.300.000 | + ~USD 29.600 | 
-
-## 7. RIESGOS Y MITIGACIONES
-
-RiesgoImpactoProbabilidadMitigación
-
- | Placas del módulo demoran más de 30 días | ALTO | Media | ✓ Pagadas (~10/06/2026). Confirmar fecha de entrega exacta con proveedor.
-
- | Roboqbo se quema por pico de tensión | ALTO | Alta (cada tormenta) | Instalar estabilizadores en Fase 1 SIN demoras.
-
- | Capacidad de cables insuficiente para estabilizadores | MEDIO | Media | Gustavo Gonzalez controlará diámetro de cables antes de la instalación. Si falta, cotizar recableado.
-
- | Abatidor viejo irreparable | MEDIO | Media | Circuito 1 (Rational) sigue usando el enfriador rápido. Abatidor actual tiene guías para bandejas. Ya comprado, no se cambia. Priorizar conexión eléctrica.
-
- | Rompedora de huevos defectuosa | MEDIO | Baja | Probar ANTES de construir la sala (Fase 2.3).
-
- | Capacidad eléctrica insuficiente para todo | ALTO | Baja | Relevamiento eléctrico (Fase 0) lo detectará. Solución: ampliación del tablero o nueva acometida.
-
- | Flete especial necesario para módulo | BAJO | Media | Construir por partes (ya decidido). Evitar hidrogrúa.
+ | Pausa prolongada en estabilizadores | MEDIO | Media | No utilizar Roboqbo durante alertas meteorológicas hasta finalizar trámite T3BT.
 
 ## 8. TEMAS ADICIONALES (no olvidar)
 
@@ -885,7 +835,7 @@ IndicadorMetaMedición
 
  | Módulo Harinas con techo y paredes | Semana 12 | ✅ Estructura cerrada, piso instalado
 
- | Módulo Harinas habilitado | Semana 14 | ✅ Electricidad, agua, puerta, pintura, señalización
+ | Módulo Harinas habilitado | Semana 14 | ✅ Electricidad, agua, pintura, señalización
 
  | Primera empanada producida | Semana 16 | ✅ Prueba piloto completada con calidad OK
 

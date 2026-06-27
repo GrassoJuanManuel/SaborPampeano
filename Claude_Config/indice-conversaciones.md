@@ -1,6 +1,6 @@
 # Índice de conversaciones — Sabor Pampeano
 
-> **52 conversaciones** del cerebro de Antigravity, filtradas para que solo contengan trabajo de Sabor Pampeano y sus proyectos. Las 6 conversaciones relacionadas a "Planillas Ro" / "Oxana" (proyecto separado) fueron movidas a `01-extracted/workspaces/non-sabor-pampeano/` y NO deben ser usadas como contexto en este workspace.
+> **52 conversaciones** del cerebro de Antigravity, filtradas para que solo contengan trabajo de Sabor Pampeano y sus proyectos. (6 conversaciones de proyectos ajenos fueron eliminadas.)
 >
 > **Ubicación del archivo histórico de Sabor Pampeano**: `C:\Users\jmgra\AppData\Roaming\Antigravity\antigravity-migration\01-extracted\workspaces\sabor-pampeano\conversations\<uuid>\`
 
@@ -62,25 +62,11 @@
 
 ---
 
-## Conversaciones EXCLUIDAS del scope Sabor Pampeano
-
-Estas 6 conversaciones son de **Planillas Ro / proyecto Oxana** (negocio separado de Roxana, no Sabor Pampeano). Quedan archivadas en `01-extracted/workspaces/non-sabor-pampeano/conversations/` pero **Claude NO debe usarlas como contexto** cuando trabaja en Sabor Pampeano.
-
-- `3e6f5c8c` GAS proyecto Oxana
-- `6ec01b95` Planillas Ro v2.9 (grey cells)
-- `52a3480e` Planillas Ro V5 (auto-run + protection)
-- `114114b2` Planillas Ro v6 update
-- `bfe47600` Planillas Ro v7 update
-- `a08b13d1` Mejoras Integrales "Oxana" (Kits sheet)
-
----
-
 ## Cómo Claude debe usar este índice
 
 1. **Cuando Juan mencione un trabajo previo** (ej. "como hicimos con el aire comprimido"), buscar en este índice + leer la conversación correspondiente desde la ubicación local.
 2. **Para no repetir trabajo**: antes de iniciar un proyecto nuevo, verificar si hay UUID con título similar.
 3. **Para tener antecedentes**: las conversaciones con scratch files Python son una librería de soluciones reusables.
-4. **NUNCA leer las conversaciones de Planillas Ro / Oxana** como contexto en este workspace — son de un proyecto distinto.
 
 ---
 

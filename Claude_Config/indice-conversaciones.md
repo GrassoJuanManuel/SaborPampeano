@@ -29,7 +29,6 @@
 |---|---|
 | `0b7306f9` | Ampliación de Planta: Área Libre de TACC + Línea Empanadas |
 | `3424fa6f` | (sin título — Pliego Rompedora Huevos) |
-| `3e6f5c8c` | Lista de tareas para creación de GAS proyecto Oxana |
 | `72fb6c2b` | (sin título — Revisión técnica) |
 | `a08b13d1` | (sin título — Implementation plan + 10 media) |
 | `dfb04f16` | V16 implementation complete. All 3 files created and verified |

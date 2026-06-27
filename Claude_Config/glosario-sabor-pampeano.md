@@ -329,4 +329,4 @@ Los archivos reales son **.doc** (legacy), no `.docx`. Si Claude busca un templa
 1. **Compresor**: ¿7.5 HP o 5.5 HP? La BIBLIA dice 7.5 HP, el resumen al dueño dice 5.5 HP. Análisis técnico valida 7.5 HP.
 2. **Capacidades**: ¿500→2.000 son solo tartas y 1.400→2.500 son totales? Aclarar para no confundir métricas.
 3. **Empanadora semiautomática**: ¿modelo definitivo?
-5. **Cremallera y Válvula esférica + Batea**: ¿qué máquinas son específicamente?
+4. **Cremallera y Válvula esférica + Batea**: ¿qué máquinas son específicamente?

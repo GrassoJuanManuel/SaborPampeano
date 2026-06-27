@@ -53,7 +53,6 @@
 - `52a3480e` V5 auto-run + protection
 - `6ec01b95` v2.9 grey cells fix
 - `dfb04f16` V16 implementation complete
-- `3e6f5c8c` GAS proyecto Oxana
 
 ### C — Aire comprimido / equipos / pliegos
 - `ef096f5b` (parcial) Aire Comprimido + presupuestos

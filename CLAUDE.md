@@ -256,7 +256,7 @@ Cada conector requiere un OAuth nuevo (los tokens de Antigravity están DPAPI-en
 
 ## 9.1. Backups automáticos
 
-Backup diario del Workspace con rotación abuelo-padre-hijo, guardado en `C:\Users\jmgra\OneDrive\Desktop\Backup Workspace\`:
+Backup diario del Workspace con rotación abuelo-padre-hijo, guardado en `C:\Backup Workspace\`:
 
 - **Diarios:** se conservan los últimos 7
 - **Semanales:** uno por semana (lunes) hasta los 90 días

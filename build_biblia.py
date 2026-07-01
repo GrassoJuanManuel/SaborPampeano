@@ -8,6 +8,9 @@ resumen_path = os.path.join(ws, r'05_Plan_Maestro_Fabrica\Resumen_Ejecutivo_Plan
 biblia_path = os.path.join(ws, r'03_Herramientas_Sistemas\Herramientas_IA_y_Scripts\contexto_completo.md')
 
 def strip_html(html_str):
+    # quitar bloques script/style primero (evita filtrar la contraseña y el CSS al dump)
+    html_str = re.sub(r'<script[^>]*>.*?</script>', '', html_str, flags=re.DOTALL)
+    html_str = re.sub(r'<style[^>]*>.*?</style>', '', html_str, flags=re.DOTALL)
     # basic formatting conversion
     text = re.sub(r'<li>', '\n- ', html_str)
     text = re.sub(r'<h1>', '\n# ', text)

@@ -29,9 +29,11 @@
 
 ## 2. La BIBLIA — estado actual de proyectos
 
-**Archivo fuente:** `03_Herramientas_Sistemas/Herramientas_IA_y_Scripts/contexto_completo.md` (relativo a este workspace)
+**Archivo fuente (canónico):** `03_Herramientas_Sistemas/Herramientas_IA_y_Scripts/BIBLIA_LIMPIA_20260701.md` — markdown limpio, mantenido a mano.
 
-**Importante**: Claude debe leer este archivo al inicio de cualquier conversación de Sabor Pampeano. Es la única fuente actualizada del estado real de cada proyecto. Si Juan dice algo que contradice la BIBLIA, preguntar — puede ser que la BIBLIA esté desactualizada y haya que editarla.
+> [!CAUTION] `contexto_completo.md` es un archivo **autogenerado** por `build_biblia.py` (vuelca los HTML del Plan Maestro y reintroduce la contraseña y el CSS). **No editarlo ni leerlo como fuente**: se reescribe solo. La BIBLIA editable es el archivo canónico de arriba.
+
+**Importante**: Claude debe leer el **archivo canónico** (arriba) al inicio de cualquier conversación de Sabor Pampeano. Es la fuente del estado real de cada proyecto. Si Juan dice algo que contradice la BIBLIA, preguntar — puede estar desactualizada y haya que editarla.
 
 ### Estado al 29/Junio/2026
 

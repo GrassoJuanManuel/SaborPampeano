@@ -365,6 +365,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
     <button class="nav-btn" onclick="detail('empanadas', this)"><i class="fas fa-utensils" style="color:#a3e635"></i> Línea Empanadas<span class="nav-stars">★★</span></button>
     <button class="nav-btn" onclick="detail('maquinas', this)"><i class="fas fa-cogs" style="color:#9ca3af"></i> Inst. Máquinas<span class="nav-stars">★</span></button>
     <button class="nav-btn" onclick="detail('ampliacion', this)"><i class="fas fa-building" style="color:#818cf8"></i> Ampliación Fábrica<span class="nav-stars">★</span></button>
+    <button class="nav-btn" onclick="detail('protein_lab', this)"><i class="fas fa-flask" style="color:#6DBFB2"></i> SP Protein Lab<span class="nav-stars">★★</span></button>
   </div>
   <div class="sidebar-footer" style="display:flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; overflow:hidden;">
   <button onclick="navigator.clipboard.writeText('https://GrassoJuanManuel.github.io/SaborPampeano/'); alert('¡Link público copiado!');" title="Copiar link público" style="background:none; color:#8da074; border:none; cursor:pointer; font-size:14px; transition:0.2s; padding:0;" onmouseover="this.style.color='#404d31'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#8da074'; this.style.transform='scale(1)'"><i class="fas fa-share-alt"></i></button>
@@ -416,6 +417,7 @@ a{color:var(--sp-green-mid);text-decoration:none;}a:hover{text-decoration:underl
     </div>
 <div class="pcard" onclick="detail('maquinas')" data-priority="1" data-name="Instalación Máquinas"><div class="card-top"><h3>Instalación Máquinas Existentes</h3><span class="badge b-prog"><i class="fas fa-tools"></i> En Progreso</span></div><p class="card-desc">Llenadora y Tapadora ubicadas en cocina, listas. Autoclave en espera de reubicar freezers.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:45%"></div></div></div>
     <div class="pcard" onclick="detail('ampliacion')" data-priority="1" data-name="Ampliación Fábrica"><div class="card-top"><h3>Ampliación de Fábrica</h3><span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span></div><p class="card-desc">Ampliación trasera para máquinas chinas de huevo líquido y posible 2da liofilizadora.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:10%"></div></div></div>
+    <div class="pcard" onclick="detail('protein_lab')" data-priority="2" data-name="SP Protein Lab"><div class="card-top"><h3>SP Protein Lab (Unidad de Negocios)</h3><span class="badge b-concept"><i class="fas fa-flask"></i> Piloto</span></div><p class="card-desc">Nueva unidad: alimentos proteicos. Fase 1 huevo (Egg Bites sous vide). Criticidad media; arranque piloto a escala mínima.</p><div class="card-footer"><div class="stars"><i class="fas fa-star on"></i><i class="fas fa-star on"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div><div class="progress"><div class="fill" style="width:15%"></div></div></div>
   </div>
 </div>
 
@@ -720,7 +722,14 @@ maquinas:{title:'Instalación Máquinas Existentes',ref:'Bloqueado por aire comp
 ampliacion:{title:'Ampliación de Fábrica',ref:'Obra 4 — Concepto',badge:'<span class="badge b-concept"><i class="fas fa-lightbulb"></i> Conceptual</span>',priority:1,progress:10,statusType:'conceptual',tabs:{
 'Resumen':`<div class="info-box"><h4><i class="fas fa-building"></i> Concepto</h4><p>Ampliación trasera de la fábrica para albergar línea completa de huevos (pasteurizador, homogeneizador, tanque refrigeración, llenadora, blast freezer), posiblemente 2da liofilizadora. Infraestructura 380V, aire comprimido, agua, desagües.</p></div>
 <div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado</h4><p>❌ <strong>CONCEPTO.</strong> No hay pliego ni cotización. Manuales archivados y traducidos.</p></div>`,
-'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Manuales Chinos</h4><p style="font-size:12px;color:#6b7a52;margin-bottom:10px;">Todos los manuales traducidos están archivados.</p><button class="open-folder" onclick="openFolder('02_Operaciones_de_Fabrica/Mantenimiento_y_Manuales_Generales/Manuales/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Manuales</button></div>`}}
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Manuales Chinos</h4><p style="font-size:12px;color:#6b7a52;margin-bottom:10px;">Todos los manuales traducidos están archivados.</p><button class="open-folder" onclick="openFolder('02_Operaciones_de_Fabrica/Mantenimiento_y_Manuales_Generales/Manuales/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta Manuales</button></div>`}},
+protein_lab:{title:'SP Protein Lab (Unidad de Negocios)',ref:'Fase 1 — Huevo · Criticidad Media',badge:'<span class="badge b-concept"><i class="fas fa-flask"></i> Piloto</span>',priority:2,progress:15,statusType:'conceptual',tabs:{
+'Resumen':`<div class="info-box"><h4><i class="fas fa-flask"></i> Qué es</h4><p>Nueva unidad de negocios de alimentos proteicos listos para consumir, en paralelo a P1–P13. <strong>Fase 1: huevo</strong> (integración vertical). Producto insignia: <strong>Egg Bites sous vide</strong> (22–30 g proteína/pack).</p></div>
+<div class="info-box"><h4><i class="fas fa-info-circle"></i> Estado y enfoque</h4><ul><li><strong>Criticidad:</strong> Media (no frena P1–P13).</li><li><strong>Arranque:</strong> piloto a escala mínima con recursos actuales.</li><li><strong>Cronograma:</strong> M1 investigación · M2 formulación/piloto · M3 costos/packaging/validación · M4 lanzamiento.</li></ul></div>
+<div class="info-box" style="border-left:4px solid #d97706;"><h4><i class="fas fa-exclamation-triangle" style="color:#d97706"></i> Dependencia crítica</h4><p>Escalar a volumen necesita huevo líquido pasteurizado de la <strong>Sala Rompedora (P6)</strong>, hoy condicionada por la cloaca (P4). El piloto no depende de P6; la industrialización sí.</p></div>`,
+'Ingeniería (Juan)':`<div class="info-box"><h4><i class="fas fa-cogs"></i> Foco de ingeniería</h4><p>Proceso Egg Bites: mezcla → dosificado → cocción sous vide → abatido → envasado al vacío → frío. Cruces con P6, sous vide, abatidor y envasado existentes. Vida útil 30–45 días a validar con Dalma (I+D).</p></div>`,
+'Equipo':`<div class="info-box"><h4><i class="fas fa-users"></i> SP Protein Lab</h4><p>Juancho (dirección), Bruno (finanzas), Helena (estrategia/mercado), Alan (marketing), Dalma (I+D alimentos), <strong>Juan Grasso (ingeniería de proceso y equipos)</strong>, ChatGPT (asesor).</p></div>`,
+'Documentos':`<div class="info-box"><h4><i class="fas fa-folder-open"></i> Carpeta del proyecto</h4><button class="open-folder" onclick="openFolder('01_Proyectos/SP_Protein_Lab/')" style="background:none;border:none;color:var(--sp-green-mid);cursor:pointer;font:inherit;padding:0;font-weight:600;margin-top:12px;"><i class="fas fa-folder-open"></i> Abrir Carpeta SP Protein Lab</button></div>`}}
 };
 
 function go(page, btn){
@@ -878,7 +887,8 @@ const CHART_COLORS = {
   maqnuevas: 'rgba(122,85,158,.58)',
   rompedora: 'rgba(184,74,60,.78)',
   maquinas: 'rgba(140,140,155,.55)',
-  ampliacion: 'rgba(140,140,155,.30)'
+  ampliacion: 'rgba(140,140,155,.30)',
+  protein_lab: 'rgba(109,191,178,.70)'
 };
 
 function renderDashboard() {
@@ -933,6 +943,7 @@ function renderDashboard() {
     transformador:'Transformador T3',
     maquinas:     'Inst. Máquinas',
     ampliacion:   'Ampliación Fábrica',
+    protein_lab:  'SP Protein Lab',
   };
   const labels = sorted.map(id => SHORT_LABELS[id] || P[id].title.substring(0, 20));
   const data = sorted.map(id => P[id].progress || 0);

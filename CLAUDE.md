@@ -12,7 +12,7 @@
 
 **Negocio:** **Sabor Pampeano** — fábrica de alimentos en Bahía Blanca, Argentina. Reestructuración integral en curso: 13 proyectos P1-P13 + P11_A sub-proyecto (transformador), 44 SKUs, planta nueva en expansión hacia 2.500 unidades/día totales en un turno (de las cuales ~2.000 tartas).
 
-**Rol de Juan:** dueño/operador. Toma decisiones de inversión, coordina proveedores, valida especificaciones técnicas, gestiona obras civiles y montaje de equipos industriales.
+**Rol de Juan:** **empleado** — Ingeniero Industrial, **Jefe de Operaciones e Ingeniería de Planta**. Propone técnicamente las inversiones (releva proveedores y precios); la **decisión final es del dueño, Juan Manuel Arzuaga**. Coordina proveedores, valida especificaciones, gestiona obras civiles y montaje. Firma: "Ing. Juan Manuel Grasso, Jefe de Operaciones e Ingeniería".
 
 **Equipos clave del entorno humano:**
 - **Any** — chef central de operaciones. Cubre Tartas (Línea B), Empanadas Congeladas (Línea G), Escabeches (Línea A-bis). Reemplazó a Raúl (desvinculado).
@@ -22,7 +22,7 @@
 - Radice — construcción del pilar nuevo para transformador T3BT (P11_A)
 - Trifical y Equipos BB — proveedores en evaluación para moldes y carros
 - Cadec — automatización Llenadora/Tapadora/Autoclave (`servicios@cadec.com.ar`)
-- "El dueño" — el propio Juan en presentaciones (se refiere a sí mismo en tercera persona)
+- **"El dueño" — Juan Manuel Arzuaga** (dueño de Sabor Pampeano; toma la decisión final de inversión). NO confundir con Juan Grasso (el usuario, empleado). Ambos se llaman "Juan Manuel"
 - **Belachur — EXCLUIDO** por decisión de dirección
 
 ---
@@ -33,7 +33,9 @@
 
 **Importante**: Claude debe leer este archivo al inicio de cualquier conversación de Sabor Pampeano. Es la única fuente actualizada del estado real de cada proyecto. Si Juan dice algo que contradice la BIBLIA, preguntar — puede ser que la BIBLIA esté desactualizada y haya que editarla.
 
-### Estado al 25/Junio/2026
+### Estado al 29/Junio/2026
+
+> La BIBLIA fue reformateada a markdown limpio el 29/06/2026 (se quitó el HTML/CSS/JS embebido y la contraseña en texto plano). El detalle completo y actualizado vive en el archivo fuente.
 
 **FASE 0 — Acciones Inmediatas**
 - Equipos Cadec en cocina (faltan calibraciones)
@@ -98,6 +100,7 @@
 6. **Sin Párrafos de Relleno:** evitar frases vacías. Ir directo a lo útil.
 7. **Firmeza Técnica:** mantener la postura técnica si la matemática o la física lo dictan, explicando el porqué con claridad.
 8. **PDF Automático:** cada vez que se genere o actualice un documento (SOP, reporte, pliego, etc.), generar el PDF automáticamente sin esperar que Juan lo pida. Juan **no puede visualizar archivos `.md` directamente** — siempre necesita el PDF.
+   - **Al modificar un documento que ya existe:** preguntar a Juan *¿sobrescribo o creo una versión nueva?* antes de hacerlo (regla de Juan, 29/06/2026).
 
 ### Idioma y formato
 
@@ -144,7 +147,7 @@ Cuando Juan pide trabajar en un proyecto, los artifacts default son:
 Antigravity guardaba todas las versiones (`.resolved.0`, `.resolved.1`, …). Claude debe:
 - Si hay un artifact previo y Juan pide modificarlo, **reescribirlo completo**, no parchearlo en el chat
 - Versionar en el nombre cuando corresponda: `pliego_aire_v2.md`, `resumen_ejecutivo_v7.md`
-- Mantener histórico cuando el cambio es estructural; sobrescribir cuando es tipográfico
+- Al modificar un documento que ya existe, **preguntar a Juan si sobrescribe o crea una versión nueva** antes de hacerlo (regla de Juan, 29/06/2026)
 
 ---
 
@@ -211,7 +214,7 @@ Ej.: `01_Proyectos > 03_Sala_Rompedora_Huevos > Pliegos > SP-OC-2026-001 V2.pdf`
 - Listar las dos versiones
 - Preguntar cuál es la verdadera, antes de seguir
 
-### Para presentaciones al dueño (Juan = "el dueño" en estos casos)
+### Para presentaciones al dueño (el dueño = Juan Manuel Arzuaga; Juan Grasso le eleva el documento)
 - Generar `plan_para_el_dueno.md` o `resumen_reunion_dueno.md`
 - Lenguaje no técnico, foco en plata y plazos
 - Decisiones pendientes resaltadas con callouts
@@ -222,12 +225,13 @@ Ej.: `01_Proyectos > 03_Sala_Rompedora_Huevos > Pliegos > SP-OC-2026-001 V2.pdf`
 
 | Conector | Uso | Status migración |
 |---|---|---|
-| **Google Drive (MCP)** | Lectura/escritura en `G:\Mi unidad\Sabor Pampeano Workspace\` | Conectar `juanmanuelgrasso@saborpampeano.com` |
+| **Google Drive (MCP)** | Lectura/escritura en `G:\Mi unidad\Sabor Pampeano Workspace\` | ✅ Activo (workspace montado + MCP de Drive) |
 | **Google Sheets** | 4 sheets operativas: Producción, Insumos, Recetas, Registros WebApp | Pendiente conectar |
 | **Google Apps Script** | Webapp interna (`Code_v2.x`, versions v18-v21) | Sin equivalente directo — mantener edición manual desde G:\ |
-| **Claude in Chrome (MCP)** | Equivalente al browser sub-agent de Antigravity (scraping, screenshots, comparación de proveedores) | Conectar |
+| **Claude in Chrome (MCP)** | Equivalente al browser sub-agent de Antigravity (scraping, screenshots, comparación de proveedores) | ✅ Disponible |
+| **Herramientas PDF** | Llenar, firmar, mergear, dividir, extraer PDFs | ✅ Disponible |
 | **NotebookLM** | Consulta a knowledge base | Equivalente: Skills + RAG con archivos en G:\ |
-| **PowerShell** | Antigravity ejecutaba todo via `run_command` PowerShell | Claude puede usar bash en sandbox para tareas equivalentes |
+| **Sandbox Linux (bash)** | Reemplaza a PowerShell para correr código (Python/Node) | ✅ Activo. ⚠️ No monta el Drive: para correr scripts sobre archivos del workspace hay que copiarlos primero al sandbox |
 | **OneDrive personal** | Workspaces secundarios | Acceso ya configurado vía folder mount |
 
 ### Re-autenticación
@@ -245,6 +249,8 @@ Cada conector requiere un OAuth nuevo (los tokens de Antigravity están DPAPI-en
 6. **Preguntar antes de ejecutar** acciones costosas o destructivas.
 7. **Walkthrough al cerrar** trabajos grandes.
 8. **Español rioplatense profesional**, sin servilismo exagerado.
+9. **Autonomía por capas:** memoria y preferencias se actualizan automáticamente; la BIBLIA y el estado de proyectos se confirman antes de tocar; acciones caras o destructivas se preguntan primero.
+10. **Actualizar la memoria siempre y de forma proactiva** — capturar lo que se aprende de Juan, la empresa y los proyectos sin esperar que lo pida.
 
 ---
 
@@ -253,6 +259,7 @@ Cada conector requiere un OAuth nuevo (los tokens de Antigravity están DPAPI-en
 - `Claude_Config/playbook-sabor-pampeano.md` — patrones de tareas recurrentes con paso a paso
 - `Claude_Config/glosario-sabor-pampeano.md` — vocabulario del negocio (equipos, proveedores, productos, abreviaturas)
 - `Claude_Config/indice-conversaciones.md` — índice navegable de las 52 conversaciones migradas
+- `Claude_Config/como-trabajamos.md` — manual de cómo Claude trabaja para Juan (capacidades, autonomía, conectores, convenciones)
 
 ## 9.1. Backups automáticos
 

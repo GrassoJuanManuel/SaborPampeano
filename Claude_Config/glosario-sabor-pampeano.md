@@ -67,7 +67,7 @@
 - **Peladora** — `EQUIPOS/peladora/`
 - **Cortadora** — `EQUIPOS/cortadora/` (4 fotos numeradas)
 - **Etiquetadora** — operativa
-- **Compresor BTA 300L** — ⚠️ **HP a confirmar**: BIBLIA dice 7.5 HP, resumen al dueño dice 5.5 HP. Análisis técnico valida 7.5 HP. Aprobado $2.250.000.
+- **Compresor BTA 300L** — ✅ 7.5 HP (confirmado por Juan, 29/06/2026). Aprobado $2.250.000.
 - **Bomba Elevadora** (Línea A) — pendiente verificar fuerza para empujar hummus de Roboqbo a Cadec
 - **Tren de Laminado Junior 600** (MONV) con módulo interfoliador — evaluado para escalar tartas 500 → 2.000 u/día
 - **Empanadora semiautomática** — pendiente definición de modelo (distinta de la máquina manual de 2 empanadas)
@@ -123,7 +123,8 @@
 
 | Nombre | Rol | Notas |
 |---|---|---|
-| **Juan Manuel Grasso** | Dueño / operador | `juanmanuelgrasso@saborpampeano.com`. A veces referido como "el dueño" en presentaciones (se habla de sí mismo en tercera persona). |
+| **Juan Manuel Grasso** | Empleado — Jefe de Op. e Ingeniería de Planta | `juanmanuelgrasso@saborpampeano.com`. Ingeniero Industrial. **NO es el dueño** (error de migración corregido 29/06/2026, por coincidencia de nombre con Arzuaga). |
+| **Juan Manuel Arzuaga** | **Dueño de Sabor Pampeano** | "El dueño". Toma la decisión final de inversión. Juan Grasso le eleva los resúmenes. No confundir con Juan Grasso. |
 | **Any** | Chef / encargada de líneas | **Persona central de operaciones**. Cubre Línea B (Tartas), Línea G (Empanadas Congeladas), Línea A-bis (Escabeches). Reemplazó a Raúl. |
 | **Raúl** | Chef desvinculado (histórico) | Absorbido por Any. Mencionado por contexto. |
 | **Gustavo** | Electricista | Relevamiento eléctrico + plan de mejoramiento |
@@ -178,7 +179,7 @@
 - **Master Plan V3** — documento estratégico de reestructuración
 - **44 SKUs** — total de productos
 - **Efecto Cascada / Efecto Acordeón** — destrabar un cuello de botella expone el siguiente
-- **Techo de Cristal** — límite operativo actual de **1.400 unidades/día** en 1 turno de 8 hs (tartas + tortillas combinados)
+- **Producción actual (jun 2026):** ~500 tartas/día y 120–180 tortillas/día. **Meta:** 4× tartas (~2.000/día) y ≥2× tortillas. (El "1.400 u/día" que figuraba como techo no coincide con los números reales de Juan.)
 - **Meta soñada** — 2.500 unidades/día en 1 turno totales (Fase 2)
 - **Capacidad específica tartas** — de 500 a 2.000 tartas/día con tren laminado (este número es solo tartas, no total)
 - **Cuellos de botella críticos:** Frío (cámara) y Vacío (envasado)
@@ -324,9 +325,9 @@ Los archivos reales son **.doc** (legacy), no `.docx`. Si Claude busca un templa
 
 ---
 
-## Puntos pendientes de confirmar con Juan (anotados para preguntar cuando convenga)
+## Puntos pendientes de confirmar con Juan
 
-1. **Compresor**: ¿7.5 HP o 5.5 HP? La BIBLIA dice 7.5 HP, el resumen al dueño dice 5.5 HP. Análisis técnico valida 7.5 HP.
-2. **Capacidades**: ¿500→2.000 son solo tartas y 1.400→2.500 son totales? Aclarar para no confundir métricas.
-3. **Empanadora semiautomática**: ¿modelo definitivo?
-4. **Cremallera y Válvula esférica + Batea**: ¿qué máquinas son específicamente?
+1. ✅ **Compresor**: 7.5 HP (confirmado 29/06/2026).
+2. ✅ **Capacidades**: hoy ~500 tartas/día y 120–180 tortillas/día; meta 4× tartas y ≥2× tortillas (29/06/2026).
+3. **Empanadora semiautomática**: ¿modelo definitivo? (pendiente)
+4. ✅ **Cremallera y Válvula esférica + Batea**: descartadas / ya no relevantes (29/06/2026).

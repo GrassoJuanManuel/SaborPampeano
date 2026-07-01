@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist: SP Protein Lab (Borrador) — Sabor Pampeano</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --sp-green: #4A5D23;
+  --sp-green-light: #7A9B3A;
+  --sp-accent: #C5D6A0;
+  --sp-bg: #f4f3ec;
+  --text-dark: #1a2410;
+  --text-muted: #6b7a52;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.6s ease-out;
+}
+.header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--sp-green);
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.header p {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.actions {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--sp-green);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--sp-green-light);
+  transform: scale(1.02);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid rgba(74, 93, 35, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+.card:hover {
+  box-shadow: 0 8px 25px rgba(74, 93, 35, 0.1);
+  border-color: var(--sp-accent);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--sp-green), var(--sp-green-light));
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(122, 155, 58, 0.1);
+  color: var(--sp-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.card-body ul {
+  list-style: none;
+  margin-top: 10px;
+}
+.card-body li {
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+.card-body li::before {
+  content: '\f058';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--sp-green-light);
+}
+.card-body strong {
+  color: var(--sp-green);
+}
+.note {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 10px;
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .actions { display: none; }
+  .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; margin-bottom: 20px; }
+  .card::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1><i class="fas fa-clipboard-list" style="margin-right:10px;"></i> SP Protein Lab (Borrador Multiproducto)</h1>
+    <p>Requerimientos de Ingeniería Industrial: Check-list de definiciones necesarias por área para poder avanzar con el diseño de una planta flexible, capaz de absorber toda la Fase 1 (Huevo) y la futura Fase 2 (Carnes, Bowls y Postres).</p>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="window.print()">
+      <i class="fas fa-print"></i> Imprimir / Guardar PDF
+    </button>
+  </div>
+
+  <div class="grid">
+    
+    <!-- Dalma -->
+    <div class="card" style="animation-delay: 0.1s;">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-flask"></i></div>
+        <h3 class="card-title">1. Dalma (I+D Alimentos - Formulación y Vida útil)</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Parámetros de cocción cruzados:</strong> ¿Qué productos de la Fase 1 (Egg Bites, Omelettes, Frittatas, Flanes) comparten temperatura y tiempo de cocción sous-vide? (Fundamental para unificar lotes en la misma maquinaria).</li>
+          <li><strong>Pelado y procesamiento:</strong> Para los "Huevos cocidos pelados", ¿qué tipo de pelado mecánico se requiere?</li>
+          <li><strong>Estandarización de dosificación:</strong> Necesito conocer la viscosidad de la mezcla de todos los productos líquidos (muffins, tortillas, flanes). ¿Podremos usar un único modelo de dosificadora para todos?</li>
+          <li><strong>Conservación Fase 1 vs Fase 2:</strong> Para las carnes y pollos sous vide vs. los derivados del huevo, ¿hay diferencias sustanciales en el tipo de vacío o barrera del envase para lograr los 30-45 días de vida útil?</li>
+        </ul>
+        <span class="note">* Prioridad Alta: Definir compatibilidades para no duplicar compra de equipos.</span>
+      </div>
+    </div>
+
+    <!-- Helena -->
+    <div class="card" style="animation-delay: 0.2s;">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+        <h3 class="card-title">2. Helena (Estrategia - Mercado y Producción)</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Secuencia del portafolio:</strong> Teniendo en cuenta la extensa lista de productos (bowls, postres, carnes, snacks), ¿cuál es el orden exacto de lanzamiento tras los Egg Bites?</li>
+          <li><strong>Ciclos de producción intercanal:</strong> Apuntamos a retail, gimnasios, cafeterías y conveniencia. ¿Habrá picos estacionales fuertes o la demanda será plana a lo largo de la semana/mes?</li>
+          <li><strong>Transición a Fase 2:</strong> ¿En qué mes proyectamos que entrarán los bowls y las carnes a la planta? Esto define cuándo necesitamos incorporar hornos/equipos diferentes a los de huevo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Alan -->
+    <div class="card" style="animation-delay: 0.3s;">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
+        <h3 class="card-title">3. Alan (Marketing - Marca y Lanzamiento)</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Estandarización de envases:</strong> ¿Podemos unificar las dimensiones del packaging (bandejas plásticas/bolsas) entre productos como Egg Bites, Frittatas y Flanes para utilizar una única matriz de termosellado o de vacío continuo?</li>
+          <li><strong>Protein Box:</strong> ¿Qué componentes y dimensiones físicas tendrá la "Protein Box"? (Requerirá una línea de ensamblaje distinta al resto).</li>
+          <li><strong>Presentación en góndola vs Gimnasio:</strong> ¿El producto para retail usará el mismo envase técnico que el destinado a cafeterías/gimnasios, o requerimos una fajadora/estuchadora adicional de cartón?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Juancho -->
+    <div class="card" style="animation-delay: 0.4s;">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-chess-knight"></i></div>
+        <h3 class="card-title">4. Juancho (Director - Dirección Estratégica)</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Escala multiproducto:</strong> Para la prueba piloto inicial, ¿vamos a arrancar solo con Egg Bites o con varios productos de la matriz en simultáneo?</li>
+          <li><strong>Desarrollo gradual:</strong> Considerando el principio de "desarrollo gradual", ¿el espacio físico inicial asignado deberá estar preparado ya para la Fase 2, o se armará un sector nuevo más adelante?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bruno -->
+    <div class="card" style="animation-delay: 0.5s;">
+      <div class="card-header">
+        <div class="icon-box"><i class="fas fa-coins"></i></div>
+        <h3 class="card-title">5. Bruno (Finanzas - Costos)</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>CAPEX Flexible vs Dedicado:</strong> ¿El presupuesto nos permite comprar maquinaria "flexible" más costosa pero que absorba tanto huevo como carnes, o debemos ir primero por equipos económicos exclusivos para huevo?</li>
+          <li><strong>Costos indirectos:</strong> Considerando la amplia gama (postres, carnes, huevos), requeriremos probablemente cámaras de frío separadas o zonificadas por riesgo cruzado. ¿Esto entra en el límite de inversión PyME contemplado?</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
